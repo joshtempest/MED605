@@ -2,20 +2,23 @@ using UnityEngine;
 
 public class Boundary : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    string[] objectTags = { "Fork", "Knife", "Spoon"};
 
     public void OnCollisionEnter(Collision other)
     {
-        //should probably check first if the object is in motion, so the player can move around.
-        if (other.gameObject) { }
-        //then check the object's tag, so the specific item can be replaced. Calling the spawn function is proably the easiest way.
-        if (other.gameObject.tag == "")
+        Vector3 spawnPos = new Vector3(0f, 1.1f, 0f);
+        // If collided object matches one of the tags, respawn a copy at the spawn position
+        for (int i = 0; i < objectTags.Length; i++)
         {
-            Destroy(other.gameObject);
+            string currentTag = objectTags[i];
+
+            if (other.gameObject.tag == "Fork")
+            {
+                // instantiate a copy at the spawn position then destroy the original
+                Instantiate(other.gameObject, spawnPos, Quaternion.identity);
+                Destroy(other.gameObject);
+                break;
+            }
         }
     }
 }

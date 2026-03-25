@@ -1,23 +1,38 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class objectSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject prefabToSpawn;
-    [SerializeField] private GameObject spawnPlatform;
+    [SerializeField] private GameObject forkPrefabToSpawn;
+    [SerializeField] private GameObject smoerPrefabToSpawn;
+    //[SerializeField] private GameObject prefabToSpawn;
+
+    [SerializeField] private GameObject forkSpawnPlatform;
+    [SerializeField] private GameObject smoerSpawnPlatform;
+    Vector3 spawnBuffer = new Vector3(0f, 0.2f, 0f);
+
+    void Awake()
+    {
+        Vector3 forkSpawnPlat = forkSpawnPlatform.transform.position;
+        Vector3 smoerSpawnPlat = smoerSpawnPlatform.transform.position;
+    }
 
     void Start()
     {
-        if (spawnPlatform == null)
-        {
-            Debug.LogError("Spawn platform is not assigned in the inspector.");
-            spawnPlatform = this.gameObject; // Default to the current game object if not assigned
-        }
-        Vector3 spawnBuffer = new Vector3(0f, 0.2f, 0f);
-        Vector3 spawnPosition = spawnPlatform.gameObject.transform.position + spawnBuffer;
-        spawnObject(prefabToSpawn, spawnPosition);
+        spawnObject("Fork");
+        spawnObject("Smoer");
     }
-    public void spawnObject(GameObject objectToSpawn, Vector3 positionToSpawn)
+    public void spawnObject(string tag)
     {
-        Instantiate(objectToSpawn, positionToSpawn, Quaternion.identity);
+        if (tag =="Fork")
+        {
+            Vector3 positionToSpawn = forkSpawnPlatform.transform.position + spawnBuffer;
+            Instantiate(forkPrefabToSpawn, positionToSpawn, Quaternion.identity);
+        }
+        if (tag == "Smoer")
+        {
+            Vector3 positionToSpawn = smoerSpawnPlatform.transform.position + spawnBuffer;
+            Instantiate(smoerPrefabToSpawn, positionToSpawn, Quaternion.identity);
+        }
     }
 }

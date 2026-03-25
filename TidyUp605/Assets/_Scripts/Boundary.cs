@@ -1,8 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Boundary : MonoBehaviour
 {
     string[] objectTags = { "Fork", "Knife", "Spoon"};
+
+    
 
     public void OnCollisionEnter(Collision other)
     {
@@ -12,7 +15,7 @@ public class Boundary : MonoBehaviour
         {
             string currentTag = objectTags[i];
 
-            if (other.gameObject.tag == "Fork")
+            if (other.gameObject.tag == currentTag)
             {
                 // instantiate a copy at the spawn position then destroy the original
                 Instantiate(other.gameObject, spawnPos, Quaternion.identity);

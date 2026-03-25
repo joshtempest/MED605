@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Fork
+  - Knife
+  - Spoon
+  - SpawnPlatform
   layers:
   - Default
   - TransparentFX

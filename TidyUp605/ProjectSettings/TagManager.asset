@@ -9,6 +9,9 @@ TagManager:
   - Spoon
   - SpawnPlatform
   - Smoer
+  - Mad
+  - Service
+  - Beskidt
   layers:
   - Default
   - TransparentFX

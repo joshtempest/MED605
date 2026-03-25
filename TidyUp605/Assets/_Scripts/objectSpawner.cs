@@ -1,38 +1,64 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class objectSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject forkPrefabToSpawn;
-    [SerializeField] private GameObject smoerPrefabToSpawn;
-    //[SerializeField] private GameObject prefabToSpawn;
+    [SerializeField] private GameObject[] servicePrefabsToSpawn;
+    [SerializeField] private GameObject[] madPrefabsToSpawn;
+    [SerializeField] private GameObject[] beskidtPrefabsToSpawn;
 
-    [SerializeField] private GameObject forkSpawnPlatform;
-    [SerializeField] private GameObject smoerSpawnPlatform;
-    Vector3 spawnBuffer = new Vector3(0f, 0.2f, 0f);
+    private GameObject ServiceToSpawn;
+    private GameObject MadToSpawn;
+    private GameObject BeskidtToSpawn;
+
+    [SerializeField] private GameObject serviceSpawnPlatform;
+    [SerializeField] private GameObject madSpawnPlatform;
+    [SerializeField] private GameObject beskditSpawnPlatform;
+
+    Vector3 spawnBuffer;
 
     void Awake()
     {
-        Vector3 forkSpawnPlat = forkSpawnPlatform.transform.position;
-        Vector3 smoerSpawnPlat = smoerSpawnPlatform.transform.position;
+        Vector3 serviceSpawnPlat = serviceSpawnPlatform.transform.position;
+        Vector3 madSpawnPlat = madSpawnPlatform.transform.position;
+        Vector3 beskidtSpawnPlat = beskditSpawnPlatform.transform.position;
     }
 
     void Start()
     {
-        spawnObject("Fork");
-        spawnObject("Smoer");
+        ServiceToSpawn = servicePrefabsToSpawn[UnityEngine.Random.Range(0, servicePrefabsToSpawn.Length)];
+        MadToSpawn = madPrefabsToSpawn[UnityEngine.Random.Range(0, madPrefabsToSpawn.Length)];
+        BeskidtToSpawn = beskidtPrefabsToSpawn[UnityEngine.Random.Range(0, beskidtPrefabsToSpawn.Length)];
+        spawnObject("Service");
+        spawnObject("Mad");
+        spawnObject("Beskidt");
     }
     public void spawnObject(string tag)
     {
-        if (tag =="Fork")
+        if (tag =="Service")
         {
-            Vector3 positionToSpawn = forkSpawnPlatform.transform.position + spawnBuffer;
-            Instantiate(forkPrefabToSpawn, positionToSpawn, Quaternion.identity);
+            ServiceToSpawn = servicePrefabsToSpawn[UnityEngine.Random.Range(0, servicePrefabsToSpawn.Length)];
+            spawnBuffer = new Vector3 (UnityEngine.Random.Range(-1f, 1f), 0.2f, UnityEngine.Random.Range(-1f, 1f));
+
+            Vector3 positionToSpawn = serviceSpawnPlatform.transform.position + spawnBuffer;
+            Instantiate(ServiceToSpawn, positionToSpawn, Quaternion.identity);
         }
-        if (tag == "Smoer")
+        if (tag == "Mad")
         {
-            Vector3 positionToSpawn = smoerSpawnPlatform.transform.position + spawnBuffer;
-            Instantiate(smoerPrefabToSpawn, positionToSpawn, Quaternion.identity);
+            MadToSpawn = madPrefabsToSpawn[UnityEngine.Random.Range(0, madPrefabsToSpawn.Length)];
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0.2f, UnityEngine.Random.Range(-1f, 1f));
+
+            Vector3 positionToSpawn = madSpawnPlatform.transform.position + spawnBuffer;
+            Instantiate(MadToSpawn, positionToSpawn, Quaternion.identity);
+        }
+        if(tag == "Beskidt")
+        {
+            BeskidtToSpawn = beskidtPrefabsToSpawn[UnityEngine.Random.Range(0, beskidtPrefabsToSpawn.Length)];
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0.2f, UnityEngine.Random.Range(-1f, 1f));
+
+            Vector3 positionToSpawn = madSpawnPlatform.transform.position + spawnBuffer;
+            Instantiate(BeskidtToSpawn, positionToSpawn, Quaternion.identity);
         }
     }
 }

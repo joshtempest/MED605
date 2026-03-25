@@ -4,19 +4,13 @@ using UnityEngine;
 
 public class Boundary : MonoBehaviour
 {
-    [SerializeField] private GameObject GameManager;
+    private GameObject GameManager;
     private objectSpawner spawnerScript;
-    string[] objectTags = { "Fork", "Knife", "Spoon", "Smoer"};
+    string[] objectTags = { "Service", "Beskidt", "Mad"};
 
     private void Awake()
     {
-        if (GameManager != null)
-        {
-            spawnerScript = GameManager.GetComponent<objectSpawner>();
-        }
-        else { 
-            spawnerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<objectSpawner>();
-        }
+        spawnerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<objectSpawner>();
     }
 
     public void OnCollisionEnter(Collision other)
@@ -28,8 +22,8 @@ public class Boundary : MonoBehaviour
 
             if (other.gameObject.tag == currentTag)
             {
-                Destroy(other.gameObject);
                 spawnerScript.spawnObject(currentTag);
+                Destroy(other.gameObject);
                 break;
             }
         }

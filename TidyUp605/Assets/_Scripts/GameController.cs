@@ -14,9 +14,11 @@ public class GameController : MonoBehaviour
     public void increaseScore(int score)
     {
         ScoreValue += score;
+        Debug.Log("Score: " + ScoreValue);
     }
     public void decreaseScore(int score)
     {
         negativeScore += score;
+        Debug.Log("Negative Score: " + negativeScore);
     }
 }

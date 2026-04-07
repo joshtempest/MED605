@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class receiverManager : MonoBehaviour
 {
     private GameObject GameManager;
     private objectSpawner spawnerScript;
+    private GameController gameController;
 
     [SerializeField] private bool isServiceReceiver;
     [SerializeField] private bool isBeskidtReceiver;
@@ -15,6 +17,7 @@ public class receiverManager : MonoBehaviour
     private void Awake()
     {
         spawnerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<objectSpawner>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     private void Start()
@@ -40,16 +43,19 @@ public class receiverManager : MonoBehaviour
             if (collision.gameObject.tag == "Service")
             {
                 Destroy(collision.gameObject);
+                gameController.increaseScore(1);
                 //Add score for positive interaction
             }
             else if (collision.gameObject.tag == "Beskidt")
             {
                 Destroy(collision.gameObject);
+                gameController.decreaseScore(1);
                 //Subtract score for negative interaction
             }
             else if (collision.gameObject.tag == "Mad")
             {
                 Destroy(collision.gameObject);
+                gameController.decreaseScore(1);
                 //Subtract score for negative interaction
             }
         }
@@ -58,16 +64,19 @@ public class receiverManager : MonoBehaviour
             if(collision.gameObject.tag == "Beskidt")
             {
                 Destroy(collision.gameObject);
+                gameController.increaseScore(1);
                 //Add score for positive interaction
             }
             else if (collision.gameObject.tag == "Service")
             {
                 Destroy(collision.gameObject);
+                gameController.decreaseScore(1);
                 //Subtract score for negative interaction
             }
             else if (collision.gameObject.tag == "Mad")
             {
                 Destroy(collision.gameObject);
+                gameController.decreaseScore(1);
                 //Subtract score for negative interaction
             }
         }
@@ -76,16 +85,19 @@ public class receiverManager : MonoBehaviour
             if(collision.gameObject.tag == "Mad")
             {
                 Destroy(collision.gameObject);
+                gameController.increaseScore(1);
                 //Add score for positive interaction
             }
             else if (collision.gameObject.tag == "Service")
             {
                 Destroy(collision.gameObject);
+                gameController.decreaseScore(1);
                 //Subtract score for negative interaction
             }
             else if (collision.gameObject.tag == "Beskidt")
             {
                 Destroy(collision.gameObject);
+                gameController.decreaseScore(1);
                 //Subtract score for negative interaction
             }
         }

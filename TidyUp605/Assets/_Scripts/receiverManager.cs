@@ -22,6 +22,7 @@ public class receiverManager : MonoBehaviour
 
     private void Start()
     {
+        //Fancy way to check if more than one type is assigned to the receiver and log a warning if so, also checks if no type is assigned and logs a warning if so
         receiverTypeCount = (isServiceReceiver ? 1 : 0) + (isBeskidtReceiver ? 1 : 0) + (isMadReceiver ? 1 : 0);
         if (receiverTypeCount > 1)
         {

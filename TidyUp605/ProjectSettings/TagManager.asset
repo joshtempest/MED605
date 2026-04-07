@@ -12,6 +12,7 @@ TagManager:
   - Mad
   - Service
   - Beskidt
+  - receptacle
   layers:
   - Default
   - TransparentFX

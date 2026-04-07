@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7bf08acba8e19e741b828930ff30cacf
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - koeleskab: {fileID: 7804653488199077574, guid: d4f936ca6d1536343b21452b31f3fae4, type: 3}
+  - skab: {fileID: 3267122424555581529, guid: 64884db48f1b2e0448ace0c0094ff033, type: 3}
+  - koelePlatform: {instanceID: 0}
+  - skabPlatform: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

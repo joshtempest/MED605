@@ -14,7 +14,7 @@ public class objectSpawner : MonoBehaviour
 
     [SerializeField] private GameObject serviceSpawnPlatform;
     [SerializeField] private GameObject madSpawnPlatform;
-    [SerializeField] private GameObject beskditSpawnPlatform;
+    [SerializeField] private GameObject beskitSpawnPlatform;
 
     Vector3 spawnBuffer;
 
@@ -22,7 +22,7 @@ public class objectSpawner : MonoBehaviour
     {
         Vector3 serviceSpawnPlat = serviceSpawnPlatform.transform.position;
         Vector3 madSpawnPlat = madSpawnPlatform.transform.position;
-        Vector3 beskidtSpawnPlat = beskditSpawnPlatform.transform.position;
+        Vector3 beskidtSpawnPlat = beskitSpawnPlatform.transform.position;
     }
 
     void Start()

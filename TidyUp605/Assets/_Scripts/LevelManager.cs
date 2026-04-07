@@ -5,21 +5,26 @@ public class LevelManager : MonoBehaviour
     //Prefab
     [SerializeField] GameObject koeleskab;
     [SerializeField] GameObject skab;
+    [SerializeField] GameObject opvaskemaskine;
 
     //Platforms (to place them the same place everytime)
     [SerializeField] GameObject koelePlatform;
     [SerializeField] GameObject skabPlatform;
+    [SerializeField] GameObject opvaskemaskinePlatform;
 
     Vector3 koeleSpawnbuffer = new Vector3(0, 1.62f, 0);
     Vector3 skabSpawnbuffer = new Vector3(0, 0.1f, 0);
+    Vector3 opvaskeSpawnbuffer = new Vector3(0, 0.1f, 0);
 
     Vector3 koelePlatformPos;
     Vector3 skabPlatformPos;
+    Vector3 opvaskemaskinePlatformPos;
 
     private void Awake()
     {
         koelePlatformPos = koelePlatform.transform.position + koeleSpawnbuffer;
         skabPlatformPos = skabPlatform.transform.position + skabSpawnbuffer;
+        opvaskemaskinePlatformPos = opvaskemaskinePlatform.transform.position + opvaskeSpawnbuffer;
     }
 
     void annihilation() 
@@ -47,13 +52,16 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    void loadT1()
+    void loadTrial1()
     {
         annihilation();
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
     }
-    private void Start()
+
+    void loadTutorial1()
     {
-        loadT1();
+        annihilation();
+        Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
     }
+    //private void Start(){loadTrial1();}
 }

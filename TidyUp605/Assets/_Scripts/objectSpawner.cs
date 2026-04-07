@@ -30,9 +30,9 @@ public class objectSpawner : MonoBehaviour
         ServiceToSpawn = servicePrefabsToSpawn[UnityEngine.Random.Range(0, servicePrefabsToSpawn.Length)];
         MadToSpawn = madPrefabsToSpawn[UnityEngine.Random.Range(0, madPrefabsToSpawn.Length)];
         BeskidtToSpawn = beskidtPrefabsToSpawn[UnityEngine.Random.Range(0, beskidtPrefabsToSpawn.Length)];
-        spawnObject("Service");
-        spawnObject("Mad");
-        spawnObject("Beskidt");
+        //spawnObject("Service");
+        //spawnObject("Mad");
+        //spawnObject("Beskidt");
     }
     public void spawnObject(string tag)
     {

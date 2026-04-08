@@ -1267,6 +1267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   rightAnswer: 0
   wrongAnswer: 0
+  threshold: 0
 --- !u!114 &1407553812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1291,11 +1292,11 @@ MonoBehaviour:
   - {fileID: 8607282690088520160, guid: 3b30a6cd3463aa74cb754911426ddde7, type: 3}
   beskidtPrefabsToSpawn: []
   smoer: {fileID: 1681494129103073325, guid: fab4af15726221b4583b95b5b5d24799, type: 3}
-  dirtyPlate: {fileID: 0}
-  cleanPlate: {fileID: 4645838567624183631, guid: 901a2bf3c325c874c8b78c05d1e77755, type: 3}
+  beskidtPlate: {fileID: 0}
+  renPlate: {fileID: 4645838567624183631, guid: 901a2bf3c325c874c8b78c05d1e77755, type: 3}
   serviceSpawnPlatform: {fileID: 986156901}
   madSpawnPlatform: {fileID: 986156901}
-  beskitSpawnPlatform: {fileID: 0}
+  beskidtSpawnPlatform: {fileID: 0}
 --- !u!114 &1407553813
 MonoBehaviour:
   m_ObjectHideFlags: 0

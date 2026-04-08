@@ -61,18 +61,23 @@ public class LevelManager : MonoBehaviour
 
     //private void Start(){loadTrial1();}
 
-    void reloadLevel()
+    public void reloadLevel()
     {
-        if (currentLevel == "Trial1")
-        {
-            loadTrial1();
-        }
-        else if (currentLevel == "Tutorial1")
-        {
-            loadTutorial1();
-        }
+        if (currentLevel == "Trial1"){loadTrial1();}
+        else if (currentLevel == "Tutorial1"){loadTutorial1();}
+        else if(currentLevel == "Tutorial2"){loadTutorial2();}
+        else if(currentLevel == "Tutorial3"){loadTutorial3();}
+        else if(currentLevel == "Practice1"){loadPractice1();}
+        else if(currentLevel == "Practice2"){loadPractice2();}
+        else if(currentLevel == "Practice3"){loadPractice3();}
+        else if(currentLevel == "Practice4"){loadPractice4();}
+        else if(currentLevel == "Practice5"){loadPractice5();}
+        else if(currentLevel == "Practice6"){loadPractice6(); }
     }
 
+
+    //spawnerScript.spawnObject spawns a random prefab from the list, needs a string of: "Service", "Mad" or "Beskidt" to know which list to spawn from.
+    //spawnerScript.spawnThisObject spawns a specific prefab, needs a string of: "b" for beskidt tallerken, "s" for smoer or "r" for ren tallerken, to know which prefab to spawn.
     void loadTrial1()
     {
         annihilation();
@@ -85,7 +90,7 @@ public class LevelManager : MonoBehaviour
         annihilation();
         currentLevel = "Tutorial1";
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
-        //spawnerScript.spawnObject("Beskidt");
+        spawnerScript.spawnThisObject("b");
         //need to spawn dirty plate, don't have that yet
     }
 
@@ -94,7 +99,7 @@ public class LevelManager : MonoBehaviour
         annihilation();
         currentLevel = "Tutorial2";
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
-        spawnerScript.spawnObject("Mad");
+        spawnerScript.spawnThisObject("s");
     }
 
     void loadTutorial3()
@@ -102,7 +107,7 @@ public class LevelManager : MonoBehaviour
         annihilation();
         currentLevel = "Tutorial3";
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnObject("Service");
+        spawnerScript.spawnThisObject("r");
     }
 
     void loadPractice1() 
@@ -112,7 +117,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        //spawnerScript.spawnObject("Beskidt");
+        spawnerScript.spawnThisObject("b");
     }
     void loadPractice2()
     {
@@ -121,7 +126,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnObject("Mad");
+        spawnerScript.spawnThisObject("s");
     }
 
     void loadPractice3()
@@ -131,6 +136,36 @@ public class LevelManager : MonoBehaviour
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnObject("Service");
+        spawnerScript.spawnThisObject("r");
+    }
+    void loadPractice4()
+    {
+        annihilation();
+        currentLevel = "Practice4";
+        Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
+        Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
+        Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+        spawnerScript.spawnThisObject("b");
+        spawnerScript.spawnThisObject("s");
+    }
+    void loadPractice5()
+    {
+        annihilation();
+        currentLevel = "Practice5";
+        Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
+        Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
+        Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+        spawnerScript.spawnThisObject("s");
+        spawnerScript.spawnThisObject("r");
+    }
+    void loadPractice6()
+    {
+        annihilation();
+        currentLevel = "Practice6";
+        Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
+        Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
+        Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+        spawnerScript.spawnThisObject("b");
+        spawnerScript.spawnThisObject("r");
     }
 }

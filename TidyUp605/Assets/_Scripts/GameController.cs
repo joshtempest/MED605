@@ -4,8 +4,8 @@ public class GameController : MonoBehaviour
 {
     private LevelManager levelManager;
 
-    public int rightAnswer;
-    public int wrongAnswer;
+    public int rightAnswers;
+    public int wrongAnswers;
 
     public int threshold;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -13,24 +13,28 @@ public class GameController : MonoBehaviour
     {
         levelManager = this.gameObject.GetComponent<LevelManager>();
 
-        rightAnswer = 0;
-        wrongAnswer = 0;
+        resetScore();
     }
 
     public void increaseScore(int score)
     {
-        rightAnswer += score;
-        Debug.Log("Score: " + rightAnswer);
+        rightAnswers += score;
+        Debug.Log("Score: " + rightAnswers);
     }
     public void decreaseScore(int score)
     {
-        wrongAnswer += score;
-        Debug.Log("Negative Score: " + wrongAnswer);
+        wrongAnswers += score;
+        Debug.Log("Negative Score: " + wrongAnswers);
+    }
+    public void resetScore()
+    {
+        rightAnswers = 0;
+        wrongAnswers = 0;
     }
 
     private void Update()
     {
-        if (wrongAnswer > threshold) 
+        if (wrongAnswers >= threshold) 
         {
             levelManager.reloadLevel();
         }

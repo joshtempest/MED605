@@ -26,6 +26,9 @@ public class Boundary : MonoBehaviour
                 Destroy(other.gameObject);
                 break;
             }
+            else if(other.gameObject.tag == "smoer") { Destroy(other.gameObject); spawnerScript.spawnThisObject("s"); }
+            else if(other.gameObject.tag == "plate") { Destroy(other.gameObject); spawnerScript.spawnThisObject("r"); }
+            else if(other.gameObject.tag == "beskidtPlate") { Destroy(other.gameObject); spawnerScript.spawnThisObject("b"); }
         }
     }
 }

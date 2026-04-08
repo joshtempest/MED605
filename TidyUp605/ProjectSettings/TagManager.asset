@@ -13,6 +13,9 @@ TagManager:
   - Service
   - Beskidt
   - receptacle
+  - smoer
+  - plate
+  - beskidtPlate
   layers:
   - Default
   - TransparentFX

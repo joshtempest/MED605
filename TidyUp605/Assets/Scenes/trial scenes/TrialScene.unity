@@ -2053,6 +2053,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Origin (VR)
       objectReference: {fileID: 0}
+    - target: {fileID: 2192795546212960897, guid: 9dc0df571d3985348abda4759b2af2dd, type: 3}
+      propertyPath: m_CastRadius
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 2206283063432082167, guid: 9dc0df571d3985348abda4759b2af2dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.637
@@ -2093,13 +2097,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4609299583721925684, guid: 9dc0df571d3985348abda4759b2af2dd, type: 3}
+      propertyPath: m_CastRadius
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6709651645238941417, guid: 9dc0df571d3985348abda4759b2af2dd, type: 3}
       propertyPath: m_FarAttachMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6709651645238941417, guid: 9dc0df571d3985348abda4759b2af2dd, type: 3}
       propertyPath: m_EnableFarCasting
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

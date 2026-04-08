@@ -1,0 +1,95 @@
+using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
+using System;
+public class AudioManager : MonoBehaviour
+{
+    public static AudioManager Instance;
+
+    [Header("Settings")]
+    public AudioMixer mainMixer;
+    public string musicParam = "MusicVol";
+    public string sfxParam = "SFXVol";     
+
+    [Header("References")]
+    public AudioSource musicSource;
+    public AudioSource sfxSource;
+    public Slider musicSlider;
+    public Slider sfxSlider;
+
+    [Header("Audio Clips")]
+    public Sound[] musicSounds, sfxSounds;
+
+    private void Awake()
+    {
+        // Singleton Pattern
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
+
+    private void Start()
+    {
+        LoadVolume();
+        AudioManager.Instance.PlaySFX("Complete");
+    }
+
+    //  LOGIC FOR PLAYING SOUNDS
+
+    public void PlayMusic(string name)
+    {
+        Sound s = Array.Find(musicSounds, x => x.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Music: " + name + " not found!");
+            return;
+        }
+        musicSource.clip = s.clip;
+        musicSource.loop = s.loop;
+        musicSource.Play();
+    }
+
+    public void PlaySFX(string name)
+    {
+        Sound s = Array.Find(sfxSounds, x => x.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("SFX: " + name + " not found!");
+            return;
+        }
+        sfxSource.PlayOneShot(s.clip);
+    }
+
+    //  VOLUME AND SAVING 
+
+    public void SetMusicVolume(float value)
+    {
+        mainMixer.SetFloat(musicParam, Mathf.Log10(value) * 20);
+        PlayerPrefs.SetFloat("SavedMusicVol", value);
+    }
+
+    public void SetSFXVolume(float value)
+    {
+        mainMixer.SetFloat(sfxParam, Mathf.Log10(value) * 20);
+        PlayerPrefs.SetFloat("SavedSFXVol", value);
+    }
+
+    private void LoadVolume()
+    {
+        float musicVol = PlayerPrefs.GetFloat("SavedMusicVol", 0.75f);
+        float sfxVol = PlayerPrefs.GetFloat("SavedSFXVol", 0.75f);
+
+        if (musicSlider != null) musicSlider.value = musicVol;
+        if (sfxSlider != null) sfxSlider.value = sfxVol;
+
+        SetMusicVolume(musicVol);
+        SetSFXVolume(sfxVol);
+    }
+}

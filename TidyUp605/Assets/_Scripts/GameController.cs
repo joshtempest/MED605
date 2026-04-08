@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
     public int rightAnswers;
     public int wrongAnswers;
 
-    public int threshold;
+    public int threshold = 5;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour
     {
         rightAnswers = 0;
         wrongAnswers = 0;
+        threshold = 5;
     }
 
     private void Update()

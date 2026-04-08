@@ -64,7 +64,6 @@ public class LevelManager : MonoBehaviour
         gameController.resetScore();
     }
 
-    //private void Start(){loadTrial1();}
 
     public void reloadLevel()
     {
@@ -107,6 +106,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void Start(){loadTrial1();}
 
     //spawnerScript.spawnObject spawns a random prefab from the list, needs a string of: "Service", "Mad" or "Beskidt" to know which list to spawn from.
     //spawnerScript.spawnThisObject spawns a specific prefab, needs a string of: "b" for beskidt tallerken, "s" for smoer or "r" for ren tallerken, to know which prefab to spawn.
@@ -115,6 +115,11 @@ public class LevelManager : MonoBehaviour
         currentLevel = "Trial1";
         annihilation();
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
+        Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
+        Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+        spawnerScript.spawnObject("Service");
+        spawnerScript.spawnObject("Mad");
+        spawnerScript.spawnObject("Beskidt");
     }
 
     void loadTutorial1()

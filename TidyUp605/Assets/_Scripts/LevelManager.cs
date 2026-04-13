@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour
 
     //to (hopefully) avoid the objects spawning in the floor
     Vector3 koeleSpawnbuffer = new Vector3(0, 1.62f, 0);
-    Vector3 skabSpawnbuffer = new Vector3(0, 0.1f, 0);
+    Vector3 skabSpawnbuffer = new Vector3(0, 0.2f, 0);
     Vector3 opvaskeSpawnbuffer = new Vector3(0, 0.1f, 0);
 
     Vector3 koelePlatformPos;
@@ -78,7 +78,8 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "Practice5") {loadPractice5(); }
         else if (currentLevel == "Practice6") {loadPractice6(); }
         else if (currentLevel == "Practice7") {loadPractice7(); }
-        else if (currentLevel == "Eval1") {loadEval1(); }
+        else if (currentLevel == "Eval1") { loadEval1(); }
+        else if (currentLevel == "Intro") { loadIntro(); }
     }
 
     public void loadNextLevel()
@@ -106,10 +107,17 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private void Start(){loadTrial1();}
+    //private void Start(){loadTrial1();}
 
     //spawnerScript.spawnObject spawns a random prefab from the list, needs a string of: "Service", "Mad" or "Beskidt" to know which list to spawn from.
     //spawnerScript.spawnThisObject spawns a specific prefab, needs a string of: "b" for beskidt tallerken, "s" for smoer or "r" for ren tallerken, to know which prefab to spawn.
+    void loadIntro() 
+    {
+        currentLevel = "Intro";
+        compareScene("Intro");
+        annihilation();
+    }
+
     void loadTrial1()
     {
         currentLevel = "Trial1";

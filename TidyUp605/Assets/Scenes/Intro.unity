@@ -175,6 +175,18 @@ PrefabInstance:
       propertyPath: thisIsIntro
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8362565001035886112, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: skabPlatform
+      value: 
+      objectReference: {fileID: 775087849}
+    - target: {fileID: 8362565001035886112, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: koelePlatform
+      value: 
+      objectReference: {fileID: 775087849}
+    - target: {fileID: 8362565001035886112, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: opvaskemaskinePlatform
+      value: 
+      objectReference: {fileID: 775087849}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -972,6 +984,37 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 765027639}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &775087849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 775087850}
+  m_Layer: 0
+  m_Name: StandIn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &775087850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775087849}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -3044,3 +3087,4 @@ SceneRoots:
   - {fileID: 1028144265}
   - {fileID: 765027642}
   - {fileID: 16083035}
+  - {fileID: 775087850}

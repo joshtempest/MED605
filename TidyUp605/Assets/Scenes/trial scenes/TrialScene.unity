@@ -947,101 +947,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1407553809
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1407553810}
-  - component: {fileID: 1407553811}
-  - component: {fileID: 1407553812}
-  - component: {fileID: 1407553813}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: GameController
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1407553810
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1407553809}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1407553811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1407553809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1384a96e3bde4446ba1e5a80099eebb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  rightAnswers: 0
-  wrongAnswers: 0
-  threshold: 0
---- !u!114 &1407553812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1407553809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecf03a5cac17a1a4d9d583345f9bda1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::objectSpawner
-  servicePrefabsToSpawn:
-  - {fileID: 3758219690666205030, guid: 98b0ce1c913ae964791b9e017bbf90ee, type: 3}
-  - {fileID: 494792528101945977, guid: ffbaca7567482c348831e1f8c7526567, type: 3}
-  - {fileID: 4645838567624183631, guid: 901a2bf3c325c874c8b78c05d1e77755, type: 3}
-  - {fileID: 738161073221333315, guid: 8cd70098a9916f94d8e24ae7f3323a92, type: 3}
-  madPrefabsToSpawn:
-  - {fileID: 1681494129103073325, guid: fab4af15726221b4583b95b5b5d24799, type: 3}
-  - {fileID: 8607282690088520160, guid: 3b30a6cd3463aa74cb754911426ddde7, type: 3}
-  beskidtPrefabsToSpawn:
-  - {fileID: 7269646975049402946, guid: 37abc29a89572504b8164e2d837503a8, type: 3}
-  smoer: {fileID: 7763604145962392702, guid: c0baa314e2413d64dbab81854158435b, type: 3}
-  beskidtPlate: {fileID: 358519615}
-  renPlate: {fileID: 6114407293463442476, guid: 116f5ff897f36c34c879d0e2a2ce9ba3, type: 3}
-  serviceSpawnPlatform: {fileID: 986156901}
-  madSpawnPlatform: {fileID: 986156901}
-  beskidtSpawnPlatform: {fileID: 986156901}
---- !u!114 &1407553813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1407553809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bf08acba8e19e741b828930ff30cacf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  koeleskab: {fileID: 7804653488199077574, guid: d4f936ca6d1536343b21452b31f3fae4, type: 3}
-  skab: {fileID: 3267122424555581529, guid: 64884db48f1b2e0448ace0c0094ff033, type: 3}
-  opvaskemaskine: {fileID: 1301282156924273411, guid: d2edb635fe23cdc4199a8290cde8b018, type: 3}
-  koelePlatform: {fileID: 1426374006}
-  skabPlatform: {fileID: 438117627}
-  opvaskemaskinePlatform: {fileID: 1623039789}
 --- !u!1 &1426374006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2098,11 +2003,96 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dc0df571d3985348abda4759b2af2dd, type: 3}
+--- !u!1001 &8281380116367153643
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 939640111568507421, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7111243130833578767, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7111243130833578767, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7111243130833578767, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7111243130833578767, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7111243130833578767, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7111243130833578767, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7111243130833578767, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7111243130833578767, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7111243130833578767, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7111243130833578767, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812333604541738836, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: beskidtPlate
+      value: 
+      objectReference: {fileID: 358519615}
+    - target: {fileID: 7812333604541738836, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: madSpawnPlatform
+      value: 
+      objectReference: {fileID: 986156901}
+    - target: {fileID: 7812333604541738836, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: beskidtSpawnPlatform
+      value: 
+      objectReference: {fileID: 986156901}
+    - target: {fileID: 7812333604541738836, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: serviceSpawnPlatform
+      value: 
+      objectReference: {fileID: 986156901}
+    - target: {fileID: 8362565001035886112, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: skabPlatform
+      value: 
+      objectReference: {fileID: 438117627}
+    - target: {fileID: 8362565001035886112, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: koelePlatform
+      value: 
+      objectReference: {fileID: 1426374006}
+    - target: {fileID: 8362565001035886112, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: opvaskemaskinePlatform
+      value: 
+      objectReference: {fileID: 1623039789}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1407553810}
+  - {fileID: 8281380116367153643}
   - {fileID: 94334131}
   - {fileID: 1221469247}
   - {fileID: 2218237447819262631}

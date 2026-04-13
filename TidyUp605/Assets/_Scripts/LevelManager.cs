@@ -89,6 +89,8 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "Practice7") {loadPractice7(); }
         else if (currentLevel == "Eval1") { loadEval1(); }
         else if (currentLevel == "Intro") { loadIntro(); }
+        else if (currentLevel == "LevelSelect") { loadLevelSelect(); }
+        else if (currentLevel == "VR") { loadVR(); }
     }
 
     public void loadNextLevel()

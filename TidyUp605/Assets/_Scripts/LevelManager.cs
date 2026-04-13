@@ -122,7 +122,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnObject("Beskidt");
     }
 
-    void loadTutorial1()
+    public void loadTutorial1()
     {
         currentLevel = "Tutorial1";
         compareScene("Tutorial_Practice");

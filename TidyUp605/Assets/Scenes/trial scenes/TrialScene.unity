@@ -532,13 +532,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438117627}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 2, y: 0.6, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &515495647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1893,6 +1893,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1712283171806518455, guid: d4f936ca6d1536343b21452b31f3fae4, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4d13b2ff68e4ed94da0b222648b529e0, type: 2}
+    - target: {fileID: 5571038234673828713, guid: d4f936ca6d1536343b21452b31f3fae4, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4d13b2ff68e4ed94da0b222648b529e0, type: 2}
     - target: {fileID: 7423166197617579132, guid: d4f936ca6d1536343b21452b31f3fae4, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
@@ -1941,6 +1949,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "K\xF8leskab\xE5ben"
       objectReference: {fileID: 0}
+    - target: {fileID: 9163608811886194610, guid: d4f936ca6d1536343b21452b31f3fae4, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4d13b2ff68e4ed94da0b222648b529e0, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

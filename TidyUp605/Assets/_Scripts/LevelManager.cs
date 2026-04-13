@@ -1,8 +1,12 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] private bool thisIsIntro;
+    [SerializeField] private bool thisIsTrial1;
+
     //Prefab
     [SerializeField] GameObject koeleskab;
     [SerializeField] GameObject skab;
@@ -26,8 +30,10 @@ public class LevelManager : MonoBehaviour
     Vector3 skabPlatformPos;
     Vector3 opvaskemaskinePlatformPos;
 
+    //for scene changing
     string currentLevel;
     Scene activeScene;
+
 
     private void Awake()
     {
@@ -37,6 +43,9 @@ public class LevelManager : MonoBehaviour
         koelePlatformPos = koelePlatform.transform.position + koeleSpawnbuffer;
         skabPlatformPos = skabPlatform.transform.position + skabSpawnbuffer;
         opvaskemaskinePlatformPos = opvaskemaskinePlatform.transform.position + opvaskeSpawnbuffer;
+
+        if (thisIsIntro) { currentLevel = "Intro"; }
+        else if (thisIsTrial1) { currentLevel = "Trial1"; }
     }
 
     void annihilation() 
@@ -84,7 +93,7 @@ public class LevelManager : MonoBehaviour
 
     public void loadNextLevel()
     {
-        if (currentLevel == "Trial1") { loadTutorial1(); }
+        if (currentLevel == "Intro") { loadTutorial1(); }
         else if (currentLevel == "Tutorial1") { loadTutorial2(); }
         else if (currentLevel == "Tutorial2") { loadTutorial3(); }
         else if (currentLevel == "Tutorial3") { loadPractice1(); }
@@ -111,14 +120,14 @@ public class LevelManager : MonoBehaviour
 
     //spawnerScript.spawnObject spawns a random prefab from the list, needs a string of: "Service", "Mad" or "Beskidt" to know which list to spawn from.
     //spawnerScript.spawnThisObject spawns a specific prefab, needs a string of: "b" for beskidt tallerken, "s" for smoer or "r" for ren tallerken, to know which prefab to spawn.
-    void loadIntro() 
+    public void loadIntro() 
     {
         currentLevel = "Intro";
         compareScene("Intro");
         annihilation();
     }
 
-    void loadTrial1()
+    public void loadTrial1()
     {
         currentLevel = "Trial1";
         annihilation();
@@ -140,7 +149,7 @@ public class LevelManager : MonoBehaviour
         //need to spawn dirty plate, don't have that yet
     }
 
-    void loadTutorial2()
+    public void loadTutorial2()
     {
         currentLevel = "Tutorial2";
         compareScene("Tutorial_Practice");
@@ -149,7 +158,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("s");
     }
 
-    void loadTutorial3()
+    public void loadTutorial3()
     {
         currentLevel = "Tutorial3";
         compareScene("Tutorial_Practice");
@@ -157,8 +166,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("r");
     }
-
-    void loadPractice1() 
+    public void loadPractice1() 
     {
         currentLevel = "Practice1";
         compareScene("Tutorial_Practice");
@@ -168,7 +176,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("b");
     }
-    void loadPractice2()
+    public void loadPractice2()
     {
         currentLevel = "Practice2";
         compareScene("Tutorial_Practice");
@@ -178,8 +186,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("s");
     }
-
-    void loadPractice3()
+    public void loadPractice3()
     {
         currentLevel = "Practice3";
         compareScene("Tutorial_Practice");
@@ -189,7 +196,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("r");
     }
-    void loadPractice4()
+    public void loadPractice4()
     {
         currentLevel = "Practice4";
         compareScene("Tutorial_Practice");
@@ -200,7 +207,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("b");
         spawnerScript.spawnThisObject("s");
     }
-    void loadPractice5()
+    public void loadPractice5()
     {
         currentLevel = "Practice5";
         compareScene("Tutorial_Practice");
@@ -211,7 +218,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("s");
         spawnerScript.spawnThisObject("r");
     }
-    void loadPractice6()
+    public void loadPractice6()
     {
         currentLevel = "Practice6";
         compareScene("Tutorial_Practice");
@@ -222,7 +229,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("b");
         spawnerScript.spawnThisObject("r");
     }
-    void loadPractice7()
+    public void loadPractice7()
     {
         currentLevel = "Practice7";
         compareScene("Tutorial_Practice");
@@ -235,7 +242,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("s");
     }
 
-    void loadEval1()
+    public void loadEval1()
     {
         currentLevel = "Eval1";
 
@@ -254,5 +261,16 @@ public class LevelManager : MonoBehaviour
         //spawnerScript.spawnThisObject("r");
         //spawnerScript.spawnThisObject("s");
         //spawnerScript.spawnThisObject("s");
+    }
+
+    public void loadLevelSelect() 
+    {
+        currentLevel = "LevelSelect";
+        compareScene("LevelSelect");
+    }
+    public void loadVR()
+    {
+        currentLevel = "VR";
+        compareScene("VRTutorial");
     }
 }

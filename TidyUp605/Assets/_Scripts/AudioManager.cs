@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using System;
+using System.Collections;
+
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
@@ -39,6 +41,9 @@ public class AudioManager : MonoBehaviour
     {
         LoadVolume();
         AudioManager.Instance.PlaySFX("Complete");
+
+        AudioManager.Instance.PlaySFXWithDelay("PickUp", 5f);
+        // AudioManager.Instance.PlayMusic("Music");
     }
 
     //  LOGIC FOR PLAYING SOUNDS
@@ -65,6 +70,17 @@ public class AudioManager : MonoBehaviour
             return;
         }
         sfxSource.PlayOneShot(s.clip);
+    }
+
+    public void PlaySFXWithDelay(string name, float delay)
+    {
+        StartCoroutine(WaitAndPlay(name, delay));
+    }
+
+    private IEnumerator WaitAndPlay(string name, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PlaySFX(name);
     }
 
     //  VOLUME AND SAVING 

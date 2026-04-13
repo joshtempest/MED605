@@ -1084,10 +1084,20 @@ MonoBehaviour:
   sfxSource: {fileID: 1217608503}
   musicSlider: {fileID: 1781619535}
   sfxSlider: {fileID: 1719487797}
-  musicSounds: []
+  musicSounds:
+  - name: Music
+    clip: {fileID: 8300000, guid: 4c80f4d0b6e3a084fb70fea7e6e4328e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
   sfxSounds:
   - name: Complete
     clip: {fileID: 8300000, guid: aef7f375c6ae86a4db97a5ca7fe0d422, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: PickUp
+    clip: {fileID: 8300000, guid: ed910cea2159e0f439ab28faf729cf80, type: 3}
     volume: 1
     pitch: 1
     loop: 0

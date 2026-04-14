@@ -22,16 +22,16 @@ public class LevelManager : MonoBehaviour
     private GameController gameController;
 
     //to (hopefully) avoid the objects spawning in the floor
-    Vector3 koeleSpawnbuffer = new Vector3(0, 1.62f, 0);
-    Vector3 skabSpawnbuffer = new Vector3(0, 0.2f, 0);
-    Vector3 opvaskeSpawnbuffer = new Vector3(0, 0.1f, 0);
+    [SerializeField] Vector3 koeleSpawnbuffer = new Vector3(0, 1.62f, 0);
+    [SerializeField] Vector3 skabSpawnbuffer = new Vector3(0, 0.2f, 0);
+    [SerializeField] Vector3 opvaskeSpawnbuffer = new Vector3(0, 0.1f, 0);
 
     Vector3 koelePlatformPos;
     Vector3 skabPlatformPos;
     Vector3 opvaskemaskinePlatformPos;
 
     //for scene changing
-    string currentLevel;
+    public string currentLevel;
     Scene activeScene;
 
 

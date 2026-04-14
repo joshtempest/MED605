@@ -14,10 +14,27 @@ public class receiverManager : MonoBehaviour
     [SerializeField] private bool isMadReceiver;
     private int receiverTypeCount;
 
+    private ParticleSystem part_tick;
+    private ParticleSystem part_sparkles;
+    private ParticleSystem part_x;
+
+
     private void Awake()
     {
         spawnerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<objectSpawner>();
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+
+        //get access to the particle systems of the receiver
+        part_tick = GameObject.Find("part_correct_tick").GetComponent<ParticleSystem>();
+        part_sparkles = GameObject.Find("part_correct_sparkles").GetComponent<ParticleSystem>();
+        part_x = GameObject.Find("part_wrong_x").GetComponent<ParticleSystem>();
+    
+        //throw a warning if the particle systems aren't found
+        if (!part_tick || !part_sparkles || !part_x)
+        {
+            Debug.LogWarning($"Particle system not detected: tick is {part_tick} - sparkles is {part_sparkles} - x is {part_x}");
+        }
+        else { Debug.Log("Particle systems assigned correctly."); }
     }
 
     private void Start()
@@ -46,18 +63,31 @@ public class receiverManager : MonoBehaviour
                 Destroy(collision.gameObject);
                 gameController.increaseScore(1);
                 //Add score for positive interaction
+
+                //play success particles
+                part_tick.Play();
+                part_sparkles.Play();
+
+                //add the sound effect for all of these
             }
             else if (collision.gameObject.tag == "Beskidt")
             {
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
+
+                //play error particle
+                part_x.Play();
             }
             else if (collision.gameObject.tag == "Mad")
             {
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
+
+                //play error particle
+                part_x.Play();
+
             }
         }
         if (isBeskidtReceiver) 
@@ -67,18 +97,31 @@ public class receiverManager : MonoBehaviour
                 Destroy(collision.gameObject);
                 gameController.increaseScore(1);
                 //Add score for positive interaction
+
+                //play success particles
+                part_tick.Play();
+                part_sparkles.Play();
+
             }
             else if (collision.gameObject.tag == "Service")
             {
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
+
+                //play error particle
+                part_x.Play();
+
             }
             else if (collision.gameObject.tag == "Mad")
             {
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
+
+                //play error particle
+                part_x.Play();
+
             }
         }
         if (isMadReceiver)
@@ -88,18 +131,31 @@ public class receiverManager : MonoBehaviour
                 Destroy(collision.gameObject);
                 gameController.increaseScore(1);
                 //Add score for positive interaction
+
+                //play success particles
+                part_tick.Play();
+                part_sparkles.Play();
+
             }
             else if (collision.gameObject.tag == "Service")
             {
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
+
+                //play error particle
+                part_x.Play();
+
             }
             else if (collision.gameObject.tag == "Beskidt")
             {
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
+
+                //play error particle
+                part_x.Play();
+
             }
         }
     }

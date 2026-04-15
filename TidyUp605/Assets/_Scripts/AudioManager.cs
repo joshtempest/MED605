@@ -43,6 +43,7 @@ public class AudioManager : MonoBehaviour
         AudioManager.Instance.PlaySFX("Complete");
 
         AudioManager.Instance.PlaySFXWithDelay("PickUp", 5f);
+
         // AudioManager.Instance.PlayMusic("Music");
     }
 

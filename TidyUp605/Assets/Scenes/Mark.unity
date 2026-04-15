@@ -1101,6 +1101,26 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - name: Victory
+    clip: {fileID: 8300000, guid: 9ea350d5282c2264eb6cc20a15ef4051, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Wrong
+    clip: {fileID: 8300000, guid: b84830f587db9734cbb050c7246d1da4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Teleport
+    clip: {fileID: 8300000, guid: b7ba3bbc5122c8a43bdac5ab3dba0788, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Teleport 2
+    clip: {fileID: 8300000, guid: 1de8ea3508bcf324a9e84f85cd2cd2a6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
 --- !u!1001 &1430251433
 PrefabInstance:
   m_ObjectHideFlags: 0

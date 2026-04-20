@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5945137503720297551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2039502469246503217}
+  - component: {fileID: 9068283339025550334}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2039502469246503217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5945137503720297551}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.63774, y: -0, z: -2.03583}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9068283339025550334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5945137503720297551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755e36cde06468c4fa41837d735c7461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  mainMixer: {fileID: 24100000, guid: 346e932812f4d6b49a8c307160e32471, type: 2}
+  musicParam: MusicVol
+  sfxParam: SFXVol
+  musicSource: {fileID: 0}
+  sfxSource: {fileID: 0}
+  musicSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
+  musicSounds:
+  - name: Music
+    clip: {fileID: 8300000, guid: 4c80f4d0b6e3a084fb70fea7e6e4328e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+  sfxSounds:
+  - name: Complete
+    clip: {fileID: 8300000, guid: aef7f375c6ae86a4db97a5ca7fe0d422, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: PickUp
+    clip: {fileID: 8300000, guid: ed910cea2159e0f439ab28faf729cf80, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Victory
+    clip: {fileID: 8300000, guid: 9ea350d5282c2264eb6cc20a15ef4051, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Wrong
+    clip: {fileID: 8300000, guid: b84830f587db9734cbb050c7246d1da4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Teleport
+    clip: {fileID: 8300000, guid: b7ba3bbc5122c8a43bdac5ab3dba0788, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Teleport 2
+    clip: {fileID: 8300000, guid: 1de8ea3508bcf324a9e84f85cd2cd2a6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0

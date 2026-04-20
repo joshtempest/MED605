@@ -18,6 +18,8 @@ public class receiverManager : MonoBehaviour
     private ParticleSystem part_sparkles;
     private ParticleSystem part_x;
 
+    public AudioManager AMan;
+
 
     private void Awake()
     {
@@ -68,7 +70,8 @@ public class receiverManager : MonoBehaviour
                 part_tick.Play();
                 part_sparkles.Play();
 
-                //add the sound effect for all of these
+                //play positive sound effect
+                AMan.PlaySFX("Victory");
             }
             else if (collision.gameObject.tag == "Beskidt")
             {
@@ -78,6 +81,10 @@ public class receiverManager : MonoBehaviour
 
                 //play error particle
                 part_x.Play();
+
+                //play negative sound effect
+                AMan.PlaySFX("Wrong");
+
             }
             else if (collision.gameObject.tag == "Mad")
             {
@@ -88,6 +95,8 @@ public class receiverManager : MonoBehaviour
                 //play error particle
                 part_x.Play();
 
+                //play negative sound effect
+                AMan.PlaySFX("Wrong");
             }
         }
         if (isBeskidtReceiver) 
@@ -102,6 +111,8 @@ public class receiverManager : MonoBehaviour
                 part_tick.Play();
                 part_sparkles.Play();
 
+                //play positive sound effect
+                AMan.PlaySFX("Victory");
             }
             else if (collision.gameObject.tag == "Service")
             {
@@ -111,6 +122,9 @@ public class receiverManager : MonoBehaviour
 
                 //play error particle
                 part_x.Play();
+
+                //play negative sound effect
+                AMan.PlaySFX("Wrong");
 
             }
             else if (collision.gameObject.tag == "Mad")
@@ -122,6 +136,8 @@ public class receiverManager : MonoBehaviour
                 //play error particle
                 part_x.Play();
 
+                //play negative sound effect
+                AMan.PlaySFX("Wrong");
             }
         }
         if (isMadReceiver)
@@ -136,6 +152,8 @@ public class receiverManager : MonoBehaviour
                 part_tick.Play();
                 part_sparkles.Play();
 
+                //play positive sound effect
+                AMan.PlaySFX("Victory");
             }
             else if (collision.gameObject.tag == "Service")
             {
@@ -146,6 +164,9 @@ public class receiverManager : MonoBehaviour
                 //play error particle
                 part_x.Play();
 
+                //play negative sound effect
+                AMan.PlaySFX("Wrong");
+
             }
             else if (collision.gameObject.tag == "Beskidt")
             {
@@ -155,6 +176,9 @@ public class receiverManager : MonoBehaviour
 
                 //play error particle
                 part_x.Play();
+
+                //play negative sound effect
+                AMan.PlaySFX("Wrong");
 
             }
         }

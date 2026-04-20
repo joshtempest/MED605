@@ -48,6 +48,7 @@ public class objectSpawner : MonoBehaviour
             Vector3 positionToSpawn = serviceSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(ServiceToSpawn, positionToSpawn, Quaternion.identity);
+            AudioManager.Instance.PlaySFX("Teleport");
         }
         if (tag == "Mad")
         {
@@ -57,6 +58,7 @@ public class objectSpawner : MonoBehaviour
             Vector3 positionToSpawn = madSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(MadToSpawn, positionToSpawn, Quaternion.identity);
+            AudioManager.Instance.PlaySFX("Teleport");
         }
         if(tag == "Beskidt")
         {
@@ -66,6 +68,7 @@ public class objectSpawner : MonoBehaviour
             Vector3 positionToSpawn = beskidtSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(BeskidtToSpawn, positionToSpawn, Quaternion.identity);
+            AudioManager.Instance.PlaySFX("Teleport");
         }
     }
 
@@ -77,6 +80,7 @@ public class objectSpawner : MonoBehaviour
             Vector3 positionToSpawn = madSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(smoer, positionToSpawn, Quaternion.identity);
+            AudioManager.Instance.PlaySFX("Teleport");
         }
         if (type == "b") 
         {
@@ -84,6 +88,7 @@ public class objectSpawner : MonoBehaviour
             Vector3 positionToSpawn = beskidtSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(beskidtPlate, positionToSpawn, Quaternion.identity);
+            AudioManager.Instance.PlaySFX("Teleport");
         }
         if (type == "r") 
         {
@@ -91,6 +96,7 @@ public class objectSpawner : MonoBehaviour
             Vector3 positionToSpawn = serviceSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(renPlate, positionToSpawn, Quaternion.identity);
+            AudioManager.Instance.PlaySFX("Teleport");
         }
     }
 }

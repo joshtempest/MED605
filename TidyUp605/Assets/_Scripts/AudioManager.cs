@@ -40,9 +40,9 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         LoadVolume();
-        AudioManager.Instance.PlaySFX("Complete");
+        // AudioManager.Instance.PlaySFX("Complete");
 
-        AudioManager.Instance.PlaySFXWithDelay("PickUp", 5f);
+        // AudioManager.Instance.PlaySFXWithDelay("PickUp", 5f);
 
         // AudioManager.Instance.PlayMusic("Music");
     }

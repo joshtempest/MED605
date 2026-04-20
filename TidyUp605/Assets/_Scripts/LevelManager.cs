@@ -151,6 +151,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         spawnerScript.spawnThisObject("b");
         //need to spawn dirty plate, don't have that yet
+        gameController.rightThreshold = 1;
     }
 
     public void loadTutorial2()
@@ -160,6 +161,7 @@ public class LevelManager : MonoBehaviour
         annihilation();
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
         spawnerScript.spawnThisObject("s");
+        gameController.rightThreshold = 1;
     }
 
     public void loadTutorial3()
@@ -169,6 +171,7 @@ public class LevelManager : MonoBehaviour
         annihilation();
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("r");
+        gameController.rightThreshold = 1;
     }
     public void loadPractice1() 
     {
@@ -179,6 +182,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("b");
+        gameController.rightThreshold = 1;
     }
     public void loadPractice2()
     {
@@ -189,6 +193,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("s");
+        gameController.rightThreshold = 1;
     }
     public void loadPractice3()
     {
@@ -199,6 +204,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("r");
+        gameController.rightThreshold = 1;
     }
     public void loadPractice4()
     {
@@ -210,6 +216,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("b");
         spawnerScript.spawnThisObject("s");
+        gameController.rightThreshold = 2;
     }
     public void loadPractice5()
     {
@@ -221,6 +228,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("s");
         spawnerScript.spawnThisObject("r");
+        gameController.rightThreshold = 2;
     }
     public void loadPractice6()
     {
@@ -232,6 +240,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("b");
         spawnerScript.spawnThisObject("r");
+        gameController.rightThreshold = 2;
     }
     public void loadPractice7()
     {
@@ -244,6 +253,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("b");
         spawnerScript.spawnThisObject("r");
         spawnerScript.spawnThisObject("s");
+        gameController.rightThreshold = 3;
     }
 
     public void loadEval1()

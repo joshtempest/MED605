@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour
         }
         if (rightAnswers >= rightThreshold)
         {
+            //det er her vi kan spawne blackboard istedet for bare at gå videre
             levelManager.loadNextLevel();
         }
     }

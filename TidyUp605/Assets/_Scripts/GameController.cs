@@ -9,12 +9,19 @@ public class GameController : MonoBehaviour
 
     public int wrongThreshold = 5;
     public int rightThreshold = 5;
+
+    public GameObject blackboard;
+    public Vector3 bbReviewPosition;
+    public Vector3 bbBackgroundPosition;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         levelManager = this.gameObject.GetComponent<LevelManager>();
-
+       
         resetScore();
+        blackboard.SetActive(false);
     }
 
     public void increaseScore(int score)

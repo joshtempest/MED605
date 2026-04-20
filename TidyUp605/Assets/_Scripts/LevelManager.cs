@@ -132,6 +132,7 @@ public class LevelManager : MonoBehaviour
     public void loadTrial1()
     {
         currentLevel = "Trial1";
+        compareScene("TrialScene");
         annihilation();
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
@@ -139,6 +140,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnObject("Service");
         spawnerScript.spawnObject("Mad");
         spawnerScript.spawnObject("Beskidt");
+        gameController.rightThreshold = 3;
     }
 
     public void loadTutorial1()

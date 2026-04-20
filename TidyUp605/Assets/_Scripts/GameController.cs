@@ -7,7 +7,8 @@ public class GameController : MonoBehaviour
     public int rightAnswers;
     public int wrongAnswers;
 
-    public int threshold = 5;
+    public int wrongThreshold = 5;
+    public int rightThreshold = 5;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,14 +31,19 @@ public class GameController : MonoBehaviour
     {
         rightAnswers = 0;
         wrongAnswers = 0;
-        threshold = 5;
+        wrongThreshold = 5;
+        rightThreshold = 5;
     }
 
     private void Update()
     {
-        if (wrongAnswers >= threshold) 
+        if (wrongAnswers >= wrongThreshold) 
         {
             levelManager.reloadLevel();
+        }
+        if (rightAnswers >= rightThreshold)
+        {
+            levelManager.loadNextLevel();
         }
     }
 }

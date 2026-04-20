@@ -19,7 +19,7 @@ public class Boundary : MonoBehaviour
         for (int i = 0; i < objectTags.Length; i++)
         {
             string currentTag = objectTags[i];
-
+            AudioManager.Instance.PlaySFX("Teleport");
             if (other.gameObject.tag == currentTag)
             {
                 spawnerScript.spawnObject(currentTag);

@@ -62,10 +62,13 @@ public class receiverManager : MonoBehaviour
         { 
             if (collision.gameObject.tag == "Service")
             {
+                //Add interaction to logs
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
+                
+                //Add score for positive interaction
                 Destroy(collision.gameObject);
                 gameController.increaseScore(1);
-                //Add score for positive interaction
-
+                
                 //play success particles
                 part_tick.Play();
                 part_sparkles.Play();
@@ -75,6 +78,9 @@ public class receiverManager : MonoBehaviour
             }
             else if (collision.gameObject.tag == "Beskidt")
             {
+                //Add interaction to logs
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
@@ -88,6 +94,9 @@ public class receiverManager : MonoBehaviour
             }
             else if (collision.gameObject.tag == "Mad")
             {
+                //Add interaction to logs
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
@@ -103,6 +112,9 @@ public class receiverManager : MonoBehaviour
         { 
             if(collision.gameObject.tag == "Beskidt")
             {
+                //Add interaction to logs
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
+
                 Destroy(collision.gameObject);
                 gameController.increaseScore(1);
                 //Add score for positive interaction
@@ -116,6 +128,9 @@ public class receiverManager : MonoBehaviour
             }
             else if (collision.gameObject.tag == "Service")
             {
+                //Add interaction to logs
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
@@ -129,6 +144,9 @@ public class receiverManager : MonoBehaviour
             }
             else if (collision.gameObject.tag == "Mad")
             {
+                //Add interaction to logs
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
@@ -144,6 +162,9 @@ public class receiverManager : MonoBehaviour
         { 
             if(collision.gameObject.tag == "Mad")
             {
+                //Add interaction to logs
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
+
                 Destroy(collision.gameObject);
                 gameController.increaseScore(1);
                 //Add score for positive interaction
@@ -157,6 +178,9 @@ public class receiverManager : MonoBehaviour
             }
             else if (collision.gameObject.tag == "Service")
             {
+                //Add interaction to logs
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
@@ -170,6 +194,9 @@ public class receiverManager : MonoBehaviour
             }
             else if (collision.gameObject.tag == "Beskidt")
             {
+                //Add interaction to logs
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction

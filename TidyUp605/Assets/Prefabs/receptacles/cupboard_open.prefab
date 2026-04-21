@@ -279,7 +279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4059262580193885244, guid: fd0fd308cba4da2429fcf59145208d1a, type: 3}
       propertyPath: m_Name
-      value: part_correct_sparkles
+      value: cpart_correct_sparkles
       objectReference: {fileID: 0}
     - target: {fileID: 6921518739820359870, guid: fd0fd308cba4da2429fcf59145208d1a, type: 3}
       propertyPath: ShapeModule.type
@@ -722,6 +722,13 @@ MonoBehaviour:
   isServiceReceiver: 1
   isBeskidtReceiver: 0
   isMadReceiver: 0
+  go_part_tick: {fileID: 0}
+  go_part_sparkles: {fileID: 0}
+  go_part_x: {fileID: 0}
+  part_tick: {fileID: 0}
+  part_sparkles: {fileID: 0}
+  part_x: {fileID: 0}
+  AMan: {fileID: 0}
 --- !u!65 &953839793306320747
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1495,7 +1502,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3674462129518778797, guid: 6b44763bcf002df4d9d22800c269df49, type: 3}
       propertyPath: m_Name
-      value: part_wrong_x
+      value: cpart_wrong_x
       objectReference: {fileID: 0}
     - target: {fileID: 9094262756812447657, guid: 6b44763bcf002df4d9d22800c269df49, type: 3}
       propertyPath: m_LocalScale.x
@@ -1853,7 +1860,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3674462129518778797, guid: 3903a22299dca0a4ea61315715090c5b, type: 3}
       propertyPath: m_Name
-      value: part_correct_tick
+      value: cpart_correct_tick
       objectReference: {fileID: 0}
     - target: {fileID: 9094262756812447657, guid: 3903a22299dca0a4ea61315715090c5b, type: 3}
       propertyPath: m_LocalScale.x

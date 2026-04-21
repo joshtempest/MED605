@@ -15,10 +15,14 @@ public class receiverManager : MonoBehaviour
     [SerializeField] private bool isMadReceiver;
     private int receiverTypeCount;
 
-    private ParticleSystem part_tick;
-    private ParticleSystem part_tick3;
-    private ParticleSystem part_sparkles;
-    private ParticleSystem part_x;
+    [SerializeField] private GameObject go_part_tick;
+    [SerializeField] private GameObject go_part_sparkles;
+    [SerializeField] private GameObject go_part_x;
+
+    [SerializeField] private ParticleSystem part_tick;
+    [SerializeField] private ParticleSystem part_sparkles;
+    [SerializeField] private ParticleSystem part_x;
+
 
     bool particlesOnline = false;
 
@@ -51,12 +55,13 @@ public class receiverManager : MonoBehaviour
     }
 
     public bool InitialiseParticles()
-    {
+        { 
         //get access to the particle systems of the receiver
-        part_tick = GameObject.Find("part_correct_tick").GetComponent<ParticleSystem>();
-        part_tick3 = this.gameObject.GetComponentInChildren<ParticleSystem>();
-        part_sparkles = GameObject.Find("part_correct_sparkles").GetComponent<ParticleSystem>();
-        part_x = GameObject.Find("part_wrong_x").GetComponent<ParticleSystem>();
+        part_tick = go_part_tick.GetComponent<ParticleSystem>();
+        //part_tick3 = this.gameObject.GetComponentInChildren<ParticleSystem>();
+        part_sparkles = go_part_sparkles.GetComponent<ParticleSystem>();
+        part_x = go_part_x.GetComponent<ParticleSystem>();
+       
 
         //throw a warning if the particle systems aren't found
         if (!part_tick || !part_sparkles || !part_x)
@@ -66,7 +71,7 @@ public class receiverManager : MonoBehaviour
         }
         else 
         {
-            Debug.Log("Particle systems assigned correctly.");
+            Debug.Log($"Particle systems assigned: tick is {part_tick} - sparkles is {part_sparkles} - x is {part_x}");
 
             Debug.Log("Attempting to play particle systems...");
             part_tick.Play();
@@ -75,7 +80,7 @@ public class receiverManager : MonoBehaviour
             Debug.Log("spark");
             part_x.Play();
             Debug.Log("x");
-            part_tick3.Play();
+            //part_tick3.Play();
             Debug.Log("tick3");
             return true;
         }

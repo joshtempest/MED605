@@ -111,7 +111,7 @@ public class GameController : MonoBehaviour
         wrongThreshold = 5;
         rightThreshold = 5;
         enoughRightAnswers = false;
-        DisplayText.text = "";
+        DisplayText.text = $"Current level is {levelManager.currentLevel} \n";
     }
 
     private void Update()
@@ -168,6 +168,8 @@ public class GameController : MonoBehaviour
             */
         }
 
+        levelManager.loadNextLevel(5);
+
 
         /*
         //UNDER CONSTRUCTION
@@ -194,6 +196,7 @@ public class GameController : MonoBehaviour
         //repeat for all mistakes
         //display button, text: "prøv igen!"
         */
+
     }
 
     void MoveOrReload(bool successful)

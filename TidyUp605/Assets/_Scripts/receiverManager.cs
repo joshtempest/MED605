@@ -25,22 +25,22 @@ public class receiverManager : MonoBehaviour
     {
         spawnerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<objectSpawner>();
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+    }
 
+    private void Start()
+    {
         //get access to the particle systems of the receiver
         part_tick = GameObject.Find("part_correct_tick").GetComponent<ParticleSystem>();
         part_sparkles = GameObject.Find("part_correct_sparkles").GetComponent<ParticleSystem>();
         part_x = GameObject.Find("part_wrong_x").GetComponent<ParticleSystem>();
-    
+
         //throw a warning if the particle systems aren't found
         if (!part_tick || !part_sparkles || !part_x)
         {
             Debug.LogWarning($"Particle system not detected: tick is {part_tick} - sparkles is {part_sparkles} - x is {part_x}");
         }
         else { Debug.Log("Particle systems assigned correctly."); }
-    }
 
-    private void Start()
-    {
         //Fancy way to check if more than one type is assigned to the receiver and log a warning if so, also checks if no type is assigned and logs a warning if so
         receiverTypeCount = (isServiceReceiver ? 1 : 0) + (isBeskidtReceiver ? 1 : 0) + (isMadReceiver ? 1 : 0);
         if (receiverTypeCount > 1)
@@ -57,9 +57,12 @@ public class receiverManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log($"Collision detected with {collision.gameObject.name}");
         
         if (isServiceReceiver) 
-        { 
+        {
+            Debug.Log($"Item collided with a service receiver.");
+
             if (collision.gameObject.tag == "Service")
             {
                 //Add interaction to logs
@@ -109,8 +112,10 @@ public class receiverManager : MonoBehaviour
             }
         }
         if (isBeskidtReceiver) 
-        { 
-            if(collision.gameObject.tag == "Beskidt")
+        {
+            Debug.Log($"Item collided with a beskidt receiver.");
+
+            if (collision.gameObject.tag == "Beskidt")
             {
                 //Add interaction to logs
                 gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
@@ -159,8 +164,10 @@ public class receiverManager : MonoBehaviour
             }
         }
         if (isMadReceiver)
-        { 
-            if(collision.gameObject.tag == "Mad")
+        {
+            Debug.Log($"Item collided with a mad receiver.");
+
+            if (collision.gameObject.tag == "Mad")
             {
                 //Add interaction to logs
                 gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);

@@ -40,13 +40,16 @@ public class GameController : MonoBehaviour
     */
 
     Vector3 bbReviewPosition = new (-0.59f,1.939f,2.48f);
-//    Quaternion bbReviewRotation = new Quaternion.Euler(0f, 136.336f, 0f);
+    Vector3 bbReviewRotV3 = new (0f, 136.336f, 0f);
+    Quaternion bbReviewRotation;
 
     Vector3 bbBackgroundPosition = new (2.52f, 1.939f, 2.503f);
-    Quaternion bbBackgroundRotation = Quaternion.identity;
+    Vector3 bbBackgroundRotV3 = new(0f, 90f, 0f);
+    Quaternion bbBackgroundRotation;
     //make this an animation tomorrow
 
     bool enoughRightAnswers = false;
+    bool levelInProgress = true;
 
 
 
@@ -57,6 +60,9 @@ public class GameController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        bbReviewRotation = Quaternion.Euler(bbReviewRotV3);
+        bbBackgroundRotation = Quaternion.Euler(bbBackgroundRotV3);
+
         levelManager = this.gameObject.GetComponent<LevelManager>();
 
         resetScore();
@@ -66,10 +72,11 @@ public class GameController : MonoBehaviour
             Debug.LogWarning("Blackboard not assigned");
         else
         {
-            blackboard.SetActive(false);
+            //blackboard.SetActive(false);
             blackboard.transform.position = bbBackgroundPosition;
             blackboard.transform.rotation = bbBackgroundRotation;
         }
+
     }
 
     public void increaseScore(int score)
@@ -93,7 +100,8 @@ public class GameController : MonoBehaviour
     public void AddLog(string item, string receptacle, bool isRight)
     {
         AnswerLog.Add(Tuple.Create(item, receptacle, isRight));
-        Debug.Log($"Added log: {AnswerLog[AnswerLog.Count].Item1} was placed in {AnswerLog[AnswerLog.Count].Item2}, which was {AnswerLog[AnswerLog.Count].Item3}.");
+        Debug.Log($"List is {AnswerLog.Count} items long.");
+        Debug.Log($"Added log: {AnswerLog[AnswerLog.Count - 1].Item1} was placed in {AnswerLog[AnswerLog.Count - 1].Item2}, which was {AnswerLog[AnswerLog.Count - 1].Item3}.");
     }
 
     public void resetScore()
@@ -108,20 +116,25 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if (wrongAnswers >= wrongThreshold) 
+        if (levelInProgress)
         {
-            enoughRightAnswers = false;
-            DisplayResults();
-        }
-        if (rightAnswers >= rightThreshold)
-        {
+            if (wrongAnswers >= wrongThreshold)
+            {
+                enoughRightAnswers = false;
+                levelInProgress = false;
+                DisplayResults();
+            }
+            if (rightAnswers >= rightThreshold)
+            {
 
-            enoughRightAnswers = true;
-            DisplayResults();
+                levelInProgress = false;
+                enoughRightAnswers = true;
+                DisplayResults();
 
-            //det er her vi kan spawne blackboard istedet for bare at gå videre
-            
+                //det er her vi kan spawne blackboard istedet for bare at gå videre
+            }
         }
+        
     }
 
     void DisplayResults()

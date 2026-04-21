@@ -4647,7 +4647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650faeaaf54d7664699018b9019ad457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TesterScript
-  sceneToTest: Practice1
+  sceneToTest: Tutorial1
 --- !u!1 &1135146470
 GameObject:
   m_ObjectHideFlags: 0

@@ -108,8 +108,12 @@ public class GameController : MonoBehaviour
     {
         rightAnswers = 0;
         wrongAnswers = 0;
+
+        //placeholder/default numbers; are updated in the LoadLevel functions in LevelManagers
         wrongThreshold = 5;
         rightThreshold = 5;
+
+
         enoughRightAnswers = false;
         ResetLog();
         levelInProgress = true;
@@ -124,16 +128,28 @@ public class GameController : MonoBehaviour
             {
                 enoughRightAnswers = false;
                 levelInProgress = false;
+
+                Debug.Log("wrongThreshold reached. Level end, calling Display");
+
+                //add a review in Display
                 DisplayResults();
+
+                //change to button later
+                levelManager.reloadLevel(5);
             }
             if (rightAnswers >= rightThreshold)
             {
 
                 levelInProgress = false;
                 enoughRightAnswers = true;
+
+                Debug.Log("rightThreshold reached. Level end, calling Display");
+
+                //add blackboard review
                 DisplayResults();
 
-                //det er her vi kan spawne blackboard istedet for bare at gå videre
+                //change to button later
+                levelManager.loadNextLevel(5);
             }
         }
         
@@ -147,6 +163,9 @@ public class GameController : MonoBehaviour
         //blackboard.transform.rotation = bbReviewPosition;
         //REPLACE WITH ANIMATION CLIP
         */
+
+
+        Debug.Log("Attempting to display results; enoughRightAnswers = " + enoughRightAnswers.ToString());
 
         ButtonText.text = enoughRightAnswers ? "Gå til næste øvelse" : "Prøv igen";
 
@@ -170,7 +189,7 @@ public class GameController : MonoBehaviour
             */
         }
 
-        levelManager.loadNextLevel(5);
+        
 
 
         /*

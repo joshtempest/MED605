@@ -19,15 +19,14 @@ public class receiverManager : MonoBehaviour
     [SerializeField] private GameObject go_part_sparkles;
     [SerializeField] private GameObject go_part_x;
 
-    [SerializeField] private ParticleSystem part_tick;
-    [SerializeField] private ParticleSystem part_sparkles;
-    [SerializeField] private ParticleSystem part_x;
+    private ParticleSystem part_tick;
+    private ParticleSystem part_sparkles;
+    private ParticleSystem part_x;
 
 
     bool particlesOnline = false;
 
 
-    public AudioManager AMan;
 
 
     private void Awake()
@@ -52,6 +51,8 @@ public class receiverManager : MonoBehaviour
         }
 
         particlesOnline = InitialiseParticles();
+
+
     }
 
     public bool InitialiseParticles()
@@ -71,17 +72,8 @@ public class receiverManager : MonoBehaviour
         }
         else 
         {
-            Debug.Log($"Particle systems assigned: tick is {part_tick} - sparkles is {part_sparkles} - x is {part_x}");
+            //Debug.Log($"Particle systems assigned: tick is {part_tick} - sparkles is {part_sparkles} - x is {part_x}");
 
-            Debug.Log("Attempting to play particle systems...");
-            part_tick.Play();
-            Debug.Log("tick");
-            part_sparkles.Play();
-            Debug.Log("spark");
-            part_x.Play();
-            Debug.Log("x");
-            //part_tick3.Play();
-            Debug.Log("tick3");
             return true;
         }
     }
@@ -108,7 +100,7 @@ public class receiverManager : MonoBehaviour
                 PlayParticles(true);
 
                 //play positive sound effect
-                AMan.PlaySFX("Victory");
+                AudioManager.Instance.PlaySFX("Victory");
             }
             else if (collision.gameObject.tag == "Beskidt")
             {
@@ -125,7 +117,7 @@ public class receiverManager : MonoBehaviour
                 PlayParticles(false);
 
                 //play negative sound effect
-                AMan.PlaySFX("Wrong");
+                AudioManager.Instance.PlaySFX("Wrong");
 
             }
             else if (collision.gameObject.tag == "Mad")
@@ -143,7 +135,7 @@ public class receiverManager : MonoBehaviour
                 PlayParticles(false);
 
                 //play negative sound effect
-                AMan.PlaySFX("Wrong");
+                AudioManager.Instance.PlaySFX("Wrong");
             }
         }
         if (isBeskidtReceiver) 
@@ -163,7 +155,7 @@ public class receiverManager : MonoBehaviour
                 PlayParticles(true);
 
                 //play positive sound effect
-                AMan.PlaySFX("Victory");
+                AudioManager.Instance.PlaySFX("Victory");
             }
             else if (collision.gameObject.tag == "Service")
             {
@@ -180,7 +172,7 @@ public class receiverManager : MonoBehaviour
                 PlayParticles(false);
 
                 //play negative sound effect
-                AMan.PlaySFX("Wrong");
+                AudioManager.Instance.PlaySFX("Wrong");
 
             }
             else if (collision.gameObject.tag == "Mad")
@@ -198,7 +190,7 @@ public class receiverManager : MonoBehaviour
                 PlayParticles(false);
 
                 //play negative sound effect
-                AMan.PlaySFX("Wrong");
+                AudioManager.Instance.PlaySFX("Wrong");
             }
         }
         if (isMadReceiver)
@@ -218,7 +210,7 @@ public class receiverManager : MonoBehaviour
                 PlayParticles(true);
 
                 //play positive sound effect
-                AMan.PlaySFX("Victory");
+                AudioManager.Instance.PlaySFX("Victory");
             }
             else if (collision.gameObject.tag == "Service")
             {
@@ -235,7 +227,7 @@ public class receiverManager : MonoBehaviour
                 PlayParticles(false);
 
                 //play negative sound effect
-                AMan.PlaySFX("Wrong");
+                AudioManager.Instance.PlaySFX("Wrong");
 
             }
             else if (collision.gameObject.tag == "Beskidt")
@@ -253,7 +245,7 @@ public class receiverManager : MonoBehaviour
                 PlayParticles(false);
 
                 //play negative sound effect
-                AMan.PlaySFX("Wrong");
+                AudioManager.Instance.PlaySFX("Wrong");
 
             }
 

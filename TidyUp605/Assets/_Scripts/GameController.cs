@@ -189,9 +189,6 @@ public class GameController : MonoBehaviour
             */
         }
 
-        
-
-
         /*
         //UNDER CONSTRUCTION
         foreach (Tuple<string, string, bool> log in AnswerLog)
@@ -220,6 +217,7 @@ public class GameController : MonoBehaviour
 
     }
 
+    //under construction
     void MoveOrReload(bool successful)
     {
         if (successful)

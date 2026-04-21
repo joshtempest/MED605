@@ -63,8 +63,13 @@ public class receiverManager : MonoBehaviour
             return false;
         }
         else 
-        { 
+        {
             Debug.Log("Particle systems assigned correctly.");
+
+            Debug.Log("Attempting to play particle systems...");
+            part_tick.Play();
+            part_sparkles.Play();
+            part_x.Play();
             return true;
         }
     }

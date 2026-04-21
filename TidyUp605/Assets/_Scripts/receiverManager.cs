@@ -88,6 +88,8 @@ public class receiverManager : MonoBehaviour
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
 
+                spawnerScript.spawnThisObject("b");
+
                 //play error particle
                 part_x.Play();
 
@@ -103,6 +105,8 @@ public class receiverManager : MonoBehaviour
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
+
+                spawnerScript.spawnThisObject("s");
 
                 //play error particle
                 part_x.Play();
@@ -140,6 +144,8 @@ public class receiverManager : MonoBehaviour
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
 
+                spawnerScript.spawnThisObject("r");
+
                 //play error particle
                 part_x.Play();
 
@@ -155,6 +161,8 @@ public class receiverManager : MonoBehaviour
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
+
+                spawnerScript.spawnThisObject("s");
 
                 //play error particle
                 part_x.Play();
@@ -192,6 +200,8 @@ public class receiverManager : MonoBehaviour
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
 
+                spawnerScript.spawnThisObject("r");
+
                 //play error particle
                 part_x.Play();
 
@@ -207,6 +217,8 @@ public class receiverManager : MonoBehaviour
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
+
+                spawnerScript.spawnThisObject("b");
 
                 //play error particle
                 part_x.Play();

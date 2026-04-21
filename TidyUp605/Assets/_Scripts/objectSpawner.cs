@@ -21,6 +21,8 @@ public class objectSpawner : MonoBehaviour
     [SerializeField] private GameObject beskidtSpawnPlatform;
 
     Vector3 spawnBuffer;
+    float spawnbufferDistance = 0.5f;
+    float yOffset = 0.2f;
 
     void Awake()
     {
@@ -76,7 +78,7 @@ public class objectSpawner : MonoBehaviour
     { 
         if(type == "s")
         {
-            spawnBuffer = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0.2f, UnityEngine.Random.Range(-1f, 1f));
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = madSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(smoer, positionToSpawn, Quaternion.identity);
@@ -84,7 +86,7 @@ public class objectSpawner : MonoBehaviour
         }
         if (type == "b") 
         {
-            spawnBuffer = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0.2f, UnityEngine.Random.Range(-1f, 1f));
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = beskidtSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(beskidtPlate, positionToSpawn, Quaternion.identity);
@@ -92,7 +94,7 @@ public class objectSpawner : MonoBehaviour
         }
         if (type == "r") 
         {
-            spawnBuffer = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0.2f, UnityEngine.Random.Range(-1f, 1f));
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = serviceSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(renPlate, positionToSpawn, Quaternion.identity);

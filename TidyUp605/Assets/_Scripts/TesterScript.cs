@@ -14,5 +14,6 @@ public class TesterScript : MonoBehaviour
     {
         levelManager.currentLevel = sceneToTest;
         levelManager.reloadLevel();
+        Debug.Log("Testing scene: " + sceneToTest);
     }
 }

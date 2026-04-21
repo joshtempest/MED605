@@ -110,13 +110,15 @@ public class GameController : MonoBehaviour
     {
         if (wrongAnswers >= wrongThreshold) 
         {
-            DisplayResults();
             enoughRightAnswers = false;
+            DisplayResults();
         }
         if (rightAnswers >= rightThreshold)
         {
-            DisplayResults();
+
             enoughRightAnswers = true;
+            DisplayResults();
+
             //det er her vi kan spawne blackboard istedet for bare at gå videre
             
         }
@@ -124,11 +126,12 @@ public class GameController : MonoBehaviour
 
     void DisplayResults()
     {
-        //move blackboard to be very visible
+        /*
+        //move blackboard to be very visible //Movement comes later
         blackboard.transform.position = bbReviewPosition;
         //blackboard.transform.rotation = bbReviewPosition;
         //REPLACE WITH ANIMATION CLIP
-
+        */
 
         ButtonText.text = enoughRightAnswers ? "Gå til næste øvelse" : "Prøv igen";
 

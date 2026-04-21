@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
@@ -50,6 +51,7 @@ public class LevelManager : MonoBehaviour
 
     void annihilation() 
     {
+        Debug.Log("Annihilation initiated");
         GameObject[] receptables = GameObject.FindGameObjectsWithTag("receptacle");
         for (int i = 0; i < receptables.Length; i++)
         {
@@ -76,6 +78,7 @@ public class LevelManager : MonoBehaviour
 
     public void reloadLevel()
     {
+        Debug.Log("Reloading level: " + currentLevel);
         if (currentLevel == "Trial1"){loadTrial1();}
         else if (currentLevel == "Tutorial1") {loadTutorial1(); }
         else if (currentLevel == "Tutorial2") {loadTutorial2(); }
@@ -110,6 +113,7 @@ public class LevelManager : MonoBehaviour
 
     void compareScene(string neededScene)
     {
+        Debug.Log("comparing scene");
         activeScene = SceneManager.GetActiveScene();
         string sceneName = activeScene.name;
         if (sceneName != neededScene)
@@ -127,6 +131,7 @@ public class LevelManager : MonoBehaviour
         currentLevel = "Intro";
         compareScene("Intro");
         annihilation();
+        Debug.Log(currentLevel + " is being loaded");
     }
 
     public void loadTrial1()
@@ -141,6 +146,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnObject("Mad");
         spawnerScript.spawnObject("Beskidt");
         gameController.rightThreshold = 3;
+        Debug.Log(currentLevel + " is being loaded");
     }
 
     public void loadTutorial1()
@@ -152,6 +158,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("b");
         //need to spawn dirty plate, don't have that yet
         gameController.rightThreshold = 1;
+        Debug.Log(currentLevel + " is being loaded");
     }
 
     public void loadTutorial2()
@@ -162,6 +169,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
         spawnerScript.spawnThisObject("s");
         gameController.rightThreshold = 1;
+        Debug.Log(currentLevel + " is being loaded");
     }
 
     public void loadTutorial3()
@@ -172,6 +180,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("r");
         gameController.rightThreshold = 1;
+        Debug.Log(currentLevel + " is being loaded");
     }
     public void loadPractice1() 
     {
@@ -183,6 +192,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("b");
         gameController.rightThreshold = 1;
+        Debug.Log(currentLevel + " is being loaded");
     }
     public void loadPractice2()
     {
@@ -194,6 +204,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("s");
         gameController.rightThreshold = 1;
+        Debug.Log(currentLevel + " is being loaded");
     }
     public void loadPractice3()
     {
@@ -205,6 +216,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("r");
         gameController.rightThreshold = 1;
+        Debug.Log(currentLevel + " is being loaded");
     }
     public void loadPractice4()
     {
@@ -217,6 +229,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("b");
         spawnerScript.spawnThisObject("s");
         gameController.rightThreshold = 2;
+        Debug.Log(currentLevel + " is being loaded");
     }
     public void loadPractice5()
     {
@@ -229,6 +242,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("s");
         spawnerScript.spawnThisObject("r");
         gameController.rightThreshold = 2;
+        Debug.Log(currentLevel + " is being loaded");
     }
     public void loadPractice6()
     {
@@ -241,6 +255,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("b");
         spawnerScript.spawnThisObject("r");
         gameController.rightThreshold = 2;
+        Debug.Log(currentLevel + " is being loaded");
     }
     public void loadPractice7()
     {
@@ -254,6 +269,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("r");
         spawnerScript.spawnThisObject("s");
         gameController.rightThreshold = 3;
+        Debug.Log(currentLevel + " is being loaded");
     }
 
     public void loadEval1()
@@ -275,16 +291,20 @@ public class LevelManager : MonoBehaviour
         //spawnerScript.spawnThisObject("r");
         //spawnerScript.spawnThisObject("s");
         //spawnerScript.spawnThisObject("s");
+
+        Debug.Log(currentLevel + " is being loaded");
     }
 
     public void loadLevelSelect() 
     {
         currentLevel = "LevelSelect";
         compareScene("LevelSelect");
+        Debug.Log(currentLevel + " is being loaded");
     }
     public void loadVR()
     {
         currentLevel = "VR";
         compareScene("VRTutorial");
+        Debug.Log(currentLevel + " is being loaded");
     }
 }

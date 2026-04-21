@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class receiverManager : MonoBehaviour
+public class EvalReceiverManager : MonoBehaviour
 {
     private GameObject GameManager;
     private objectSpawner spawnerScript;
@@ -58,8 +58,8 @@ public class receiverManager : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log($"Collision detected with {collision.gameObject.name}");
-        
-        if (isServiceReceiver) 
+
+        if (isServiceReceiver)
         {
             Debug.Log($"Item collided with a service receiver.");
 
@@ -67,11 +67,11 @@ public class receiverManager : MonoBehaviour
             {
                 //Add interaction to logs
                 gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
-                
+
                 //Add score for positive interaction
                 Destroy(collision.gameObject);
                 gameController.increaseScore(1);
-                
+
                 //play success particles
                 part_tick.Play();
                 part_sparkles.Play();
@@ -87,8 +87,6 @@ public class receiverManager : MonoBehaviour
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
-
-                spawnerScript.spawnThisObject("b");
 
                 //play error particle
                 part_x.Play();
@@ -106,8 +104,6 @@ public class receiverManager : MonoBehaviour
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
 
-                spawnerScript.spawnThisObject("s");
-
                 //play error particle
                 part_x.Play();
 
@@ -115,7 +111,7 @@ public class receiverManager : MonoBehaviour
                 AMan.PlaySFX("Wrong");
             }
         }
-        if (isBeskidtReceiver) 
+        if (isBeskidtReceiver)
         {
             Debug.Log($"Item collided with a beskidt receiver.");
 
@@ -144,8 +140,6 @@ public class receiverManager : MonoBehaviour
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
 
-                spawnerScript.spawnThisObject("r");
-
                 //play error particle
                 part_x.Play();
 
@@ -161,8 +155,6 @@ public class receiverManager : MonoBehaviour
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
-
-                spawnerScript.spawnThisObject("s");
 
                 //play error particle
                 part_x.Play();
@@ -200,8 +192,6 @@ public class receiverManager : MonoBehaviour
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
 
-                spawnerScript.spawnThisObject("r");
-
                 //play error particle
                 part_x.Play();
 
@@ -218,8 +208,6 @@ public class receiverManager : MonoBehaviour
                 gameController.decreaseScore(1);
                 //Subtract score for negative interaction
 
-                spawnerScript.spawnThisObject("b");
-
                 //play error particle
                 part_x.Play();
 
@@ -231,3 +219,4 @@ public class receiverManager : MonoBehaviour
     }
 
 }
+

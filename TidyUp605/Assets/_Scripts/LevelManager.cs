@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -110,6 +111,29 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "Practice6") { loadPractice7(); }
         else if (currentLevel == "Practice7") { loadEval1(); }
     }
+
+    public void loadNextLevel(float delayInSeconds)
+    {
+        StartCoroutine(waitAndLoadNextLevel(delayInSeconds));
+    }
+
+    public IEnumerator waitAndLoadNextLevel(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (currentLevel == "Intro") { loadTutorial1(); }
+        else if (currentLevel == "Tutorial1") { loadTutorial2(); }
+        else if (currentLevel == "Tutorial2") { loadTutorial3(); }
+        else if (currentLevel == "Tutorial3") { loadPractice1(); }
+        else if (currentLevel == "Practice1") { loadPractice2(); }
+        else if (currentLevel == "Practice2") { loadPractice3(); }
+        else if (currentLevel == "Practice3") { loadPractice4(); }
+        else if (currentLevel == "Practice4") { loadPractice5(); }
+        else if (currentLevel == "Practice5") { loadPractice6(); }
+        else if (currentLevel == "Practice6") { loadPractice7(); }
+        else if (currentLevel == "Practice7") { loadEval1(); }
+    }
+
 
     void compareScene(string neededScene)
     {

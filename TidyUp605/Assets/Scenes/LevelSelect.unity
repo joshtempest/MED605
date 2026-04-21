@@ -160,6 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1202168667}
   - component: {fileID: 1202168666}
+  - component: {fileID: 1202168668}
   m_Layer: 0
   m_Name: SceneSwitcher
   m_TagString: Untagged
@@ -194,6 +195,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1202168668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202168665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bf08acba8e19e741b828930ff30cacf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelManager
+  thisIsIntro: 0
+  thisIsTrial1: 0
+  koeleskab: {fileID: 7804653488199077574, guid: d4f936ca6d1536343b21452b31f3fae4, type: 3}
+  skab: {fileID: 3267122424555581529, guid: 64884db48f1b2e0448ace0c0094ff033, type: 3}
+  opvaskemaskine: {fileID: 0}
+  koelePlatform: {fileID: 0}
+  skabPlatform: {fileID: 0}
+  opvaskemaskinePlatform: {fileID: 0}
+  koeleSpawnbuffer: {x: 0, y: 1.62, z: 0}
+  skabSpawnbuffer: {x: 0, y: 0.2, z: 0}
+  opvaskeSpawnbuffer: {x: 0, y: 0.1, z: 0}
+  currentLevel: 
 --- !u!1001 &1247199857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -204,83 +229,91 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 73719251121192338, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 73719251121192338, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1202168666}
+      objectReference: {fileID: 1202168668}
     - target: {fileID: 73719251121192338, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: loadPractice2
       objectReference: {fileID: 0}
     - target: {fileID: 73719251121192338, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneSwitcher, Assembly-CSharp
+      value: LevelManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2245833936812304363, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2245833936812304363, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1202168666}
+      objectReference: {fileID: 1202168668}
     - target: {fileID: 2245833936812304363, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: loadPractice4
       objectReference: {fileID: 0}
     - target: {fileID: 2245833936812304363, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneSwitcher, Assembly-CSharp
+      value: LevelManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2262129438334132005, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2262129438334132005, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1202168666}
+      objectReference: {fileID: 1202168668}
     - target: {fileID: 2262129438334132005, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: loadPractice3
       objectReference: {fileID: 0}
     - target: {fileID: 2262129438334132005, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneSwitcher, Assembly-CSharp
+      value: LevelManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2509979308922747958, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2509979308922747958, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1202168666}
+      objectReference: {fileID: 1202168668}
     - target: {fileID: 2509979308922747958, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: loadPractice7
       objectReference: {fileID: 0}
     - target: {fileID: 2509979308922747958, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneSwitcher, Assembly-CSharp
+      value: LevelManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3256534789250570728, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3256534789250570728, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1202168666}
+      objectReference: {fileID: 1202168668}
     - target: {fileID: 3256534789250570728, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: loadTutorial3
       objectReference: {fileID: 0}
     - target: {fileID: 3256534789250570728, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneSwitcher, Assembly-CSharp
+      value: LevelManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638702108625324220, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1202168665}
+    - target: {fileID: 3638702108625324220, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3718681727949382594, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_Name
@@ -288,51 +321,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4035174969056371353, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4035174969056371353, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1202168666}
+      objectReference: {fileID: 1202168668}
     - target: {fileID: 4035174969056371353, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: loadPractice6
       objectReference: {fileID: 0}
     - target: {fileID: 4035174969056371353, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneSwitcher, Assembly-CSharp
+      value: LevelManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5345421651808801586, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5345421651808801586, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1202168666}
+      objectReference: {fileID: 1202168668}
     - target: {fileID: 5345421651808801586, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: loadEval1
       objectReference: {fileID: 0}
     - target: {fileID: 5345421651808801586, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneSwitcher, Assembly-CSharp
+      value: LevelManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5426096879437550641, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5426096879437550641, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1202168666}
+      objectReference: {fileID: 1202168668}
     - target: {fileID: 5426096879437550641, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: loadTutorial2
       objectReference: {fileID: 0}
     - target: {fileID: 5426096879437550641, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneSwitcher, Assembly-CSharp
+      value: LevelManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5426096879437550641, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -340,19 +373,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5658572747478262895, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5658572747478262895, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1202168666}
+      objectReference: {fileID: 1202168668}
     - target: {fileID: 5658572747478262895, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: loadPractice5
       objectReference: {fileID: 0}
     - target: {fileID: 5658572747478262895, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneSwitcher, Assembly-CSharp
+      value: LevelManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7455515366148000731, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_Pivot.x
@@ -436,35 +469,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7784247991941990336, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7784247991941990336, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1202168666}
+      objectReference: {fileID: 1202168668}
     - target: {fileID: 7784247991941990336, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: loadPractice1
       objectReference: {fileID: 0}
     - target: {fileID: 7784247991941990336, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneSwitcher, Assembly-CSharp
+      value: LevelManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8554234731175591048, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8554234731175591048, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1202168666}
+      objectReference: {fileID: 1202168668}
     - target: {fileID: 8554234731175591048, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: loadIntro
       objectReference: {fileID: 0}
     - target: {fileID: 8554234731175591048, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneSwitcher, Assembly-CSharp
+      value: LevelManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8554234731175591048, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -472,19 +505,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8826764298723085216, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8826764298723085216, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1202168666}
+      objectReference: {fileID: 1202168668}
     - target: {fileID: 8826764298723085216, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: loadTutorial1
       objectReference: {fileID: 0}
     - target: {fileID: 8826764298723085216, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneSwitcher, Assembly-CSharp
+      value: LevelManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8826764298723085216, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument

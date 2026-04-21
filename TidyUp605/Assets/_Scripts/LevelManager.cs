@@ -97,6 +97,35 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "VR") { loadVR(); }
     }
 
+    public void reloadLevel(float delayInSeconds)
+    {
+        StartCoroutine(waitAndReloadLevel(delayInSeconds));
+    }
+
+    public IEnumerator waitAndReloadLevel(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+      
+        Debug.Log("Reloading level: " + currentLevel);
+        if (currentLevel == "Trial1") { loadTrial1(); }
+        else if (currentLevel == "Tutorial1") { loadTutorial1(); }
+        else if (currentLevel == "Tutorial2") { loadTutorial2(); }
+        else if (currentLevel == "Tutorial3") { loadTutorial3(); }
+        else if (currentLevel == "Practice1") { loadPractice1(); }
+        else if (currentLevel == "Practice2") { loadPractice2(); }
+        else if (currentLevel == "Practice3") { loadPractice3(); }
+        else if (currentLevel == "Practice4") { loadPractice4(); }
+        else if (currentLevel == "Practice5") { loadPractice5(); }
+        else if (currentLevel == "Practice6") { loadPractice6(); }
+        else if (currentLevel == "Practice7") { loadPractice7(); }
+        else if (currentLevel == "Eval1") { loadEval1(); }
+        else if (currentLevel == "Intro") { loadIntro(); }
+        else if (currentLevel == "LevelSelect") { loadLevelSelect(); }
+        else if (currentLevel == "VR") { loadVR(); }
+    }
+
+
+
     public void loadNextLevel()
     {
         if (currentLevel == "Intro") { loadTutorial1(); }

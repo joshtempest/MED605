@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -18,6 +19,9 @@ public class receiverManager : MonoBehaviour
     private ParticleSystem part_sparkles;
     private ParticleSystem part_x;
 
+    bool particlesOnline = false;
+
+
     public AudioManager AMan;
 
 
@@ -29,18 +33,6 @@ public class receiverManager : MonoBehaviour
 
     private void Start()
     {
-        //get access to the particle systems of the receiver
-        part_tick = GameObject.Find("part_correct_tick").GetComponent<ParticleSystem>();
-        part_sparkles = GameObject.Find("part_correct_sparkles").GetComponent<ParticleSystem>();
-        part_x = GameObject.Find("part_wrong_x").GetComponent<ParticleSystem>();
-
-        //throw a warning if the particle systems aren't found
-        if (!part_tick || !part_sparkles || !part_x)
-        {
-            Debug.LogWarning($"Particle system not detected: tick is {part_tick} - sparkles is {part_sparkles} - x is {part_x}");
-        }
-        else { Debug.Log("Particle systems assigned correctly."); }
-
         //Fancy way to check if more than one type is assigned to the receiver and log a warning if so, also checks if no type is assigned and logs a warning if so
         receiverTypeCount = (isServiceReceiver ? 1 : 0) + (isBeskidtReceiver ? 1 : 0) + (isMadReceiver ? 1 : 0);
         if (receiverTypeCount > 1)
@@ -53,7 +45,30 @@ public class receiverManager : MonoBehaviour
             Debug.LogWarning((this.gameObject) + " has no type assigned. Please assign a type to the receiver.");
             this.gameObject.GetComponent<receiverManager>().enabled = false;
         }
+
+        particlesOnline = InitialiseParticles();
     }
+
+    public bool InitialiseParticles()
+    {
+        //get access to the particle systems of the receiver
+        part_tick = GameObject.Find("part_correct_tick").GetComponent<ParticleSystem>();
+        part_sparkles = GameObject.Find("part_correct_sparkles").GetComponent<ParticleSystem>();
+        part_x = GameObject.Find("part_wrong_x").GetComponent<ParticleSystem>();
+
+        //throw a warning if the particle systems aren't found
+        if (!part_tick || !part_sparkles || !part_x)
+        {
+            Debug.LogWarning($"Particle system not detected: tick is {part_tick} - sparkles is {part_sparkles} - x is {part_x}");
+            return false;
+        }
+        else 
+        { 
+            Debug.Log("Particle systems assigned correctly.");
+            return true;
+        }
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -71,10 +86,9 @@ public class receiverManager : MonoBehaviour
                 //Add score for positive interaction
                 Destroy(collision.gameObject);
                 gameController.increaseScore(1);
-                
+
                 //play success particles
-                part_tick.Play();
-                part_sparkles.Play();
+                PlayParticles(true);
 
                 //play positive sound effect
                 AMan.PlaySFX("Victory");
@@ -91,7 +105,7 @@ public class receiverManager : MonoBehaviour
                 spawnerScript.spawnThisObject("b");
 
                 //play error particle
-                part_x.Play();
+                PlayParticles(false);
 
                 //play negative sound effect
                 AMan.PlaySFX("Wrong");
@@ -109,7 +123,7 @@ public class receiverManager : MonoBehaviour
                 spawnerScript.spawnThisObject("s");
 
                 //play error particle
-                part_x.Play();
+                PlayParticles(false);
 
                 //play negative sound effect
                 AMan.PlaySFX("Wrong");
@@ -129,8 +143,7 @@ public class receiverManager : MonoBehaviour
                 //Add score for positive interaction
 
                 //play success particles
-                part_tick.Play();
-                part_sparkles.Play();
+                PlayParticles(true);
 
                 //play positive sound effect
                 AMan.PlaySFX("Victory");
@@ -147,7 +160,7 @@ public class receiverManager : MonoBehaviour
                 spawnerScript.spawnThisObject("r");
 
                 //play error particle
-                part_x.Play();
+                PlayParticles(false);
 
                 //play negative sound effect
                 AMan.PlaySFX("Wrong");
@@ -165,7 +178,7 @@ public class receiverManager : MonoBehaviour
                 spawnerScript.spawnThisObject("s");
 
                 //play error particle
-                part_x.Play();
+                PlayParticles(false);
 
                 //play negative sound effect
                 AMan.PlaySFX("Wrong");
@@ -185,8 +198,7 @@ public class receiverManager : MonoBehaviour
                 //Add score for positive interaction
 
                 //play success particles
-                part_tick.Play();
-                part_sparkles.Play();
+                PlayParticles(true);
 
                 //play positive sound effect
                 AMan.PlaySFX("Victory");
@@ -203,7 +215,7 @@ public class receiverManager : MonoBehaviour
                 spawnerScript.spawnThisObject("r");
 
                 //play error particle
-                part_x.Play();
+                PlayParticles(false);
 
                 //play negative sound effect
                 AMan.PlaySFX("Wrong");
@@ -221,13 +233,34 @@ public class receiverManager : MonoBehaviour
                 spawnerScript.spawnThisObject("b");
 
                 //play error particle
-                part_x.Play();
+                PlayParticles(false);
 
                 //play negative sound effect
                 AMan.PlaySFX("Wrong");
 
             }
+
+             
+        }
+
+        
+    }
+
+    public void PlayParticles(bool isSuccessful)
+    {
+        if (!particlesOnline)
+            return;
+
+        if (isSuccessful)
+        {
+            part_tick.Play();
+            part_sparkles.Play();
+        }
+        else
+        {
+            part_x.Play();
         }
     }
+
 
 }

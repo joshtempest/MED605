@@ -100,7 +100,7 @@ public class GameController : MonoBehaviour
     public void AddLog(string item, string receptacle, bool isRight)
     {
         AnswerLog.Add(Tuple.Create(item, receptacle, isRight));
-        Debug.Log($"List is {AnswerLog.Count} items long.");
+        //Debug.Log($"List is {AnswerLog.Count} items long.");
         Debug.Log($"Added log: {AnswerLog[AnswerLog.Count - 1].Item1} was placed in {AnswerLog[AnswerLog.Count - 1].Item2}, which was {AnswerLog[AnswerLog.Count - 1].Item3}.");
     }
 

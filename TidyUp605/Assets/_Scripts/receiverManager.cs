@@ -16,6 +16,7 @@ public class receiverManager : MonoBehaviour
     private int receiverTypeCount;
 
     private ParticleSystem part_tick;
+    private ParticleSystem part_tick3;
     private ParticleSystem part_sparkles;
     private ParticleSystem part_x;
 
@@ -53,6 +54,7 @@ public class receiverManager : MonoBehaviour
     {
         //get access to the particle systems of the receiver
         part_tick = GameObject.Find("part_correct_tick").GetComponent<ParticleSystem>();
+        part_tick3 = this.gameObject.GetComponentInChildren<ParticleSystem>();
         part_sparkles = GameObject.Find("part_correct_sparkles").GetComponent<ParticleSystem>();
         part_x = GameObject.Find("part_wrong_x").GetComponent<ParticleSystem>();
 
@@ -68,8 +70,13 @@ public class receiverManager : MonoBehaviour
 
             Debug.Log("Attempting to play particle systems...");
             part_tick.Play();
+            Debug.Log("tick");
             part_sparkles.Play();
+            Debug.Log("spark");
             part_x.Play();
+            Debug.Log("x");
+            part_tick3.Play();
+            Debug.Log("tick3");
             return true;
         }
     }

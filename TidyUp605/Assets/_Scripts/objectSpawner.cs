@@ -21,7 +21,7 @@ public class objectSpawner : MonoBehaviour
     [SerializeField] private GameObject beskidtSpawnPlatform;
 
     Vector3 spawnBuffer;
-    float spawnbufferDistance = 0.5f;
+    [SerializeField]float spawnbufferDistance = 0.5f;
     float yOffset = 0.2f;
 
     void Awake()

@@ -1277,6 +1277,10 @@ PrefabInstance:
       propertyPath: m_MaxVisualCurveDistance
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 4239533320808722676, guid: 9c29c3d9beb350b4d8e832f3feb61ac7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5049646765892995079, guid: 9c29c3d9beb350b4d8e832f3feb61ac7, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -1384,6 +1388,10 @@ PrefabInstance:
     - target: {fileID: 8995808937321143869, guid: 9c29c3d9beb350b4d8e832f3feb61ac7, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9049847959112544034, guid: 9c29c3d9beb350b4d8e832f3feb61ac7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

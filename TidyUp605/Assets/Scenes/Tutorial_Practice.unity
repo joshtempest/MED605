@@ -1853,12 +1853,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452014541}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.44498244, z: -0, w: 0.89553934}
-  m_LocalPosition: {x: 1.689, y: 0.9, z: 0.043}
-  m_LocalScale: {x: 1, y: 0.05, z: 1}
+  m_LocalRotation: {x: -0, y: -0.0008570254, z: -0, w: 0.9999997}
+  m_LocalPosition: {x: 0.44282946, y: 0.9179907, z: -1.5873878}
+  m_LocalScale: {x: 4.8720975, y: 0.14570187, z: 2.7349737}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1291244299}
   m_LocalEulerAnglesHint: {x: 0, y: -52.844, z: 0}
 --- !u!1 &520147136
 GameObject:
@@ -5464,7 +5464,8 @@ Transform:
   m_LocalPosition: {x: 0.508, y: 0.5849763, z: 0.825}
   m_LocalScale: {x: 0.2052499, y: 0.3431665, z: 0.3656347}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 452014545}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1291244300
@@ -9711,6 +9712,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Origin (VR)
       objectReference: {fileID: 0}
+    - target: {fileID: 1359143787488962088, guid: 9dc0df571d3985348abda4759b2af2dd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359143787488962088, guid: 9dc0df571d3985348abda4759b2af2dd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359143787488962088, guid: 9dc0df571d3985348abda4759b2af2dd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2206283063432082167, guid: 9dc0df571d3985348abda4759b2af2dd, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.1377976
@@ -10535,7 +10548,6 @@ SceneRoots:
   - {fileID: 1834263291}
   - {fileID: 1329053259}
   - {fileID: 1291244299}
-  - {fileID: 452014545}
   - {fileID: 1089242864}
   - {fileID: 1933293800}
   - {fileID: 709177803}

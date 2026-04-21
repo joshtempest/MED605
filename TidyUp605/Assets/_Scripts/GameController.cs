@@ -111,6 +111,8 @@ public class GameController : MonoBehaviour
         wrongThreshold = 5;
         rightThreshold = 5;
         enoughRightAnswers = false;
+        ResetLog();
+        levelInProgress = true;
         DisplayText.text = $"Current level is {levelManager.currentLevel} \n";
     }
 

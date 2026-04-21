@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1681494129103073325, guid: fab4af15726221b4583b95b5b5d24799, type: 3}
       propertyPath: m_TagString
-      value: smoer
+      value: Mad
       objectReference: {fileID: 0}
     - target: {fileID: 2026073018482535063, guid: fab4af15726221b4583b95b5b5d24799, type: 3}
       propertyPath: m_LocalPosition.x

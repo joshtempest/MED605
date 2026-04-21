@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4645838567624183631, guid: 901a2bf3c325c874c8b78c05d1e77755, type: 3}
       propertyPath: m_TagString
-      value: plate
+      value: Service
       objectReference: {fileID: 0}
     - target: {fileID: 5418539797003949557, guid: 901a2bf3c325c874c8b78c05d1e77755, type: 3}
       propertyPath: m_LocalPosition.x

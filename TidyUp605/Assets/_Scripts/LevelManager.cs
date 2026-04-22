@@ -380,7 +380,9 @@ public class LevelManager : MonoBehaviour
     {
         currentLevel = "VR";
         compareScene("VRTutorial");
+        gameController.resetScore();
         Debug.Log(currentLevel + " is being loaded");
         LogData.instance.AddToLogs(currentLevel + " is being loaded");
+        gameController.rightThreshold = 2;
     }
 }

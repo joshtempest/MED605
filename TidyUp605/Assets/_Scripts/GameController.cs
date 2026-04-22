@@ -83,11 +83,13 @@ public class GameController : MonoBehaviour
     {
         rightAnswers += score;
         Debug.Log("Score: " + rightAnswers);
+        LogData.instance.AddToLogs("Score: " + rightAnswers);
     }
     public void decreaseScore(int score)
     {
         wrongAnswers += score;
         Debug.Log("Negative Score: " + wrongAnswers);
+        LogData.instance.AddToLogs("Negative Score: " + wrongAnswers);
     }
 
     //reset the answer log
@@ -102,6 +104,7 @@ public class GameController : MonoBehaviour
         AnswerLog.Add(Tuple.Create(item, receptacle, isRight));
         //Debug.Log($"List is {AnswerLog.Count} items long.");
         Debug.Log($"Added log: {AnswerLog[AnswerLog.Count - 1].Item1} was placed in {AnswerLog[AnswerLog.Count - 1].Item2}, which was {AnswerLog[AnswerLog.Count - 1].Item3}.");
+        LogData.instance.AddToLogs($"Added log: {AnswerLog[AnswerLog.Count - 1].Item1} was placed in {AnswerLog[AnswerLog.Count - 1].Item2}, the success of which was {AnswerLog[AnswerLog.Count - 1].Item3}.");
     }
 
     public void resetScore()
@@ -118,6 +121,7 @@ public class GameController : MonoBehaviour
         ResetLog();
         levelInProgress = true;
         DisplayText.text = $"Current level is {levelManager.currentLevel} \n";
+        LogData.instance.AddToLogs($"Resetting... current level is {levelManager.currentLevel}.");
     }
 
     private void Update()
@@ -130,6 +134,7 @@ public class GameController : MonoBehaviour
                 levelInProgress = false;
 
                 Debug.Log("wrongThreshold reached. Level end, calling Display");
+                LogData.instance.AddToLogs("wrongThreshold reached. Level end, calling Display");
 
                 //add a review in Display
                 DisplayResults();
@@ -144,6 +149,7 @@ public class GameController : MonoBehaviour
                 enoughRightAnswers = true;
 
                 Debug.Log("rightThreshold reached. Level end, calling Display");
+                LogData.instance.AddToLogs("rightThreshold reached. Level end, calling Display");
 
                 //add blackboard review
                 DisplayResults();
@@ -166,6 +172,7 @@ public class GameController : MonoBehaviour
 
 
         Debug.Log("Attempting to display results; enoughRightAnswers = " + enoughRightAnswers.ToString());
+        LogData.instance.AddToLogs("Attempting to display results; enoughRightAnswers = " + enoughRightAnswers.ToString());
 
         ButtonText.text = enoughRightAnswers ? "Gå til næste øvelse" : "Prøv igen";
 

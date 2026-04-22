@@ -19,17 +19,17 @@ public class ShowLineOnHold : MonoBehaviour
 
     void Update()
     {
-        // If the trigger is pulled more than 10%, turn the line on. Otherwise, hide it.
         if (triggerAction != null && curveVisual != null)
         {
+            // Check if the trigger is being pulled
             bool isHolding = triggerAction.action.ReadValue<float>() > 0.1f;
 
+            // Turn the XRI Logic on/off
             curveVisual.enabled = isHolding;
 
-            // Force the line renderer invisible when not holding
-            if (lineRenderer != null && !isHolding)
+            if (lineRenderer != null)
             {
-                lineRenderer.enabled = false;
+                lineRenderer.enabled = isHolding;
             }
         }
     }

@@ -9685,9 +9685,9 @@ MonoBehaviour:
     m_AdjustGradient: 1
     m_Gradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 0}
+      key0: {r: 0, g: 0.5999999, b: 0.023388859, a: 1}
       key1: {r: 0, g: 0.5999999, b: 0.023388859, a: 1}
-      key2: {r: 1, g: 1, b: 1, a: 0}
+      key2: {r: 0.9729412, g: 0.9891765, b: 0.9735741, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -9695,7 +9695,7 @@ MonoBehaviour:
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
       ctime1: 65535
-      ctime2: 65535
+      ctime2: 64224
       ctime3: 0
       ctime4: 0
       ctime5: 0
@@ -12478,7 +12478,7 @@ MonoBehaviour:
     m_Gradient:
       serializedVersion: 2
       key0: {r: 0, g: 0.5999999, b: 0.023388859, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 0}
+      key1: {r: 0, g: 0.5999999, b: 0.023388859, a: 1}
       key2: {r: 0, g: 0.5999999, b: 0.023388859, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

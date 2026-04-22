@@ -6,15 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("Level test settings")]
     [SerializeField] private bool thisIsIntro;
     [SerializeField] private bool thisIsTrial1;
 
     //Prefab
+    [Header("Prefabs")]
     [SerializeField] GameObject koeleskab;
     [SerializeField] GameObject skab;
     [SerializeField] GameObject opvaskemaskine;
 
     //Platforms (to place them the same place everytime)
+    [Header("Platforms")]
     [SerializeField] GameObject koelePlatform;
     [SerializeField] GameObject skabPlatform;
     [SerializeField] GameObject opvaskemaskinePlatform;
@@ -24,6 +27,7 @@ public class LevelManager : MonoBehaviour
     private GameController gameController;
 
     //to (hopefully) avoid the objects spawning in the floor
+    [Header("Spawn Buffers")]
     [SerializeField] Vector3 koeleSpawnbuffer = new Vector3(0, 1.62f, 0);
     [SerializeField] Vector3 skabSpawnbuffer = new Vector3(0, 0.2f, 0);
     [SerializeField] Vector3 opvaskeSpawnbuffer = new Vector3(0, 0.1f, 0);

@@ -45,7 +45,7 @@ public class LogData : MonoBehaviour
         //initialise directory
         NewDirectory();
         NewTextFile();
-        TestLogging();
+        //TestLogging();
     }
 
     void CheckFormatPaths()

@@ -57,6 +57,7 @@ public class LevelManager : MonoBehaviour
     void annihilation() 
     {
         Debug.Log("Annihilation initiated");
+        LogData.instance.AddToLogs("Annihalating...");
         GameObject[] receptables = GameObject.FindGameObjectsWithTag("receptacle");
         for (int i = 0; i < receptables.Length; i++)
         {
@@ -84,6 +85,7 @@ public class LevelManager : MonoBehaviour
     public void reloadLevel()
     {
         Debug.Log("Reloading level: " + currentLevel);
+        LogData.instance.AddToLogs("Reloading level: " + currentLevel);
         if (currentLevel == "Trial1"){loadTrial1();}
         else if (currentLevel == "Tutorial1") {loadTutorial1(); }
         else if (currentLevel == "Tutorial2") {loadTutorial2(); }
@@ -111,6 +113,7 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
       
         Debug.Log("Reloading level: " + currentLevel);
+        LogData.instance.AddToLogs("Reloading level: " + currentLevel);
         if (currentLevel == "Trial1") { loadTrial1(); }
         else if (currentLevel == "Tutorial1") { loadTutorial1(); }
         else if (currentLevel == "Tutorial2") { loadTutorial2(); }
@@ -132,6 +135,7 @@ public class LevelManager : MonoBehaviour
 
     public void loadNextLevel()
     {
+        LogData.instance.AddToLogs("Loading Next Level after " + currentLevel);
         if (currentLevel == "Intro") { loadTutorial1(); }
         else if (currentLevel == "Tutorial1") { loadTutorial2(); }
         else if (currentLevel == "Tutorial2") { loadTutorial3(); }
@@ -152,6 +156,8 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator waitAndLoadNextLevel(float delay)
     {
+        LogData.instance.AddToLogs("Loading Next Level after " + currentLevel);
+
         yield return new WaitForSeconds(delay);
 
         if (currentLevel == "Intro") { loadTutorial1(); }
@@ -216,6 +222,7 @@ public class LevelManager : MonoBehaviour
         //need to spawn dirty plate, don't have that yet
         gameController.rightThreshold = 1;
         Debug.Log(currentLevel + " is being loaded");
+        LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
 
     public void loadTutorial2()
@@ -227,6 +234,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("s");
         gameController.rightThreshold = 1;
         Debug.Log(currentLevel + " is being loaded");
+        LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
 
     public void loadTutorial3()
@@ -238,6 +246,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("r");
         gameController.rightThreshold = 1;
         Debug.Log(currentLevel + " is being loaded");
+        LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
     public void loadPractice1() 
     {
@@ -250,6 +259,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("b");
         gameController.rightThreshold = 1;
         Debug.Log(currentLevel + " is being loaded");
+        LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
     public void loadPractice2()
     {
@@ -262,6 +272,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("s");
         gameController.rightThreshold = 1;
         Debug.Log(currentLevel + " is being loaded");
+        LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
     public void loadPractice3()
     {
@@ -274,6 +285,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("r");
         gameController.rightThreshold = 1;
         Debug.Log(currentLevel + " is being loaded");
+        LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
     public void loadPractice4()
     {
@@ -287,6 +299,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("s");
         gameController.rightThreshold = 2;
         Debug.Log(currentLevel + " is being loaded");
+        LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
     public void loadPractice5()
     {
@@ -300,6 +313,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("r");
         gameController.rightThreshold = 2;
         Debug.Log(currentLevel + " is being loaded");
+        LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
     public void loadPractice6()
     {
@@ -313,6 +327,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("r");
         gameController.rightThreshold = 2;
         Debug.Log(currentLevel + " is being loaded");
+        LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
     public void loadPractice7()
     {
@@ -327,6 +342,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("s");
         gameController.rightThreshold = 3;
         Debug.Log(currentLevel + " is being loaded");
+        LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
 
     public void loadEval1()
@@ -350,6 +366,7 @@ public class LevelManager : MonoBehaviour
         //spawnerScript.spawnThisObject("s");
 
         Debug.Log(currentLevel + " is being loaded");
+        LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
 
     public void loadLevelSelect() 
@@ -357,11 +374,13 @@ public class LevelManager : MonoBehaviour
         currentLevel = "LevelSelect";
         compareScene("LevelSelect");
         Debug.Log(currentLevel + " is being loaded");
+        LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
     public void loadVR()
     {
         currentLevel = "VR";
         compareScene("VRTutorial");
         Debug.Log(currentLevel + " is being loaded");
+        LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
 }

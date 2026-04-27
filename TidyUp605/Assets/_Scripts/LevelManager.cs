@@ -205,9 +205,9 @@ public class LevelManager : MonoBehaviour
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnObject("Service");
-        spawnerScript.spawnObject("Mad");
-        spawnerScript.spawnObject("Beskidt");
+        //spawnerScript.spawnObject("Service");
+        //spawnerScript.spawnObject("Mad");
+        //spawnerScript.spawnObject("Beskidt");
         gameController.rightThreshold = 3;
         Debug.Log(currentLevel + " is being loaded");
     }
@@ -218,7 +218,7 @@ public class LevelManager : MonoBehaviour
         compareScene("Tutorial_Practice");
         annihilation();
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
-        spawnerScript.spawnThisObject("b");
+        spawnerScript.spawnThisObject("bT");
         //need to spawn dirty plate, don't have that yet
         gameController.rightThreshold = 1;
         Debug.Log(currentLevel + " is being loaded");
@@ -243,7 +243,7 @@ public class LevelManager : MonoBehaviour
         compareScene("Tutorial_Practice");
         annihilation();
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnThisObject("r");
+        spawnerScript.spawnThisObject("rT");
         gameController.rightThreshold = 1;
         Debug.Log(currentLevel + " is being loaded");
         LogData.instance.AddToLogs(currentLevel + " is being loaded");
@@ -256,7 +256,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnThisObject("b");
+        spawnerScript.spawnThisObject("bT");
         gameController.rightThreshold = 1;
         Debug.Log(currentLevel + " is being loaded");
         LogData.instance.AddToLogs(currentLevel + " is being loaded");
@@ -282,7 +282,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnThisObject("r");
+        spawnerScript.spawnThisObject("rT");
         gameController.rightThreshold = 1;
         Debug.Log(currentLevel + " is being loaded");
         LogData.instance.AddToLogs(currentLevel + " is being loaded");
@@ -295,7 +295,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnThisObject("b");
+        spawnerScript.spawnThisObject("bT");
         spawnerScript.spawnThisObject("s");
         gameController.rightThreshold = 2;
         Debug.Log(currentLevel + " is being loaded");
@@ -310,7 +310,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("s");
-        spawnerScript.spawnThisObject("r");
+        spawnerScript.spawnThisObject("rT");
         gameController.rightThreshold = 2;
         Debug.Log(currentLevel + " is being loaded");
         LogData.instance.AddToLogs(currentLevel + " is being loaded");
@@ -323,8 +323,8 @@ public class LevelManager : MonoBehaviour
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnThisObject("b");
-        spawnerScript.spawnThisObject("r");
+        spawnerScript.spawnThisObject("bT");
+        spawnerScript.spawnThisObject("rT");
         gameController.rightThreshold = 2;
         Debug.Log(currentLevel + " is being loaded");
         LogData.instance.AddToLogs(currentLevel + " is being loaded");
@@ -337,8 +337,8 @@ public class LevelManager : MonoBehaviour
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnThisObject("b");
-        spawnerScript.spawnThisObject("r");
+        spawnerScript.spawnThisObject("bT");
+        spawnerScript.spawnThisObject("rT");
         spawnerScript.spawnThisObject("s");
         gameController.rightThreshold = 3;
         Debug.Log(currentLevel + " is being loaded");

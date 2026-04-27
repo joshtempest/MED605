@@ -4,18 +4,23 @@ using UnityEngine.Rendering;
 
 public class objectSpawner : MonoBehaviour
 {
+    /*
     [SerializeField] private GameObject[] servicePrefabsToSpawn;
     [SerializeField] private GameObject[] madPrefabsToSpawn;
     [SerializeField] private GameObject[] beskidtPrefabsToSpawn;
-
+    */
+    [Header("Individuelle objekter")]
     [SerializeField] private GameObject smoer;
-    [SerializeField] private GameObject beskidtPlate;
-    [SerializeField] private GameObject renPlate;
+    [SerializeField] private GameObject beskidtTallerken;
+    [SerializeField] private GameObject renTallerken;
+    [SerializeField] private GameObject renGaffel;
+    [SerializeField] private GameObject beskidtGaffel;
+    [SerializeField] private GameObject poelse;
 
     private GameObject ServiceToSpawn;
     private GameObject MadToSpawn;
     private GameObject BeskidtToSpawn;
-
+    [Header("Spawn Platforms")]
     [SerializeField] private GameObject serviceSpawnPlatform;
     [SerializeField] private GameObject madSpawnPlatform;
     [SerializeField] private GameObject beskidtSpawnPlatform;
@@ -33,13 +38,14 @@ public class objectSpawner : MonoBehaviour
 
     void Start()
     {
-        ServiceToSpawn = servicePrefabsToSpawn[UnityEngine.Random.Range(0, servicePrefabsToSpawn.Length)];
-        MadToSpawn = madPrefabsToSpawn[UnityEngine.Random.Range(0, madPrefabsToSpawn.Length)];
-        BeskidtToSpawn = beskidtPrefabsToSpawn[UnityEngine.Random.Range(0, beskidtPrefabsToSpawn.Length)];
+        //ServiceToSpawn = servicePrefabsToSpawn[UnityEngine.Random.Range(0, servicePrefabsToSpawn.Length)];
+        //MadToSpawn = madPrefabsToSpawn[UnityEngine.Random.Range(0, madPrefabsToSpawn.Length)];
+        //BeskidtToSpawn = beskidtPrefabsToSpawn[UnityEngine.Random.Range(0, beskidtPrefabsToSpawn.Length)];
         //spawnObject("Service");
         //spawnObject("Mad");
         //spawnObject("Beskidt");
     }
+    /*
     public void spawnObject(string tag)
     {
         if (tag =="Service")
@@ -73,6 +79,7 @@ public class objectSpawner : MonoBehaviour
             AudioManager.Instance.PlaySFX("Teleport");
         }
     }
+    */
 
     public void spawnThisObject(string type) 
     { 
@@ -84,20 +91,44 @@ public class objectSpawner : MonoBehaviour
             Instantiate(smoer, positionToSpawn, Quaternion.identity);
             AudioManager.Instance.PlaySFX("Teleport");
         }
-        if (type == "b") 
+        if (type == "bT") 
         {
             spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = beskidtSpawnPlatform.transform.position + spawnBuffer;
 
-            Instantiate(beskidtPlate, positionToSpawn, Quaternion.identity);
+            Instantiate(beskidtTallerken, positionToSpawn, Quaternion.identity);
             AudioManager.Instance.PlaySFX("Teleport");
         }
-        if (type == "r") 
+        if (type == "rT") 
         {
             spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = serviceSpawnPlatform.transform.position + spawnBuffer;
 
-            Instantiate(renPlate, positionToSpawn, Quaternion.identity);
+            Instantiate(renTallerken, positionToSpawn, Quaternion.identity);
+            AudioManager.Instance.PlaySFX("Teleport");
+        }
+        if (type == "rG")
+        {
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
+            Vector3 positionToSpawn = beskidtSpawnPlatform.transform.position + spawnBuffer;
+
+            Instantiate(renGaffel, positionToSpawn, Quaternion.identity);
+            AudioManager.Instance.PlaySFX("Teleport");
+        }
+        if (type == "bG")
+        {
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
+            Vector3 positionToSpawn = beskidtSpawnPlatform.transform.position + spawnBuffer;
+
+            Instantiate(beskidtGaffel, positionToSpawn, Quaternion.identity);
+            AudioManager.Instance.PlaySFX("Teleport");
+        }
+        if(type == "p")
+        {
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
+            Vector3 positionToSpawn = madSpawnPlatform.transform.position + spawnBuffer;
+
+            Instantiate(poelse, positionToSpawn, Quaternion.identity);
             AudioManager.Instance.PlaySFX("Teleport");
         }
     }

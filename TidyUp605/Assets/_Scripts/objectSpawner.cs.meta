@@ -1,2 +1,20 @@
 fileFormatVersion: 2
 guid: ecf03a5cac17a1a4d9d583345f9bda1f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - smoer: {fileID: 1681494129103073325, guid: fab4af15726221b4583b95b5b5d24799, type: 3}
+  - beskidtTallerken: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
+  - renTallerken: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
+  - renGaffel: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
+  - beskidtGaffel: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
+  - poelse: {fileID: 7269646975049402946, guid: 37abc29a89572504b8164e2d837503a8, type: 3}
+  - serviceSpawnPlatform: {instanceID: 0}
+  - madSpawnPlatform: {instanceID: 0}
+  - beskidtSpawnPlatform: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

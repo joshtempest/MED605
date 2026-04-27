@@ -1181,7 +1181,7 @@
                     "name": "",
                     "id": "71d94579-1bf4-4034-ab9e-e7166842128f",
                     "path": "<XRController>{LeftHand}/{Trigger}",
-                    "interactions": "Press(behavior=1)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "UI Press Value",

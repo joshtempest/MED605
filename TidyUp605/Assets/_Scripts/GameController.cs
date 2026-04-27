@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 public class GameController : MonoBehaviour
 {
     private LevelManager levelManager;
+    public ToggleBothFarCasters laserManager;
 
     public int rightAnswers;
     public int wrongAnswers;
@@ -120,6 +121,7 @@ public class GameController : MonoBehaviour
         enoughRightAnswers = false;
         ResetLog();
         levelInProgress = true;
+        if (laserManager != null) laserManager.SetLaserState(false);
         DisplayText.text = $"Current level is {levelManager.currentLevel} \n";
         LogData.instance.AddToLogs($"Resetting... current level is {levelManager.currentLevel}.");
     }
@@ -132,9 +134,11 @@ public class GameController : MonoBehaviour
             {
                 enoughRightAnswers = false;
                 levelInProgress = false;
+                if (laserManager != null) laserManager.SetLaserState(true);
 
                 Debug.Log("wrongThreshold reached. Level end, calling Display");
                 LogData.instance.AddToLogs("wrongThreshold reached. Level end, calling Display");
+               
 
                 //add a review in Display
                 DisplayResults();

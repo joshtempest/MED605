@@ -1423,6 +1423,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cb11e52fb2c7204caf16c89e5c8d11c, type: 3}
+--- !u!114 &284850172 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3617795025964672805, guid: 6cb11e52fb2c7204caf16c89e5c8d11c, type: 3}
+  m_PrefabInstance: {fileID: 284850171}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0d8aa209865c246b30ba0e5d945de7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToggleBothFarCasters
 --- !u!1 &325641486
 GameObject:
   m_ObjectHideFlags: 0
@@ -5673,6 +5684,10 @@ PrefabInstance:
       propertyPath: DisplayText
       value: 
       objectReference: {fileID: 167608809399413966}
+    - target: {fileID: 809904635402149817, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: laserManager
+      value: 
+      objectReference: {fileID: 284850172}
     - target: {fileID: 939640111568507421, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
       propertyPath: m_Name
       value: GameManager

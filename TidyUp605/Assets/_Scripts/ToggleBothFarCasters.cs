@@ -5,45 +5,27 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 public class ToggleBothFarCasters : MonoBehaviour
 {
     [Header("Interactors")]
-    [Tooltip("Drag your Left Near-Far Interactor here")]
     public NearFarInteractor leftInteractor;
-
-    [Tooltip("Drag your Right Near-Far Interactor here")]
     public NearFarInteractor rightInteractor;
 
-    // We track the state internally so the hands never get out of sync
-    private bool areLasersEnabled = true;
-
-    void Start()
+    public void ToggleLasers()
     {
-        // Make sure our internal state matches whatever you set in the Inspector
-        if (leftInteractor != null)
+        if (leftInteractor != null && rightInteractor != null)
         {
-            areLasersEnabled = leftInteractor.enableFarCasting;
+            // Read the current state from the left hand and flip it
+            bool newState = !leftInteractor.enableFarCasting;
+
+            // Apply the new state to the enableFarCasting bool on BOTH hands
+            leftInteractor.enableFarCasting = newState;
+            rightInteractor.enableFarCasting = newState;
         }
     }
-
-    // --- Public Methods you can call from UI buttons or other scripts ---
-
-    public void ToggleBothLasers()
+    public void SetLaserState (bool IsEnabled)
     {
-        areLasersEnabled = !areLasersEnabled;
-
-        if (leftInteractor != null) leftInteractor.enableFarCasting = areLasersEnabled;
-        if (rightInteractor != null) rightInteractor.enableFarCasting = areLasersEnabled;
-    }
-
-    public void EnableBothLasers()
-    {
-        areLasersEnabled = true;
-        if (leftInteractor != null) leftInteractor.enableFarCasting = true;
-        if (rightInteractor != null) rightInteractor.enableFarCasting = true;
-    }
-
-    public void DisableBothLasers()
-    {
-        areLasersEnabled = false;
-        if (leftInteractor != null) leftInteractor.enableFarCasting = false;
-        if (rightInteractor != null) rightInteractor.enableFarCasting = false;
+        if (leftInteractor != null && rightInteractor != null)
+        {
+            leftInteractor.enableFarCasting = IsEnabled;
+            rightInteractor.enableFarCasting = IsEnabled;
+        }
     }
 }

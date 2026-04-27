@@ -1978,7 +1978,7 @@ Transform:
   m_GameObject: {fileID: 4581739751572811015}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1176, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3029,6 +3029,8 @@ GameObject:
   - component: {fileID: 2836476442311585421}
   - component: {fileID: 8361352680788280783}
   - component: {fileID: 3617795025964672805}
+  - component: {fileID: 695938184035737676}
+  - component: {fileID: 7261368649613656014}
   m_Layer: 0
   m_Name: XR Origin (VR) New
   m_TagString: Untagged
@@ -3069,8 +3071,8 @@ MonoBehaviour:
   m_Camera: {fileID: 7588833571582819178}
   m_OriginBaseGameObject: {fileID: 6170874360347372034}
   m_CameraFloorOffsetObject: {fileID: 4581739751572811015}
-  m_RequestedTrackingOriginMode: 0
-  m_CameraYOffset: 1.1176
+  m_RequestedTrackingOriginMode: 1
+  m_CameraYOffset: 0.75
 --- !u!114 &7980883107915259737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3220,6 +3222,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToggleBothFarCasters
   leftInteractor: {fileID: 2169663569318868590}
   rightInteractor: {fileID: 2790051150976651751}
+--- !u!54 &695938184035737676
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6170874360347372034}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!136 &7261368649613656014
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6170874360347372034}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6211848125432154223
 GameObject:
   m_ObjectHideFlags: 0

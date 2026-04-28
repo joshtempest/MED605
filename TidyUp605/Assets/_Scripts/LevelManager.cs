@@ -38,6 +38,9 @@ public class LevelManager : MonoBehaviour
 
     //for scene changing
     public string currentLevel;
+    [SerializeField] int currentStage;
+    [SerializeField] int currentSequence;
+    [SerializeField] bool evalActive = false;
     Scene activeScene;
 
 
@@ -54,7 +57,7 @@ public class LevelManager : MonoBehaviour
         else if (thisIsTrial1) { currentLevel = "Trial1"; }
     }
 
-    void annihilation() 
+    void annihilation()
     {
         Debug.Log("Annihilation initiated");
         LogData.instance.AddToLogs("Annihalating...");
@@ -86,7 +89,16 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("Reloading level: " + currentLevel);
         LogData.instance.AddToLogs("Reloading level: " + currentLevel);
-        if (currentLevel == "Trial1"){loadTrial1();}
+
+        if (currentStage == 1)
+        {
+            if (currentSequence == 1) { loadSequence1(currentLevel); }
+            //else if (currentSequence == 2) { loadSequence2(currentLevel); }
+            else if (evalActive) { loadStage1Eval(); }
+        }
+
+        if (currentLevel == "Trial1") { loadTrial1(); }
+        /*
         else if (currentLevel == "Tutorial1") {loadTutorial1(); }
         else if (currentLevel == "Tutorial2") {loadTutorial2(); }
         else if (currentLevel == "Tutorial3") {loadTutorial3(); }
@@ -98,6 +110,7 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "Practice6") {loadPractice6(); }
         else if (currentLevel == "Practice7") {loadPractice7(); }
         else if (currentLevel == "Eval1") { loadEval1(); }
+        */
         else if (currentLevel == "Intro") { loadIntro(); }
         else if (currentLevel == "LevelSelect") { loadLevelSelect(); }
         else if (currentLevel == "VR") { loadVR(); }
@@ -111,10 +124,19 @@ public class LevelManager : MonoBehaviour
     public IEnumerator waitAndReloadLevel(float delay)
     {
         yield return new WaitForSeconds(delay);
-      
+
         Debug.Log("Reloading level: " + currentLevel);
         LogData.instance.AddToLogs("Reloading level: " + currentLevel);
+
+        if (currentStage == 1) 
+        {
+            if (currentSequence == 1) { loadSequence1(currentLevel); }
+            //else if (currentSequence == 2) { loadSequence2(currentLevel); }
+            else if (evalActive) { loadStage1Eval(); }
+        }
+
         if (currentLevel == "Trial1") { loadTrial1(); }
+        /*
         else if (currentLevel == "Tutorial1") { loadTutorial1(); }
         else if (currentLevel == "Tutorial2") { loadTutorial2(); }
         else if (currentLevel == "Tutorial3") { loadTutorial3(); }
@@ -129,6 +151,7 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "Intro") { loadIntro(); }
         else if (currentLevel == "LevelSelect") { loadLevelSelect(); }
         else if (currentLevel == "VR") { loadVR(); }
+        */
     }
 
 
@@ -136,6 +159,7 @@ public class LevelManager : MonoBehaviour
     public void loadNextLevel()
     {
         LogData.instance.AddToLogs("Loading Next Level after " + currentLevel);
+        /*
         if (currentLevel == "Intro") { loadTutorial1(); }
         else if (currentLevel == "Tutorial1") { loadTutorial2(); }
         else if (currentLevel == "Tutorial2") { loadTutorial3(); }
@@ -147,6 +171,7 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "Practice5") { loadPractice6(); }
         else if (currentLevel == "Practice6") { loadPractice7(); }
         else if (currentLevel == "Practice7") { loadEval1(); }
+        */
     }
 
     public void loadNextLevel(float delayInSeconds)
@@ -159,7 +184,7 @@ public class LevelManager : MonoBehaviour
         LogData.instance.AddToLogs("Loading Next Level after " + currentLevel);
 
         yield return new WaitForSeconds(delay);
-
+        /*
         if (currentLevel == "Intro") { loadTutorial1(); }
         else if (currentLevel == "Tutorial1") { loadTutorial2(); }
         else if (currentLevel == "Tutorial2") { loadTutorial3(); }
@@ -171,6 +196,7 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "Practice5") { loadPractice6(); }
         else if (currentLevel == "Practice6") { loadPractice7(); }
         else if (currentLevel == "Practice7") { loadEval1(); }
+        */
     }
 
 
@@ -189,7 +215,7 @@ public class LevelManager : MonoBehaviour
 
     //spawnerScript.spawnObject spawns a random prefab from the list, needs a string of: "Service", "Mad" or "Beskidt" to know which list to spawn from.
     //spawnerScript.spawnThisObject spawns a specific prefab, needs a string of: "b" for beskidt tallerken, "s" for smoer or "r" for ren tallerken, to know which prefab to spawn.
-    public void loadIntro() 
+    public void loadIntro()
     {
         currentLevel = "Intro";
         compareScene("Intro");
@@ -212,6 +238,150 @@ public class LevelManager : MonoBehaviour
         Debug.Log(currentLevel + " is being loaded");
     }
 
+    //Stage 1: Plates (Seq1 -> seq2 -> eval)
+        //Seq1=
+
+    public void loadCustomSeq1(int cleanTallerken, int dirtyTallerken, bool boolskab, bool boolopvask, bool boolkoele, int rightAnswers) 
+    { 
+        compareScene("Tutorial_Practice");
+        annihilation();
+
+        if (boolskab) { Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation); }
+        if (boolopvask) { Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation); }
+        if (boolkoele) { Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation); }
+
+        for (int i = 0; i < cleanTallerken; i++)
+        {
+            spawnerScript.spawnThisObject("rT");
+        }
+        for (int i = 0; i < dirtyTallerken; i++)
+        {
+            spawnerScript.spawnThisObject("bT");
+        }
+        gameController.rightThreshold = rightAnswers;
+    }
+    public void loadSequence1(string levelName)
+    {
+        currentStage = 1;
+        currentSequence = 1;
+        compareScene("Tutorial_Practice");
+        annihilation();
+
+        if(levelName == "T1") 
+        {
+            currentLevel = levelName;
+            Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+            spawnerScript.spawnThisObject("rT");
+            gameController.rightThreshold = 1;
+        }
+        else if(levelName == "T2")
+        {
+            currentLevel = levelName;
+            Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
+            spawnerScript.spawnThisObject("bT");
+            gameController.rightThreshold = 1;
+        }
+        else if(levelName == "P1")
+        {
+            currentLevel = levelName;
+
+            Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
+            Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+
+            int cleanTallerken = 1;
+            int dirtyTallerken = 1;
+            for (int i = 0; i < cleanTallerken; i++)
+            {
+                spawnerScript.spawnThisObject("rT");
+            }
+            for (int i = 0; i < dirtyTallerken; i++)
+            {
+                spawnerScript.spawnThisObject("bT");
+            }
+        }
+        else if (levelName == "P2")
+        {
+            currentLevel = levelName;
+
+            Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
+            Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+
+            int cleanTallerken = 1;
+            int dirtyTallerken = 2;
+            for (int i = 0; i < cleanTallerken; i++)
+            {
+                spawnerScript.spawnThisObject("rT");
+            }
+            for (int i = 0; i < dirtyTallerken; i++)
+            {
+                spawnerScript.spawnThisObject("bT");
+            }
+        }
+        else if (levelName == "P3")
+        {
+            currentLevel = levelName;
+
+            Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
+            Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+
+            int cleanTallerken = 2;
+            int dirtyTallerken = 2;
+            for (int i = 0; i < cleanTallerken; i++)
+            {
+                spawnerScript.spawnThisObject("rT");
+            }
+            for (int i = 0; i < dirtyTallerken; i++)
+            {
+                spawnerScript.spawnThisObject("bT");
+            }
+        }
+        else if (levelName == "P4")
+        {
+            currentLevel = levelName;
+
+            Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
+            Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+
+            int cleanTallerken = 1;
+            int dirtyTallerken = 4;
+            for (int i = 0; i < cleanTallerken; i++)
+            {
+                spawnerScript.spawnThisObject("rT");
+            }
+            for (int i = 0; i < dirtyTallerken; i++)
+            {
+                spawnerScript.spawnThisObject("bT");
+            }
+        }
+        else { Debug.Log(levelName + " is invalid"); }
+    }
+
+    public void loadStage1Eval()
+    {
+        currentStage = 1;
+        currentSequence = 3;
+        evalActive = true;
+        //Eval is not yet done
+    }
+
+    public void loadLevelSelect() 
+    {
+        currentLevel = "LevelSelect";
+        compareScene("LevelSelect");
+        Debug.Log(currentLevel + " is being loaded");
+        LogData.instance.AddToLogs(currentLevel + " is being loaded");
+    }
+    public void loadVR()
+    {
+        currentLevel = "VR";
+        compareScene("VRTutorial");
+        gameController.resetScore();
+        Debug.Log(currentLevel + " is being loaded");
+        LogData.instance.AddToLogs(currentLevel + " is being loaded");
+        gameController.rightThreshold = 2;
+    }
+
+    //old levels ______________________________________________________________________________________________________________________________________________________________________________________
     public void loadTutorial1()
     {
         currentLevel = "Tutorial1";
@@ -248,7 +418,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log(currentLevel + " is being loaded");
         LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
-    public void loadPractice1() 
+    public void loadPractice1()
     {
         currentLevel = "Practice1";
         compareScene("Tutorial_Practice");
@@ -367,22 +537,5 @@ public class LevelManager : MonoBehaviour
 
         Debug.Log(currentLevel + " is being loaded");
         LogData.instance.AddToLogs(currentLevel + " is being loaded");
-    }
-
-    public void loadLevelSelect() 
-    {
-        currentLevel = "LevelSelect";
-        compareScene("LevelSelect");
-        Debug.Log(currentLevel + " is being loaded");
-        LogData.instance.AddToLogs(currentLevel + " is being loaded");
-    }
-    public void loadVR()
-    {
-        currentLevel = "VR";
-        compareScene("VRTutorial");
-        gameController.resetScore();
-        Debug.Log(currentLevel + " is being loaded");
-        LogData.instance.AddToLogs(currentLevel + " is being loaded");
-        gameController.rightThreshold = 2;
     }
 }

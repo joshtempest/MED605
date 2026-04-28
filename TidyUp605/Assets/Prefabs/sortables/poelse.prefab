@@ -81,6 +81,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c5d2697abd522549ad6226f39bc5b3f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5676424361745543865}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9c5d2697abd522549ad6226f39bc5b3f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8801959148438962510}
   m_SourcePrefab: {fileID: 100100000, guid: 9c5d2697abd522549ad6226f39bc5b3f, type: 3}
 --- !u!1 &7269646975049402946 stripped
 GameObject:
@@ -264,3 +267,26 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 2, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-8801959148438962510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7269646975049402946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729534f461e093747ba99db90c2428b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Identifier
+  cleanGaffel: 0
+  cleanKniv: 0
+  cleanSke: 0
+  cleanTallerken: 0
+  dirtyGaffel: 0
+  dirtyKniv: 0
+  dirtySke: 0
+  dirtyTallerken: 0
+  marmelade: 0
+  poelse: 1
+  smoer: 0

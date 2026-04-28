@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4123966357380581165}
   - component: {fileID: 9184800696275610591}
   - component: {fileID: 1274676164457025411}
+  - component: {fileID: -7210281188761552336}
   m_Layer: 0
   m_Name: PlateFlatT2
   m_TagString: Untagged
@@ -270,3 +271,26 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!114 &-7210281188761552336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647624767699457968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729534f461e093747ba99db90c2428b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Identifier
+  cleanGaffel: 0
+  cleanKniv: 0
+  cleanSke: 0
+  cleanTallerken: 0
+  dirtyGaffel: 0
+  dirtyKniv: 0
+  dirtySke: 0
+  dirtyTallerken: 1
+  marmelade: 0
+  poelse: 0
+  smoer: 0

@@ -6,6 +6,10 @@ public class Boundary : MonoBehaviour
 {
     private GameObject GameManager;
     private objectSpawner spawnerScript;
+
+    private GameObject collidedObject;
+    private Identifier identity;
+
     string[] objectTags = { "Service", "Beskidt", "Mad"};
 
     private void Awake()
@@ -15,16 +19,17 @@ public class Boundary : MonoBehaviour
 
     public void OnCollisionEnter(Collision other)
     {
+        identity = other.gameObject.GetComponent<Identifier>();
         // If collided object matches one of the tags, respawn a copy at the spawn position
         //for (int i = 0; i < objectTags.Length; i++)
         //{
-            //string currentTag = objectTags[i];if (other.gameObject.tag == currentTag){spawnerScript.spawnObject(currentTag);Destroy(other.gameObject);break;}
-            if (other.gameObject.tag == "Service") { Destroy(other.gameObject); spawnerScript.spawnThisObject("rT"); }
-            else if (other.gameObject.tag == "Beskidt") { Destroy(other.gameObject); spawnerScript.spawnThisObject("bT"); }
-            else if (other.gameObject.tag == "Mad") { Destroy(other.gameObject); spawnerScript.spawnThisObject("s"); }
-            else if(other.gameObject.tag == "smoer") { Destroy(other.gameObject); spawnerScript.spawnThisObject("s"); }
-            else if(other.gameObject.tag == "plate") { Destroy(other.gameObject); spawnerScript.spawnThisObject("rT"); }
-            else if(other.gameObject.tag == "beskidtPlate") { Destroy(other.gameObject); spawnerScript.spawnThisObject("bT"); }
+        //string currentTag = objectTags[i];if (other.gameObject.tag == currentTag){spawnerScript.spawnObject(currentTag);Destroy(other.gameObject);break;}
+        if (other.gameObject.tag == "Service") { Destroy(other.gameObject); spawnerScript.spawnThisObject(identity.IdentifyObject()); }
+            else if (other.gameObject.tag == "Beskidt") { Destroy(other.gameObject); spawnerScript.spawnThisObject(identity.IdentifyObject()); }
+            else if (other.gameObject.tag == "Mad") { Destroy(other.gameObject); spawnerScript.spawnThisObject(identity.IdentifyObject()); }
+            else if(other.gameObject.tag == "smoer") { Destroy(other.gameObject); spawnerScript.spawnThisObject(identity.IdentifyObject()); }
+            else if(other.gameObject.tag == "plate") { Destroy(other.gameObject); spawnerScript.spawnThisObject(identity.IdentifyObject()); }
+            else if(other.gameObject.tag == "beskidtPlate") { Destroy(other.gameObject); spawnerScript.spawnThisObject(identity.IdentifyObject()); }
         //}
     }
 }

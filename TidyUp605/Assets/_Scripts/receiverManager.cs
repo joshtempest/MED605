@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
@@ -26,12 +25,6 @@ public class receiverManager : MonoBehaviour
 
     bool particlesOnline = false;
 
-    [Header("Placement Settings")]
-    [Tooltip("Assign empty GameObjects here to define where correct items should be placed.")]
-    [SerializeField] private List<Transform> displayPoints = new List<Transform>();
-    private int currentDisplayIndex = 0;
-
-
     private void Awake()
     {
         spawnerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<objectSpawner>();
@@ -40,30 +33,29 @@ public class receiverManager : MonoBehaviour
 
     private void Start()
     {
+        //Fancy way to check if more than one type is assigned to the receiver and log a warning if so, also checks if no type is assigned and logs a warning if so 
         receiverTypeCount = (isServiceReceiver ? 1 : 0) + (isBeskidtReceiver ? 1 : 0) + (isMadReceiver ? 1 : 0);
         if (receiverTypeCount > 1)
         {
-            Debug.LogWarning((this.gameObject.name) + " has " + receiverTypeCount + " types assigned. Please assign only one type to the receiver.");
+            Debug.LogWarning((this.gameObject) + " has " + receiverTypeCount + " types assigned. Please assign only one type to the receiver.");
             this.gameObject.GetComponent<receiverManager>().enabled = false;
         }
         if (!isServiceReceiver && !isBeskidtReceiver && !isMadReceiver)
         {
-            Debug.LogWarning((this.gameObject.name) + " has no type assigned. Please assign a type to the receiver.");
+            Debug.LogWarning((this.gameObject) + " has no type assigned. Please assign a type to the receiver.");
             this.gameObject.GetComponent<receiverManager>().enabled = false;
         }
-
         particlesOnline = InitialiseParticles();
-
-        // DEBUG: Check how many points are registered at the start of the game
-        Debug.Log($"[Receiver: {gameObject.name}] Initialized with {displayPoints.Count} display points.");
     }
 
     public bool InitialiseParticles()
     {
+        //get access to the particle systems of the receiver 
         part_tick = go_part_tick.GetComponent<ParticleSystem>();
         part_sparkles = go_part_sparkles.GetComponent<ParticleSystem>();
         part_x = go_part_x.GetComponent<ParticleSystem>();
 
+        //throw a warning if the particle systems aren't found 
         if (!part_tick || !part_sparkles || !part_x)
         {
             Debug.LogWarning($"Particle system not detected: tick is {part_tick} - sparkles is {part_sparkles} - x is {part_x}");
@@ -77,112 +69,103 @@ public class receiverManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log($"Collision detected with {collision.gameObject.name}");
         if (isServiceReceiver)
         {
+            Debug.Log($"Item collided with a service receiver.");
             if (collision.gameObject.tag == "Service")
-                HandleCorrectItem(collision.gameObject);
+            {
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
+                Destroy(collision.gameObject);
+                gameController.increaseScore(1);
+                PlayParticles(true);
+                AudioManager.Instance.PlaySFX("Victory");
+            }
             else if (collision.gameObject.tag == "Beskidt")
-                HandleWrongItem(collision.gameObject, "b");
+            {
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+                Destroy(collision.gameObject);
+                gameController.decreaseScore(1);
+                spawnerScript.spawnThisObject("b");
+                PlayParticles(false);
+                AudioManager.Instance.PlaySFX("Wrong");
+            }
             else if (collision.gameObject.tag == "Mad")
-                HandleWrongItem(collision.gameObject, "s");
+            {
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+                Destroy(collision.gameObject);
+                gameController.decreaseScore(1);
+                spawnerScript.spawnThisObject("s");
+                PlayParticles(false);
+                AudioManager.Instance.PlaySFX("Wrong");
+            }
         }
-        else if (isBeskidtReceiver)
+        if (isBeskidtReceiver)
         {
+            Debug.Log($"Item collided with a beskidt receiver.");
             if (collision.gameObject.tag == "Beskidt")
-                HandleCorrectItem(collision.gameObject);
+            {
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
+                Destroy(collision.gameObject);
+                gameController.increaseScore(1);
+                PlayParticles(true);
+                AudioManager.Instance.PlaySFX("Victory");
+            }
             else if (collision.gameObject.tag == "Service")
-                HandleWrongItem(collision.gameObject, "r");
+            {
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+                Destroy(collision.gameObject);
+                gameController.decreaseScore(1);
+                spawnerScript.spawnThisObject("r");
+                PlayParticles(false);
+                AudioManager.Instance.PlaySFX("Wrong");
+            }
             else if (collision.gameObject.tag == "Mad")
-                HandleWrongItem(collision.gameObject, "s");
+            {
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+                Destroy(collision.gameObject);
+                gameController.decreaseScore(1);
+                spawnerScript.spawnThisObject("s");
+                PlayParticles(false);
+                AudioManager.Instance.PlaySFX("Wrong");
+            }
         }
-        else if (isMadReceiver)
+        if (isMadReceiver)
         {
+            Debug.Log($"Item collided with a mad receiver.");
             if (collision.gameObject.tag == "Mad")
-                HandleCorrectItem(collision.gameObject);
+            {
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
+                Destroy(collision.gameObject);
+                gameController.increaseScore(1);
+                PlayParticles(true);
+                AudioManager.Instance.PlaySFX("Victory");
+            }
             else if (collision.gameObject.tag == "Service")
-                HandleWrongItem(collision.gameObject, "r");
+            {
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+                Destroy(collision.gameObject);
+                gameController.decreaseScore(1);
+                spawnerScript.spawnThisObject("r");
+                PlayParticles(false);
+                AudioManager.Instance.PlaySFX("Wrong");
+            }
             else if (collision.gameObject.tag == "Beskidt")
-                HandleWrongItem(collision.gameObject, "b");
+            {
+                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+                Destroy(collision.gameObject);
+                gameController.decreaseScore(1);
+                spawnerScript.spawnThisObject("b");
+                PlayParticles(false);
+                AudioManager.Instance.PlaySFX("Wrong");
+            }
         }
-    }
-
-    private void HandleCorrectItem(GameObject item)
-    {
-        Debug.Log($"=== HandleCorrectItem triggered for {item.name} ===");
-
-        gameController.AddLog(item.name, this.gameObject.name, true);
-        gameController.increaseScore(1);
-
-        // Position the item instead of destroying it
-        if (displayPoints != null && displayPoints.Count > 0)
-        {
-            int index = Mathf.Min(currentDisplayIndex, displayPoints.Count - 1);
-            Transform targetPoint = displayPoints[index];
-
-            Debug.Log($"Attempting to snap '{item.name}' to point index {index} ('{targetPoint.name}') at position {targetPoint.position}.");
-
-            item.transform.position = targetPoint.position;
-            item.transform.rotation = targetPoint.rotation;
-            item.transform.SetParent(targetPoint);
-
-            Debug.Log($"Success! '{item.name}' is now at {item.transform.position} and parented to '{item.transform.parent?.name}'.");
-
-            currentDisplayIndex++;
-        }
-        else
-        {
-            Debug.LogWarning($"No Display Points assigned for '{this.gameObject.name}'! Falling back to snapping item directly to receiver center.");
-            item.transform.position = transform.position;
-            item.transform.SetParent(transform);
-        }
-
-        // Disable physics
-        Rigidbody rb = item.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.isKinematic = true;
-            rb.useGravity = false;
-            rb.linearVelocity = Vector3.zero; // Stop any existing movement
-            rb.angularVelocity = Vector3.zero; // Stop any existing spinning
-            Debug.Log($"Disabled Rigidbody on '{item.name}'.");
-        }
-        else
-        {
-            Debug.LogWarning($"Could not find a Rigidbody on '{item.name}' to disable! Is it located on a child object?");
-        }
-
-        Collider col = item.GetComponent<Collider>();
-        if (col != null)
-        {
-            col.enabled = false;
-            Debug.Log($"Disabled Collider on '{item.name}'.");
-        }
-        else
-        {
-            Debug.LogWarning($"Could not find a Collider on '{item.name}' to disable! Is it located on a child object?");
-        }
-
-        PlayParticles(true);
-        AudioManager.Instance.PlaySFX("Victory");
-
-        Debug.Log($"=== Finished HandleCorrectItem for {item.name} ===");
-    }
-
-    private void HandleWrongItem(GameObject item, string respawnCode)
-    {
-        gameController.AddLog(item.name, this.gameObject.name, false);
-        gameController.decreaseScore(1);
-
-        Destroy(item);
-        spawnerScript.spawnThisObject(respawnCode);
-
-        PlayParticles(false);
-        AudioManager.Instance.PlaySFX("Wrong");
     }
 
     public void PlayParticles(bool isSuccessful)
     {
-        if (!particlesOnline) return;
+        if (!particlesOnline)
+            return;
 
         if (isSuccessful)
         {

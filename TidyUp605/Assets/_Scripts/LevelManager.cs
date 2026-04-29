@@ -355,13 +355,114 @@ public class LevelManager : MonoBehaviour
         }
         else { Debug.Log(levelName + " is invalid"); }
     }
-
     public void loadStage1Eval()
     {
         currentStage = 1;
         currentSequence = 3;
         evalActive = true;
         //Eval is not yet done
+    }
+
+    public void loadSequence2(string levelName)
+    {
+        currentStage = 1;
+        currentSequence = 2;
+        compareScene("Tutorial_Practice");
+        annihilation();
+
+        currentStage = 1;
+        currentSequence = 1;
+        compareScene("Tutorial_Practice");
+        annihilation();
+
+        if (levelName == "T1")
+        {
+            currentLevel = levelName;
+            Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+            spawnerScript.spawnThisObject("rT");
+            gameController.rightThreshold = 1;
+        }
+        else if (levelName == "T2")
+        {
+            currentLevel = levelName;
+            Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
+            spawnerScript.spawnThisObject("bT");
+            gameController.rightThreshold = 1;
+        }
+        else if (levelName == "P1")
+        {
+            currentLevel = levelName;
+
+            Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
+            Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+
+            int cleanTallerken = 1;
+            int dirtyTallerken = 1;
+            for (int i = 0; i < cleanTallerken; i++)
+            {
+                spawnerScript.spawnThisObject("rT");
+            }
+            for (int i = 0; i < dirtyTallerken; i++)
+            {
+                spawnerScript.spawnThisObject("bT");
+            }
+        }
+        else if (levelName == "P2")
+        {
+            currentLevel = levelName;
+
+            Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
+            Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+
+            int cleanTallerken = 1;
+            int dirtyTallerken = 2;
+            for (int i = 0; i < cleanTallerken; i++)
+            {
+                spawnerScript.spawnThisObject("rT");
+            }
+            for (int i = 0; i < dirtyTallerken; i++)
+            {
+                spawnerScript.spawnThisObject("bT");
+            }
+        }
+        else if (levelName == "P3")
+        {
+            currentLevel = levelName;
+
+            Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
+            Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+
+            int cleanTallerken = 2;
+            int dirtyTallerken = 2;
+            for (int i = 0; i < cleanTallerken; i++)
+            {
+                spawnerScript.spawnThisObject("rT");
+            }
+            for (int i = 0; i < dirtyTallerken; i++)
+            {
+                spawnerScript.spawnThisObject("bT");
+            }
+        }
+        else if (levelName == "P4")
+        {
+            currentLevel = levelName;
+
+            Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
+            Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+
+            int cleanTallerken = 1;
+            int dirtyTallerken = 4;
+            for (int i = 0; i < cleanTallerken; i++)
+            {
+                spawnerScript.spawnThisObject("rT");
+            }
+            for (int i = 0; i < dirtyTallerken; i++)
+            {
+                spawnerScript.spawnThisObject("bT");
+            }
+        }
+        else { Debug.Log(levelName + " is invalid"); }
+
     }
 
     public void loadLevelSelect() 

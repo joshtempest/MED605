@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class LogData : MonoBehaviour
 {
+    public bool doLogging; 
+
     public static LogData instance;
 
     public static int numberOfLogs = 0;
@@ -102,6 +104,11 @@ public class LogData : MonoBehaviour
     //partially Ferrone 
     public void AddToLogs(string addition)
     {
+        if (!doLogging)
+        {
+            return;
+        }
+
         if (!File.Exists(_persistentLogFile))
         {
             Debug.Log("File doesn't exist...");

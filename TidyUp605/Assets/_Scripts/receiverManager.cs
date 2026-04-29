@@ -1,7 +1,7 @@
-using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -24,10 +24,10 @@ public class receiverManager : MonoBehaviour
     private ParticleSystem part_sparkles;
     private ParticleSystem part_x;
 
-
     bool particlesOnline = false;
 
-   
+    [Header("Placement Settings")]
+    [Tooltip("Assign empty GameObjects here to define where correct items should be placed.")]
     [SerializeField] private List<Transform> displayPoints = new List<Transform>();
     private int currentDisplayIndex = 0;
 
@@ -40,55 +40,45 @@ public class receiverManager : MonoBehaviour
 
     private void Start()
     {
-        //Fancy way to check if more than one type is assigned to the receiver and log a warning if so, also checks if no type is assigned and logs a warning if so
         receiverTypeCount = (isServiceReceiver ? 1 : 0) + (isBeskidtReceiver ? 1 : 0) + (isMadReceiver ? 1 : 0);
         if (receiverTypeCount > 1)
         {
-            Debug.LogWarning((this.gameObject) + " has " + receiverTypeCount + " types assigned. Please assign only one type to the receiver.");
+            Debug.LogWarning((this.gameObject.name) + " has " + receiverTypeCount + " types assigned. Please assign only one type to the receiver.");
             this.gameObject.GetComponent<receiverManager>().enabled = false;
         }
         if (!isServiceReceiver && !isBeskidtReceiver && !isMadReceiver)
         {
-            Debug.LogWarning((this.gameObject) + " has no type assigned. Please assign a type to the receiver.");
+            Debug.LogWarning((this.gameObject.name) + " has no type assigned. Please assign a type to the receiver.");
             this.gameObject.GetComponent<receiverManager>().enabled = false;
         }
 
         particlesOnline = InitialiseParticles();
 
-
+        // DEBUG: Check how many points are registered at the start of the game
+        Debug.Log($"[Receiver: {gameObject.name}] Initialized with {displayPoints.Count} display points.");
     }
 
     public bool InitialiseParticles()
-        { 
-        //get access to the particle systems of the receiver
+    {
         part_tick = go_part_tick.GetComponent<ParticleSystem>();
-        //part_tick3 = this.gameObject.GetComponentInChildren<ParticleSystem>();
         part_sparkles = go_part_sparkles.GetComponent<ParticleSystem>();
         part_x = go_part_x.GetComponent<ParticleSystem>();
-       
 
-        //throw a warning if the particle systems aren't found
         if (!part_tick || !part_sparkles || !part_x)
         {
             Debug.LogWarning($"Particle system not detected: tick is {part_tick} - sparkles is {part_sparkles} - x is {part_x}");
             return false;
         }
-        else 
+        else
         {
-            //Debug.Log($"Particle systems assigned: tick is {part_tick} - sparkles is {part_sparkles} - x is {part_x}");
-
             return true;
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"Collision detected with {collision.gameObject.name}");
-
         if (isServiceReceiver)
         {
-            Debug.Log($"Item collided with a service receiver.");
-
             if (collision.gameObject.tag == "Service")
                 HandleCorrectItem(collision.gameObject);
             else if (collision.gameObject.tag == "Beskidt")
@@ -98,8 +88,6 @@ public class receiverManager : MonoBehaviour
         }
         else if (isBeskidtReceiver)
         {
-            Debug.Log($"Item collided with a beskidt receiver.");
-
             if (collision.gameObject.tag == "Beskidt")
                 HandleCorrectItem(collision.gameObject);
             else if (collision.gameObject.tag == "Service")
@@ -109,8 +97,6 @@ public class receiverManager : MonoBehaviour
         }
         else if (isMadReceiver)
         {
-            Debug.Log($"Item collided with a mad receiver.");
-
             if (collision.gameObject.tag == "Mad")
                 HandleCorrectItem(collision.gameObject);
             else if (collision.gameObject.tag == "Service")
@@ -122,67 +108,81 @@ public class receiverManager : MonoBehaviour
 
     private void HandleCorrectItem(GameObject item)
     {
-        // Add interaction to logs & increase score
+        Debug.Log($"=== HandleCorrectItem triggered for {item.name} ===");
+
         gameController.AddLog(item.name, this.gameObject.name, true);
         gameController.increaseScore(1);
 
         // Position the item instead of destroying it
         if (displayPoints != null && displayPoints.Count > 0)
         {
-            // Get the next placement point. If we run out, stack on the last one.
             int index = Mathf.Min(currentDisplayIndex, displayPoints.Count - 1);
             Transform targetPoint = displayPoints[index];
+
+            Debug.Log($"Attempting to snap '{item.name}' to point index {index} ('{targetPoint.name}') at position {targetPoint.position}.");
 
             item.transform.position = targetPoint.position;
             item.transform.rotation = targetPoint.rotation;
             item.transform.SetParent(targetPoint);
 
+            Debug.Log($"Success! '{item.name}' is now at {item.transform.position} and parented to '{item.transform.parent?.name}'.");
+
             currentDisplayIndex++;
         }
         else
         {
-            // Fallback: place at receiver's center if no points are assigned in inspector
+            Debug.LogWarning($"No Display Points assigned for '{this.gameObject.name}'! Falling back to snapping item directly to receiver center.");
             item.transform.position = transform.position;
             item.transform.SetParent(transform);
         }
 
-        // Disable physics to prevent further collisions and falling
+        // Disable physics
         Rigidbody rb = item.GetComponent<Rigidbody>();
         if (rb != null)
         {
             rb.isKinematic = true;
             rb.useGravity = false;
+            rb.linearVelocity = Vector3.zero; // Stop any existing movement
+            rb.angularVelocity = Vector3.zero; // Stop any existing spinning
+            Debug.Log($"Disabled Rigidbody on '{item.name}'.");
+        }
+        else
+        {
+            Debug.LogWarning($"Could not find a Rigidbody on '{item.name}' to disable! Is it located on a child object?");
         }
 
         Collider col = item.GetComponent<Collider>();
         if (col != null)
         {
             col.enabled = false;
+            Debug.Log($"Disabled Collider on '{item.name}'.");
+        }
+        else
+        {
+            Debug.LogWarning($"Could not find a Collider on '{item.name}' to disable! Is it located on a child object?");
         }
 
-        // Play success particles & sound
         PlayParticles(true);
         AudioManager.Instance.PlaySFX("Victory");
+
+        Debug.Log($"=== Finished HandleCorrectItem for {item.name} ===");
     }
+
     private void HandleWrongItem(GameObject item, string respawnCode)
     {
-        // Add interaction to logs & decrease score
         gameController.AddLog(item.name, this.gameObject.name, false);
         gameController.decreaseScore(1);
 
-        // Destroy the incorrect object and respawn
         Destroy(item);
         spawnerScript.spawnThisObject(respawnCode);
 
-        // Play error particle & negative sound effect
         PlayParticles(false);
         AudioManager.Instance.PlaySFX("Wrong");
     }
 
     public void PlayParticles(bool isSuccessful)
     {
-        if (!particlesOnline)
-            return;
+        if (!particlesOnline) return;
 
         if (isSuccessful)
         {

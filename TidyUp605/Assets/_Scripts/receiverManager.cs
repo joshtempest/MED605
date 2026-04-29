@@ -39,6 +39,7 @@ public class receiverManager : MonoBehaviour
 
     private void Start()
     {
+        
         receiverTypeCount = (isServiceReceiver ? 1 : 0) + (isBeskidtReceiver ? 1 : 0) + (isMadReceiver ? 1 : 0);
         if (receiverTypeCount > 1)
         {
@@ -52,6 +53,8 @@ public class receiverManager : MonoBehaviour
         }
 
         particlesOnline = InitialiseParticles();
+
+        revelio();
 
         Debug.Log($"[Receiver: {gameObject.name}] Initialized with {objectsToReveal.Count} hidden objects to reveal.");
     }
@@ -82,21 +85,38 @@ public class receiverManager : MonoBehaviour
         if (isServiceReceiver)
         {
             if (other.gameObject.tag == "Service")
+            {
+                if (identityScript.IdentifyObject() == "rT")
+                {
+                    gameController.plateAnswers++;
+                    revelio(gameController.plateAnswers);
+                }
+
                 HandleCorrectItem(other.gameObject);
+            }
             else
                 HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
         }
         else if (isBeskidtReceiver)
         {
             if (other.gameObject.tag == "Beskidt")
+            {
+                if (identityScript.IdentifyObject() == "bT")
+                {
+                    gameController.dirtyPAnswers++;
+                    revelio(gameController.dirtyPAnswers);
+                }
                 HandleCorrectItem(other.gameObject);
+            }
             else
                 HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
         }
         else if (isMadReceiver)
         {
             if (other.gameObject.tag == "Mad")
+            {
                 HandleCorrectItem(other.gameObject);
+            }
             else
                 HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
         }
@@ -112,8 +132,10 @@ public class receiverManager : MonoBehaviour
         // 1. Destroy the incoming physical item
         Destroy(item);
         Debug.Log($"Destroyed incoming item: {item.name}");
-
+        //revelio();
+        
         // 2. Reveal the next hidden object in our list
+        /*
         if (objectsToReveal != null && currentRevealIndex < objectsToReveal.Count)
         {
             GameObject objectToReveal = objectsToReveal[currentRevealIndex];
@@ -123,18 +145,37 @@ public class receiverManager : MonoBehaviour
             Debug.Log($"Revealed hidden object '{objectToReveal.name}' at index {currentRevealIndex}.");
 
             // Move to the next index for the next time a correct item is placed
-            currentRevealIndex++;
+            //currentRevealIndex++;
         }
         else
         {
             // If they drop more correct items than you have hidden objects prepared, it logs a warning
             Debug.LogWarning($"Successfully received item, but no more hidden objects left to reveal in the list!");
         }
+        */
 
         PlayParticles(true);
         AudioManager.Instance.PlaySFX("Victory");
 
         Debug.Log($"=== Finished HandleCorrectItem ===");
+    }
+    private void revelio(int revealInt)
+    {
+        currentRevealIndex = revealInt;
+        for (int i = 0; i < objectsToReveal.Count; i++)
+        {
+            if (i <= currentRevealIndex)
+            {
+                objectsToReveal[i].SetActive(true);
+                Debug.Log($"Revealed hidden object '{objectsToReveal[i].name}' at index {i}.");
+            }
+           /* else
+            {
+                objectsToReveal[i].SetActive(false);
+                Debug.Log($"Hid object '{objectsToReveal[i].name}' at index {i}.");
+            }*/
+        }
+
     }
 
     private void HandleWrongItem(GameObject item, string respawnCode)

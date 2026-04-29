@@ -54,7 +54,7 @@ public class receiverManager : MonoBehaviour
 
         particlesOnline = InitialiseParticles();
 
-        revelio();
+        revelio(gameController.plateAnswers);
 
         Debug.Log($"[Receiver: {gameObject.name}] Initialized with {objectsToReveal.Count} hidden objects to reveal.");
     }

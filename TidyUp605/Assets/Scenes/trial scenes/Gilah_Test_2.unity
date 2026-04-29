@@ -9288,6 +9288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b502bf5405c5dae4481a59da147a3abd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LogData
+  doLogging: 0
 --- !u!4 &1882158786
 Transform:
   m_ObjectHideFlags: 0
@@ -10541,7 +10542,7 @@ PrefabInstance:
       objectReference: {fileID: 1438977377}
     - target: {fileID: 238745037041113350, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_VersionIndex
-      value: 2024
+      value: 2735
       objectReference: {fileID: 0}
     - target: {fileID: 1046477570249178292, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
@@ -10553,7 +10554,7 @@ PrefabInstance:
       objectReference: {fileID: 1531041373}
     - target: {fileID: 1508680847012621384, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_VersionIndex
-      value: 3534
+      value: 4245
       objectReference: {fileID: 0}
     - target: {fileID: 2275353693118570032, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
@@ -10573,7 +10574,7 @@ PrefabInstance:
       objectReference: {fileID: 542502310}
     - target: {fileID: 2758131565630154969, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_VersionIndex
-      value: 4210
+      value: 4921
       objectReference: {fileID: 0}
     - target: {fileID: 4050152783959878727, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
@@ -10589,7 +10590,7 @@ PrefabInstance:
       objectReference: {fileID: 2055012941}
     - target: {fileID: 4754674276950402619, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_VersionIndex
-      value: 3525
+      value: 4236
       objectReference: {fileID: 0}
     - target: {fileID: 4761621822522169746, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
@@ -10653,7 +10654,7 @@ PrefabInstance:
       objectReference: {fileID: 1155211919}
     - target: {fileID: 6739047064731315802, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_VersionIndex
-      value: 2947
+      value: 3658
       objectReference: {fileID: 0}
     - target: {fileID: 6741650676471089642, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Name

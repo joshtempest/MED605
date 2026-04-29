@@ -29,6 +29,8 @@ public class receiverManager : MonoBehaviour
     [SerializeField] private List<Transform> displayPoints = new List<Transform>();
     private int currentDisplayIndex = 0;
 
+    private Identifier identityScript;
+
 
     private void Awake()
     {
@@ -75,6 +77,8 @@ public class receiverManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        identityScript = other.gameObject.GetComponent<Identifier>();
+
         Debug.Log($"Trigger entered by {other.gameObject.name}");
 
         if (isServiceReceiver)
@@ -82,27 +86,30 @@ public class receiverManager : MonoBehaviour
             if (other.gameObject.tag == "Service")
                 HandleCorrectItem(other.gameObject);
             else if (other.gameObject.tag == "Beskidt")
-                HandleWrongItem(other.gameObject, "b");
+                HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
             else if (other.gameObject.tag == "Mad")
-                HandleWrongItem(other.gameObject, "s");
+                HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
         }
         else if (isBeskidtReceiver)
         {
             if (other.gameObject.tag == "Beskidt")
                 HandleCorrectItem(other.gameObject);
             else if (other.gameObject.tag == "Service")
-                HandleWrongItem(other.gameObject, "r");
+                HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
             else if (other.gameObject.tag == "Mad")
-                HandleWrongItem(other.gameObject, "s");
+                HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
         }
         else if (isMadReceiver)
         {
             if (other.gameObject.tag == "Mad")
                 HandleCorrectItem(other.gameObject);
+            else { HandleWrongItem(other.gameObject, identityScript.IdentifyObject()); }
+            /*
             else if (other.gameObject.tag == "Service")
-                HandleWrongItem(other.gameObject, "r");
+                HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
             else if (other.gameObject.tag == "Beskidt")
-                HandleWrongItem(other.gameObject, "b");
+                HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
+            */
         }
     }
 

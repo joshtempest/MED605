@@ -21,6 +21,7 @@ public class Identifier : MonoBehaviour
 
     public string IdentifyObject()
     {
+        //r = ren, b = beskidt, m = mad, G = gaffel, K = kniv, S = ske, T = tallerken, p = poelse, s = smoer
         if (cleanGaffel) return "rG";
         else if (cleanKniv) return "rK";
         else if (cleanSke) return "rS";

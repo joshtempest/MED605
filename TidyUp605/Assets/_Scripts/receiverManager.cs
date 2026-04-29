@@ -27,8 +27,6 @@ public class receiverManager : MonoBehaviour
 
     bool particlesOnline = false;
 
-    [Header("Placement Settings")]
-    [Tooltip("Assign inactive GameObjects here that will be turned ON when a correct item is placed.")]
     [SerializeField] private List<GameObject> objectsToReveal = new List<GameObject>();
     private int currentRevealIndex = 0;
 

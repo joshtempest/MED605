@@ -379,14 +379,14 @@ public class LevelManager : MonoBehaviour
         {
             currentLevel = levelName;
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-            spawnerScript.spawnThisObject("rT");
+            spawnerScript.spawnThisObject("rG");
             gameController.rightThreshold = 1;
         }
         else if (levelName == "T2")
         {
             currentLevel = levelName;
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
-            spawnerScript.spawnThisObject("bT");
+            spawnerScript.spawnThisObject("bG");
             gameController.rightThreshold = 1;
         }
         else if (levelName == "P1")
@@ -400,11 +400,11 @@ public class LevelManager : MonoBehaviour
             int dirtyTallerken = 1;
             for (int i = 0; i < cleanTallerken; i++)
             {
-                spawnerScript.spawnThisObject("rT");
+                spawnerScript.spawnThisObject("rG");
             }
             for (int i = 0; i < dirtyTallerken; i++)
             {
-                spawnerScript.spawnThisObject("bT");
+                spawnerScript.spawnThisObject("bG");
             }
         }
         else if (levelName == "P2")
@@ -418,11 +418,11 @@ public class LevelManager : MonoBehaviour
             int dirtyTallerken = 2;
             for (int i = 0; i < cleanTallerken; i++)
             {
-                spawnerScript.spawnThisObject("rT");
+                spawnerScript.spawnThisObject("rG");
             }
             for (int i = 0; i < dirtyTallerken; i++)
             {
-                spawnerScript.spawnThisObject("bT");
+                spawnerScript.spawnThisObject("bG");
             }
         }
         else if (levelName == "P3")
@@ -436,11 +436,11 @@ public class LevelManager : MonoBehaviour
             int dirtyTallerken = 2;
             for (int i = 0; i < cleanTallerken; i++)
             {
-                spawnerScript.spawnThisObject("rT");
+                spawnerScript.spawnThisObject("rG");
             }
             for (int i = 0; i < dirtyTallerken; i++)
             {
-                spawnerScript.spawnThisObject("bT");
+                spawnerScript.spawnThisObject("bG");
             }
         }
         else if (levelName == "P4")
@@ -454,11 +454,11 @@ public class LevelManager : MonoBehaviour
             int dirtyTallerken = 4;
             for (int i = 0; i < cleanTallerken; i++)
             {
-                spawnerScript.spawnThisObject("rT");
+                spawnerScript.spawnThisObject("rG");
             }
             for (int i = 0; i < dirtyTallerken; i++)
             {
-                spawnerScript.spawnThisObject("bT");
+                spawnerScript.spawnThisObject("bG");
             }
         }
         else { Debug.Log(levelName + " is invalid"); }

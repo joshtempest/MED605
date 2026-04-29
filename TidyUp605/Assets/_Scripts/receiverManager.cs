@@ -81,122 +81,33 @@ public class receiverManager : MonoBehaviour
         }
     }
 
-
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log($"Collision detected with {collision.gameObject.name}");
-        
-        if (isServiceReceiver) 
+
+        if (isServiceReceiver)
         {
             Debug.Log($"Item collided with a service receiver.");
 
             if (collision.gameObject.tag == "Service")
-            {
-                //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
-                
-                //Add score for positive interaction
-                Destroy(collision.gameObject);
-                gameController.increaseScore(1);
-
-                //play success particles
-                PlayParticles(true);
-
-                //play positive sound effect
-                AudioManager.Instance.PlaySFX("Victory");
-            }
+                HandleCorrectItem(collision.gameObject);
             else if (collision.gameObject.tag == "Beskidt")
-            {
-                //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
-
-                Destroy(collision.gameObject);
-                gameController.decreaseScore(1);
-                //Subtract score for negative interaction
-
-                spawnerScript.spawnThisObject("b");
-
-                //play error particle
-                PlayParticles(false);
-
-                //play negative sound effect
-                AudioManager.Instance.PlaySFX("Wrong");
-
-            }
+                HandleWrongItem(collision.gameObject, "b");
             else if (collision.gameObject.tag == "Mad")
-            {
-                //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
-
-                Destroy(collision.gameObject);
-                gameController.decreaseScore(1);
-                //Subtract score for negative interaction
-
-                spawnerScript.spawnThisObject("s");
-
-                //play error particle
-                PlayParticles(false);
-
-                //play negative sound effect
-                AudioManager.Instance.PlaySFX("Wrong");
-            }
+                HandleWrongItem(collision.gameObject, "s");
         }
-        if (isBeskidtReceiver) 
+        else if (isBeskidtReceiver)
         {
             Debug.Log($"Item collided with a beskidt receiver.");
 
             if (collision.gameObject.tag == "Beskidt")
-            {
-                //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
-
-                Destroy(collision.gameObject);
-                gameController.increaseScore(1);
-                //Add score for positive interaction
-
-                //play success particles
-                PlayParticles(true);
-
-                //play positive sound effect
-                AudioManager.Instance.PlaySFX("Victory");
-            }
+                HandleCorrectItem(collision.gameObject);
             else if (collision.gameObject.tag == "Service")
-            {
-                //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
-
-                Destroy(collision.gameObject);
-                gameController.decreaseScore(1);
-                //Subtract score for negative interaction
-
-                spawnerScript.spawnThisObject("r");
-
-                //play error particle
-                PlayParticles(false);
-
-                //play negative sound effect
-                AudioManager.Instance.PlaySFX("Wrong");
-
-            }
+                HandleWrongItem(collision.gameObject, "r");
             else if (collision.gameObject.tag == "Mad")
-            {
-                //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
-
-                Destroy(collision.gameObject);
-                gameController.decreaseScore(1);
-                //Subtract score for negative interaction
-
-                spawnerScript.spawnThisObject("s");
-
-                //play error particle
-                PlayParticles(false);
-
-                //play negative sound effect
-                AudioManager.Instance.PlaySFX("Wrong");
-            }
+                HandleWrongItem(collision.gameObject, "s");
         }
-        if (isMadReceiver)
+        else if (isMadReceiver)
         {
             Debug.Log($"Item collided with a mad receiver.");
 
@@ -208,6 +119,7 @@ public class receiverManager : MonoBehaviour
                 HandleWrongItem(collision.gameObject, "b");
         }
     }
+
     private void HandleCorrectItem(GameObject item)
     {
         // Add interaction to logs & increase score

@@ -66,34 +66,35 @@ public class receiverManager : MonoBehaviour
             return true;
         }
     }
+   
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Collision detected with {collision.gameObject.name}");
+        Debug.Log($"Collision detected with {other.gameObject.name}");
         if (isServiceReceiver)
         {
             Debug.Log($"Item collided with a service receiver.");
-            if (collision.gameObject.tag == "Service")
+            if (other.gameObject.tag == "Service")
             {
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
-                Destroy(collision.gameObject);
+                gameController.AddLog(other.gameObject.name, this.gameObject.name, true);
+                Destroy(other.gameObject);
                 gameController.increaseScore(1);
                 PlayParticles(true);
                 AudioManager.Instance.PlaySFX("Victory");
             }
-            else if (collision.gameObject.tag == "Beskidt")
+            else if (other.gameObject.tag == "Beskidt")
             {
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
-                Destroy(collision.gameObject);
+                gameController.AddLog(other.gameObject.name, this.gameObject.name, false);
+                Destroy(other.gameObject);
                 gameController.decreaseScore(1);
                 spawnerScript.spawnThisObject("b");
                 PlayParticles(false);
                 AudioManager.Instance.PlaySFX("Wrong");
             }
-            else if (collision.gameObject.tag == "Mad")
+            else if (other.gameObject.tag == "Mad")
             {
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
-                Destroy(collision.gameObject);
+                gameController.AddLog(other.gameObject.name, this.gameObject.name, false);
+                Destroy(other.gameObject);
                 gameController.decreaseScore(1);
                 spawnerScript.spawnThisObject("s");
                 PlayParticles(false);
@@ -103,27 +104,28 @@ public class receiverManager : MonoBehaviour
         if (isBeskidtReceiver)
         {
             Debug.Log($"Item collided with a beskidt receiver.");
-            if (collision.gameObject.tag == "Beskidt")
+            if (other.gameObject.tag == "Beskidt")
             {
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
-                Destroy(collision.gameObject);
+                Debug.Log("object has the correct tag");
+                gameController.AddLog(other.gameObject.name, this.gameObject.name, true);
+                Destroy(other.gameObject);
                 gameController.increaseScore(1);
                 PlayParticles(true);
                 AudioManager.Instance.PlaySFX("Victory");
             }
-            else if (collision.gameObject.tag == "Service")
+            else if (other.gameObject.tag == "Service")
             {
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
-                Destroy(collision.gameObject);
+                gameController.AddLog(other.gameObject.name, this.gameObject.name, false);
+                Destroy(other.gameObject);
                 gameController.decreaseScore(1);
                 spawnerScript.spawnThisObject("r");
                 PlayParticles(false);
                 AudioManager.Instance.PlaySFX("Wrong");
             }
-            else if (collision.gameObject.tag == "Mad")
+            else if (other.gameObject.tag == "Mad")
             {
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
-                Destroy(collision.gameObject);
+                gameController.AddLog(other.gameObject.name, this.gameObject.name, false);
+                Destroy(other.gameObject);
                 gameController.decreaseScore(1);
                 spawnerScript.spawnThisObject("s");
                 PlayParticles(false);
@@ -133,27 +135,27 @@ public class receiverManager : MonoBehaviour
         if (isMadReceiver)
         {
             Debug.Log($"Item collided with a mad receiver.");
-            if (collision.gameObject.tag == "Mad")
+            if (other.gameObject.tag == "Mad")
             {
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
-                Destroy(collision.gameObject);
+                gameController.AddLog(other.gameObject.name, this.gameObject.name, true);
+                Destroy(other.gameObject);
                 gameController.increaseScore(1);
                 PlayParticles(true);
                 AudioManager.Instance.PlaySFX("Victory");
             }
-            else if (collision.gameObject.tag == "Service")
+            else if (other.gameObject.tag == "Service")
             {
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
-                Destroy(collision.gameObject);
+                gameController.AddLog(other.gameObject.name, this.gameObject.name, false);
+                Destroy(other.gameObject);
                 gameController.decreaseScore(1);
                 spawnerScript.spawnThisObject("r");
                 PlayParticles(false);
                 AudioManager.Instance.PlaySFX("Wrong");
             }
-            else if (collision.gameObject.tag == "Beskidt")
+            else if (other.gameObject.tag == "Beskidt")
             {
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
-                Destroy(collision.gameObject);
+                gameController.AddLog(other.gameObject.name, this.gameObject.name, false);
+                Destroy(other.gameObject);
                 gameController.decreaseScore(1);
                 spawnerScript.spawnThisObject("b");
                 PlayParticles(false);

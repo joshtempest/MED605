@@ -282,9 +282,6 @@ MonoBehaviour:
   go_part_tick: {fileID: 1909196135778703369}
   go_part_sparkles: {fileID: 820837457657233359}
   go_part_x: {fileID: 1209070344824031081}
-  displayPoints:
-  - {fileID: 3935629145474465852}
-  - {fileID: 179821903043531906}
 --- !u!64 &1352435662751605801
 MeshCollider:
   m_ObjectHideFlags: 0

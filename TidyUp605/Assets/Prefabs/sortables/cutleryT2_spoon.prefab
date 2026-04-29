@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 26a5ab83a0c709341b0a99b3fa70f2a3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.17180745
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 26a5ab83a0c709341b0a99b3fa70f2a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.82838017
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 26a5ab83a0c709341b0a99b3fa70f2a3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.46032315
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 26a5ab83a0c709341b0a99b3fa70f2a3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -67,6 +67,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 26a5ab83a0c709341b0a99b3fa70f2a3, type: 3}
       propertyPath: m_Name
       value: cutleryT2_spoon
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 26a5ab83a0c709341b0a99b3fa70f2a3, type: 3}
+      propertyPath: m_TagString
+      value: Beskidt
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

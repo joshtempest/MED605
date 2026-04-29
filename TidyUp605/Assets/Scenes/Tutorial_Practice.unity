@@ -3824,12 +3824,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097542746}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 650faeaaf54d7664699018b9019ad457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TesterScript
-  sceneToTest: Tutorial1
+  sceneToTest: Tutorial2
 --- !u!1 &1135146470
 GameObject:
   m_ObjectHideFlags: 0

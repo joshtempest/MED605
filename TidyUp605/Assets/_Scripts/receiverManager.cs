@@ -10,6 +10,7 @@ public class receiverManager : MonoBehaviour
     private GameObject GameManager;
     private objectSpawner spawnerScript;
     private GameController gameController;
+    private Identifier identityScript;
 
     [SerializeField] private bool isServiceReceiver;
     [SerializeField] private bool isBeskidtReceiver;
@@ -26,10 +27,10 @@ public class receiverManager : MonoBehaviour
 
     bool particlesOnline = false;
 
-    [SerializeField] private List<Transform> displayPoints = new List<Transform>();
-    private int currentDisplayIndex = 0;
-
-    private Identifier identityScript;
+    [Header("Placement Settings")]
+    [Tooltip("Assign inactive GameObjects here that will be turned ON when a correct item is placed.")]
+    [SerializeField] private List<GameObject> objectsToReveal = new List<GameObject>();
+    private int currentRevealIndex = 0;
 
 
     private void Awake()
@@ -54,8 +55,7 @@ public class receiverManager : MonoBehaviour
 
         particlesOnline = InitialiseParticles();
 
-        // DEBUG: Check how many points are registered at the start of the game
-        Debug.Log($"[Receiver: {gameObject.name}] Initialized with {displayPoints.Count} display points.");
+        Debug.Log($"[Receiver: {gameObject.name}] Initialized with {objectsToReveal.Count} hidden objects to reveal.");
     }
 
     public bool InitialiseParticles()
@@ -85,31 +85,22 @@ public class receiverManager : MonoBehaviour
         {
             if (other.gameObject.tag == "Service")
                 HandleCorrectItem(other.gameObject);
-            else if (other.gameObject.tag == "Beskidt")
-                HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
-            else if (other.gameObject.tag == "Mad")
+            else
                 HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
         }
         else if (isBeskidtReceiver)
         {
             if (other.gameObject.tag == "Beskidt")
                 HandleCorrectItem(other.gameObject);
-            else if (other.gameObject.tag == "Service")
-                HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
-            else if (other.gameObject.tag == "Mad")
+            else
                 HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
         }
         else if (isMadReceiver)
         {
             if (other.gameObject.tag == "Mad")
                 HandleCorrectItem(other.gameObject);
-            else { HandleWrongItem(other.gameObject, identityScript.IdentifyObject()); }
-            /*
-            else if (other.gameObject.tag == "Service")
+            else
                 HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
-            else if (other.gameObject.tag == "Beskidt")
-                HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
-            */
         }
     }
 
@@ -120,59 +111,32 @@ public class receiverManager : MonoBehaviour
         gameController.AddLog(item.name, this.gameObject.name, true);
         gameController.increaseScore(1);
 
-        // Position the item
-        if (displayPoints != null && displayPoints.Count > 0)
+        // 1. Destroy the incoming physical item
+        Destroy(item);
+        Debug.Log($"Destroyed incoming item: {item.name}");
+
+        // 2. Reveal the next hidden object in our list
+        if (objectsToReveal != null && currentRevealIndex < objectsToReveal.Count)
         {
-            int index = Mathf.Min(currentDisplayIndex, displayPoints.Count - 1);
-            Transform targetPoint = displayPoints[index];
+            GameObject objectToReveal = objectsToReveal[currentRevealIndex];
 
-            Debug.Log($"Attempting to snap '{item.name}' to point index {index} ('{targetPoint.name}') at position {targetPoint.position}.");
+            // Turn it on
+            objectToReveal.SetActive(true);
+            Debug.Log($"Revealed hidden object '{objectToReveal.name}' at index {currentRevealIndex}.");
 
-            item.transform.position = targetPoint.position;
-            item.transform.rotation = targetPoint.rotation;
-            item.transform.SetParent(targetPoint);
-
-            Debug.Log($"Success! '{item.name}' is now at {item.transform.position} and parented to '{item.transform.parent?.name}'.");
-
-            currentDisplayIndex++;
+            // Move to the next index for the next time a correct item is placed
+            currentRevealIndex++;
         }
         else
         {
-            Debug.LogWarning($"No Display Points assigned for '{this.gameObject.name}'! Falling back to snapping item directly to receiver center.");
-            item.transform.position = transform.position;
-            item.transform.SetParent(transform);
-        }
-
-        // Disable physics
-        Rigidbody rb = item.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.isKinematic = true;
-            rb.useGravity = false;
-            rb.linearVelocity = Vector3.zero; // Stop any existing movement
-            rb.angularVelocity = Vector3.zero; // Stop any existing spinning
-            Debug.Log($"Disabled Rigidbody on '{item.name}'.");
-        }
-        else
-        {
-            Debug.LogWarning($"Could not find a Rigidbody on '{item.name}' to disable! Is it located on a child object?");
-        }
-
-        Collider col = item.GetComponent<Collider>();
-        if (col != null)
-        {
-            col.enabled = false;
-            Debug.Log($"Disabled Collider on '{item.name}'.");
-        }
-        else
-        {
-            Debug.LogWarning($"Could not find a Collider on '{item.name}' to disable! Is it located on a child object?");
+            // If they drop more correct items than you have hidden objects prepared, it logs a warning
+            Debug.LogWarning($"Successfully received item, but no more hidden objects left to reveal in the list!");
         }
 
         PlayParticles(true);
         AudioManager.Instance.PlaySFX("Victory");
 
-        Debug.Log($"=== Finished HandleCorrectItem for {item.name} ===");
+        Debug.Log($"=== Finished HandleCorrectItem ===");
     }
 
     private void HandleWrongItem(GameObject item, string respawnCode)

@@ -126,7 +126,7 @@ public class GameController : MonoBehaviour
         levelInProgress = true;
         if (laserManager != null) laserManager.SetLaserState(false);
         DisplayText.text = $"Current level is {levelManager.currentLevel} \n";
-        LogData.instance.AddToLogs($"Resetting... current level is {levelManager.currentLevel}.");
+        //LogData.instance.AddToLogs($"Resetting... current level is {levelManager.currentLevel}.");
     }
 
     private void Update()

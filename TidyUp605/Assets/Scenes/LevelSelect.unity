@@ -211,14 +211,17 @@ MonoBehaviour:
   thisIsTrial1: 0
   koeleskab: {fileID: 7804653488199077574, guid: d4f936ca6d1536343b21452b31f3fae4, type: 3}
   skab: {fileID: 3267122424555581529, guid: 64884db48f1b2e0448ace0c0094ff033, type: 3}
-  opvaskemaskine: {fileID: 0}
-  koelePlatform: {fileID: 0}
-  skabPlatform: {fileID: 0}
-  opvaskemaskinePlatform: {fileID: 0}
+  opvaskemaskine: {fileID: 979801073}
+  koelePlatform: {fileID: 979801073}
+  skabPlatform: {fileID: 979801073}
+  opvaskemaskinePlatform: {fileID: 979801073}
   koeleSpawnbuffer: {x: 0, y: 1.62, z: 0}
   skabSpawnbuffer: {x: 0, y: 0.2, z: 0}
   opvaskeSpawnbuffer: {x: 0, y: 0.1, z: 0}
   currentLevel: 
+  currentStage: 0
+  currentSequence: 0
+  evalActive: 0
 --- !u!1001 &1247199857
 PrefabInstance:
   m_ObjectHideFlags: 0

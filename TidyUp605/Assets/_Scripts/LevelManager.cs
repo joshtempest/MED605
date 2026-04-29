@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
     Vector3 opvaskemaskinePlatformPos;
 
     //for scene changing
+    [Header("numbers xD")]
     public string currentLevel;
     [SerializeField] int currentStage;
     [SerializeField] int currentSequence;
@@ -98,7 +99,7 @@ public class LevelManager : MonoBehaviour
         }
 
         if (currentLevel == "Trial1") { loadTrial1(); }
-        /*
+        
         else if (currentLevel == "Tutorial1") {loadTutorial1(); }
         else if (currentLevel == "Tutorial2") {loadTutorial2(); }
         else if (currentLevel == "Tutorial3") {loadTutorial3(); }
@@ -110,7 +111,7 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "Practice6") {loadPractice6(); }
         else if (currentLevel == "Practice7") {loadPractice7(); }
         else if (currentLevel == "Eval1") { loadEval1(); }
-        */
+        
         else if (currentLevel == "Intro") { loadIntro(); }
         else if (currentLevel == "LevelSelect") { loadLevelSelect(); }
         else if (currentLevel == "VR") { loadVR(); }
@@ -136,7 +137,7 @@ public class LevelManager : MonoBehaviour
         }
 
         if (currentLevel == "Trial1") { loadTrial1(); }
-        /*
+        
         else if (currentLevel == "Tutorial1") { loadTutorial1(); }
         else if (currentLevel == "Tutorial2") { loadTutorial2(); }
         else if (currentLevel == "Tutorial3") { loadTutorial3(); }
@@ -151,7 +152,7 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "Intro") { loadIntro(); }
         else if (currentLevel == "LevelSelect") { loadLevelSelect(); }
         else if (currentLevel == "VR") { loadVR(); }
-        */
+        
     }
 
 
@@ -159,7 +160,7 @@ public class LevelManager : MonoBehaviour
     public void loadNextLevel()
     {
         LogData.instance.AddToLogs("Loading Next Level after " + currentLevel);
-        /*
+        
         if (currentLevel == "Intro") { loadTutorial1(); }
         else if (currentLevel == "Tutorial1") { loadTutorial2(); }
         else if (currentLevel == "Tutorial2") { loadTutorial3(); }
@@ -171,7 +172,7 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "Practice5") { loadPractice6(); }
         else if (currentLevel == "Practice6") { loadPractice7(); }
         else if (currentLevel == "Practice7") { loadEval1(); }
-        */
+        
     }
 
     public void loadNextLevel(float delayInSeconds)
@@ -184,7 +185,7 @@ public class LevelManager : MonoBehaviour
         LogData.instance.AddToLogs("Loading Next Level after " + currentLevel);
 
         yield return new WaitForSeconds(delay);
-        /*
+        
         if (currentLevel == "Intro") { loadTutorial1(); }
         else if (currentLevel == "Tutorial1") { loadTutorial2(); }
         else if (currentLevel == "Tutorial2") { loadTutorial3(); }
@@ -196,7 +197,7 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "Practice5") { loadPractice6(); }
         else if (currentLevel == "Practice6") { loadPractice7(); }
         else if (currentLevel == "Practice7") { loadEval1(); }
-        */
+        
     }
 
 
@@ -240,7 +241,6 @@ public class LevelManager : MonoBehaviour
 
     //Stage 1: Plates (Seq1 -> seq2 -> eval)
         //Seq1=
-
     public void loadCustomSeq1(int cleanTallerken, int dirtyTallerken, bool boolskab, bool boolopvask, bool boolkoele, int rightAnswers) 
     { 
         compareScene("Tutorial_Practice");
@@ -384,8 +384,8 @@ public class LevelManager : MonoBehaviour
     //old levels ______________________________________________________________________________________________________________________________________________________________________________________
     public void loadTutorial1()
     {
-        currentLevel = "Tutorial1";
         compareScene("Tutorial_Practice");
+        currentLevel = "Tutorial1";
         annihilation();
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         spawnerScript.spawnThisObject("bT");

@@ -65,7 +65,9 @@ public class GameController : MonoBehaviour
         bbBackgroundRotation = Quaternion.Euler(bbBackgroundRotV3);
 
         levelManager = this.gameObject.GetComponent<LevelManager>();
-
+        if (!levelManager) { 
+            Debug.LogWarning("LevelManager not assigned");
+        }
         resetScore();
 
         blackboard = GameObject.Find("Blackboard");
@@ -110,6 +112,7 @@ public class GameController : MonoBehaviour
 
     public void resetScore()
     {
+        Debug.Log("Resetting score..." + levelManager.currentLevel);
         rightAnswers = 0;
         wrongAnswers = 0;
 

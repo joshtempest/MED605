@@ -37,9 +37,9 @@ public class Review : MonoBehaviour
     public Sprite renTallerken;
     public Sprite beskidtTallerken;
 
-    public Sprite cupboard;
-    public Sprite dishwasher;
-    public Sprite fridge;
+    public Sprite skab;
+    public Sprite opvasker;
+    public Sprite koele;
 
     SpriteRenderer itemSR;
     SpriteRenderer recepSR;
@@ -122,10 +122,19 @@ public class Review : MonoBehaviour
             //display the right receptacle sprite
             switch (answers[i].Item2)
             {
-                case ""
+                case "skab":
+                    recepSR.sprite = skab;
+                    break;
+                case "opvasker":
+                    recepSR.sprite = opvasker;
+                    break;
+                case "koele":
+                    recepSR.sprite = koele;
+                    break;
                 default:
                     break;
             }
+
             
                 
         }

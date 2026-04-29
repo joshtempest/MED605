@@ -54,7 +54,19 @@ public class receiverManager : MonoBehaviour
 
         particlesOnline = InitialiseParticles();
 
-        revelio(gameController.plateAnswers);
+        if (isServiceReceiver)
+        {
+            revelio(gameController.plateAnswers);
+        }
+        else if (isBeskidtReceiver)
+        {
+            revelio(gameController.dirtyPAnswers);
+        }
+        else if (isMadReceiver)
+        {
+            revelio(gameController.smoerAnswers);
+        }
+
 
         Debug.Log($"[Receiver: {gameObject.name}] Initialized with {objectsToReveal.Count} hidden objects to reveal.");
     }

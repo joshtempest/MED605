@@ -3829,7 +3829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650faeaaf54d7664699018b9019ad457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TesterScript
-  sceneToTest: Tutorial1
+  sceneToTest: Tutorial3
 --- !u!1 &1135146470
 GameObject:
   m_ObjectHideFlags: 0
@@ -5176,6 +5176,18 @@ PrefabInstance:
       propertyPath: laserManager
       value: 
       objectReference: {fileID: 284850172}
+    - target: {fileID: 809904635402149817, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: plateAnswers
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 809904635402149817, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: smoerAnswers
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 809904635402149817, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: dirtyPAnswers
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 939640111568507421, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
       propertyPath: m_Name
       value: GameManager

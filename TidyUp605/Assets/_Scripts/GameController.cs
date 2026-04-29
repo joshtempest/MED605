@@ -14,6 +14,10 @@ public class GameController : MonoBehaviour
     public int rightAnswers;
     public int wrongAnswers;
 
+    public int plateAnswers = -1;
+    public int dirtyPAnswers = -1;
+    public int smoerAnswers = -1;
+
     public int wrongThreshold = 5;
     public int rightThreshold = 5;
 

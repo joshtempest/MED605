@@ -1,6 +1,7 @@
+using JetBrains.Annotations;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -26,7 +27,9 @@ public class receiverManager : MonoBehaviour
 
     bool particlesOnline = false;
 
-
+   
+    [SerializeField] private List<Transform> displayPoints = new List<Transform>();
+    private int currentDisplayIndex = 0;
 
 
     private void Awake()
@@ -198,61 +201,70 @@ public class receiverManager : MonoBehaviour
             Debug.Log($"Item collided with a mad receiver.");
 
             if (collision.gameObject.tag == "Mad")
-            {
-                //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
-
-                Destroy(collision.gameObject);
-                gameController.increaseScore(1);
-                //Add score for positive interaction
-
-                //play success particles
-                PlayParticles(true);
-
-                //play positive sound effect
-                AudioManager.Instance.PlaySFX("Victory");
-            }
+                HandleCorrectItem(collision.gameObject);
             else if (collision.gameObject.tag == "Service")
-            {
-                //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
-
-                Destroy(collision.gameObject);
-                gameController.decreaseScore(1);
-                //Subtract score for negative interaction
-
-                spawnerScript.spawnThisObject("r");
-
-                //play error particle
-                PlayParticles(false);
-
-                //play negative sound effect
-                AudioManager.Instance.PlaySFX("Wrong");
-
-            }
+                HandleWrongItem(collision.gameObject, "r");
             else if (collision.gameObject.tag == "Beskidt")
-            {
-                //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+                HandleWrongItem(collision.gameObject, "b");
+        }
+    }
+    private void HandleCorrectItem(GameObject item)
+    {
+        // Add interaction to logs & increase score
+        gameController.AddLog(item.name, this.gameObject.name, true);
+        gameController.increaseScore(1);
 
-                Destroy(collision.gameObject);
-                gameController.decreaseScore(1);
-                //Subtract score for negative interaction
+        // Position the item instead of destroying it
+        if (displayPoints != null && displayPoints.Count > 0)
+        {
+            // Get the next placement point. If we run out, stack on the last one.
+            int index = Mathf.Min(currentDisplayIndex, displayPoints.Count - 1);
+            Transform targetPoint = displayPoints[index];
 
-                spawnerScript.spawnThisObject("b");
+            item.transform.position = targetPoint.position;
+            item.transform.rotation = targetPoint.rotation;
+            item.transform.SetParent(targetPoint);
 
-                //play error particle
-                PlayParticles(false);
-
-                //play negative sound effect
-                AudioManager.Instance.PlaySFX("Wrong");
-
-            }
-
-             
+            currentDisplayIndex++;
+        }
+        else
+        {
+            // Fallback: place at receiver's center if no points are assigned in inspector
+            item.transform.position = transform.position;
+            item.transform.SetParent(transform);
         }
 
-        
+        // Disable physics to prevent further collisions and falling
+        Rigidbody rb = item.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+            rb.useGravity = false;
+        }
+
+        Collider col = item.GetComponent<Collider>();
+        if (col != null)
+        {
+            col.enabled = false;
+        }
+
+        // Play success particles & sound
+        PlayParticles(true);
+        AudioManager.Instance.PlaySFX("Victory");
+    }
+    private void HandleWrongItem(GameObject item, string respawnCode)
+    {
+        // Add interaction to logs & decrease score
+        gameController.AddLog(item.name, this.gameObject.name, false);
+        gameController.decreaseScore(1);
+
+        // Destroy the incorrect object and respawn
+        Destroy(item);
+        spawnerScript.spawnThisObject(respawnCode);
+
+        // Play error particle & negative sound effect
+        PlayParticles(false);
+        AudioManager.Instance.PlaySFX("Wrong");
     }
 
     public void PlayParticles(bool isSuccessful)
@@ -270,6 +282,4 @@ public class receiverManager : MonoBehaviour
             part_x.Play();
         }
     }
-
-
 }

@@ -79,7 +79,6 @@ public class GameController : MonoBehaviour
             blackboard.transform.position = bbBackgroundPosition;
             blackboard.transform.rotation = bbBackgroundRotation;
         }
-
     }
 
     public void increaseScore(int score)

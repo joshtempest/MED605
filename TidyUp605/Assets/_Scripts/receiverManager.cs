@@ -88,7 +88,12 @@ public class receiverManager : MonoBehaviour
         {
             if (other.gameObject.tag == "Service")
             {
-                gameController.plateAnswers++;
+                if (identityScript.IdentifyObject() == "rT")
+                {
+                    gameController.plateAnswers++;
+                    revelio(gameController.plateAnswers);
+                }
+
                 HandleCorrectItem(other.gameObject);
             }
             else
@@ -98,6 +103,11 @@ public class receiverManager : MonoBehaviour
         {
             if (other.gameObject.tag == "Beskidt")
             {
+                if (identityScript.IdentifyObject() == "bT")
+                {
+                    gameController.dirtyPAnswers++;
+                    revelio(gameController.dirtyPAnswers);
+                }
                 HandleCorrectItem(other.gameObject);
             }
             else
@@ -124,7 +134,7 @@ public class receiverManager : MonoBehaviour
         // 1. Destroy the incoming physical item
         Destroy(item);
         Debug.Log($"Destroyed incoming item: {item.name}");
-        revelio();
+        //revelio();
         
         // 2. Reveal the next hidden object in our list
         /*
@@ -151,21 +161,21 @@ public class receiverManager : MonoBehaviour
 
         Debug.Log($"=== Finished HandleCorrectItem ===");
     }
-    private void revelio()
+    private void revelio(int revealInt)
     {
-        currentRevealIndex = gameController.plateAnswers;
+        currentRevealIndex = revealInt;
         for (int i = 0; i < objectsToReveal.Count; i++)
         {
-            if (i == currentRevealIndex)
+            if (i <= currentRevealIndex)
             {
                 objectsToReveal[i].SetActive(true);
                 Debug.Log($"Revealed hidden object '{objectsToReveal[i].name}' at index {i}.");
             }
-            else
+           /* else
             {
                 objectsToReveal[i].SetActive(false);
                 Debug.Log($"Hid object '{objectsToReveal[i].name}' at index {i}.");
-            }
+            }*/
         }
 
     }

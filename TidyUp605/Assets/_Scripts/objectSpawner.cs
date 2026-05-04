@@ -89,7 +89,6 @@ public class objectSpawner : MonoBehaviour
             Vector3 positionToSpawn = madSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(smoer, positionToSpawn, Quaternion.identity);
-            AudioManager.Instance.PlaySFX("Teleport");
         }
         if (type == "bT") 
         {
@@ -97,7 +96,6 @@ public class objectSpawner : MonoBehaviour
             Vector3 positionToSpawn = beskidtSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(beskidtTallerken, positionToSpawn, Quaternion.identity);
-            AudioManager.Instance.PlaySFX("Teleport");
         }
         if (type == "rT") 
         {
@@ -105,7 +103,6 @@ public class objectSpawner : MonoBehaviour
             Vector3 positionToSpawn = serviceSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(renTallerken, positionToSpawn, Quaternion.identity);
-            AudioManager.Instance.PlaySFX("Teleport");
         }
         if (type == "rG")
         {
@@ -113,7 +110,6 @@ public class objectSpawner : MonoBehaviour
             Vector3 positionToSpawn = beskidtSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(renGaffel, positionToSpawn, Quaternion.identity);
-            AudioManager.Instance.PlaySFX("Teleport");
         }
         if (type == "bG")
         {
@@ -121,7 +117,6 @@ public class objectSpawner : MonoBehaviour
             Vector3 positionToSpawn = beskidtSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(beskidtGaffel, positionToSpawn, Quaternion.identity);
-            AudioManager.Instance.PlaySFX("Teleport");
         }
         if(type == "p")
         {
@@ -129,7 +124,7 @@ public class objectSpawner : MonoBehaviour
             Vector3 positionToSpawn = madSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(poelse, positionToSpawn, Quaternion.identity);
-            AudioManager.Instance.PlaySFX("Teleport");
+
         }
     }
 }

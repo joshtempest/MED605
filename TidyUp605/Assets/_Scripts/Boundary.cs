@@ -31,5 +31,6 @@ public class Boundary : MonoBehaviour
             else if(other.gameObject.tag == "plate") { Destroy(other.gameObject); spawnerScript.spawnThisObject(identity.IdentifyObject()); }
             else if(other.gameObject.tag == "beskidtPlate") { Destroy(other.gameObject); spawnerScript.spawnThisObject(identity.IdentifyObject()); }
         //}
+        AudioManager.Instance.PlaySFX("Teleport");
     }
 }

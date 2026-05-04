@@ -161,7 +161,9 @@ public class LevelManager : MonoBehaviour
 
     public void loadNextLevel()
     {
-        ////LogData.instance.AddToLogs("Loading Next Level after " + currentLevel);
+        //LogData.instance.AddToLogs("Loading Next Level after " + currentLevel);
+
+        Debug.Log("Loading next level after: " + currentLevel); 
 
         if (currentStage == 1)
         {
@@ -298,6 +300,7 @@ public class LevelManager : MonoBehaviour
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
             spawnerScript.spawnThisObject("rT");
             gameController.rightThreshold = 1;
+            Debug.Log("Right threshold set to: " + gameController.rightThreshold);
         }
         else if (levelName == "T2")
         {

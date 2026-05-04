@@ -94,6 +94,7 @@ public class GameController : MonoBehaviour
 
     private void CheckWinCondition()
     {
+        Debug.Log("Checking win condition: " + rightAnswers + " right answers, threshold is " + rightThreshold);
         if (rightAnswers >= rightThreshold)
         {
             levelInProgress = false;
@@ -135,7 +136,6 @@ public class GameController : MonoBehaviour
 
     public void resetScore()
     {
-        // --- FIX: Bulletproof check to ensure levelManager exists before trying to read it ---
         if (levelManager == null)
         {
             levelManager = this.gameObject.GetComponent<LevelManager>();
@@ -148,7 +148,6 @@ public class GameController : MonoBehaviour
         wrongAnswers = 0;
 
         wrongThreshold = 5;
-        rightThreshold = 5;
 
         enoughRightAnswers = false;
         ResetLog();

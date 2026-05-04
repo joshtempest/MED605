@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.Windows;
-using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class ReviewManager : MonoBehaviour
 {
@@ -30,9 +31,11 @@ public class ReviewManager : MonoBehaviour
     //overarching Canvas Groups
     public GameObject go_Review;
     public GameObject go_End_continue;
+    public GameObject go_Gameplay;
 
     CanvasGroup Review;
     CanvasGroup End_continue;
+    CanvasGroup Gameplay;
 
     bool isReview = true;
 
@@ -81,9 +84,9 @@ public class ReviewManager : MonoBehaviour
     //debugging only
     //private List<Tuple<string, string, bool>> testLog = new();
     public TMP_Text continueText;
+    
 
     //SETUP
-  
     void Start()
     {
         img_One = starOne.GetComponent<Image>();
@@ -96,16 +99,22 @@ public class ReviewManager : MonoBehaviour
 
         Review = go_Review.GetComponent<CanvasGroup>();
         End_continue = go_End_continue.GetComponent<CanvasGroup>();
+        Gameplay = go_Gameplay.GetComponent<CanvasGroup>();
  
 
-        if (!Review || !End_continue)
+        if (!Review || !End_continue || !Gameplay)
         {
             Debug.LogWarning("Canvas group not found.");
         }
 
         Debug.Log("Starting...");
-        DisplayReviewScreen();
+        
+        //COMMENT OUT LATER?
+        DisplayGameScreen();
     }
+
+
+
 
     //DEBUG
     public void DBAdd()
@@ -259,17 +268,35 @@ public class ReviewManager : MonoBehaviour
         Debug.Log("Switching to End screen...");
         Review.alpha = 0;
 
+        Gameplay.alpha = 0;
+        Gameplay.interactable = false;
+
         End_continue.alpha = 1;
         End_continue.interactable = true;
     }
 
-    void DisplayReviewScreen()
+    public void DisplayReviewScreen()
     {
         Debug.Log("Switching to Review screen...");
         End_continue.alpha = 0;
         End_continue.interactable = false;
 
+        Gameplay.alpha = 0;
+        Gameplay.interactable = false;
+
         Review.alpha = 1;
+    }
+
+    public void DisplayGameScreen()
+    {
+        Debug.Log("Switching to Gameplay screen...");
+        Review.alpha = 0;
+
+        End_continue.alpha = 0;
+        End_continue.interactable = false;
+
+        Gameplay.alpha = 1;
+        Gameplay.interactable = true;
     }
 
 
@@ -284,10 +311,11 @@ public class ReviewManager : MonoBehaviour
 
 
     //DISPLAY: COROUTINES
-    
      IEnumerator CRDisplayResults()
      {
         Debug.Log("Running CRDisp...");
+
+
         //*disable movement & click
         //*move blackboard forward
         //*sound effect?
@@ -312,6 +340,11 @@ public class ReviewManager : MonoBehaviour
 
         //start the display loop
         StartCoroutine(CRDisplayNextTuple());
+
+        if (ReviewLog.Count == 0)
+        {
+            Debug.LogWarning("Empty ReviewLog, cannot display!");
+        }
 
         yield return null; 
      }

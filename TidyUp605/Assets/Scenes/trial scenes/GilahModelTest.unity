@@ -924,6 +924,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 0b6afc684296b9b489edcc52ada2ba3c, type: 3}
     - target: {fileID: 63182553121100560, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: debugText
+      value: 
+      objectReference: {fileID: 1123127314}
+    - target: {fileID: 63182553121100560, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: icon_tick
       value: 
       objectReference: {fileID: 21300000, guid: 20a0f3e907cd38c42bc923609ccb9374, type: 3}
@@ -1012,8 +1016,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3033218940228074726, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_Name
+      value: rev_text
+      objectReference: {fileID: 0}
+    - target: {fileID: 3033218940228074726, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3033218940228074726, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3548152576866055762, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Layer
@@ -1062,6 +1074,10 @@ PrefabInstance:
     - target: {fileID: 5201020281084749532, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224701609011054806, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_text
+      value: review mode
       objectReference: {fileID: 0}
     - target: {fileID: 5304457020886463150, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
@@ -1177,6 +1193,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8695825283439507282, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695825283439507282, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8935817243691281773, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
@@ -1693,6 +1713,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bb6d1b8cd4f3e514bac0d89e7809c765, type: 3}
   m_PrefabInstance: {fileID: 960111924}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1123127314 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5224701609011054806, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+  m_PrefabInstance: {fileID: 689164334}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1131288759
 GameObject:
   m_ObjectHideFlags: 0

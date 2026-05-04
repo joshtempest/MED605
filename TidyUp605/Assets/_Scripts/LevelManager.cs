@@ -94,12 +94,12 @@ public class LevelManager : MonoBehaviour
         if (currentStage == 1)
         {
             if (currentSequence == 1) { loadSequence1(currentLevel); }
-            //else if (currentSequence == 2) { loadSequence2(currentLevel); }
+            else if (currentSequence == 2) { loadSequence2(currentLevel); }
             else if (evalActive) { loadStage1Eval(); }
         }
 
         if (currentLevel == "Trial1") { loadTrial1(); }
-        
+        /*
         else if (currentLevel == "Tutorial1") {loadTutorial1(); }
         else if (currentLevel == "Tutorial2") {loadTutorial2(); }
         else if (currentLevel == "Tutorial3") {loadTutorial3(); }
@@ -111,7 +111,7 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "Practice6") {loadPractice6(); }
         else if (currentLevel == "Practice7") {loadPractice7(); }
         else if (currentLevel == "Eval1") { loadEval1(); }
-        
+        */
         else if (currentLevel == "Intro") { loadIntro(); }
         else if (currentLevel == "LevelSelect") { loadLevelSelect(); }
         else if (currentLevel == "VR") { loadVR(); }
@@ -155,12 +155,10 @@ public class LevelManager : MonoBehaviour
         
     }
 
-
-
     public void loadNextLevel()
     {
         ////LogData.instance.AddToLogs("Loading Next Level after " + currentLevel);
-        
+        /*
         if (currentLevel == "Intro") { loadTutorial1(); }
         else if (currentLevel == "Tutorial1") { loadTutorial2(); }
         else if (currentLevel == "Tutorial2") { loadTutorial3(); }
@@ -172,7 +170,27 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "Practice5") { loadPractice6(); }
         else if (currentLevel == "Practice6") { loadPractice7(); }
         else if (currentLevel == "Practice7") { loadEval1(); }
-        
+        */ 
+        if (currentStage == 1)
+        {
+            if (currentSequence == 1) 
+            { 
+                if (currentLevel == "T1") { loadSequence1("T2"); }
+                else if (currentLevel == "P1") { loadSequence1("P2"); }
+                else if (currentLevel == "P2") { loadSequence1("P3"); }
+                else if (currentLevel == "P3") { loadSequence1("P4"); }
+                else if (currentLevel == "P4") { loadSequence2("T1"); } 
+            }
+            else if (currentSequence == 2) 
+            {
+                if(currentLevel == "T1") { loadSequence2("T2"); }
+                    else if (currentLevel == "P1") { loadSequence2("P2"); }
+                    else if (currentLevel == "P2") { loadSequence2("P3"); }
+                    else if (currentLevel == "P3") { loadSequence2("P4"); }
+                    else if (currentLevel == "P4") { loadStage1Eval(); } 
+            }
+            else if (evalActive) { loadLevelSelect(); }
+        }
     }
 
     public void loadNextLevel(float delayInSeconds)
@@ -185,7 +203,7 @@ public class LevelManager : MonoBehaviour
         ////LogData.instance.AddToLogs("Loading Next Level after " + currentLevel);
 
         yield return new WaitForSeconds(delay);
-        
+        /*
         if (currentLevel == "Intro") { loadTutorial1(); }
         else if (currentLevel == "Tutorial1") { loadTutorial2(); }
         else if (currentLevel == "Tutorial2") { loadTutorial3(); }
@@ -197,10 +215,29 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "Practice5") { loadPractice6(); }
         else if (currentLevel == "Practice6") { loadPractice7(); }
         else if (currentLevel == "Practice7") { loadEval1(); }
-        
+        */
+
+        if (currentStage == 1)
+        {
+            if (currentSequence == 1)
+            {
+                if (currentLevel == "T1") { loadSequence1("T2"); }
+                else if (currentLevel == "P1") { loadSequence1("P2"); }
+                else if (currentLevel == "P2") { loadSequence1("P3"); }
+                else if (currentLevel == "P3") { loadSequence1("P4"); }
+                else if (currentLevel == "P4") { loadSequence2("T1"); }
+            }
+            else if (currentSequence == 2)
+            {
+                if (currentLevel == "T1") { loadSequence2("T2"); }
+                else if (currentLevel == "P1") { loadSequence2("P2"); }
+                else if (currentLevel == "P2") { loadSequence2("P3"); }
+                else if (currentLevel == "P3") { loadSequence2("P4"); }
+                else if (currentLevel == "P4") { loadStage1Eval(); }
+            }
+            else if (evalActive) { loadLevelSelect(); }
+        }
     }
-
-
     void compareScene(string neededScene)
     {
         Debug.Log("comparing scene");
@@ -223,7 +260,6 @@ public class LevelManager : MonoBehaviour
         annihilation();
         Debug.Log(currentLevel + " is being loaded");
     }
-
     public void loadTrial1()
     {
         currentLevel = "Trial1";
@@ -238,7 +274,6 @@ public class LevelManager : MonoBehaviour
         gameController.rightThreshold = 3;
         Debug.Log(currentLevel + " is being loaded");
     }
-
     //Stage 1: Plates (Seq1 -> seq2 -> eval)
         //Seq1=
     public void loadCustomSeq1(int cleanTallerken, int dirtyTallerken, bool boolskab, bool boolopvask, bool boolkoele, int rightAnswers) 
@@ -355,14 +390,6 @@ public class LevelManager : MonoBehaviour
         }
         else { Debug.Log(levelName + " is invalid"); }
     }
-    public void loadStage1Eval()
-    {
-        currentStage = 1;
-        currentSequence = 3;
-        evalActive = true;
-        //Eval is not yet done
-    }
-
     public void loadSequence2(string levelName)
     {
         currentStage = 1;
@@ -370,10 +397,6 @@ public class LevelManager : MonoBehaviour
         compareScene("Tutorial_Practice");
         annihilation();
 
-        currentStage = 1;
-        currentSequence = 1;
-        compareScene("Tutorial_Practice");
-        annihilation();
 
         if (levelName == "T1")
         {
@@ -464,6 +487,25 @@ public class LevelManager : MonoBehaviour
         else { Debug.Log(levelName + " is invalid"); }
 
     }
+    public void loadStage1Eval()
+    {
+        currentStage = 1;
+        currentSequence = 3;
+        evalActive = true;
+        compareScene("Evaluation");
+
+        //annihilation();
+        //Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+        //Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
+
+        for (int i = 0; i < 2; i++)
+        {
+            spawnerScript.spawnThisObject("rT");
+            spawnerScript.spawnThisObject("bT");
+            spawnerScript.spawnThisObject("rG");
+            spawnerScript.spawnThisObject("bG");
+        }
+    }
 
     public void loadLevelSelect() 
     {
@@ -495,7 +537,6 @@ public class LevelManager : MonoBehaviour
         Debug.Log(currentLevel + " is being loaded");
         //////LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
-
     public void loadTutorial2()
     {
         currentLevel = "Tutorial2";
@@ -507,7 +548,6 @@ public class LevelManager : MonoBehaviour
         Debug.Log(currentLevel + " is being loaded");
         //////LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
-
     public void loadTutorial3()
     {
         currentLevel = "Tutorial3";
@@ -615,7 +655,6 @@ public class LevelManager : MonoBehaviour
         Debug.Log(currentLevel + " is being loaded");
         //////LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
-
     public void loadEval1()
     {
         currentLevel = "Eval1";

@@ -82,7 +82,7 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(beskidt[i]);
         }
-        gameController.resetScore();
+       gameController.resetScore();
     }
 
 

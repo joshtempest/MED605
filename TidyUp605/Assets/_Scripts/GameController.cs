@@ -116,6 +116,7 @@ public class GameController : MonoBehaviour
     public void resetScore()
     {
         Debug.Log("Resetting score..." + levelManager.currentLevel);
+        Debug.Log(levelManager.currentLevel);
         rightAnswers = 0;
         wrongAnswers = 0;
 
@@ -128,7 +129,7 @@ public class GameController : MonoBehaviour
         ResetLog();
         levelInProgress = true;
         if (laserManager != null) laserManager.SetLaserState(false);
-        DisplayText.text = $"Current level is {levelManager.currentLevel} \n";
+        // DisplayText.text = $"Current level is {levelManager.currentLevel} \n";
         ////LogData.instance.AddToLogs($"Resetting... current level is {levelManager.currentLevel}.");
     }
 

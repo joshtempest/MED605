@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class TesterScript : MonoBehaviour
 {
-    [SerializeField] string sceneToTest;
-
     LevelManager levelManager;
 
     [SerializeField] private bool oldSys;
     [SerializeField] private bool newSys;
 
+
+    [SerializeField] string sceneToTest;
     private void Awake()
     {
         levelManager = this.gameObject.GetComponent<LevelManager>();

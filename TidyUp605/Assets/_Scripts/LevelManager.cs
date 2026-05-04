@@ -527,8 +527,8 @@ public class LevelManager : MonoBehaviour
     //old levels ______________________________________________________________________________________________________________________________________________________________________________________
     public void loadTutorial1()
     {
-        compareScene("Tutorial_Practice");
         currentLevel = "Tutorial1";
+        compareScene("Tutorial_Practice");
         annihilation();
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         spawnerScript.spawnThisObject("bT");

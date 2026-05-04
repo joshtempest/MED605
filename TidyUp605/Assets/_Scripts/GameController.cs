@@ -25,6 +25,8 @@ public class GameController : MonoBehaviour
     public GameObject blackboard;
     public TMP_Text DisplayText;
     public TMP_Text ButtonText;
+
+    private string test;
     
     //figure out later
     /*
@@ -115,8 +117,9 @@ public class GameController : MonoBehaviour
 
     public void resetScore()
     {
+        test = levelManager.currentLevel;
         Debug.Log("Resetting score..." + levelManager.currentLevel);
-        Debug.Log(levelManager.currentLevel);
+        Debug.Log(test);
         rightAnswers = 0;
         wrongAnswers = 0;
 

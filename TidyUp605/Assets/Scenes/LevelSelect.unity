@@ -704,7 +704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 73719251121192338, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 73719251121192338, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -712,11 +712,15 @@ PrefabInstance:
       objectReference: {fileID: 1202168668}
     - target: {fileID: 73719251121192338, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: loadPractice2
+      value: loadSequence1
       objectReference: {fileID: 0}
     - target: {fileID: 73719251121192338, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: LevelManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 73719251121192338, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: P2
       objectReference: {fileID: 0}
     - target: {fileID: 230668521470387467, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_fontSize
@@ -1456,7 +1460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7784247991941990336, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7784247991941990336, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1464,11 +1468,15 @@ PrefabInstance:
       objectReference: {fileID: 1202168668}
     - target: {fileID: 7784247991941990336, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: loadPractice1
+      value: loadSequence1
       objectReference: {fileID: 0}
     - target: {fileID: 7784247991941990336, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: LevelManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784247991941990336, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: P1
       objectReference: {fileID: 0}
     - target: {fileID: 8302325736889825074, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_fontSize
@@ -1592,7 +1600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8826764298723085216, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8826764298723085216, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1600,7 +1608,7 @@ PrefabInstance:
       objectReference: {fileID: 1202168668}
     - target: {fileID: 8826764298723085216, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: loadTutorial1
+      value: loadSequence1
       objectReference: {fileID: 0}
     - target: {fileID: 8826764298723085216, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1608,7 +1616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8826764298723085216, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: VRTutorial
+      value: T1
       objectReference: {fileID: 0}
     - target: {fileID: 9069534155039470799, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_SizeDelta.x

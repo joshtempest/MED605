@@ -323,6 +323,8 @@ public class LevelManager : MonoBehaviour
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
 
+            gameController.rightThreshold = 2;
+
             int cleanTallerken = 1;
             int dirtyTallerken = 1;
             for (int i = 0; i < cleanTallerken; i++)
@@ -340,6 +342,8 @@ public class LevelManager : MonoBehaviour
 
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+
+            gameController.rightThreshold = 3;
 
             int cleanTallerken = 1;
             int dirtyTallerken = 2;
@@ -359,6 +363,8 @@ public class LevelManager : MonoBehaviour
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
 
+            gameController.rightThreshold = 4;
+
             int cleanTallerken = 2;
             int dirtyTallerken = 2;
             for (int i = 0; i < cleanTallerken; i++)
@@ -377,6 +383,8 @@ public class LevelManager : MonoBehaviour
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
 
+            gameController.rightThreshold = 5;
+
             int cleanTallerken = 1;
             int dirtyTallerken = 4;
             for (int i = 0; i < cleanTallerken; i++)
@@ -394,6 +402,7 @@ public class LevelManager : MonoBehaviour
     {
         currentStage = 1;
         currentSequence = 2;
+        
         compareScene("Tutorial_Practice");
         annihilation();
 

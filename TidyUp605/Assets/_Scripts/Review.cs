@@ -20,6 +20,10 @@ public class ReviewManager : MonoBehaviour
     public float waitTimeInterval = 3f;
     bool doContinue = true;
 
+    int listItemsDisplayed = 0;
+
+    SpriteRenderer currentSR;
+
     //overarching Canvas
     public Canvas Review_start;
     public Canvas Review_end;
@@ -120,16 +124,6 @@ public class ReviewManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-
-        if (timer < waitTimeInterval)
-        {
-            doContinue = false;
-        }
-        else
-        {
-            doContinue = true;
-            timer = 0f;
-        }
     }
 
 
@@ -147,11 +141,21 @@ public class ReviewManager : MonoBehaviour
         Debug.Log("ReviewLog reset.");
     }
 
+
+
+
+
+
+
+
+
     //DISPLAY MANAGEMENT
     public void ClearBoard()
     {
         //Review_start.gameObject.SetActive(false);
         //Review_end.gameObject.SetActive(false);
+
+        HideIcons();
     }
 
     public void DisplayResults(List<Tuple<string, string, bool>> answers)
@@ -169,24 +173,52 @@ public class ReviewManager : MonoBehaviour
 
         //make the sprite renderers transparent for now
         HideIcons();
+
+        timer = 0f;
+        listItemsDisplayed = 0;
+        DisplayNextItem(answers);
     
         //Review_end.gameObject.SetActive(false);
         //Review_start.gameObject.SetActive(true);
 
+        /*
         Debug.Log($"Attempting to display list, length of {answers.Count}...");
         for (int i = 0; i < answers.Count; i++)
         {
             Debug.Log($"Attempting to display item {i}...");
             UpdateIcons(answers[i]);
             Debug.Log("This happens after UpdateIcons. Attempting to run Display...");
-            DisplayIconsAndWait(answers[i].Item3);
+            DisplayIconsOnTimer(answers[i].Item3);
         }
-        Debug.Log("Entering next phase...");
+        */
+
 
         //Review_start.gameObject.SetActive(false);
         //Review_end.gameObject.SetActive(true);
 
     }
+
+    void DisplayNextItem(List<Tuple<string, string, bool>> answers)
+    {
+        //exit loop if end of list is reached
+        if (listItemsDisplayed >= answers.Count)
+        {
+            //go to Continue screen
+            Debug.Log($"End of list reached: displayed {listItemsDisplayed} of {answers.Count} items.");
+            ClearBoard();
+            Debug.Log("Entering next phase...");
+            debugText.text = "Would you like to continue?";
+        }
+        else
+        {
+            Debug.Log($"Attempting to display item {listItemsDisplayed}...");
+            UpdateIcons(answers[listItemsDisplayed]);
+            Debug.Log("This happens after UpdateIcons. Attempting to run Display...");
+            DisplayIconsOnTimer(answers[listItemsDisplayed].Item3);
+        }
+    }
+
+
 
     void UpdateIcons(Tuple<string, string, bool> tuple)
     {
@@ -244,15 +276,48 @@ public class ReviewManager : MonoBehaviour
         Debug.Log($"Sprites reset: object is {itemSR.sprite.name}, recep is {recepSR.sprite.name}, icon is {rightWrongSR.sprite.name}.");
         return;
     }
-    void DisplayIconsAndWait(bool isRight)
+
+
+
+    void DisplayIconsOnTimer(bool isRight)
     {
-        Debug.Log("Running DisplayIconsAndWait...");
+        Debug.Log("Running DisplayIconsOnTimer...");
         
 
         //unveil object
         itemSR.color = Color.white;
         Debug.Log("Object unveiled...");
 
+        //unveil receptacle after a set amount of time
+        currentSR = recepSR;
+        Invoke("UnveilCurrentSprite", waitTimeInterval);
+        Debug.Log("Recep unveiled...");
+
+        //unveil right/wrong 
+        currentSR = rightWrongSR;
+        Invoke("UnveilCurrentSprite", waitTimeInterval);
+        Debug.Log("R/W unveiled...");
+
+        if (isRight)
+        {
+            //add to score
+            //sound effects
+            //particles
+            Debug.Log($"Right answer...");
+            right_sparkles.Play();
+        }
+        else
+        {
+            //sound effect
+            Debug.Log("Wrong answer...");
+        }
+
+        Invoke("HideIcons", waitTimeInterval);
+        listItemsDisplayed += 1;
+        Debug.Log($"Displayed item {listItemsDisplayed}, time elapsed since start is {timer}");
+        DisplayNextItem(ReviewLog);
+
+        /* old
         //wait for timer
         RestartTimer(waitTimeInterval);
         if (doContinue)
@@ -291,7 +356,10 @@ public class ReviewManager : MonoBehaviour
                 }
             }
         }
+        */
     }
+
+
 
     void RestartTimer(float delay)
     {
@@ -300,6 +368,13 @@ public class ReviewManager : MonoBehaviour
         timerDelay = delay;
     }
 
+
+
+    void UnveilCurrentSprite()
+    {
+        Debug.Log($"Unveiling {currentSR.name} at {timer} seconds elapsed...");
+        currentSR.color = Color.white;
+    }
 
 
     /* OLD

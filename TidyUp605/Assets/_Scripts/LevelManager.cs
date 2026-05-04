@@ -168,6 +168,7 @@ public class LevelManager : MonoBehaviour
             if (currentSequence == 1)
             {
                 if (currentLevel == "T1") { loadSequence1("T2"); }
+                else if (currentLevel == "T2") { loadSequence1("P1"); }
                 else if (currentLevel == "P1") { loadSequence1("P2"); }
                 else if (currentLevel == "P2") { loadSequence1("P3"); }
                 else if (currentLevel == "P3") { loadSequence1("P4"); }
@@ -176,6 +177,7 @@ public class LevelManager : MonoBehaviour
             else if (currentSequence == 2)
             {
                 if (currentLevel == "T1") { loadSequence2("T2"); }
+                else if (currentLevel == "T2") { loadSequence2("P1"); }
                 else if (currentLevel == "P1") { loadSequence2("P2"); }
                 else if (currentLevel == "P2") { loadSequence2("P3"); }
                 else if (currentLevel == "P3") { loadSequence2("P4"); }
@@ -201,6 +203,7 @@ public class LevelManager : MonoBehaviour
             if (currentSequence == 1)
             {
                 if (currentLevel == "T1") { loadSequence1("T2"); }
+                else if (currentLevel == "T2") { loadSequence1("P1"); }
                 else if (currentLevel == "P1") { loadSequence1("P2"); }
                 else if (currentLevel == "P2") { loadSequence1("P3"); }
                 else if (currentLevel == "P3") { loadSequence1("P4"); }
@@ -209,6 +212,7 @@ public class LevelManager : MonoBehaviour
             else if (currentSequence == 2)
             {
                 if (currentLevel == "T1") { loadSequence2("T2"); }
+                else if (currentLevel == "T2") { loadSequence2("P1"); }
                 else if (currentLevel == "P1") { loadSequence2("P2"); }
                 else if (currentLevel == "P2") { loadSequence2("P3"); }
                 else if (currentLevel == "P3") { loadSequence2("P4"); }

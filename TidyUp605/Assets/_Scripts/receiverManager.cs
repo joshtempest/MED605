@@ -12,11 +12,13 @@ public class receiverManager : MonoBehaviour
     private GameController gameController;
     private Identifier identityScript;
 
+    [Header("Receiver Types")]
     [SerializeField] private bool isServiceReceiver;
     [SerializeField] private bool isBeskidtReceiver;
     [SerializeField] private bool isMadReceiver;
     private int receiverTypeCount;
 
+    [Header("Particle Systems")]
     [SerializeField] private GameObject go_part_tick;
     [SerializeField] private GameObject go_part_sparkles;
     [SerializeField] private GameObject go_part_x;

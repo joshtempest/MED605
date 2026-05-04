@@ -132,12 +132,15 @@ public class LevelManager : MonoBehaviour
         if (currentStage == 1) 
         {
             if (currentSequence == 1) { loadSequence1(currentLevel); }
-            //else if (currentSequence == 2) { loadSequence2(currentLevel); }
+            else if (currentSequence == 2) { loadSequence2(currentLevel); }
             else if (evalActive) { loadStage1Eval(); }
         }
 
         if (currentLevel == "Trial1") { loadTrial1(); }
-        
+        else if (currentLevel == "Intro") { loadIntro(); }
+        else if (currentLevel == "LevelSelect") { loadLevelSelect(); }
+        else if (currentLevel == "VR") { loadVR(); }
+        /*
         else if (currentLevel == "Tutorial1") { loadTutorial1(); }
         else if (currentLevel == "Tutorial2") { loadTutorial2(); }
         else if (currentLevel == "Tutorial3") { loadTutorial3(); }
@@ -149,10 +152,7 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "Practice6") { loadPractice6(); }
         else if (currentLevel == "Practice7") { loadPractice7(); }
         else if (currentLevel == "Eval1") { loadEval1(); }
-        else if (currentLevel == "Intro") { loadIntro(); }
-        else if (currentLevel == "LevelSelect") { loadLevelSelect(); }
-        else if (currentLevel == "VR") { loadVR(); }
-        
+        */
     }
 
     public void loadNextLevel()

@@ -6,6 +6,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Windows;
 using TMPro;
+using Unity.VisualScripting;
 
 public class ReviewManager : MonoBehaviour
 {
@@ -72,7 +73,7 @@ public class ReviewManager : MonoBehaviour
 
     //debugging only
     //private List<Tuple<string, string, bool>> testLog = new();
-    public TMP_Text debugText; 
+    public TMP_Text debugText;
 
     //SETUP
     private void Awake()
@@ -118,7 +119,24 @@ public class ReviewManager : MonoBehaviour
     {
         Debug.Log("Attempting to display...");
         DisplayResults(ReviewLog);
+
     }
+
+    //placeholder until the rest is coded
+    public void DBDisplayResults()
+    {
+        //move blackboard forward 
+
+        //add items
+        for (int i = 0; i <= ReviewLog.Count; i++)
+        {
+            debugText.text += $"{ReviewLog[i].Item2} -> {ReviewLog[i].Item2} = {ReviewLog[i].Item3}";
+        }
+
+    }
+
+
+
 
     //TIMING
     void Update()
@@ -420,4 +438,30 @@ public class ReviewManager : MonoBehaviour
         rightWrongSR.color = Color.clear;
 
     }
+
+
+    //DISPLAY: COROUTINE ATTEMPT
+    /*
+     IEnumerator DisplayResults(List<Tuple<string, string, bool>> answers)
+     {
+        //*disable movement & click
+        //*move blackboard forward
+        //*sound effect?
+        //*narrator: Godt klaret!
+
+        //set stars to grey
+        SROne.sprite = greyStar;
+        SRTwo.sprite = greyStar;
+        SRThree.sprite = greyStar;
+
+
+        //make the sprite renderers transparent for now
+        HideIcons();
+
+        timer = 0f;
+        listItemsDisplayed = 0;
+        DisplayNextItem(answers);
+        yield return null; 
+     }
+    */
 }

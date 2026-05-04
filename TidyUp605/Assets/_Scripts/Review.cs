@@ -25,9 +25,13 @@ public class ReviewManager : MonoBehaviour
 
     SpriteRenderer currentSR;
 
-    //overarching Canvas
-    public Canvas Review_start;
-    public Canvas Review_end;
+
+    //overarching Canvas Groups
+    public GameObject go_Review;
+    public GameObject go_End_continue;
+
+    CanvasGroup Review;
+    CanvasGroup End_continue;
 
     //currently a placeholder, add functionality
     public GameObject scoreBar;
@@ -73,7 +77,7 @@ public class ReviewManager : MonoBehaviour
 
     //debugging only
     //private List<Tuple<string, string, bool>> testLog = new();
-    public TMP_Text debugText;
+    public TMP_Text continueText;
 
     //SETUP
     private void Awake()
@@ -103,6 +107,15 @@ public class ReviewManager : MonoBehaviour
         recepSR = receptacleRenderer.GetComponent<SpriteRenderer>();
         rightWrongSR = rightWrongIcon.GetComponent<SpriteRenderer>();
 
+        Review = go_Review.GetComponent<CanvasGroup>();
+        End_continue = go_End_continue.GetComponent<CanvasGroup>();
+ 
+
+        if (!Review || !End_continue)
+        {
+            Debug.LogWarning("Canvas group not found.");
+        }
+
         Debug.Log("Starting...");
     }
 
@@ -118,7 +131,7 @@ public class ReviewManager : MonoBehaviour
     public void DBStart()
     {
         Debug.Log("Attempting to display...");
-        DisplayResults(ReviewLog);
+        StartCoroutine(CRDisplayResults());
 
     }
 
@@ -130,12 +143,25 @@ public class ReviewManager : MonoBehaviour
         //add items
         for (int i = 0; i <= ReviewLog.Count; i++)
         {
-            debugText.text += $"{ReviewLog[i].Item2} -> {ReviewLog[i].Item2} = {ReviewLog[i].Item3}";
+            continueText.text += $"{ReviewLog[i].Item2} -> {ReviewLog[i].Item2} = {ReviewLog[i].Item3}";
         }
+
 
     }
 
+    public IEnumerator DBDisplay()
+    {
+        //add items
+        for (int i = 0; i <= ReviewLog.Count; i++)
+        {
+            continueText.text += $"{ReviewLog[i].Item2} -> {ReviewLog[i].Item2} = {ReviewLog[i].Item3}";
+            yield return new WaitForSeconds(waitTimeInterval);
+        }
 
+
+
+        yield return null;
+    }
 
 
     //TIMING
@@ -170,8 +196,11 @@ public class ReviewManager : MonoBehaviour
     //DISPLAY MANAGEMENT
     public void ClearBoard()
     {
-        //Review_start.gameObject.SetActive(false);
-        //Review_end.gameObject.SetActive(false);
+        Review.alpha = 0;
+        Review.interactable = false;
+
+        End_continue.alpha = 0;
+        End_continue.interactable = false;
 
         HideIcons();
     }
@@ -225,7 +254,7 @@ public class ReviewManager : MonoBehaviour
             Debug.Log($"End of list reached: displayed {listItemsDisplayed} of {answers.Count} items.");
             ClearBoard();
             Debug.Log("Entering next phase...");
-            debugText.text = "Would you like to continue?";
+            continueText.text = "Would you like to continue?";
         }
         else
         {
@@ -433,6 +462,7 @@ public class ReviewManager : MonoBehaviour
 
     void HideIcons()
     {
+        Debug.Log("Hiding icons...");
         itemSR.color = Color.clear;
         recepSR.color = Color.clear;
         rightWrongSR.color = Color.clear;
@@ -441,9 +471,10 @@ public class ReviewManager : MonoBehaviour
 
 
     //DISPLAY: COROUTINE ATTEMPT
-    /*
-     IEnumerator DisplayResults(List<Tuple<string, string, bool>> answers)
+    
+     IEnumerator CRDisplayResults()
      {
+        Debug.Log("Running CRDisp...");
         //*disable movement & click
         //*move blackboard forward
         //*sound effect?
@@ -458,10 +489,70 @@ public class ReviewManager : MonoBehaviour
         //make the sprite renderers transparent for now
         HideIcons();
 
+        //show review canvas group
+        Review.alpha = 1;
+        Debug.Log("Showing Review Group...");
+
         timer = 0f;
         listItemsDisplayed = 0;
-        DisplayNextItem(answers);
+        StartCoroutine(CRDisplayNextItem());
         yield return null; 
      }
-    */
+
+    IEnumerator CRDisplayNextItem()
+    {
+        Debug.Log("Running CRNextItem...");
+        //exit loop if end of list is reached
+        if (listItemsDisplayed >= ReviewLog.Count)
+        {
+            //go to Continue screen
+            Debug.Log($"End of list reached: displayed {listItemsDisplayed} of {ReviewLog.Count} items.");
+            ClearBoard();
+            Debug.Log("Entering next phase...");
+            continueText.text = "Would you like to continue?";
+        }
+        else
+        {
+            Debug.Log($"Attempting to display item {listItemsDisplayed}...");
+            UpdateIcons(ReviewLog[listItemsDisplayed]);
+            Debug.Log("This happens after UpdateIcons. Attempting to display with delay...");
+
+            //unveil object
+            itemSR.color = Color.white;
+            yield return new WaitForSeconds(waitTimeInterval);
+
+            // unveil receptacle
+            recepSR.color = Color.white;
+            yield return new WaitForSeconds(waitTimeInterval);
+
+            //unveil right/wrong
+            rightWrongSR.color = Color.white;
+
+            //if it was right
+            if (ReviewLog[listItemsDisplayed].Item3)
+            {
+                right_sparkles.Play();
+                //add audio effect
+
+                //add score to score bar
+
+                Debug.Log($"Item {listItemsDisplayed} was right!");
+
+            }
+            else
+            {
+                //add sound effect
+                //add narrator
+
+                Debug.Log($"Item {listItemsDisplayed} was wrong! :(");
+            }
+
+            Debug.Log($"Display of item {listItemsDisplayed} complete, {timer} seconds elapsed.");
+            listItemsDisplayed++;
+
+            StartCoroutine(CRDisplayNextItem());
+        }
+    }
+
+    
 }

@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Windows;
+using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 
@@ -17,13 +18,13 @@ public class ReviewManager : MonoBehaviour
 
     //logic stuff
     float timer = 0f;
-    float timerDelay = 0f;
-    public float waitTimeInterval = 3f;
+    //float timerDelay = 0f;
+    public float waitTimeInterval = 1.5f;
     bool doContinue = true;
 
     int listItemsDisplayed = 0;
 
-    SpriteRenderer currentSR;
+    Image currentIMG;
 
 
     //overarching Canvas Groups
@@ -33,6 +34,8 @@ public class ReviewManager : MonoBehaviour
     CanvasGroup Review;
     CanvasGroup End_continue;
 
+    bool isReview = true;
+
     //currently a placeholder, add functionality
     public GameObject scoreBar;
 
@@ -41,9 +44,9 @@ public class ReviewManager : MonoBehaviour
     public GameObject starTwo;
     public GameObject starThree;
 
-    SpriteRenderer SROne;
-    SpriteRenderer SRTwo;
-    SpriteRenderer SRThree;
+    Image img_One;
+    Image img_Two;
+    Image img_Three;
 
     public Sprite yellowStar;
     public Sprite greyStar;
@@ -65,9 +68,9 @@ public class ReviewManager : MonoBehaviour
     public Sprite icon_x;
     public Sprite icon_tick;
 
-    SpriteRenderer itemSR;
-    SpriteRenderer recepSR;
-    SpriteRenderer rightWrongSR;
+    Image itemIMG;
+    Image recepIMG;
+    Image rightWrongIMG;
 
     public ParticleSystem right_sparkles;
 
@@ -80,32 +83,16 @@ public class ReviewManager : MonoBehaviour
     public TMP_Text continueText;
 
     //SETUP
-    private void Awake()
-    {
-        /*
-        // Singleton Pattern
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-        */
-    }
-
+  
     void Start()
     {
-        SROne = starOne.GetComponent<SpriteRenderer>();
-        SRTwo = starTwo.GetComponent<SpriteRenderer>();
-        SRThree = starThree.GetComponent<SpriteRenderer>();
+        img_One = starOne.GetComponent<Image>();
+        img_Two = starTwo.GetComponent<Image>();
+        img_Three = starThree.GetComponent<Image>();
 
-        itemSR = itemRenderer.GetComponent<SpriteRenderer>();
-        recepSR = receptacleRenderer.GetComponent<SpriteRenderer>();
-        rightWrongSR = rightWrongIcon.GetComponent<SpriteRenderer>();
+        itemIMG = itemRenderer.GetComponent<Image>();
+        recepIMG = receptacleRenderer.GetComponent<Image>();
+        rightWrongIMG = rightWrongIcon.GetComponent<Image>();
 
         Review = go_Review.GetComponent<CanvasGroup>();
         End_continue = go_End_continue.GetComponent<CanvasGroup>();
@@ -117,6 +104,7 @@ public class ReviewManager : MonoBehaviour
         }
 
         Debug.Log("Starting...");
+        DisplayReviewScreen();
     }
 
     //DEBUG
@@ -145,8 +133,6 @@ public class ReviewManager : MonoBehaviour
         {
             continueText.text += $"{ReviewLog[i].Item2} -> {ReviewLog[i].Item2} = {ReviewLog[i].Item3}";
         }
-
-
     }
 
     public IEnumerator DBDisplay()
@@ -164,11 +150,16 @@ public class ReviewManager : MonoBehaviour
     }
 
 
+
+
+
     //TIMING
     void Update()
     {
         timer += Time.deltaTime;
     }
+
+
 
 
     //LOG MANAGEMENT
@@ -205,6 +196,238 @@ public class ReviewManager : MonoBehaviour
         HideIcons();
     }
 
+    void UpdateIcons(Tuple<string, string, bool> tuple)
+    {
+        //display the right object sprite
+        switch (tuple.Item1)
+        {
+            //ren gaffel
+            case "rG":
+                itemIMG.sprite = renGaffel;
+                break;
+            //beskidt gaffel
+            case "bG":
+                itemIMG.sprite = beskidtGaffel;
+                break;
+
+            //ren Tallerken
+            case "rT":
+                itemIMG.sprite = renTallerken;
+                break;
+            case "bT":
+                itemIMG.sprite = beskidtTallerken;
+                break;
+
+            default:
+                Debug.Log($"{tuple.Item1} not recognised as object, engaging in fallback...");
+                break;
+        }
+
+        //display the right receptacle sprite
+        switch (tuple.Item2)
+        {
+            case "skab":
+                recepIMG.sprite = skab;
+                break;
+            case "opvasker":
+                recepIMG.sprite = opvasker;
+                break;
+            case "koele":
+                recepIMG.sprite = koele;
+                break;
+            default:
+                Debug.Log($"{tuple.Item2} not recognised as object, engaging in fallback...");
+                break;
+        }
+
+        if (tuple.Item3)
+        {
+            rightWrongIMG.sprite = icon_tick;
+        }
+        else
+        {
+            rightWrongIMG.sprite = icon_x;
+        }
+
+        Debug.Log($"Sprites reset: object is {itemIMG.sprite.name}, recep is {recepIMG.sprite.name}, icon is {rightWrongIMG.sprite.name}.");
+        return;
+    }
+
+
+    void DisplayEndScreen()
+    {
+        Debug.Log("Switching to End screen...");
+        Review.alpha = 0;
+
+        End_continue.alpha = 1;
+        End_continue.interactable = true;
+    }
+
+    void DisplayReviewScreen()
+    {
+        Debug.Log("Switching to Review screen...");
+        End_continue.alpha = 0;
+        End_continue.interactable = false;
+
+        Review.alpha = 1;
+    }
+
+
+    void HideIcons()
+    {
+        Debug.Log("Hiding icons...");
+        itemIMG.color = Color.clear;
+        recepIMG.color = Color.clear;
+        rightWrongIMG.color = Color.clear;
+
+    }
+
+
+    //DISPLAY: COROUTINES
+    
+     IEnumerator CRDisplayResults()
+     {
+        Debug.Log("Running CRDisp...");
+        //*disable movement & click
+        //*move blackboard forward
+        //*sound effect?
+        //*narrator: Godt klaret!
+
+        //set stars to grey
+        img_One.sprite = greyStar;
+        img_Two.sprite = greyStar;
+        img_Three.sprite = greyStar;
+
+
+        //make the images transparent for now
+        HideIcons();
+        DisplayReviewScreen();
+
+        //show review canvas group
+        Review.alpha = 1;
+        Debug.Log("Showing Review Group...");
+
+        timer = 0f;
+        listItemsDisplayed = 0;
+
+        //start the display loop
+        StartCoroutine(CRDisplayNextTuple());
+
+        yield return null; 
+     }
+
+    IEnumerator CRDisplayNextTuple()
+    {
+        Debug.Log("Running CRNextTuple...");
+
+        if (listItemsDisplayed >= ReviewLog.Count)
+        {
+            Debug.Log("Display done, Exiting loop...");
+            ClearBoard();
+            DisplayEndScreen();
+        }
+        else
+        {
+            Debug.Log($"Attempting to display item {listItemsDisplayed}...");
+            UpdateIcons(ReviewLog[listItemsDisplayed]);
+            Debug.Log("Attempting to display with delay...");
+
+            //unveil object
+            itemIMG.color = Color.white;
+            yield return new WaitForSeconds(waitTimeInterval);
+
+            // unveil receptacle
+            recepIMG.color = Color.white;
+            yield return new WaitForSeconds(waitTimeInterval);
+
+            //unveil right/wrong
+            rightWrongIMG.color = Color.white;
+
+            //if it was right
+            if (ReviewLog[listItemsDisplayed].Item3)
+            {
+                right_sparkles.Play();
+                //add audio effect
+
+                //add score to score bar
+
+                Debug.Log($"Item {listItemsDisplayed} was right!");
+
+            }
+            else
+            {
+                //add sound effect
+                //add narrator
+
+                Debug.Log($"Item {listItemsDisplayed} was wrong! :(");
+            }
+
+            Debug.Log($"Display of item {listItemsDisplayed} complete, {timer} seconds elapsed.");
+
+            yield return new WaitForSeconds(waitTimeInterval);
+            HideIcons();
+
+            listItemsDisplayed++;
+            yield return null;
+
+            StartCoroutine(CRDisplayNextTuple());
+        }
+
+            
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //OLD THINGS NO LONGER USED
+    private void Awake()
+    {
+        /*
+        // Singleton Pattern
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        */
+    }
+
+
     public void DisplayResults(List<Tuple<string, string, bool>> answers)
     {
         //*disable movement & click
@@ -213,9 +436,9 @@ public class ReviewManager : MonoBehaviour
         //*narrator: Godt klaret!
 
         //set stars to grey
-        SROne.sprite = greyStar;
-        SRTwo.sprite = greyStar;
-        SRThree.sprite = greyStar;
+        img_One.sprite = greyStar;
+        img_Two.sprite = greyStar;
+        img_Three.sprite = greyStar;
 
 
         //make the sprite renderers transparent for now
@@ -224,7 +447,7 @@ public class ReviewManager : MonoBehaviour
         timer = 0f;
         listItemsDisplayed = 0;
         DisplayNextItem(answers);
-    
+
         //Review_end.gameObject.SetActive(false);
         //Review_start.gameObject.SetActive(true);
 
@@ -265,83 +488,22 @@ public class ReviewManager : MonoBehaviour
         }
     }
 
-
-
-    void UpdateIcons(Tuple<string, string, bool> tuple)
-    {
-        //display the right object sprite
-        switch (tuple.Item1)
-        {
-            //ren gaffel
-            case "rG":
-                itemSR.sprite = renGaffel;
-                break;
-            //beskidt gaffel
-            case "bG":
-                itemSR.sprite = beskidtGaffel;
-                break;
-
-            //ren Tallerken
-            case "rT":
-                itemSR.sprite = renTallerken;
-                break;
-            case "bT":
-                itemSR.sprite = beskidtTallerken;
-                break;
-
-            default:
-                Debug.Log($"{tuple.Item1} not recognised as object, engaging in fallback...");
-                break;
-        }
-
-        //display the right receptacle sprite
-        switch (tuple.Item2)
-        {
-            case "skab":
-                recepSR.sprite = skab;
-                break;
-            case "opvasker":
-                recepSR.sprite = opvasker;
-                break;
-            case "koele":
-                recepSR.sprite = koele;
-                break;
-            default:
-                Debug.Log($"{tuple.Item2} not recognised as object, engaging in fallback...");
-                break;
-        }
-
-        if (tuple.Item3)
-        {
-            rightWrongSR.sprite = icon_tick;
-        }
-        else
-        {
-            rightWrongSR.sprite = icon_x;
-        }
-
-        Debug.Log($"Sprites reset: object is {itemSR.sprite.name}, recep is {recepSR.sprite.name}, icon is {rightWrongSR.sprite.name}.");
-        return;
-    }
-
-
-
     void DisplayIconsOnTimer(bool isRight)
     {
         Debug.Log("Running DisplayIconsOnTimer...");
-        
+
 
         //unveil object
-        itemSR.color = Color.white;
+        itemIMG.color = Color.white;
         Debug.Log("Object unveiled...");
 
         //unveil receptacle after a set amount of time
-        currentSR = recepSR;
+        currentIMG = recepIMG;
         Invoke("UnveilCurrentSprite", waitTimeInterval);
         Debug.Log("Recep unveiled...");
 
         //unveil right/wrong 
-        currentSR = rightWrongSR;
+        currentIMG = rightWrongIMG;
         Invoke("UnveilCurrentSprite", waitTimeInterval);
         Debug.Log("R/W unveiled...");
 
@@ -412,15 +574,15 @@ public class ReviewManager : MonoBehaviour
     {
         doContinue = false;
         timer = 0f;
-        timerDelay = delay;
+
     }
 
 
 
     void UnveilCurrentSprite()
     {
-        Debug.Log($"Unveiling {currentSR.name} at {timer} seconds elapsed...");
-        currentSR.color = Color.white;
+        Debug.Log($"Unveiling {currentIMG.name} at {timer} seconds elapsed...");
+        currentIMG.color = Color.white;
     }
 
 
@@ -460,99 +622,64 @@ public class ReviewManager : MonoBehaviour
     }
     */
 
-    void HideIcons()
+    IEnumerator CRDisplayTuple(Tuple<string, string, bool> tuple)
     {
-        Debug.Log("Hiding icons...");
-        itemSR.color = Color.clear;
-        recepSR.color = Color.clear;
-        rightWrongSR.color = Color.clear;
+        Debug.Log("Running CRTuple...");
 
-    }
+        Debug.Log($"Attempting to display item {listItemsDisplayed}...");
+        UpdateIcons(tuple);
+        Debug.Log("This happens after UpdateIcons. Attempting to display with delay...");
 
+        //unveil object
+        itemIMG.color = Color.white;
+        yield return new WaitForSeconds(waitTimeInterval);
 
-    //DISPLAY: COROUTINE ATTEMPT
-    
-     IEnumerator CRDisplayResults()
-     {
-        Debug.Log("Running CRDisp...");
-        //*disable movement & click
-        //*move blackboard forward
-        //*sound effect?
-        //*narrator: Godt klaret!
+        // unveil receptacle
+        recepIMG.color = Color.white;
+        yield return new WaitForSeconds(waitTimeInterval);
 
-        //set stars to grey
-        SROne.sprite = greyStar;
-        SRTwo.sprite = greyStar;
-        SRThree.sprite = greyStar;
+        //unveil right/wrong
+        rightWrongIMG.color = Color.white;
 
-
-        //make the sprite renderers transparent for now
-        HideIcons();
-
-        //show review canvas group
-        Review.alpha = 1;
-        Debug.Log("Showing Review Group...");
-
-        timer = 0f;
-        listItemsDisplayed = 0;
-        StartCoroutine(CRDisplayNextItem());
-        yield return null; 
-     }
-
-    IEnumerator CRDisplayNextItem()
-    {
-        Debug.Log("Running CRNextItem...");
-        //exit loop if end of list is reached
-        if (listItemsDisplayed >= ReviewLog.Count)
+        //if it was right
+        if (ReviewLog[listItemsDisplayed].Item3)
         {
-            //go to Continue screen
-            Debug.Log($"End of list reached: displayed {listItemsDisplayed} of {ReviewLog.Count} items.");
-            ClearBoard();
-            Debug.Log("Entering next phase...");
-            continueText.text = "Would you like to continue?";
+            right_sparkles.Play();
+            //add audio effect
+
+            //add score to score bar
+
+            Debug.Log($"Item {listItemsDisplayed} was right!");
+
         }
         else
         {
-            Debug.Log($"Attempting to display item {listItemsDisplayed}...");
-            UpdateIcons(ReviewLog[listItemsDisplayed]);
-            Debug.Log("This happens after UpdateIcons. Attempting to display with delay...");
+            //add sound effect
+            //add narrator
 
-            //unveil object
-            itemSR.color = Color.white;
-            yield return new WaitForSeconds(waitTimeInterval);
-
-            // unveil receptacle
-            recepSR.color = Color.white;
-            yield return new WaitForSeconds(waitTimeInterval);
-
-            //unveil right/wrong
-            rightWrongSR.color = Color.white;
-
-            //if it was right
-            if (ReviewLog[listItemsDisplayed].Item3)
-            {
-                right_sparkles.Play();
-                //add audio effect
-
-                //add score to score bar
-
-                Debug.Log($"Item {listItemsDisplayed} was right!");
-
-            }
-            else
-            {
-                //add sound effect
-                //add narrator
-
-                Debug.Log($"Item {listItemsDisplayed} was wrong! :(");
-            }
-
-            Debug.Log($"Display of item {listItemsDisplayed} complete, {timer} seconds elapsed.");
-            listItemsDisplayed++;
-
-            StartCoroutine(CRDisplayNextItem());
+            Debug.Log($"Item {listItemsDisplayed} was wrong! :(");
         }
+
+        Debug.Log($"Display of item {listItemsDisplayed} complete, {timer} seconds elapsed.");
+
+        yield return new WaitForSeconds(waitTimeInterval);
+        HideIcons();
+
+        listItemsDisplayed++;
+        yield return true;
     }
 
-    
+
+    /*
+       for (int i = 0; i >= ReviewLog.Count; i++)
+       {
+           StartCoroutine(CRDisplayTuple(ReviewLog[i]));
+           yield return new WaitUntil(() => CRhasFinished);
+           Debug.Log($"Moving on to next item...");
+       }
+       */
+
+
+
+
 }

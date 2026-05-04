@@ -929,7 +929,7 @@ PrefabInstance:
       objectReference: {fileID: 583780172}
     - target: {fileID: 238745037041113350, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_VersionIndex
-      value: 2105
+      value: 2195
       objectReference: {fileID: 0}
     - target: {fileID: 1046477570249178292, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
@@ -941,7 +941,7 @@ PrefabInstance:
       objectReference: {fileID: 828138302}
     - target: {fileID: 1508680847012621384, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_VersionIndex
-      value: 3615
+      value: 3705
       objectReference: {fileID: 0}
     - target: {fileID: 2275353693118570032, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
@@ -957,16 +957,12 @@ PrefabInstance:
       objectReference: {fileID: 1181902698}
     - target: {fileID: 2758131565630154969, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_VersionIndex
-      value: 4291
+      value: 4381
       objectReference: {fileID: 0}
     - target: {fileID: 4050152783959878727, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 108609919}
-    - target: {fileID: 4281412371359962534, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 44.2
-      objectReference: {fileID: 0}
     - target: {fileID: 4597939806362967106, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -977,7 +973,7 @@ PrefabInstance:
       objectReference: {fileID: 108609919}
     - target: {fileID: 4754674276950402619, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_VersionIndex
-      value: 3606
+      value: 3696
       objectReference: {fileID: 0}
     - target: {fileID: 4761621822522169746, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
@@ -1035,17 +1031,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6276867268763965172, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
-      propertyPath: m_Alpha
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6739047064731315802, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 762830463}
     - target: {fileID: 6739047064731315802, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_VersionIndex
-      value: 3028
+      value: 3118
       objectReference: {fileID: 0}
     - target: {fileID: 6741650676471089642, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Name

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9184800696275610591}
   - component: {fileID: 1274676164457025411}
   - component: {fileID: -7210281188761552336}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlateFlatT2
   m_TagString: Beskidt
   m_Icon: {fileID: 0}

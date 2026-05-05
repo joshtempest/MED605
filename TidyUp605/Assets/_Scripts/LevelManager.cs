@@ -226,7 +226,7 @@ public class LevelManager : MonoBehaviour
 
     bool compareScene(string neededScene)
     {
-        Debug.Log("comparing scene");
+        //Debug.Log("comparing scene");
         activeScene = SceneManager.GetActiveScene();
         string sceneName = activeScene.name;
         if (sceneName != neededScene)
@@ -496,6 +496,7 @@ public class LevelManager : MonoBehaviour
         currentSequence = 3;
         evalActive = true;
         compareScene("Evaluation");
+        currentLevel = "S1E";
         gameController.resetScore();
         gameController.rightThreshold = 8;
 

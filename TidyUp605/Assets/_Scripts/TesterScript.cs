@@ -18,15 +18,16 @@ public class TesterScript : MonoBehaviour
     }
     private void Start()
     {
+        Debug.LogWarning("TesterScript is active.");
         if (oldSys)
         {
             levelManager.currentLevel = sceneToTest;
             levelManager.reloadLevel();
-            Debug.Log("Testing scene: " + sceneToTest);
+            //Debug.Log("Testing scene: " + sceneToTest);
         }
         if (newSys) 
         {
-            if (sceneToTest == "Eval")
+            if (sceneToTest == "S1E")
             {
                 levelManager.loadStage1Eval();
             }

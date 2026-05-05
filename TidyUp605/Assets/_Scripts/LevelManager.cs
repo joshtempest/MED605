@@ -498,6 +498,7 @@ public class LevelManager : MonoBehaviour
         currentLevel = "S1E";
         compareScene("Evaluation");
         gameController.resetScore();
+        gameController.rightThreshold = 8;
 
         for (int i = 0; i < 2; i++)
         {

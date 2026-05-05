@@ -67,7 +67,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        resetScore();
+        //resetScore();
     }
 
     public void increaseScore(int score)
@@ -143,7 +143,7 @@ public class GameController : MonoBehaviour
 
         test = levelManager.currentLevel;
         Debug.Log("Resetting score..." + levelManager.currentLevel);
-        Debug.Log(test);
+        //Debug.Log(test);
         rightAnswers = 0;
         wrongAnswers = 0;
 

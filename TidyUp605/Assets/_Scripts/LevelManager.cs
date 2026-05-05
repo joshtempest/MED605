@@ -496,6 +496,7 @@ public class LevelManager : MonoBehaviour
         currentSequence = 3;
         evalActive = true;
         compareScene("Evaluation");
+        gameController.resetScore();
 
         for (int i = 0; i < 2; i++)
         {

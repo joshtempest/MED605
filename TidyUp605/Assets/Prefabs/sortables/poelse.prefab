@@ -60,45 +60,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -5154531260713675942, guid: 9c5d2697abd522549ad6226f39bc5b3f, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: -4528580236801258494, guid: 9c5d2697abd522549ad6226f39bc5b3f, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: -2288724196942467720, guid: 9c5d2697abd522549ad6226f39bc5b3f, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: -538985886571478351, guid: 9c5d2697abd522549ad6226f39bc5b3f, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9c5d2697abd522549ad6226f39bc5b3f, type: 3}
       propertyPath: m_Name
       value: poelse
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9c5d2697abd522549ad6226f39bc5b3f, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 9c5d2697abd522549ad6226f39bc5b3f, type: 3}
       propertyPath: m_TagString
       value: Mad
-      objectReference: {fileID: 0}
-    - target: {fileID: 4637317620636290077, guid: 9c5d2697abd522549ad6226f39bc5b3f, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6330675500712746284, guid: 9c5d2697abd522549ad6226f39bc5b3f, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7893352711884922914, guid: 9c5d2697abd522549ad6226f39bc5b3f, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

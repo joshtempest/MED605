@@ -18,20 +18,17 @@ public class TesterScript : MonoBehaviour
     }
     private void Start()
     {
-        Debug.LogWarning("TesterScript is active.");// Make sure to disable this script before building the game, otherwise the game will load the scene specified in the TesterScript.");
         if (oldSys)
         {
             levelManager.currentLevel = sceneToTest;
             levelManager.reloadLevel();
-            //Debug.Log("Testing scene: " + sceneToTest);
+            Debug.Log("Testing scene: " + sceneToTest);
         }
         if (newSys) 
         {
-            //Debug.Log("Testing scene: " + sceneToTest);
-            if (sceneToTest == "S1E")
+            if (sceneToTest == "Eval")
             {
                 levelManager.loadStage1Eval();
-                //Debug.Log("load eval");
             }
             else { levelManager.loadSequence1(sceneToTest); }
         }

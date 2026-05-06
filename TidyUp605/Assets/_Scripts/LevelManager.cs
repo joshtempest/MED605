@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -81,10 +82,14 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    ///Destroys all objects with the tags "receptacle", "Mad", "Service" and "Beskidt", to clear the scene.
     void annihilation()
     {
-        Debug.Log("Annihilation initiated");
-        //////LogData.instance.AddToLogs("Annihalating...");
+        //Debug.Log("Annihilation initiated");
+        //LogData.instance.AddToLogs("Annihalating...");
+
+        ///Finds all objects with the specified tags and destroys them, to clear the scene for the new level.
+        ///Receptacles need to be cleared, to insure that only the needed receptacles for the level are present.
         GameObject[] receptables = GameObject.FindGameObjectsWithTag("receptacle");
         for (int i = 0; i < receptables.Length; i++)
         {
@@ -116,7 +121,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-
+    ///reloads the current level by checking which level is currently active and loading it again.
     public void reloadLevel()
     {
         Debug.Log("Reloading level: " + currentLevel);
@@ -134,11 +139,11 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "VR") { loadVR(); }
     }
 
+    ///reloads the current level after a specified delay, to give the player time to see the feedback before the level resets.
     public void reloadLevel(float delayInSeconds)
     {
         StartCoroutine(waitAndReloadLevel(delayInSeconds));
     }
-
     public IEnumerator waitAndReloadLevel(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -159,6 +164,7 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "VR") { loadVR(); }
     }
 
+    ///Loads the next level based on the current level, this is used to progress through the levels in a set order. It checks which level is currently active and loads the next one accordingly.
     public void loadNextLevel()
     {
         //LogData.instance.AddToLogs("Loading Next Level after " + currentLevel);
@@ -189,11 +195,11 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    ///overload of loadNextLevel to add a delay before loading the next level, to give the player time to see the feedback before progressing to the next level.
     public void loadNextLevel(float delayInSeconds)
     {
         StartCoroutine(waitAndLoadNextLevel(delayInSeconds));
     }
-
     public IEnumerator waitAndLoadNextLevel(float delay)
     {
         ////LogData.instance.AddToLogs("Loading Next Level after " + currentLevel);
@@ -224,6 +230,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    ///Makes sure that the needed scene is loaded.
     bool compareScene(string neededScene)
     {
         //Debug.Log("comparing scene");
@@ -237,14 +244,15 @@ public class LevelManager : MonoBehaviour
         return false;
     }
 
+    ///Old system intro, not broken, so still in use
     public void loadIntro()
     {
         currentLevel = "Intro";
         compareScene("Intro");
         annihilation();
-        Debug.Log(currentLevel + " is being loaded");
+        //Debug.Log(currentLevel + " is being loaded");
     }
-
+    ///Old system trial, not broken, so still in use
     public void loadTrial1()
     {
         currentLevel = "Trial1";
@@ -254,9 +262,9 @@ public class LevelManager : MonoBehaviour
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         gameController.rightThreshold = 3;
-        Debug.Log(currentLevel + " is being loaded");
+        //Debug.Log(currentLevel + " is being loaded");
     }
-
+    ///Enables loading of custom levels, based on sequence 1.
     public void loadCustomSeq1(int cleanTallerken, int dirtyTallerken, bool boolskab, bool boolopvask, bool boolkoele, int rightAnswers)
     {
         compareScene("Tutorial_Practice");
@@ -276,7 +284,8 @@ public class LevelManager : MonoBehaviour
         }
         gameController.rightThreshold = rightAnswers;
     }
-
+    
+    ///Enables loading of Sequence 1 levels, based on the level name.
     public void loadSequence1(string levelName)
     {
 
@@ -289,18 +298,25 @@ public class LevelManager : MonoBehaviour
         }
 
         pendingLevelToLoad = ""; 
-
+        
+        ///Made to enable more stages and sequences in the future. 
         currentStage = 1;
         currentSequence = 1;
+        ///Calls annihilation to clear the scene
         annihilation();
 
+        ///Checks which level is being loaded and instantiates the needed objects and sets the right-threshold accordingly.
         if (levelName == "T1")
         {
+            ///set current level, to enable reloading of the same level and loading the next level in the correct order
             currentLevel = levelName;
+            ///Instantiate the needed receptacles for this level, based on a platform made in the scene.
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
+            ///Spawn one object for sorting as a starting point
             spawnerScript.spawnThisObject("rT");
+            ///Sets how many right answers are needed
             gameController.rightThreshold = 1;
-            Debug.Log("Right threshold set to: " + gameController.rightThreshold);
+            //Debug.Log("Right threshold set to: " + gameController.rightThreshold);
         }
         else if (levelName == "T2")
         {
@@ -316,6 +332,7 @@ public class LevelManager : MonoBehaviour
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
             gameController.rightThreshold = 2;
+            ///Set the amount of clean and dirty plates to spawn, based on the level, and spawn them using the spawner script.
             int cleanTallerken = 1;
             int dirtyTallerken = 1;
             for (int i = 0; i < cleanTallerken; i++)
@@ -383,7 +400,7 @@ public class LevelManager : MonoBehaviour
         }
         else { Debug.Log(levelName + " is invalid"); }
     }
-
+    ///Does the same thing as loadSequence1, but with other gameObjects.
     public void loadSequence2(string levelName)
     {
         pendingLevelToLoad = levelName;
@@ -490,6 +507,7 @@ public class LevelManager : MonoBehaviour
         else { Debug.Log(levelName + " is invalid"); }
 
     }
+    ///Load the evaluation scene for stage 1, with a set amount of objects and a higher threshold, to evaluate the player's understanding of the sorting task.
     public void loadStage1Eval()
     {
         currentStage = 1;
@@ -508,7 +526,8 @@ public class LevelManager : MonoBehaviour
             spawnerScript.spawnThisObject("bG");
         }
     }
-
+    ///Loads the level select scene, where the player can choose which level to play.
+    ///loadLevelSelect and loadVR is part of the old system, but they did not need to be updated to function.
     public void loadLevelSelect()
     {
         currentLevel = "LevelSelect";
@@ -526,7 +545,7 @@ public class LevelManager : MonoBehaviour
         gameController.rightThreshold = 2;
     }
 
-    //old levels ______________________________________________________________________________________________________________________________________________________________________________________
+    /// The old levels ______________________________________________________________________________________________________________________________________________________________________________________
     public void loadTutorial1()
     {
         currentLevel = "Tutorial1";

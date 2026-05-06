@@ -82,43 +82,44 @@ public class objectSpawner : MonoBehaviour
     */
 
     public void spawnThisObject(string type) 
-    { 
-        if(type == "s")
+    {
+        ///spawn the specific object that was passed in as a parameter, at the correct spawn platform, with a random buffer to prevent stacking
+        if (type == "s") //Smoer
         {
             spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = madSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(smoer, positionToSpawn, Quaternion.identity);
         }
-        if (type == "bT") 
+        if (type == "bT") //Beskidt Tallerken
         {
             spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = beskidtSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(beskidtTallerken, positionToSpawn, Quaternion.identity);
         }
-        if (type == "rT") 
+        if (type == "rT") //Ren Tallerken
         {
             spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = serviceSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(renTallerken, positionToSpawn, Quaternion.identity);
         }
-        if (type == "rG")
+        if (type == "rG") //Ren Gaffel
         {
             spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = beskidtSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(renGaffel, positionToSpawn, Quaternion.identity);
         }
-        if (type == "bG")
+        if (type == "bG") //Beskidt Gaffel
         {
             spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = beskidtSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(beskidtGaffel, positionToSpawn, Quaternion.identity);
         }
-        if(type == "p")
+        if(type == "p") //Poelse
         {
             spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = madSpawnPlatform.transform.position + spawnBuffer;

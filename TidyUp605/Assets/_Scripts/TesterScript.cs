@@ -16,9 +16,11 @@ public class TesterScript : MonoBehaviour
     {
         levelManager = this.gameObject.GetComponent<LevelManager>();
     }
+    ///Loads/reloads the specified scene, this was made for testing purposes
     private void Start()
     {
         Debug.LogWarning("TesterScript is active.");
+        ///We have changed the way levels are loaded, so we need to check which system is active and load the level accordingly
         if (oldSys)
         {
             levelManager.currentLevel = sceneToTest;

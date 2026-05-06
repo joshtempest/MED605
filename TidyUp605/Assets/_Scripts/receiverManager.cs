@@ -89,13 +89,15 @@ public class receiverManager : MonoBehaviour
             return true;
         }
     }
-
+    ///When a collider enters the trigger, do the code
     private void OnTriggerEnter(Collider other)
     {
+        ///Get the identity script of the incoming object to determine what it is
         identityScript = other.gameObject.GetComponent<Identifier>();
 
-        Debug.Log($"Trigger entered by {other.gameObject.name}");
+        //Debug.Log($"Trigger entered by {other.gameObject.name}");
 
+        ///If this object is ServiceReceiver and the incoming object is tagged "Service", it's correct. Otherwise, it's wrong.
         if (isServiceReceiver)
         {
             if (other.gameObject.tag == "Service")
@@ -111,6 +113,7 @@ public class receiverManager : MonoBehaviour
             else
                 HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
         }
+        ///the same logic applies for the BeskidtReceiver and MadReceiver, just with their respective tags and reveal integers
         else if (isBeskidtReceiver)
         {
             if (other.gameObject.tag == "Beskidt")
@@ -173,6 +176,8 @@ public class receiverManager : MonoBehaviour
 
         Debug.Log($"=== Finished HandleCorrectItem ===");
     }
+
+    /// This method reveals hidden objects based on the current count of correct answers for the respective receiver type, to give visual feedback on the player's progress
     private void revelio(int revealInt)
     {
         currentRevealIndex = revealInt;
@@ -181,17 +186,13 @@ public class receiverManager : MonoBehaviour
             if (i <= currentRevealIndex)
             {
                 objectsToReveal[i].SetActive(true);
-                Debug.Log($"Revealed hidden object '{objectsToReveal[i].name}' at index {i}.");
+                //Debug.Log($"Revealed hidden object '{objectsToReveal[i].name}' at index {i}.");
             }
-           /* else
-            {
-                objectsToReveal[i].SetActive(false);
-                Debug.Log($"Hid object '{objectsToReveal[i].name}' at index {i}.");
-            }*/
         }
 
     }
 
+    ///This method handles the logic for when a wrong item is placed in the receiver: it logs the event, decreases the score, destroys the wrong item, respawns a new one, and plays the appropriate feedback effects.
     private void HandleWrongItem(GameObject item, string respawnCode)
     {
         gameController.AddLog(item.name, this.gameObject.name, false);

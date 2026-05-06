@@ -60,9 +60,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5509969189145739568, guid: 617f74e39e26b1c45a500eadda6c4323, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -4427706972805458567, guid: 617f74e39e26b1c45a500eadda6c4323, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3885076129989994101, guid: 617f74e39e26b1c45a500eadda6c4323, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 617f74e39e26b1c45a500eadda6c4323, type: 3}
       propertyPath: m_Name
       value: marmelade
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 617f74e39e26b1c45a500eadda6c4323, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 617f74e39e26b1c45a500eadda6c4323, type: 3}
       propertyPath: m_TagString
@@ -132,7 +148,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1

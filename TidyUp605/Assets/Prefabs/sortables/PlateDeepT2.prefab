@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1395729359253438706}
   - component: {fileID: 598796561691894550}
   - component: {fileID: 460961868425482062}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlateDeepT2
   m_TagString: Beskidt
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1

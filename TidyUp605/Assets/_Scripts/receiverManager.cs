@@ -34,7 +34,7 @@ public class receiverManager : MonoBehaviour
     [SerializeField] private List<GameObject> platesToReveal = new List<GameObject>();
     [Tooltip("Assign inactive forks here")]
     [SerializeField] private List<GameObject> forksToReveal = new List<GameObject>();
-    [Tooltip("Assign inactive food (like smør) here")]
+    [Tooltip("Assign inactive food here")]
     [SerializeField] private List<GameObject> foodToReveal = new List<GameObject>();
 
 
@@ -60,7 +60,7 @@ public class receiverManager : MonoBehaviour
 
         particlesOnline = InitialiseParticles();
 
-        // Reveal any items that were already scored (useful if a level reloads)
+        // Reveal any items that were already scored
         if (isServiceReceiver)
         {
             revelio(gameController.plateAnswers, platesToReveal);
@@ -94,26 +94,27 @@ public class receiverManager : MonoBehaviour
         }
     }
 
-    ///When a collider enters the trigger, do the code
+
+    //  This triggers when a physical object is dropped into the receiver's trigger zone.
+    // It asks two questions: "Who are you?" (Identity) and "Do you belong here?" (Tags).
     private void OnTriggerEnter(Collider other)
     {
-        ///Get the identity script of the incoming object to determine what it is
+        // Get the identity script of the incoming object to determine what specific item it is
         identityScript = other.gameObject.GetComponent<Identifier>();
 
-        ///If this object is ServiceReceiver and the incoming object is tagged "Service", it's correct. Otherwise, it's wrong.
         if (isServiceReceiver)
         {
             if (other.gameObject.tag == "Service")
             {
                 string objID = identityScript.IdentifyObject();
 
-                // Identify Plates
+                // If it's a Clean Plate
                 if (objID == "rT")
                 {
                     gameController.plateAnswers++;
                     revelio(gameController.plateAnswers, platesToReveal);
                 }
-                // Identify Forks
+                // If it's a Clean Fork
                 else if (objID == "rG")
                 {
                     gameController.cleanFAnswers++;
@@ -125,20 +126,19 @@ public class receiverManager : MonoBehaviour
             else
                 HandleWrongItem(other.gameObject, identityScript.IdentifyObject());
         }
-        ///the same logic applies for the BeskidtReceiver and MadReceiver
         else if (isBeskidtReceiver)
         {
             if (other.gameObject.tag == "Beskidt")
             {
                 string objID = identityScript.IdentifyObject();
 
-                // Identify Dirty Plates
+                // If it's a Dirty Plate
                 if (objID == "bT")
                 {
                     gameController.dirtyPAnswers++;
                     revelio(gameController.dirtyPAnswers, platesToReveal);
                 }
-                // Identify Dirty Forks
+                // If it's a Dirty Fork
                 else if (objID == "bG")
                 {
                     gameController.dirtyFAnswers++;
@@ -154,7 +154,6 @@ public class receiverManager : MonoBehaviour
         {
             if (other.gameObject.tag == "Mad")
             {
-                // Assuming Butter/Smør for MadReceiver
                 gameController.smoerAnswers++;
                 revelio(gameController.smoerAnswers, foodToReveal);
 
@@ -165,6 +164,9 @@ public class receiverManager : MonoBehaviour
         }
     }
 
+
+    // Adds score, destroys the physics object, and plays victory effects.
+
     private void HandleCorrectItem(GameObject item)
     {
         Debug.Log($"=== HandleCorrectItem triggered for {item.name} ===");
@@ -172,7 +174,6 @@ public class receiverManager : MonoBehaviour
         gameController.AddLog(item.name, this.gameObject.name, true);
         gameController.increaseScore(1);
 
-        // 1. Destroy the incoming physical item
         Destroy(item);
         Debug.Log($"Destroyed incoming item: {item.name}");
 
@@ -182,15 +183,15 @@ public class receiverManager : MonoBehaviour
         Debug.Log($"=== Finished HandleCorrectItem ===");
     }
 
-    /// This method reveals hidden objects based on the count passed in and the specific list provided
+    // this looks at the score and turns on a pre placed hidden object
     private void revelio(int revealCount, List<GameObject> listToReveal)
     {
         // Safety check to prevent errors if a list is empty
         if (listToReveal == null || listToReveal.Count == 0) return;
 
+        // Loop through the list of hidden objects and turn on the correct amount
         for (int i = 0; i < listToReveal.Count; i++)
         {
-            // By using < instead of <=, if revealCount is 1, it only activates index 0. 
             if (i < revealCount)
             {
                 listToReveal[i].SetActive(true);
@@ -198,13 +199,16 @@ public class receiverManager : MonoBehaviour
         }
     }
 
-    ///This method handles the logic for when a wrong item is placed in the receiver
+    // Subtracts score, destroys the wrong item, and tells the spawner to give them a new one.
     private void HandleWrongItem(GameObject item, string respawnCode)
     {
         gameController.AddLog(item.name, this.gameObject.name, false);
         gameController.decreaseScore(1);
 
+        // Destroy the incorrect item
         Destroy(item);
+
+        // Build a replacement
         spawnerScript.spawnThisObject(respawnCode);
 
         PlayParticles(false);

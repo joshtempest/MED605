@@ -9,9 +9,12 @@ public class GameController : MonoBehaviour
     private LevelManager levelManager;
     public ToggleBothFarCasters laserManager;
 
+    // Score trackers
     public int rightAnswers;
     public int wrongAnswers;
 
+    // These track exactly how many of each item have been sorted correctly.
+    // They start at 0 so the first item dropped brings it to 1, revealing the first hidden object.
     public int plateAnswers = 0;
     public int dirtyPAnswers = 0;
     public int smoerAnswers = 0;
@@ -39,7 +42,8 @@ public class GameController : MonoBehaviour
     bool enoughRightAnswers = false;
     bool levelInProgress = true;
 
-    //list to log answers for the review
+    // Every time a player sorts an item, the receiver Manager writes it down
+    // in this list. The DisplayResults method uses this later to tell the player what they did.
     private List<Tuple<string, string, bool>> AnswerLog = new();
 
 
@@ -54,6 +58,7 @@ public class GameController : MonoBehaviour
             Debug.LogWarning("LevelManager not assigned");
         }
 
+        // Safety check: Find the blackboard if it wasn't dragged into the inspector manually
         if (blackboard == null)
         {
             blackboard = GameObject.Find("Blackboard");
@@ -73,8 +78,11 @@ public class GameController : MonoBehaviour
         //resetScore();
     }
 
+
+    // Changes the score and immediately checks if the player has won.
     public void increaseScore(int score)
     {
+        // Prevent score changes if the level is already over
         if (!levelInProgress) return;
 
         rightAnswers += score;
@@ -83,8 +91,10 @@ public class GameController : MonoBehaviour
         CheckWinCondition();
     }
 
+    // Changes the score and immediately checks if the player has lost
     public void decreaseScore(int score)
     {
+        // Prevent score changes if the level is already over
         if (!levelInProgress) return;
 
         wrongAnswers += score;
@@ -96,6 +106,8 @@ public class GameController : MonoBehaviour
     private void CheckWinCondition()
     {
         Debug.Log("Checking win condition: " + rightAnswers + " right answers, threshold is " + rightThreshold);
+
+        // If the player hit the required amount of right answers
         if (rightAnswers >= rightThreshold)
         {
             levelInProgress = false;
@@ -104,12 +116,13 @@ public class GameController : MonoBehaviour
             Debug.Log("rightThreshold reached. Level end, calling Display");
 
             DisplayResults();
-            levelManager.loadNextLevel(5);
+            levelManager.loadNextLevel(5); // Move on
         }
     }
 
     private void CheckLossCondition()
     {
+        // If the player hit the limit for mistakes...
         if (wrongAnswers >= wrongThreshold)
         {
             enoughRightAnswers = false;
@@ -120,7 +133,7 @@ public class GameController : MonoBehaviour
             Debug.Log("wrongThreshold reached. Level end, calling Display");
 
             DisplayResults();
-            levelManager.reloadLevel(5);
+            levelManager.reloadLevel(5); // Make them try again
         }
     }
 
@@ -155,6 +168,8 @@ public class GameController : MonoBehaviour
         if (laserManager != null) laserManager.SetLaserState(false);
     }
 
+
+    //  Turns on the Blackboard and dynamically types out feedback based on the AnswerLog
     void DisplayResults()
     {
         Debug.Log("Attempting to display results; enoughRightAnswers = " + enoughRightAnswers.ToString());
@@ -162,13 +177,14 @@ public class GameController : MonoBehaviour
         if (ButtonText != null)
             ButtonText.text = enoughRightAnswers ? "Gå til næste øvelse" : "Prøv igen";
         else
-            Debug.LogWarning("ButtonText is missing");
+            Debug.LogWarning("ButtonText is missing! Did you forget to assign it in the Inspector?");
 
         if (blackboard != null)
             blackboard.SetActive(true);
 
         if (DisplayText != null)
         {
+            // Loop through every single interaction the player had and write a sentence for it
             foreach (Tuple<string, string, bool> log in AnswerLog)
             {
                 DisplayText.text += $"{log.Item1} blev placeret i {log.Item2}, som var ";
@@ -177,7 +193,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("DisplayText is missing");
+            Debug.LogWarning("DisplayText is missing! Did you forget to assign it in the Inspector?");
         }
     }
 

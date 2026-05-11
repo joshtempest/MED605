@@ -12,9 +12,11 @@ public class GameController : MonoBehaviour
     public int rightAnswers;
     public int wrongAnswers;
 
-    public int plateAnswers = -1;
-    public int dirtyPAnswers = -1;
-    public int smoerAnswers = -1;
+    public int plateAnswers = 0;
+    public int dirtyPAnswers = 0;
+    public int smoerAnswers = 0;
+    public int cleanFAnswers = 0;
+    public int dirtyFAnswers = 0;
 
     public int wrongThreshold = 5;
     public int rightThreshold = 5;
@@ -41,7 +43,6 @@ public class GameController : MonoBehaviour
     private List<Tuple<string, string, bool>> AnswerLog = new();
 
 
-    // Changed Start() to Awake() so this script initializes BEFORE LevelManager's Start() runs
     void Awake()
     {
         bbReviewRotation = Quaternion.Euler(bbReviewRotV3);
@@ -53,9 +54,13 @@ public class GameController : MonoBehaviour
             Debug.LogWarning("LevelManager not assigned");
         }
 
-        blackboard = GameObject.Find("Blackboard");
+        if (blackboard == null)
+        {
+            blackboard = GameObject.Find("Blackboard");
+        }
+
         if (!blackboard)
-            Debug.LogWarning("Blackboard not assigned");
+            Debug.LogWarning("Blackboard not assigned! Please drag it into the GameController inspector.");
         else
         {
             blackboard.transform.position = bbBackgroundPosition;
@@ -70,7 +75,6 @@ public class GameController : MonoBehaviour
 
     public void increaseScore(int score)
     {
-        // Prevent score changes if the level is already over
         if (!levelInProgress) return;
 
         rightAnswers += score;
@@ -81,7 +85,6 @@ public class GameController : MonoBehaviour
 
     public void decreaseScore(int score)
     {
-        // Prevent score changes if the level is already over
         if (!levelInProgress) return;
 
         wrongAnswers += score;
@@ -141,10 +144,9 @@ public class GameController : MonoBehaviour
 
         test = levelManager.currentLevel;
         Debug.Log("Resetting score..." + levelManager.currentLevel);
-        //Debug.Log(test);
+
         rightAnswers = 0;
         wrongAnswers = 0;
-
         wrongThreshold = 5;
 
         enoughRightAnswers = false;
@@ -157,14 +159,25 @@ public class GameController : MonoBehaviour
     {
         Debug.Log("Attempting to display results; enoughRightAnswers = " + enoughRightAnswers.ToString());
 
-        ButtonText.text = enoughRightAnswers ? "Gå til næste øvelse" : "Prøv igen";
+        if (ButtonText != null)
+            ButtonText.text = enoughRightAnswers ? "Gå til næste øvelse" : "Prøv igen";
+        else
+            Debug.LogWarning("ButtonText is missing");
 
-        blackboard.SetActive(true);
+        if (blackboard != null)
+            blackboard.SetActive(true);
 
-        foreach (Tuple<string, string, bool> log in AnswerLog)
+        if (DisplayText != null)
         {
-            DisplayText.text += $"{log.Item1} blev placeret i {log.Item2}, som var ";
-            DisplayText.text += log.Item3 ? "rigtig." : "forkert. \n";
+            foreach (Tuple<string, string, bool> log in AnswerLog)
+            {
+                DisplayText.text += $"{log.Item1} blev placeret i {log.Item2}, som var ";
+                DisplayText.text += log.Item3 ? "rigtig." : "forkert. \n";
+            }
+        }
+        else
+        {
+            Debug.LogWarning("DisplayText is missing");
         }
     }
 

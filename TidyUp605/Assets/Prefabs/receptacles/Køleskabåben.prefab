@@ -2069,7 +2069,9 @@ MonoBehaviour:
   go_part_tick: {fileID: 1476439032071079828}
   go_part_sparkles: {fileID: 8686125227289458114}
   go_part_x: {fileID: 5533874613533163171}
-  objectsToReveal:
+  platesToReveal: []
+  forksToReveal: []
+  foodToReveal:
   - {fileID: 7874007382538718354}
   - {fileID: 8987303453095996607}
   - {fileID: 1611906453995421676}

@@ -1335,7 +1335,7 @@ Transform:
   m_GameObject: {fileID: 325641486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0.3, z: -3}
+  m_LocalPosition: {x: -2.488, y: 0.3, z: -3}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1652,7 +1652,7 @@ Transform:
   m_GameObject: {fileID: 452014541}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.0008570254, z: -0, w: 0.9999997}
-  m_LocalPosition: {x: 0.44282946, y: 0.9179907, z: -1.5873878}
+  m_LocalPosition: {x: 0.91, y: 0.9179907, z: -0.46}
   m_LocalScale: {x: 4.8720975, y: 0.14570187, z: 2.7349737}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4638,7 +4638,7 @@ Transform:
   m_GameObject: {fileID: 1291244298}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.44421476, z: -0, w: 0.89592034}
-  m_LocalPosition: {x: 0.508, y: 0.5849763, z: 0.825}
+  m_LocalPosition: {x: 0.764, y: 0.5849763, z: 0.63}
   m_LocalScale: {x: 0.2052499, y: 0.3431665, z: 0.3656347}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5169,15 +5169,23 @@ PrefabInstance:
       objectReference: {fileID: 284850172}
     - target: {fileID: 809904635402149817, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
       propertyPath: plateAnswers
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 809904635402149817, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
       propertyPath: smoerAnswers
-      value: -1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 809904635402149817, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: cleanFAnswers
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 809904635402149817, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: dirtyFAnswers
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 809904635402149817, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
       propertyPath: dirtyPAnswers
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 939640111568507421, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
       propertyPath: m_Name

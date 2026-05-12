@@ -261,11 +261,11 @@ public class LevelManager : MonoBehaviour
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        gameController.rightThreshold = 3;
+        gameController.totalThreshold = 3; //G
         //Debug.Log(currentLevel + " is being loaded");
     }
     ///Enables loading of custom levels, based on sequence 1.
-    public void loadCustomSeq1(int cleanTallerken, int dirtyTallerken, bool boolskab, bool boolopvask, bool boolkoele, int rightAnswers)
+    public void loadCustomSeq1(int cleanTallerken, int dirtyTallerken, bool boolskab, bool boolopvask, bool boolkoele, int threshold)
     {
         compareScene("Tutorial_Practice");
         annihilation();
@@ -282,7 +282,7 @@ public class LevelManager : MonoBehaviour
         {
             spawnerScript.spawnThisObject("bT");
         }
-        gameController.rightThreshold = rightAnswers;
+        gameController.totalThreshold = threshold;
     }
     
     ///Enables loading of Sequence 1 levels, based on the level name.
@@ -314,8 +314,8 @@ public class LevelManager : MonoBehaviour
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
             ///Spawn one object for sorting as a starting point
             spawnerScript.spawnThisObject("rT");
-            ///Sets how many right answers are needed
-            gameController.rightThreshold = 1;
+            ///Sets how many answers are needed before moving on
+            gameController.totalThreshold = 1; //G
             //Debug.Log("Right threshold set to: " + gameController.rightThreshold);
         }
         else if (levelName == "T2")
@@ -323,7 +323,7 @@ public class LevelManager : MonoBehaviour
             currentLevel = levelName;
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             spawnerScript.spawnThisObject("bT");
-            gameController.rightThreshold = 1;
+            gameController.totalThreshold = 1;
         }
         else if (levelName == "P1")
         {
@@ -331,7 +331,7 @@ public class LevelManager : MonoBehaviour
 
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-            gameController.rightThreshold = 2;
+            gameController.totalThreshold = 2;
             ///Set the amount of clean and dirty plates to spawn, based on the level, and spawn them using the spawner script.
             int cleanTallerken = 1;
             int dirtyTallerken = 1;
@@ -350,7 +350,7 @@ public class LevelManager : MonoBehaviour
 
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-            gameController.rightThreshold = 3;
+            gameController.totalThreshold = 3;
             int cleanTallerken = 1;
             int dirtyTallerken = 2;
             for (int i = 0; i < cleanTallerken; i++)
@@ -368,7 +368,7 @@ public class LevelManager : MonoBehaviour
 
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-            gameController.rightThreshold = 4;
+            gameController.totalThreshold = 4;
             int cleanTallerken = 2;
             int dirtyTallerken = 2;
             for (int i = 0; i < cleanTallerken; i++)
@@ -386,7 +386,7 @@ public class LevelManager : MonoBehaviour
 
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-            gameController.rightThreshold = 5;
+            gameController.totalThreshold = 5;
             int cleanTallerken = 1;
             int dirtyTallerken = 4;
             for (int i = 0; i < cleanTallerken; i++)
@@ -423,14 +423,14 @@ public class LevelManager : MonoBehaviour
             currentLevel = levelName;
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
             spawnerScript.spawnThisObject("rG");
-            gameController.rightThreshold = 1;
+            gameController.totalThreshold = 1;
         }
         else if (levelName == "T2")
         {
             currentLevel = levelName;
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             spawnerScript.spawnThisObject("bG");
-            gameController.rightThreshold = 1;
+            gameController.totalThreshold = 1;
         }
         else if (levelName == "P1")
         {
@@ -438,7 +438,7 @@ public class LevelManager : MonoBehaviour
 
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-            gameController.rightThreshold = 2;
+            gameController.totalThreshold = 2;
             int cleanTallerken = 1;
             int dirtyTallerken = 1;
             for (int i = 0; i < cleanTallerken; i++)
@@ -456,7 +456,7 @@ public class LevelManager : MonoBehaviour
 
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-            gameController.rightThreshold = 3;
+            gameController.totalThreshold = 3;
             int cleanTallerken = 1;
             int dirtyTallerken = 2;
             for (int i = 0; i < cleanTallerken; i++)
@@ -474,7 +474,7 @@ public class LevelManager : MonoBehaviour
 
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-            gameController.rightThreshold = 4;
+            gameController.totalThreshold = 4;
             int cleanTallerken = 2;
             int dirtyTallerken = 2;
             for (int i = 0; i < cleanTallerken; i++)
@@ -492,7 +492,7 @@ public class LevelManager : MonoBehaviour
 
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-            gameController.rightThreshold = 5;
+            gameController.totalThreshold = 5;
             int cleanTallerken = 1;
             int dirtyTallerken = 4;
             for (int i = 0; i < cleanTallerken; i++)
@@ -516,7 +516,7 @@ public class LevelManager : MonoBehaviour
         compareScene("Evaluation");
         currentLevel = "S1E";
         gameController.resetScore();
-        gameController.rightThreshold = 8;
+        gameController.totalThreshold = 8;
 
         for (int i = 0; i < 2; i++)
         {
@@ -542,7 +542,7 @@ public class LevelManager : MonoBehaviour
         gameController.resetScore();
         Debug.Log(currentLevel + " is being loaded");
         ////LogData.instance.AddToLogs(currentLevel + " is being loaded");
-        gameController.rightThreshold = 2;
+        gameController.totalThreshold = 2;
     }
 
     /// The old levels ______________________________________________________________________________________________________________________________________________________________________________________
@@ -553,7 +553,7 @@ public class LevelManager : MonoBehaviour
         annihilation();
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         spawnerScript.spawnThisObject("bT");
-        gameController.rightThreshold = 1;
+        gameController.totalThreshold = 1;
         Debug.Log(currentLevel + " is being loaded");
     }
     public void loadTutorial2()
@@ -563,7 +563,7 @@ public class LevelManager : MonoBehaviour
         annihilation();
         Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
         spawnerScript.spawnThisObject("s");
-        gameController.rightThreshold = 1;
+        gameController.totalThreshold = 1;
         Debug.Log(currentLevel + " is being loaded");
     }
     public void loadTutorial3()
@@ -573,7 +573,7 @@ public class LevelManager : MonoBehaviour
         annihilation();
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("rT");
-        gameController.rightThreshold = 1;
+        gameController.totalThreshold = 1;
         Debug.Log(currentLevel + " is being loaded");
     }
     public void loadPractice1()
@@ -585,7 +585,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("bT");
-        gameController.rightThreshold = 1;
+        gameController.totalThreshold = 1;
         Debug.Log(currentLevel + " is being loaded");
     }
     public void loadPractice2()
@@ -597,7 +597,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("s");
-        gameController.rightThreshold = 1;
+        gameController.totalThreshold = 1;
         Debug.Log(currentLevel + " is being loaded");
     }
     public void loadPractice3()
@@ -609,7 +609,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("rT");
-        gameController.rightThreshold = 1;
+        gameController.totalThreshold = 1;
         Debug.Log(currentLevel + " is being loaded");
     }
     public void loadPractice4()
@@ -622,7 +622,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("bT");
         spawnerScript.spawnThisObject("s");
-        gameController.rightThreshold = 2;
+        gameController.totalThreshold = 2;
         Debug.Log(currentLevel + " is being loaded");
     }
     public void loadPractice5()
@@ -635,7 +635,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("s");
         spawnerScript.spawnThisObject("rT");
-        gameController.rightThreshold = 2;
+        gameController.totalThreshold = 2;
         Debug.Log(currentLevel + " is being loaded");
     }
     public void loadPractice6()
@@ -648,7 +648,7 @@ public class LevelManager : MonoBehaviour
         Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
         spawnerScript.spawnThisObject("bT");
         spawnerScript.spawnThisObject("rT");
-        gameController.rightThreshold = 2;
+        gameController.totalThreshold = 2;
         Debug.Log(currentLevel + " is being loaded");
     }
     public void loadPractice7()
@@ -662,7 +662,7 @@ public class LevelManager : MonoBehaviour
         spawnerScript.spawnThisObject("bT");
         spawnerScript.spawnThisObject("rT");
         spawnerScript.spawnThisObject("s");
-        gameController.rightThreshold = 3;
+        gameController.totalThreshold = 3;
         Debug.Log(currentLevel + " is being loaded");
     }
     public void loadEval1()

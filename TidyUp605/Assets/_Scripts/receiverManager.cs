@@ -171,8 +171,8 @@ public class receiverManager : MonoBehaviour
     {
         Debug.Log($"=== HandleCorrectItem triggered for {item.name} ===");
 
-        gameController.AddLog(item.name, this.gameObject.name, true);
-        gameController.increaseScore(1);
+        ReviewManager.instance.AddLog(item.name, this.gameObject.name, true);
+        gameController.addTotalScore(1);
 
         Destroy(item);
         Debug.Log($"Destroyed incoming item: {item.name}");
@@ -202,14 +202,16 @@ public class receiverManager : MonoBehaviour
     // Subtracts score, destroys the wrong item, and tells the spawner to give them a new one.
     private void HandleWrongItem(GameObject item, string respawnCode)
     {
-        gameController.AddLog(item.name, this.gameObject.name, false);
-        gameController.decreaseScore(1);
+        ReviewManager.instance.AddLog(item.name, this.gameObject.name, false);
+        gameController.addTotalScore(1);
 
         // Destroy the incorrect item
         Destroy(item);
 
+        /* Disabled because we move on instead of respawn
         // Build a replacement
         spawnerScript.spawnThisObject(respawnCode);
+        */
 
         PlayParticles(false);
         AudioManager.Instance.PlaySFX("Wrong");

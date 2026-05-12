@@ -19,12 +19,11 @@ public class ReviewManager : MonoBehaviour
 
     //logic stuff
     float timer = 0f;
-    //float timerDelay = 0f;
     public float waitTimeInterval = 1.5f;
-    bool doContinue = true;
 
+
+    //MISC variables
     int listItemsDisplayed = 0;
-
     Image currentIMG;
 
 
@@ -37,10 +36,11 @@ public class ReviewManager : MonoBehaviour
     CanvasGroup End_continue;
     CanvasGroup Gameplay;
 
-    bool isReview = true;
+    //bool isReview = true;
 
     //currently a placeholder, add functionality
     public GameObject scoreBar;
+    public TMP_Text scoreText;
 
     //stars 
     public GameObject starOne;
@@ -311,7 +311,7 @@ public class ReviewManager : MonoBehaviour
 
 
     //DISPLAY: COROUTINES
-     IEnumerator CRDisplayResults()
+     public IEnumerator CRDisplayResults()
      {
         Debug.Log("Running CRDisp...");
 
@@ -346,6 +346,8 @@ public class ReviewManager : MonoBehaviour
             Debug.LogWarning("Empty ReviewLog, cannot display!");
         }
 
+        Debug.Log("Finished CRDisplayResults.");
+        Debug.Log("Waiting for button click...");
         yield return null; 
      }
 
@@ -605,7 +607,6 @@ public class ReviewManager : MonoBehaviour
 
     void RestartTimer(float delay)
     {
-        doContinue = false;
         timer = 0f;
 
     }

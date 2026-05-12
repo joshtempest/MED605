@@ -44,7 +44,10 @@ public class GameController : MonoBehaviour
 
     // Every time a player sorts an item, the receiver Manager writes it down
     // in this list. The DisplayResults method uses this later to tell the player what they did.
-    private List<Tuple<string, string, bool>> AnswerLog = new();
+    
+    //private List<Tuple<string, string, bool>> AnswerLog = new();
+
+    //G: this functionality was moved into ReviewManager instance
 
 
     void Awake()
@@ -102,6 +105,7 @@ public class GameController : MonoBehaviour
 
         CheckLossCondition();
     }
+   
 
     private void CheckWinCondition()
     {
@@ -115,7 +119,7 @@ public class GameController : MonoBehaviour
 
             Debug.Log("rightThreshold reached. Level end, calling Display");
 
-            DisplayResults();
+            //DisplayResults();
             levelManager.loadNextLevel(5); // Move on
         }
     }
@@ -132,14 +136,55 @@ public class GameController : MonoBehaviour
 
             Debug.Log("wrongThreshold reached. Level end, calling Display");
 
-            DisplayResults();
+            //DisplayResults();
             levelManager.reloadLevel(5); // Make them try again
         }
     }
 
+
+    //Gilah renovations: no right/wrong thresholds, just move on after everything is sorted
+    public int totalAnswers;
+    public int totalThreshold;
+
+    private void CheckEndCondition()
+    {
+        if (totalAnswers >= totalThreshold)
+        {
+            levelInProgress = false;
+
+            //enable laser - maybe do this later through ReviewManager
+            if(laserManager != null) laserManager.SetLaserState(true);
+
+            Debug.Log("End Condition met, handing off to Review Display management...");
+
+            ReviewManager.instance.CRDisplayResults();
+        }
+    }
+
+    // add to total score and immediately checks if the player has reached level end
+    public void addTotalScore(int score)
+    {
+        // Prevent score changes if the level is already over
+        if (!levelInProgress) return;
+
+        totalAnswers += score;
+        Debug.Log("Total Score: " + wrongAnswers);
+
+        CheckEndCondition();
+    }
+
+    public void resetScore()
+    {
+        totalAnswers = 0;
+    }
+
+
+
+    /*
+    //take this out, old
     public void ResetLog()
     {
-        AnswerLog = new();
+        ReviewManager.instance.ResetLog();
     }
 
     public void AddLog(string item, string receptacle, bool isRight)
@@ -163,7 +208,7 @@ public class GameController : MonoBehaviour
         wrongThreshold = 5;
 
         enoughRightAnswers = false;
-        ResetLog();
+        ReviewManager.instance.ResetLog();
         levelInProgress = true;
         if (laserManager != null) laserManager.SetLaserState(false);
     }
@@ -204,4 +249,5 @@ public class GameController : MonoBehaviour
         else
             levelManager.reloadLevel();
     }
+    */
 }

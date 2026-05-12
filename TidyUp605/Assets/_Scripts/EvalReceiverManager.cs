@@ -66,7 +66,7 @@ public class EvalReceiverManager : MonoBehaviour
             if (collision.gameObject.tag == "Service")
             {
                 //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
+                ReviewManager.instance.AddLog(collision.gameObject.name, this.gameObject.name, true);
 
                 //Add score for positive interaction
                 Destroy(collision.gameObject);
@@ -82,7 +82,7 @@ public class EvalReceiverManager : MonoBehaviour
             else if (collision.gameObject.tag == "Beskidt")
             {
                 //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+                ReviewManager.instance.AddLog(collision.gameObject.name, this.gameObject.name, false);
 
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
@@ -98,7 +98,7 @@ public class EvalReceiverManager : MonoBehaviour
             else if (collision.gameObject.tag == "Mad")
             {
                 //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+                ReviewManager.instance.AddLog(collision.gameObject.name, this.gameObject.name, false);
 
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
@@ -118,7 +118,7 @@ public class EvalReceiverManager : MonoBehaviour
             if (collision.gameObject.tag == "Beskidt")
             {
                 //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
+                ReviewManager.instance.AddLog(collision.gameObject.name, this.gameObject.name, true);
 
                 Destroy(collision.gameObject);
                 gameController.increaseScore(1);
@@ -134,7 +134,7 @@ public class EvalReceiverManager : MonoBehaviour
             else if (collision.gameObject.tag == "Service")
             {
                 //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+                ReviewManager.instance.AddLog(collision.gameObject.name, this.gameObject.name, false);
 
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
@@ -150,7 +150,7 @@ public class EvalReceiverManager : MonoBehaviour
             else if (collision.gameObject.tag == "Mad")
             {
                 //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+                ReviewManager.instance.AddLog(collision.gameObject.name, this.gameObject.name, false);
 
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
@@ -170,7 +170,7 @@ public class EvalReceiverManager : MonoBehaviour
             if (collision.gameObject.tag == "Mad")
             {
                 //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, true);
+                ReviewManager.instance.AddLog(collision.gameObject.name, this.gameObject.name, true);
 
                 Destroy(collision.gameObject);
                 gameController.increaseScore(1);
@@ -186,7 +186,7 @@ public class EvalReceiverManager : MonoBehaviour
             else if (collision.gameObject.tag == "Service")
             {
                 //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+                ReviewManager.instance.AddLog(collision.gameObject.name, this.gameObject.name, false);
 
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);
@@ -202,7 +202,7 @@ public class EvalReceiverManager : MonoBehaviour
             else if (collision.gameObject.tag == "Beskidt")
             {
                 //Add interaction to logs
-                gameController.AddLog(collision.gameObject.name, this.gameObject.name, false);
+                ReviewManager.instance.AddLog(collision.gameObject.name, this.gameObject.name, false);
 
                 Destroy(collision.gameObject);
                 gameController.decreaseScore(1);

@@ -89,6 +89,19 @@ public class ReviewManager : MonoBehaviour
     //SETUP
     void Start()
     {
+        //Singleton pattern - to ensure there are not two acting ReviewManagers
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+
         img_One = starOne.GetComponent<Image>();
         img_Two = starTwo.GetComponent<Image>();
         img_Three = starThree.GetComponent<Image>();

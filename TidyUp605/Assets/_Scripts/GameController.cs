@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class GameController : MonoBehaviour
 {
     private LevelManager levelManager;
-    public ToggleBothFarCasters laserManager;
+    public static ToggleBothFarCasters laserManager;
 
     // Score trackers
     public int rightAnswers;
@@ -168,7 +168,7 @@ public class GameController : MonoBehaviour
         if (!levelInProgress) return;
 
         totalAnswers += score;
-        Debug.Log("Total Score: " + wrongAnswers);
+        Debug.Log("Total Score: " + totalAnswers);
 
         CheckEndCondition();
     }

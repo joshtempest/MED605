@@ -82,6 +82,16 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    //housekeeping - disabling click, resetting the blackboard
+    public void PrepareLoadNew()
+    {
+        ReviewManager.instance.ClearBoard();
+        ReviewManager.instance.DisplayGameScreen();
+
+        //disable laser
+        if (GameController.laserManager) GameController.laserManager.SetLaserState(false);
+    }
+
     ///Destroys all objects with the tags "receptacle", "Mad", "Service" and "Beskidt", to clear the scene.
     void annihilation()
     {
@@ -168,6 +178,8 @@ public class LevelManager : MonoBehaviour
     public void loadNextLevel()
     {
         //LogData.instance.AddToLogs("Loading Next Level after " + currentLevel);
+
+        
 
         Debug.Log("Loading next level after: " + currentLevel); 
 
@@ -506,6 +518,9 @@ public class LevelManager : MonoBehaviour
         }
         else { Debug.Log(levelName + " is invalid"); }
 
+        //Initialise the Blackboard & disable laser
+        PrepareLoadNew();
+
     }
     ///Load the evaluation scene for stage 1, with a set amount of objects and a higher threshold, to evaluate the player's understanding of the sorting task.
     public void loadStage1Eval()
@@ -525,6 +540,9 @@ public class LevelManager : MonoBehaviour
             spawnerScript.spawnThisObject("rG");
             spawnerScript.spawnThisObject("bG");
         }
+
+        //Initialise the Blackboard & disable laser
+        PrepareLoadNew();
     }
     ///Loads the level select scene, where the player can choose which level to play.
     ///loadLevelSelect and loadVR is part of the old system, but they did not need to be updated to function.
@@ -543,6 +561,9 @@ public class LevelManager : MonoBehaviour
         Debug.Log(currentLevel + " is being loaded");
         ////LogData.instance.AddToLogs(currentLevel + " is being loaded");
         gameController.totalThreshold = 2;
+
+        //Initialise the Blackboard & disable laser
+        PrepareLoadNew();
     }
 
     /// The old levels ______________________________________________________________________________________________________________________________________________________________________________________

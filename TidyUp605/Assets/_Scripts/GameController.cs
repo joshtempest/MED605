@@ -157,7 +157,7 @@ public class GameController : MonoBehaviour
 
             Debug.Log("End Condition met, handing off to Review Display management...");
 
-            ReviewManager.instance.CRDisplayResults();
+            StartCoroutine(ReviewManager.instance.CRDisplayResults());
         }
     }
 

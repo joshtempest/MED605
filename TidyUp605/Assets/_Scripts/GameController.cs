@@ -176,6 +176,8 @@ public class GameController : MonoBehaviour
     public void resetScore()
     {
         totalAnswers = 0;
+        levelInProgress = true;
+        ReviewManager.instance.ResetLog();
     }
 
 

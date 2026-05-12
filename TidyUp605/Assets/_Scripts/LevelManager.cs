@@ -85,8 +85,12 @@ public class LevelManager : MonoBehaviour
     //housekeeping - disabling click, resetting the blackboard
     public void PrepareLoadNew()
     {
-        ReviewManager.instance.ClearBoard();
-        ReviewManager.instance.DisplayGameScreen();
+        if (ReviewManager.instance)
+        {
+            ReviewManager.instance.ClearBoard();
+            ReviewManager.instance.DisplayGameScreen();
+
+        }
 
         //disable laser
         if (GameController.laserManager) GameController.laserManager.SetLaserState(false);

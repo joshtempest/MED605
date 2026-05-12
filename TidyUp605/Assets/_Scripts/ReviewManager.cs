@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using JetBrains.Annotations;
 using NUnit.Framework;
 using TMPro;
 using Unity.VisualScripting;
@@ -307,6 +308,13 @@ public class ReviewManager : MonoBehaviour
      public IEnumerator CRDisplayResults()
      {
         Debug.Log("Running CRDisp...");
+        //audio cue play
+        //animation arrows play
+
+
+        //wait to ease transition
+        Debug.Log("Waiting...");
+        yield return new WaitForSeconds(3f);
 
 
         //*disable movement & click
@@ -403,10 +411,17 @@ public class ReviewManager : MonoBehaviour
 
             StartCoroutine(CRDisplayNextTuple());
         }
-
-            
     }
 
+    public void MoveToNextLevel()
+    {
+
+    }
+
+    public void RetryLevel()
+    {
+
+    }
 
 
 

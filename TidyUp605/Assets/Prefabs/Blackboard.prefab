@@ -1816,7 +1816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7904081920720453741
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1901,10 +1901,10 @@ GameObject:
   m_Layer: 0
   m_Name: Gameplay
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3495449873615471312
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5369,6 +5369,22 @@ PrefabInstance:
     - target: {fileID: 522535640649616884, guid: bac863d5f1b05e54c9f4f56ed8bf149b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578624025860773577, guid: bac863d5f1b05e54c9f4f56ed8bf149b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578624025860773577, guid: bac863d5f1b05e54c9f4f56ed8bf149b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578624025860773577, guid: bac863d5f1b05e54c9f4f56ed8bf149b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6741650676471089642}
+    - target: {fileID: 2578624025860773577, guid: bac863d5f1b05e54c9f4f56ed8bf149b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8947104163190795670, guid: bac863d5f1b05e54c9f4f56ed8bf149b, type: 3}
       propertyPath: m_Name

@@ -2890,7 +2890,7 @@ GameObject:
   - component: {fileID: 5553909520294008433}
   - component: {fileID: 3816732076325464882}
   - component: {fileID: 3091807797498773181}
-  - component: {fileID: 91089434907154490}
+  - component: {fileID: 2594156363174363825}
   m_Layer: 0
   m_Name: BB_canvas
   m_TagString: Untagged
@@ -2966,7 +2966,7 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &91089434907154490
+--- !u!114 &2594156363174363825
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2975,14 +2975,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5608045752424905857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &5624351143457244487
 GameObject:
   m_ObjectHideFlags: 0
@@ -3675,6 +3677,7 @@ MonoBehaviour:
   go_End_continue: {fileID: 5624351143457244487}
   go_Gameplay: {fileID: 4365375761837544713}
   scoreBar: {fileID: 6321215499099775084}
+  scoreText: {fileID: 0}
   starOne: {fileID: 7471476404987016665}
   starTwo: {fileID: 8822527576797514337}
   starThree: {fileID: 8355827221255863863}

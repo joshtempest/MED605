@@ -2645,6 +2645,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 901894072}
+    - target: {fileID: 238745037041113350, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3035
+      objectReference: {fileID: 0}
     - target: {fileID: 1046477570249178292, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2653,6 +2657,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1350921664}
+    - target: {fileID: 1508680847012621384, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_VersionIndex
+      value: 4545
+      objectReference: {fileID: 0}
     - target: {fileID: 2275353693118570032, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2665,6 +2673,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1372834002}
+    - target: {fileID: 2758131565630154969, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_VersionIndex
+      value: 5221
+      objectReference: {fileID: 0}
     - target: {fileID: 4050152783959878727, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2677,6 +2689,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1606947372}
+    - target: {fileID: 4754674276950402619, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_VersionIndex
+      value: 4536
+      objectReference: {fileID: 0}
     - target: {fileID: 4761621822522169746, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2737,6 +2753,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 824873329}
+    - target: {fileID: 6739047064731315802, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3958
+      objectReference: {fileID: 0}
     - target: {fileID: 6741650676471089642, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Name
       value: Blackboard

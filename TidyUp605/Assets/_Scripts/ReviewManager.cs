@@ -144,22 +144,7 @@ public class ReviewManager : MonoBehaviour
         }
     }
 
-    public IEnumerator DBDisplay()
-    {
-        //add items
-        for (int i = 0; i <= ReviewLog.Count; i++)
-        {
-            continueText.text += $"{ReviewLog[i].Item2} -> {ReviewLog[i].Item2} = {ReviewLog[i].Item3}";
-            yield return new WaitForSeconds(waitTimeInterval);
-        }
-
-
-
-        yield return null;
-    }
-
-
-
+    
 
 
     //TIMING
@@ -321,6 +306,9 @@ public class ReviewManager : MonoBehaviour
         //*sound effect?
         //*narrator: Godt klaret!
 
+        //communicate the total sorts to the StarManager
+        //StarManager.instance.totalLevelSorts = GetReviewSequenceTotal();
+
         //set stars to grey
         img_One.sprite = greyStar;
         img_Two.sprite = greyStar;
@@ -445,6 +433,21 @@ public class ReviewManager : MonoBehaviour
 
 
     //OLD THINGS NO LONGER USED
+    public IEnumerator DBDisplay()
+    {
+        //add items
+        for (int i = 0; i <= ReviewLog.Count; i++)
+        {
+            continueText.text += $"{ReviewLog[i].Item2} -> {ReviewLog[i].Item2} = {ReviewLog[i].Item3}";
+            yield return new WaitForSeconds(waitTimeInterval);
+        }
+
+
+
+        yield return null;
+    }
+
+
     private void Awake()
     {
         /*

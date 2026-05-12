@@ -139,6 +139,7 @@ public class LevelManager : MonoBehaviour
     public void reloadLevel()
     {
         Debug.Log("Reloading level: " + currentLevel);
+        Debug.Log("Current stage: " + currentStage + ", Current sequence: " + currentSequence + ", Eval active: " + evalActive);
 
         if (currentStage == 1)
         {
@@ -326,6 +327,8 @@ public class LevelManager : MonoBehaviour
         {
             ///set current level, to enable reloading of the same level and loading the next level in the correct order
             currentLevel = levelName;
+            Debug.Log("current level: " + currentLevel);
+            Debug.Log("level name: " + levelName);
             ///Instantiate the needed receptacles for this level, based on a platform made in the scene.
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
             ///Spawn one object for sorting as a starting point

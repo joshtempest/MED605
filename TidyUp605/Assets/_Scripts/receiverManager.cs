@@ -1,9 +1,6 @@
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using JetBrains.Annotations;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class receiverManager : MonoBehaviour
 {
@@ -169,9 +166,25 @@ public class receiverManager : MonoBehaviour
 
     private void HandleCorrectItem(GameObject item)
     {
+        //Debug
         Debug.Log($"=== HandleCorrectItem triggered for {item.name} ===");
+        if (!item) Debug.Log("ITEM NOT FOUND");
+        if (!gameObject) Debug.Log("RECEIVER NOT FOUND");
+        if (!ReviewManager.instance) Debug.Log("REVIEWMAN NOT FOUND");
+        if (ReviewManager.instance.ReviewLog == null) Debug.Log("REVIEWLOG NOT FOUND");
 
-        ReviewManager.instance.AddLog(item.name, this.gameObject.name, true);
+        //find out what collided and log it for later
+        string itemID = item.GetComponent<Identifier>().IdentifyObject();
+        string receiverID;
+        if (isServiceReceiver)
+            receiverID = "skab";
+        else if (isMadReceiver)
+            receiverID = "koele";
+        else
+            receiverID = "opvasker";
+
+        ReviewManager.instance.AddLog(itemID, receiverID, true);
+        
         gameController.addTotalScore(1);
 
         Destroy(item);
@@ -202,7 +215,26 @@ public class receiverManager : MonoBehaviour
     // Subtracts score, destroys the wrong item, and tells the spawner to give them a new one.
     private void HandleWrongItem(GameObject item, string respawnCode)
     {
-        ReviewManager.instance.AddLog(item.name, this.gameObject.name, false);
+        //Debug
+        Debug.Log($"=== HandleCorrectItem triggered for {item.name} ===");
+        if (!item) Debug.Log("ITEM NOT FOUND");
+        if (!gameObject) Debug.Log("RECEIVER NOT FOUND");
+        if (!ReviewManager.instance) Debug.Log("REVIEWMAN NOT FOUND");
+        if (ReviewManager.instance.ReviewLog == null) Debug.Log("REVIEWLOG NOT FOUND");
+
+        //find out what collided and log it for later
+        string itemID = item.GetComponent<Identifier>().IdentifyObject();
+        string receiverID;
+        if (isServiceReceiver)
+            receiverID = "skab";
+        else if (isMadReceiver)
+            receiverID = "koele";
+        else
+            receiverID = "opvasker";
+
+        //send information to ReviewManager
+        ReviewManager.instance.AddLog(itemID, receiverID, false);
+
         gameController.addTotalScore(1);
 
         // Destroy the incorrect item

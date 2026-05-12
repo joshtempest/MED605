@@ -8,6 +8,8 @@ public class StarManager : MonoBehaviour
     public int totalLevelSorts = 0;
     public float rightPercentage = 0f;
 
+    int currentReviewSequence = 0;
+
     void Awake()
     {
         //Singleton pattern
@@ -21,6 +23,7 @@ public class StarManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        currentReviewSequence = 0;
     }
 
 
@@ -39,4 +42,5 @@ public class StarManager : MonoBehaviour
         totalLevelSorts++;
         if (isRight) totalLevelSorts++;
     }
+
 }

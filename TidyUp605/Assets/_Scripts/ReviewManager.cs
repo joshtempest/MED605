@@ -173,11 +173,6 @@ public class ReviewManager : MonoBehaviour
 
 
 
-
-
-
-
-
     //DISPLAY MANAGEMENT
     public void ClearBoard()
     {

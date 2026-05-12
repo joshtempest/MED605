@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using JetBrains.Annotations;
 using NUnit.Framework;
@@ -25,7 +26,10 @@ public class ReviewManager : MonoBehaviour
 
     //MISC variables
     int listItemsDisplayed = 0;
+    float correctAnswers = 0;
+    float rightPercentage;
     Image currentIMG;
+    public TMP_Text scorePlaceholder;
 
 
     //overarching Canvas Groups
@@ -40,7 +44,7 @@ public class ReviewManager : MonoBehaviour
     //bool isReview = true;
 
     //currently a placeholder, add functionality
-    public GameObject scoreBar;
+    //public GameObject scoreBar;
     public TMP_Text scoreText;
 
     //stars 
@@ -75,6 +79,11 @@ public class ReviewManager : MonoBehaviour
     Image itemIMG;
     Image recepIMG;
     Image rightWrongIMG;
+
+    //end screen - assign in inspector
+    public Image[] endStars = new Image[3];
+    public Sprite[] smileySprites = new Sprite[4];
+    public Image smiley;
 
     public ParticleSystem right_sparkles;
 
@@ -121,6 +130,9 @@ public class ReviewManager : MonoBehaviour
             Debug.LogWarning("Canvas group not found.");
         }
 
+        //set star sprites to grey
+        UpdateEndScreen(0);
+
         Debug.Log("Starting...");
         
         //COMMENT OUT LATER?
@@ -135,8 +147,9 @@ public class ReviewManager : MonoBehaviour
     {
         Debug.Log("Adding items...");
         AddLog("rG", "skab", true);
-        AddLog("bG", "skab", false);
-        AddLog("rT", "koele", false);
+        AddLog("bG", "skab", true);
+        AddLog("rT", "koele", true);
+        //StarManager.instance.totalLevelSorts = ReviewLog.Count;
     }
 
     public void DBStart()
@@ -165,6 +178,7 @@ public class ReviewManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+
     }
 
 
@@ -195,6 +209,9 @@ public class ReviewManager : MonoBehaviour
 
         End_continue.alpha = 0;
         End_continue.interactable = false;
+
+        Gameplay.alpha = 0;
+        Gameplay.interactable = false;
 
         HideIcons();
     }
@@ -313,7 +330,7 @@ public class ReviewManager : MonoBehaviour
 
 
         //wait to ease transition
-        Debug.Log("Waiting...");
+        Debug.Log("Waiting to start Display...");
         yield return new WaitForSeconds(3f);
 
 
@@ -322,14 +339,10 @@ public class ReviewManager : MonoBehaviour
         //*sound effect?
         //*narrator: Godt klaret!
 
-        //communicate the total sorts to the StarManager
-        //StarManager.instance.totalLevelSorts = GetReviewSequenceTotal();
 
-        //set stars to grey
-        img_One.sprite = greyStar;
-        img_Two.sprite = greyStar;
-        img_Three.sprite = greyStar;
-
+        
+        //set scorebar to 0 & stars to grey
+        SetScore(0f);
 
         //make the images transparent for now
         HideIcons();
@@ -337,39 +350,41 @@ public class ReviewManager : MonoBehaviour
 
         //show review canvas group
         Review.alpha = 1;
-        Debug.Log("Showing Review Group...");
+        //Debug.Log("Showing Review Group...");
 
         timer = 0f;
         listItemsDisplayed = 0;
 
-        //start the display loop
-        StartCoroutine(CRDisplayNextTuple());
-
+        
         if (ReviewLog.Count == 0)
         {
             Debug.LogWarning("Empty ReviewLog, cannot display!");
         }
 
-        Debug.Log("Finished CRDisplayResults.");
+        //start the display loop
+        StartCoroutine(CRDisplayNextTuple());
+
+//        Debug.Log("Finished CRDisplayResults.");
         Debug.Log("Waiting for button click...");
         yield return null; 
      }
 
     IEnumerator CRDisplayNextTuple()
     {
-        Debug.Log("Running CRNextTuple...");
+        //Debug.Log("Running CRNextTuple...");
 
         if (listItemsDisplayed >= ReviewLog.Count)
         {
             Debug.Log("Display done, Exiting loop...");
             ClearBoard();
+            UpdateEndScreen(starTotal);
             DisplayEndScreen();
         }
         else
         {
-            Debug.Log($"Attempting to display item {listItemsDisplayed}...");
+            //Debug.Log($"Attempting to display item {listItemsDisplayed}...");
             UpdateIcons(ReviewLog[listItemsDisplayed]);
-            Debug.Log("Attempting to display with delay...");
+            //Debug.Log("Attempting to display with delay...");
 
             //unveil object
             itemIMG.color = Color.white;
@@ -389,6 +404,7 @@ public class ReviewManager : MonoBehaviour
                 //add audio effect
 
                 //add score to score bar
+                correctAnswers++;
 
                 Debug.Log($"Item {listItemsDisplayed} was right!");
 
@@ -401,9 +417,17 @@ public class ReviewManager : MonoBehaviour
                 Debug.Log($"Item {listItemsDisplayed} was wrong! :(");
             }
 
+            //update score indicator
+            //Debug.Log($"Attempting to update score text... {correctAnswers}/{ReviewLog.Count} = {correctAnswers / ReviewLog.Count * 100}");
+
+
+
+            //updating the score bar
+            SetScore(correctAnswers);
+
             Debug.Log($"Display of item {listItemsDisplayed} complete, {timer} seconds elapsed.");
 
-            yield return new WaitForSeconds(waitTimeInterval);
+            yield return new WaitForSeconds(waitTimeInterval * 2);
             HideIcons();
 
             listItemsDisplayed++;
@@ -414,7 +438,74 @@ public class ReviewManager : MonoBehaviour
     }
 
 
+    //Star System
+    public float width, height;
+    
 
+    [SerializeField]
+    private RectTransform scoreBar;
+    private int starTotal = 0;
+
+    void SetScore(float score)
+    {
+        rightPercentage = (score / ReviewLog.Count);
+
+        float newWidth = rightPercentage * width;
+        scoreBar.sizeDelta = new Vector2(newWidth, height);
+
+        if (rightPercentage <= 0)
+        {
+            img_One.sprite = greyStar;
+            img_Two.sprite = greyStar;
+            img_Three.sprite = greyStar;
+
+            starTotal = 0;
+        }
+        else if (0f < rightPercentage && rightPercentage < 0.5f)
+        {
+            img_One.sprite = yellowStar;
+            img_Two.sprite = greyStar;
+            img_Three.sprite = greyStar;
+            starTotal = 1;
+        }
+        else if (0.5f <= rightPercentage && rightPercentage < 0.85f)
+        {
+            img_One.sprite = yellowStar;
+            img_Two.sprite = yellowStar;
+            img_Three.sprite = greyStar;
+            starTotal = 2;
+        }
+        else
+        {
+            img_One.sprite = yellowStar;
+            img_Two.sprite = yellowStar;
+            img_Three.sprite = yellowStar;
+            starTotal = 3;
+        }
+
+    }
+
+    void UpdateEndScreen(int starCount)
+    {
+        Debug.Log("Updating End Screen, star count at " + starCount);
+        if (starCount < 0 || 3 < starCount)
+        {
+            Debug.LogWarning("Starcount is out of bounds at " + starCount);
+            return;
+        }
+
+        //automatically assign the correct smiley sprite
+        smiley.sprite = smileySprites[starCount];
+
+        for (int i = 0; i < endStars.Length; i++)
+        {
+            if (i < starCount)
+                endStars[i].sprite = yellowStar;
+            else
+                endStars[i].sprite = greyStar;
+        }
+
+    }
 
 
 

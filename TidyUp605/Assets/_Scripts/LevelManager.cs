@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -51,9 +52,23 @@ public class LevelManager : MonoBehaviour
     public static string pendingLevelToLoad = "";
     public static int pendingSequenceType = 0;
 
+    //dEBUG lOG
+    public static int lvlManagerIndex = 0;
+    List<LevelManager> LevelManagers = new();
+
 
     private void Awake()
     {
+        //debug to find out how many LevelManagers we are dealing with
+        /* currently a trashfire lol
+        if (LevelManagers[lvlManagerIndex] = null)
+        {
+            LevelManagers.Add(this);
+            Debug.Log($"LevelManager Nr. {lvlManagerIndex} instantiated.\nThere are currently {LevelManagers.Count} lvlMans registered.");
+            lvlManagerIndex++;
+        }
+        */
+
         spawnerScript = this.gameObject.GetComponent<objectSpawner>();
         gameController = this.gameObject.GetComponent<GameController>();
 
@@ -138,7 +153,7 @@ public class LevelManager : MonoBehaviour
     ///reloads the current level by checking which level is currently active and loading it again.
     public void reloadLevel()
     {
-        Debug.Log("Reloading level: " + currentLevel);
+        Debug.Log("Reloading level: " + currentLevel + " and this is not LevelManager no. " + lvlManagerIndex);//lvlManIndex is currently bork
         Debug.Log("Current stage: " + currentStage + ", Current sequence: " + currentSequence + ", Eval active: " + evalActive);
 
         if (currentStage == 1)

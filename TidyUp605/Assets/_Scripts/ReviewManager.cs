@@ -14,23 +14,31 @@ using UnityEngine.Windows;
 
 public class ReviewManager : MonoBehaviour
 {
+    //singleton
     public static ReviewManager instance;
 
-    //assign in inspector
-    [Header("Display variables")]
-
-    //logic stuff
+    //time stuff
     float timer = 0f;
     public float waitTimeInterval = 1.5f;
+
+    //stars, smileys, scorebar
+    public float width, height;
+    float correctAnswers = 0;
+    float rightPercentage;
+    private int starTotal = 0;
+
+    [SerializeField]
+    private RectTransform scoreBar;
+
+    //end screen - assign in inspector
+    public Image[] endStars = new Image[3];
+    public Sprite[] smileySprites = new Sprite[4];
+    public Image smiley;
 
 
     //MISC variables
     int listItemsDisplayed = 0;
-    float correctAnswers = 0;
-    float rightPercentage;
     Image currentIMG;
-    public TMP_Text scorePlaceholder;
-
 
     //overarching Canvas Groups
     public GameObject go_Review;
@@ -41,13 +49,7 @@ public class ReviewManager : MonoBehaviour
     CanvasGroup End_continue;
     CanvasGroup Gameplay;
 
-    //bool isReview = true;
-
-    //currently a placeholder, add functionality
-    //public GameObject scoreBar;
-    public TMP_Text scoreText;
-
-    //stars 
+    //review stars 
     public GameObject starOne;
     public GameObject starTwo;
     public GameObject starThree;
@@ -80,12 +82,7 @@ public class ReviewManager : MonoBehaviour
     Image recepIMG;
     Image rightWrongIMG;
 
-    //end screen - assign in inspector
-    public Image[] endStars = new Image[3];
-    public Sprite[] smileySprites = new Sprite[4];
-    public Image smiley;
-
-    public ParticleSystem right_sparkles;
+    public ParticleSystem rev_sparkles;
 
     [Header("Logging variables")]
     public List<Tuple<string, string, bool>> ReviewLog = new();
@@ -94,7 +91,9 @@ public class ReviewManager : MonoBehaviour
     //debugging only
     //private List<Tuple<string, string, bool>> testLog = new();
     public TMP_Text continueText;
-    
+    public TMP_Text scoreText;
+    public TMP_Text scorePlaceholder;
+
 
     //SETUP
     void Start()
@@ -142,7 +141,7 @@ public class ReviewManager : MonoBehaviour
 
 
 
-    //DEBUG
+    //DEBUG FUNCTIONS FOR BUTTONS
     public void DBAdd()
     {
         Debug.Log("Adding items...");
@@ -159,18 +158,6 @@ public class ReviewManager : MonoBehaviour
 
     }
 
-    //placeholder until the rest is coded
-    public void DBDisplayResults()
-    {
-        //move blackboard forward 
-
-        //add items
-        for (int i = 0; i <= ReviewLog.Count; i++)
-        {
-            continueText.text += $"{ReviewLog[i].Item2} -> {ReviewLog[i].Item2} = {ReviewLog[i].Item3}";
-        }
-    }
-
     
 
 
@@ -180,8 +167,6 @@ public class ReviewManager : MonoBehaviour
         timer += Time.deltaTime;
 
     }
-
-
 
 
     //LOG MANAGEMENT
@@ -325,20 +310,19 @@ public class ReviewManager : MonoBehaviour
      public IEnumerator CRDisplayResults()
      {
         Debug.Log("Running CRDisp...");
-        //audio cue play
-        //animation arrows play
+        //audio cue play?
+        //animation arrows play?
 
 
         //wait to ease transition
         Debug.Log("Waiting to start Display...");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(waitTimeInterval);
 
 
-        //*disable movement & click
-        //*move blackboard forward
+        //*disable movement & click?
+        //*move blackboard forward?
         //*sound effect?
         //*narrator: Godt klaret!
-
 
         
         //set scorebar to 0 & stars to grey
@@ -348,24 +332,19 @@ public class ReviewManager : MonoBehaviour
         HideIcons();
         DisplayReviewScreen();
 
-        //show review canvas group
-        Review.alpha = 1;
-        //Debug.Log("Showing Review Group...");
-
         timer = 0f;
         listItemsDisplayed = 0;
 
-        
         if (ReviewLog.Count == 0)
         {
             Debug.LogWarning("Empty ReviewLog, cannot display!");
+            yield return null;
         }
 
         //start the display loop
         StartCoroutine(CRDisplayNextTuple());
 
-//        Debug.Log("Finished CRDisplayResults.");
-        Debug.Log("Waiting for button click...");
+        //Debug.Log("Finished CRDisplayResults.");
         yield return null; 
      }
 
@@ -379,6 +358,7 @@ public class ReviewManager : MonoBehaviour
             ClearBoard();
             UpdateEndScreen(starTotal);
             DisplayEndScreen();
+            Debug.Log("Waiting for button click...");
         }
         else
         {
@@ -400,7 +380,7 @@ public class ReviewManager : MonoBehaviour
             //if it was right
             if (ReviewLog[listItemsDisplayed].Item3)
             {
-                right_sparkles.Play();
+                rev_sparkles.Play();
                 //add audio effect
 
                 //add score to score bar
@@ -417,8 +397,6 @@ public class ReviewManager : MonoBehaviour
                 Debug.Log($"Item {listItemsDisplayed} was wrong! :(");
             }
 
-            //update score indicator
-            //Debug.Log($"Attempting to update score text... {correctAnswers}/{ReviewLog.Count} = {correctAnswers / ReviewLog.Count * 100}");
 
 
 
@@ -437,14 +415,6 @@ public class ReviewManager : MonoBehaviour
         }
     }
 
-
-    //Star System
-    public float width, height;
-    
-
-    [SerializeField]
-    private RectTransform scoreBar;
-    private int starTotal = 0;
 
     void SetScore(float score)
     {
@@ -536,7 +506,7 @@ public class ReviewManager : MonoBehaviour
 
 
 
-
+    /*
     //OLD THINGS NO LONGER USED
     public IEnumerator DBDisplay()
     {
@@ -567,7 +537,7 @@ public class ReviewManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        */
+        
     }
 
 
@@ -594,7 +564,7 @@ public class ReviewManager : MonoBehaviour
         //Review_end.gameObject.SetActive(false);
         //Review_start.gameObject.SetActive(true);
 
-        /*
+        
         Debug.Log($"Attempting to display list, length of {answers.Count}...");
         for (int i = 0; i < answers.Count; i++)
         {
@@ -603,7 +573,7 @@ public class ReviewManager : MonoBehaviour
             Debug.Log("This happens after UpdateIcons. Attempting to run Display...");
             DisplayIconsOnTimer(answers[i].Item3);
         }
-        */
+        
 
 
         //Review_start.gameObject.SetActive(false);
@@ -656,7 +626,7 @@ public class ReviewManager : MonoBehaviour
             //sound effects
             //particles
             Debug.Log($"Right answer...");
-            right_sparkles.Play();
+            rev_sparkles.Play();
         }
         else
         {
@@ -669,7 +639,7 @@ public class ReviewManager : MonoBehaviour
         Debug.Log($"Displayed item {listItemsDisplayed}, time elapsed since start is {timer}");
         DisplayNextItem(ReviewLog);
 
-        /* old
+         old
         //wait for timer
         RestartTimer(waitTimeInterval);
         if (doContinue)
@@ -708,7 +678,7 @@ public class ReviewManager : MonoBehaviour
                 }
             }
         }
-        */
+        
     }
 
 
@@ -728,7 +698,7 @@ public class ReviewManager : MonoBehaviour
     }
 
 
-    /* OLD
+     OLD
     public IEnumerator DisplayIconsAndWait(bool answerIsRight)
     {
         
@@ -762,7 +732,7 @@ public class ReviewManager : MonoBehaviour
         HideIcons();
         yield break;
     }
-    */
+    
 
     IEnumerator CRDisplayTuple(Tuple<string, string, bool> tuple)
     {
@@ -786,7 +756,7 @@ public class ReviewManager : MonoBehaviour
         //if it was right
         if (ReviewLog[listItemsDisplayed].Item3)
         {
-            right_sparkles.Play();
+            rev_sparkles.Play();
             //add audio effect
 
             //add score to score bar
@@ -812,7 +782,7 @@ public class ReviewManager : MonoBehaviour
     }
 
 
-    /*
+    
        for (int i = 0; i >= ReviewLog.Count; i++)
        {
            StartCoroutine(CRDisplayTuple(ReviewLog[i]));

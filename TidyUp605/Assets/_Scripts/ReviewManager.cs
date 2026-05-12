@@ -413,15 +413,6 @@ public class ReviewManager : MonoBehaviour
         }
     }
 
-    public void MoveToNextLevel()
-    {
-
-    }
-
-    public void RetryLevel()
-    {
-
-    }
 
 
 

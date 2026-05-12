@@ -179,8 +179,6 @@ public class LevelManager : MonoBehaviour
     {
         //LogData.instance.AddToLogs("Loading Next Level after " + currentLevel);
 
-        
-
         Debug.Log("Loading next level after: " + currentLevel); 
 
         if (currentStage == 1)
@@ -301,6 +299,8 @@ public class LevelManager : MonoBehaviour
     public void loadSequence1(string levelName)
     {
 
+        PrepareLoadNew();
+
         pendingLevelToLoad = levelName;
         pendingSequenceType = 1;
 
@@ -415,6 +415,8 @@ public class LevelManager : MonoBehaviour
     ///Does the same thing as loadSequence1, but with other gameObjects.
     public void loadSequence2(string levelName)
     {
+        PrepareLoadNew();
+
         pendingLevelToLoad = levelName;
         pendingSequenceType = 2;
 

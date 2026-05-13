@@ -166,7 +166,7 @@ public class LevelManager : MonoBehaviour
         if (currentLevel == "Trial1") { loadTrial1(); }
         else if (currentLevel == "Intro") { loadIntro(); }
         else if (currentLevel == "LevelSelect") { loadLevelSelect(); }
-        else if (currentLevel == "VR") { loadVR(); }
+        else if (currentLevel == "VR") { SceneManager.LoadScene("VRTutorial"); }
     }
     public void reloadLevel(string levelReload)
     {
@@ -186,7 +186,7 @@ public class LevelManager : MonoBehaviour
         if (currentLevel == "Trial1") { loadTrial1(); }
         else if (currentLevel == "Intro") { loadIntro(); }
         else if (currentLevel == "LevelSelect") { loadLevelSelect(); }
-        else if (currentLevel == "VR") { loadVR(); }
+        else if (currentLevel == "VR") { SceneManager.LoadScene("VRTutorial"); }
     }
 
     ///reloads the current level after a specified delay, to give the player time to see the feedback before the level resets.

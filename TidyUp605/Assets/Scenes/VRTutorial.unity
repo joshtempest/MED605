@@ -9187,6 +9187,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4645838567624183631, guid: 901a2bf3c325c874c8b78c05d1e77755, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5418539797003949557, guid: 901a2bf3c325c874c8b78c05d1e77755, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.2131829
@@ -12140,6 +12144,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4645838567624183631, guid: 901a2bf3c325c874c8b78c05d1e77755, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5418539797003949557, guid: 901a2bf3c325c874c8b78c05d1e77755, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5372255
@@ -13385,6 +13393,10 @@ PrefabInstance:
     - target: {fileID: 4645838567624183631, guid: 901a2bf3c325c874c8b78c05d1e77755, type: 3}
       propertyPath: m_Name
       value: Plate (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4645838567624183631, guid: 901a2bf3c325c874c8b78c05d1e77755, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5418539797003949557, guid: 901a2bf3c325c874c8b78c05d1e77755, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18744,6 +18756,10 @@ PrefabInstance:
     - target: {fileID: 4645838567624183631, guid: 901a2bf3c325c874c8b78c05d1e77755, type: 3}
       propertyPath: m_Name
       value: Plate
+      objectReference: {fileID: 0}
+    - target: {fileID: 4645838567624183631, guid: 901a2bf3c325c874c8b78c05d1e77755, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5418539797003949557, guid: 901a2bf3c325c874c8b78c05d1e77755, type: 3}
       propertyPath: m_LocalPosition.x

@@ -68,7 +68,15 @@ public class GameController : MonoBehaviour
         }
 
         if (!blackboard)
-            Debug.LogWarning("Blackboard not assigned! Please drag it into the GameController inspector.");
+        {
+            Debug.Log("Blackboard not assigned! Trying to find it manually...");
+            blackboard = GameObject.Find("Blackboard");
+
+            if (!blackboard)
+                Debug.LogWarning("Manual search failed, blackboard not assigned.");
+        }
+            
+            
         else
         {
             blackboard.transform.position = bbBackgroundPosition;

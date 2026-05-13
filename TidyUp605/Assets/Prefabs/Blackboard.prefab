@@ -4189,11 +4189,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestReview
   waitTimeInterval: 2
-  scorePlaceholder: {fileID: 5224701609011054806}
+  width: 18
+  height: 25
+  scoreBar: {fileID: 2660465458431732777}
+  endStars:
+  - {fileID: 5308506031727094581}
+  - {fileID: 7431317118841117163}
+  - {fileID: 5789598009311146525}
+  smileySprites:
+  - {fileID: 21300000, guid: b6265ff1b4ac36846a3842fa3579cf3d, type: 3}
+  - {fileID: 21300000, guid: d7c451e4d2843024abdedbbc35353aa5, type: 3}
+  - {fileID: 21300000, guid: 1dff8e5f8ba786d419ea73e22c517574, type: 3}
+  - {fileID: 21300000, guid: e491b419cf948fa46975fa8faf66ceee, type: 3}
+  smiley: {fileID: 7306052683083113896}
   go_Review: {fileID: 3968647467206541051}
   go_End_continue: {fileID: 5624351143457244487}
   go_Gameplay: {fileID: 4365375761837544713}
-  scoreText: {fileID: 0}
   starOne: {fileID: 7471476404987016665}
   starTwo: {fileID: 8822527576797514337}
   starThree: {fileID: 8355827221255863863}
@@ -4211,21 +4222,10 @@ MonoBehaviour:
   koele: {fileID: 21300000, guid: 80baab3c586158a4fa664bfd6627a8ab, type: 3}
   icon_x: {fileID: 21300000, guid: 0b6afc684296b9b489edcc52ada2ba3c, type: 3}
   icon_tick: {fileID: 21300000, guid: 20a0f3e907cd38c42bc923609ccb9374, type: 3}
-  endStars:
-  - {fileID: 5308506031727094581}
-  - {fileID: 7431317118841117163}
-  - {fileID: 5789598009311146525}
-  smileySprites:
-  - {fileID: 21300000, guid: b6265ff1b4ac36846a3842fa3579cf3d, type: 3}
-  - {fileID: 21300000, guid: d7c451e4d2843024abdedbbc35353aa5, type: 3}
-  - {fileID: 21300000, guid: 1dff8e5f8ba786d419ea73e22c517574, type: 3}
-  - {fileID: 21300000, guid: e491b419cf948fa46975fa8faf66ceee, type: 3}
-  smiley: {fileID: 7306052683083113896}
-  right_sparkles: {fileID: 3555707816987274146}
+  rev_sparkles: {fileID: 3555707816987274146}
   continueText: {fileID: 1843207187978787221}
-  width: 18
-  height: 25
-  scoreBar: {fileID: 2660465458431732777}
+  scoreText: {fileID: 0}
+  scorePlaceholder: {fileID: 5224701609011054806}
 --- !u!1 &7210946060711639321
 GameObject:
   m_ObjectHideFlags: 0

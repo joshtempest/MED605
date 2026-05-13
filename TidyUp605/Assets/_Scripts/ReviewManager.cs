@@ -327,6 +327,8 @@ public class ReviewManager : MonoBehaviour
         
         //set scorebar to 0 & stars to grey
         SetScore(0f);
+        //reset correctanswers so it doesn't stack between levels
+        correctAnswers = 0;
 
         //make the images transparent for now
         HideIcons();

@@ -581,10 +581,10 @@ public class LevelManager : MonoBehaviour
     {
         currentLevel = "VR";
         compareScene("VRTutorial");
-        gameController.resetScore();
+        //gameController.resetScore();
         Debug.Log(currentLevel + " is being loaded");
         ////LogData.instance.AddToLogs(currentLevel + " is being loaded");
-        gameController.totalThreshold = 2;
+        //gameController.totalThreshold = 2;
 
         //Initialise the Blackboard & disable laser
         PrepareLoadNew();

@@ -199,8 +199,8 @@ public class LevelManager : MonoBehaviour
     {
         //LogData.instance.AddToLogs("Loading Next Level after " + currentLevel);
 
-        Debug.Log("Loading next level after: " + currentLevel); 
-
+        Debug.Log("Loading next level after: " + currentLevel);
+        if (currentLevel == "VR") { loadSequence1("T1"); }
         if (currentStage == 1)
         {
             if (currentSequence == 1)

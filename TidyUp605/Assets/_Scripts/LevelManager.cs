@@ -168,6 +168,26 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "LevelSelect") { loadLevelSelect(); }
         else if (currentLevel == "VR") { loadVR(); }
     }
+    public void reloadLevel(string levelReload)
+    {
+        Debug.Log("Reloading level: " + currentLevel + " and this is not LevelManager no. " + lvlManagerIndex);//lvlManIndex is currently bork
+        Debug.Log("Current stage: " + currentStage + ", Current sequence: " + currentSequence + ", Eval active: " + evalActive);
+        if (currentLevel == null || currentLevel == "")
+        {
+            currentLevel = levelReload;
+        }
+        if (currentStage == 1)
+        {
+            if (currentSequence == 1) { loadSequence1(currentLevel); }
+            else if (currentSequence == 2) { loadSequence2(currentLevel); }
+            else if (evalActive) { loadStage1Eval(); }
+        }
+
+        if (currentLevel == "Trial1") { loadTrial1(); }
+        else if (currentLevel == "Intro") { loadIntro(); }
+        else if (currentLevel == "LevelSelect") { loadLevelSelect(); }
+        else if (currentLevel == "VR") { loadVR(); }
+    }
 
     ///reloads the current level after a specified delay, to give the player time to see the feedback before the level resets.
     public void reloadLevel(float delayInSeconds)

@@ -348,3 +348,8 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - name: intro
+    clip: {fileID: 8300000, guid: 732fbf2917ed0f741a835ec2523da979, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0

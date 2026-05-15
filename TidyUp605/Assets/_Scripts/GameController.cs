@@ -185,7 +185,7 @@ public class GameController : MonoBehaviour
     {
         totalAnswers = 0;
         levelInProgress = true;
-        //ReviewManager.instance.ResetLog();
+        ReviewManager.instance.ResetLog();
     }
 
 

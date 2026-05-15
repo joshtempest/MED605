@@ -132,7 +132,7 @@ public class ReviewManager : MonoBehaviour
         //set star sprites to grey
         UpdateEndScreen(0);
 
-        Debug.Log("Starting...");
+        //Debug.Log("Starting...");
         
         //COMMENT OUT LATER?
         DisplayGameScreen();
@@ -285,7 +285,7 @@ public class ReviewManager : MonoBehaviour
 
     public void DisplayGameScreen()
     {
-        Debug.Log("Switching to Gameplay screen...");
+        //Debug.Log("Switching to Gameplay screen...");
         Review.alpha = 0;
 
         End_continue.alpha = 0;

@@ -88,12 +88,21 @@ public class LevelManager : MonoBehaviour
 
             if (pendingSequenceType == 1)
             {
-                loadSequence1(pendingLevelToLoad);
+                ContinueLoadSequence1(pendingLevelToLoad);
             }
             else if (pendingSequenceType == 2)
             {
-                loadSequence2(pendingLevelToLoad);
+                ContinueLoadSequence2(pendingLevelToLoad);
             }
+            else if (pendingSequenceType == 3)
+            {
+                // Continue evaluation load on the new LevelManager instance
+                ContinueLoadStage1Eval();
+            }
+
+            // Clear pending after processing
+            pendingLevelToLoad = "";
+            pendingSequenceType = 0;
         }
     }
 
@@ -294,6 +303,31 @@ public class LevelManager : MonoBehaviour
         return false;
     }
 
+    // Coroutine that loads a scene asynchronously and invokes 'onLoaded' after the scene is active
+    /*private IEnumerator LoadSceneThen(string sceneName, Action onLoaded)
+    {
+        // If already in the correct scene, just invoke immediately (on next frame)
+        if (SceneManager.GetActiveScene().name == sceneName)
+        {
+            yield return null; // ensure one frame so other scene objects are ready
+            onLoaded?.Invoke();
+            yield break;
+        }
+
+        // Start async load
+        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
+
+        // Wait until done
+        while (!op.isDone)
+        {
+            yield return null;
+        }
+        // Wait one extra frame to ensure newly-loaded objects have run Awake/Start
+        yield return null;
+
+        onLoaded?.Invoke();
+    }*/
+
     ///Old system intro, not broken, so still in use
     public void loadIntro()
     {
@@ -334,7 +368,7 @@ public class LevelManager : MonoBehaviour
         }
         gameController.totalThreshold = threshold;
     }
-    
+
     ///Enables loading of Sequence 1 levels, based on the level name.
     public void loadSequence1(string levelName)
     {
@@ -344,19 +378,21 @@ public class LevelManager : MonoBehaviour
         pendingLevelToLoad = levelName;
         pendingSequenceType = 1;
 
-        if (compareScene("Tutorial_Practice"))
-        {
-            return;
-        }
+        if (compareScene("Tutorial_Practice")) { return; }
 
-        pendingLevelToLoad = ""; 
-        
+        pendingLevelToLoad = "";
+        pendingSequenceType = 0;
+        ContinueLoadSequence1(levelName);
+    }
+    private void ContinueLoadSequence1(string levelName)
+    {
+        //Debug.Log("Scene loaded, now loading level content for: " + levelName);
+
         ///Made to enable more stages and sequences in the future. 
         currentStage = 1;
         currentSequence = 1;
         ///Calls annihilation to clear the scene
         annihilation();
-
         ///Checks which level is being loaded and instantiates the needed objects and sets the right-threshold accordingly.
         if (levelName == "T1")
         {
@@ -370,7 +406,7 @@ public class LevelManager : MonoBehaviour
             spawnerScript.spawnThisObject("rT");
             ///Sets how many answers are needed before moving on
             gameController.totalThreshold = 1; //G
-            //Debug.Log("Right threshold set to: " + gameController.rightThreshold);
+                                               //Debug.Log("Right threshold set to: " + gameController.rightThreshold);
         }
         else if (levelName == "T2")
         {
@@ -453,6 +489,8 @@ public class LevelManager : MonoBehaviour
             }
         }
         else { Debug.Log(levelName + " is invalid"); }
+
+
     }
     ///Does the same thing as loadSequence1, but with other gameObjects.
     public void loadSequence2(string levelName)
@@ -462,17 +500,18 @@ public class LevelManager : MonoBehaviour
         pendingLevelToLoad = levelName;
         pendingSequenceType = 2;
 
-        if (compareScene("Tutorial_Practice"))
-        {
-            return;
-        }
+        if (compareScene("Tutorial_Practice")) { return; }
 
-        pendingLevelToLoad = ""; 
-
+        pendingLevelToLoad = "";
+        pendingSequenceType = 0;
+        ContinueLoadSequence2(levelName);
+    }
+    private void ContinueLoadSequence2(string levelName)
+    {
+        //Debug.Log("Scene loaded, now loading level content for: " + levelName);
         currentStage = 1;
         currentSequence = 2;
         annihilation();
-
 
         if (levelName == "T1")
         {
@@ -564,7 +603,6 @@ public class LevelManager : MonoBehaviour
 
         //Initialise the Blackboard & disable laser
         PrepareLoadNew();
-
     }
     ///Load the evaluation scene for stage 1, with a set amount of objects and a higher threshold, to evaluate the player's understanding of the sorting task.
     public void loadStage1Eval()
@@ -572,9 +610,21 @@ public class LevelManager : MonoBehaviour
         currentStage = 1;
         currentSequence = 3;
         evalActive = true;
-        compareScene("Evaluation");
+
+        pendingLevelToLoad = "S1E";
+        pendingSequenceType = 3;
+
+        if (compareScene("Evaluation")) { return; }
+
+        pendingLevelToLoad = "";
+        pendingSequenceType = 0;
+        ContinueLoadStage1Eval();
+    }
+
+    // New helper — the spawn/initialization logic that must run after the Evaluation scene is active.
+    private void ContinueLoadStage1Eval()
+    {
         currentLevel = "S1E";
-        gameController.resetScore();
         gameController.totalThreshold = 8;
 
         for (int i = 0; i < 2; i++)
@@ -583,18 +633,21 @@ public class LevelManager : MonoBehaviour
             spawnerScript.spawnThisObject("bT");
             spawnerScript.spawnThisObject("rG");
             spawnerScript.spawnThisObject("bG");
+            Debug.Log("Spawning objects, iteration: " + i);
         }
 
-        //Initialise the Blackboard & disable laser
+        // Initialise the Blackboard & disable laser
         PrepareLoadNew();
+        gameController.resetScore();
     }
+
     ///Loads the level select scene, where the player can choose which level to play.
     ///loadLevelSelect and loadVR is part of the old system, but they did not need to be updated to function.
     public void loadLevelSelect()
     {
         currentLevel = "LevelSelect";
         compareScene("LevelSelect");
-        Debug.Log(currentLevel + " is being loaded");
+        //Debug.Log(currentLevel + " is being loaded");
         ////LogData.instance.AddToLogs(currentLevel + " is being loaded");
     }
     public void loadVR()
@@ -610,133 +663,4 @@ public class LevelManager : MonoBehaviour
         PrepareLoadNew();
     }
 
-    /// The old levels ______________________________________________________________________________________________________________________________________________________________________________________
-    public void loadTutorial1()
-    {
-        currentLevel = "Tutorial1";
-        compareScene("Tutorial_Practice");
-        annihilation();
-        Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
-        spawnerScript.spawnThisObject("bT");
-        gameController.totalThreshold = 1;
-        Debug.Log(currentLevel + " is being loaded");
-    }
-    public void loadTutorial2()
-    {
-        currentLevel = "Tutorial2";
-        compareScene("Tutorial_Practice");
-        annihilation();
-        Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
-        spawnerScript.spawnThisObject("s");
-        gameController.totalThreshold = 1;
-        Debug.Log(currentLevel + " is being loaded");
-    }
-    public void loadTutorial3()
-    {
-        currentLevel = "Tutorial3";
-        compareScene("Tutorial_Practice");
-        annihilation();
-        Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnThisObject("rT");
-        gameController.totalThreshold = 1;
-        Debug.Log(currentLevel + " is being loaded");
-    }
-    public void loadPractice1()
-    {
-        currentLevel = "Practice1";
-        compareScene("Tutorial_Practice");
-        annihilation();
-        Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
-        Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
-        Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnThisObject("bT");
-        gameController.totalThreshold = 1;
-        Debug.Log(currentLevel + " is being loaded");
-    }
-    public void loadPractice2()
-    {
-        currentLevel = "Practice2";
-        compareScene("Tutorial_Practice");
-        annihilation();
-        Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
-        Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
-        Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnThisObject("s");
-        gameController.totalThreshold = 1;
-        Debug.Log(currentLevel + " is being loaded");
-    }
-    public void loadPractice3()
-    {
-        currentLevel = "Practice3";
-        compareScene("Tutorial_Practice");
-        annihilation();
-        Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
-        Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
-        Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnThisObject("rT");
-        gameController.totalThreshold = 1;
-        Debug.Log(currentLevel + " is being loaded");
-    }
-    public void loadPractice4()
-    {
-        currentLevel = "Practice4";
-        compareScene("Tutorial_Practice");
-        annihilation();
-        Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
-        Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
-        Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnThisObject("bT");
-        spawnerScript.spawnThisObject("s");
-        gameController.totalThreshold = 2;
-        Debug.Log(currentLevel + " is being loaded");
-    }
-    public void loadPractice5()
-    {
-        currentLevel = "Practice5";
-        compareScene("Tutorial_Practice");
-        annihilation();
-        Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
-        Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
-        Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnThisObject("s");
-        spawnerScript.spawnThisObject("rT");
-        gameController.totalThreshold = 2;
-        Debug.Log(currentLevel + " is being loaded");
-    }
-    public void loadPractice6()
-    {
-        currentLevel = "Practice6";
-        compareScene("Tutorial_Practice");
-        annihilation();
-        Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
-        Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
-        Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnThisObject("bT");
-        spawnerScript.spawnThisObject("rT");
-        gameController.totalThreshold = 2;
-        Debug.Log(currentLevel + " is being loaded");
-    }
-    public void loadPractice7()
-    {
-        currentLevel = "Practice7";
-        compareScene("Tutorial_Practice");
-        annihilation();
-        Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation);
-        Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
-        Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-        spawnerScript.spawnThisObject("bT");
-        spawnerScript.spawnThisObject("rT");
-        spawnerScript.spawnThisObject("s");
-        gameController.totalThreshold = 3;
-        Debug.Log(currentLevel + " is being loaded");
-    }
-    public void loadEval1()
-    {
-        currentLevel = "Eval1";
-
-        SceneManager.LoadScene("Evaluation");
-        gameController.resetScore();
-
-        Debug.Log(currentLevel + " is being loaded");
-    }
 }

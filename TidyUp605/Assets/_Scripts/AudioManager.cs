@@ -22,6 +22,9 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Clips")]
     public Sound[] musicSounds, sfxSounds;
 
+    //to remember which instructions to play in the current level
+    private Tuple<bool, bool> hasPlatesOrForks;
+
     private void Awake()
     {
         // Singleton Pattern
@@ -117,16 +120,40 @@ public class AudioManager : MonoBehaviour
     }
 
     //instructions based on whether there are plates or forks in the scene
+    //simple overload to allow for button access
+    public void PlayPracticeInstructions(float delay)
+    {
+
+        if (hasPlatesOrForks.Item1 && hasPlatesOrForks.Item2)
+        {
+            PlaySFXWithDelay("t3", delay);
+            PlaySFXWithDelay("t4", delay + 2f);
+
+        }
+        else if (hasPlatesOrForks.Item1)
+        {
+            PlaySFXWithDelay("t3", delay);
+
+        }
+        else
+        {
+            PlaySFXWithDelay("t4", delay);
+        }
+    }
     public void PlayPracticeInstructions(float delay, bool hasPlates, bool hasForks)
     {
+        hasPlatesOrForks = new Tuple<bool, bool>(hasPlates, hasForks);
+
         if (hasPlates && hasForks)
         {
             PlaySFXWithDelay("t3", delay);
             PlaySFXWithDelay("t4", delay + 2f);
+            
         }
         else if (hasPlates)
         {
             PlaySFXWithDelay("t3", delay);
+            
         }
         else
         {

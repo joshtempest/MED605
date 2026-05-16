@@ -5002,7 +5002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TesterScript
   oldSys: 0
   newSys: 1
-  sceneToTest: T1
+  sceneToTest: T2
 --- !u!1 &1135146470
 GameObject:
   m_ObjectHideFlags: 0
@@ -6251,6 +6251,10 @@ PrefabInstance:
       propertyPath: serviceSpawnPlatform
       value: 
       objectReference: {fileID: 325641486}
+    - target: {fileID: 8362565001035886112, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8362565001035886112, guid: 0b6be432712f65442ba0e23463a9f88f, type: 3}
       propertyPath: skabPlatform
       value: 
@@ -10001,13 +10005,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834263287}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 23.17764}
-  m_LocalScale: {x: 20.880754, y: 1.0440377, z: 20.880754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.39, y: 0.103, z: 3.036}
+  m_LocalScale: {x: 1, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2124798316}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1856804247
 GameObject:
   m_ObjectHideFlags: 0
@@ -12295,17 +12299,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1820797400465725881, guid: d2edb635fe23cdc4199a8290cde8b018, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1834263291}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2edb635fe23cdc4199a8290cde8b018, type: 3}
---- !u!4 &2124798316 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1820797400465725881, guid: d2edb635fe23cdc4199a8290cde8b018, type: 3}
-  m_PrefabInstance: {fileID: 2124798315}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &206034741656978067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15021,6 +15017,7 @@ SceneRoots:
   - {fileID: 4850894626515728492}
   - {fileID: 850898595}
   - {fileID: 2124798315}
+  - {fileID: 1834263291}
   - {fileID: 1329053259}
   - {fileID: 1291244299}
   - {fileID: 1089242864}

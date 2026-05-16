@@ -256,7 +256,7 @@ public class LevelManager : MonoBehaviour
                 else if (currentLevel == "P3") { loadSequence2("P4"); }
                 else if (currentLevel == "P4") { loadStage1Eval(); }
             }
-            else if (evalActive) { loadLevelSelect(); }
+            else if (evalActive) { loadOutro(); }
         }
     }
 
@@ -358,7 +358,6 @@ public class LevelManager : MonoBehaviour
     ///Enables loading of Sequence 1 levels, based on the level name.
     public void loadSequence1(string levelName)
     {
-
         PrepareLoadNew();
 
         pendingLevelToLoad = levelName;
@@ -392,8 +391,6 @@ public class LevelManager : MonoBehaviour
             spawnerScript.spawnThisObject("rT");
             ///Sets how many answers are needed before moving on
             gameController.totalThreshold = 1;
-
-
         }
         else if (levelName == "T2")
         {
@@ -401,8 +398,6 @@ public class LevelManager : MonoBehaviour
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             spawnerScript.spawnThisObject("bT");
             gameController.totalThreshold = 1;
-
-
         }
         else if (levelName == "P1")
         {

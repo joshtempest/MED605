@@ -443,22 +443,22 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
-  - name: noStars
+  - name: 0s
     clip: {fileID: 8300000, guid: a552fcdf931ced94ca4dde6d0267f04d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
-  - name: oneStar
+  - name: 1s
     clip: {fileID: 8300000, guid: a15d8561199102748baa8aa929d1fa44, type: 3}
     volume: 1
     pitch: 1
     loop: 0
-  - name: twoStars
+  - name: 2s
     clip: {fileID: 8300000, guid: 1e29e3c132addb34b905e38101083524, type: 3}
     volume: 1
     pitch: 1
     loop: 0
-  - name: threeStars
+  - name: 3s
     clip: {fileID: 8300000, guid: 5951b07fff70bd045aeb8b51777b172a, type: 3}
     volume: 1
     pitch: 1
@@ -472,4 +472,9 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ebdf251bdadad974e91bcba2f0c8d066, type: 3}
     volume: 1
     pitch: 1
+    loop: 0
+  - name: clap
+    clip: {fileID: 8300000, guid: 1fe8272ce58ddf44e943ce3d56d92d1b, type: 3}
+    volume: 1
+    pitch: 1.62
     loop: 0

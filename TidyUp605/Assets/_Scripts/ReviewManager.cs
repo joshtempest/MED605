@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using JetBrains.Annotations;
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -269,6 +270,9 @@ public class ReviewManager : MonoBehaviour
 
         End_continue.alpha = 1;
         End_continue.interactable = true;
+
+        string starAudioClip = starTotal + "s";
+        AudioManager.Instance.PlaySFX(starAudioClip);
     }
 
     public void DisplayReviewScreen()
@@ -310,7 +314,7 @@ public class ReviewManager : MonoBehaviour
      public IEnumerator CRDisplayResults()
      {
         Debug.Log("Running CRDisp...");
-        //audio cue play?
+        AudioManager.Instance.PlaySFX("clap");
         //animation arrows play?
 
 
@@ -368,6 +372,11 @@ public class ReviewManager : MonoBehaviour
             UpdateIcons(ReviewLog[listItemsDisplayed]);
             //Debug.Log("Attempting to display with delay...");
 
+            //get the right clip by using the Tuple's first two attributes (item + receptacle), then play
+            AudioManager.Instance.PlaySFX(GetNarrationClip(ReviewLog[listItemsDisplayed].Item1, ReviewLog[listItemsDisplayed].Item2));
+
+
+
             //unveil object
             itemIMG.color = Color.white;
             yield return new WaitForSeconds(waitTimeInterval);
@@ -417,6 +426,24 @@ public class ReviewManager : MonoBehaviour
         }
     }
 
+    string GetNarrationClip(string item, string receptacle)
+    {
+        string clipName = item;
+
+        if (receptacle == "skab")
+        {
+            clipName += "s";
+            return clipName;
+        }
+        else if (receptacle == "opvasker")
+        {
+            clipName += "o";
+            return clipName;
+        }
+        else
+            Debug.LogWarning($"receptacle {receptacle} unintelligible to narration parser, skipping...");
+        return null;
+    }
 
     void SetScore(float score)
     {

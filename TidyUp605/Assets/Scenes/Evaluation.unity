@@ -17349,6 +17349,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 501317535}
+    - target: {fileID: 238745037041113350, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3068
+      objectReference: {fileID: 0}
     - target: {fileID: 1046477570249178292, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -17357,6 +17361,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1437649445}
+    - target: {fileID: 1508680847012621384, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_VersionIndex
+      value: 4578
+      objectReference: {fileID: 0}
     - target: {fileID: 2275353693118570032, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -17369,6 +17377,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 542382174}
+    - target: {fileID: 2758131565630154969, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_VersionIndex
+      value: 5254
+      objectReference: {fileID: 0}
     - target: {fileID: 3968647467206541051, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -17389,6 +17401,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1215083003}
+    - target: {fileID: 4754674276950402619, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_VersionIndex
+      value: 4569
+      objectReference: {fileID: 0}
     - target: {fileID: 4761621822522169746, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -17477,6 +17493,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 262727226}
+    - target: {fileID: 6739047064731315802, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3991
+      objectReference: {fileID: 0}
     - target: {fileID: 6739778863630771988, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1

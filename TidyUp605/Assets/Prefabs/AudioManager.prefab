@@ -473,3 +473,8 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - name: clap
+    clip: {fileID: 8300000, guid: 1fe8272ce58ddf44e943ce3d56d92d1b, type: 3}
+    volume: 1
+    pitch: 1.62
+    loop: 0

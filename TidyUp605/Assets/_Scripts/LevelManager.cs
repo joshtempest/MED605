@@ -13,6 +13,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private bool thisIsIntro;
     [SerializeField] private bool thisIsTrial1;
 
+    //how many seconds to wait before playing next level instructions
+    [SerializeField] private float audioBuffer = 5f;
+
     //Prefab
     [Header("Prefabs")]
     [SerializeField] GameObject koeleskab;
@@ -160,6 +163,7 @@ public class LevelManager : MonoBehaviour
     }
 
     ///reloads the current level by checking which level is currently active and loading it again.
+    //from here vv      do we still use this?? -G
     public void reloadLevel()
     {
         Debug.Log("Reloading level: " + currentLevel + " and this is not LevelManager no. " + lvlManagerIndex);//lvlManIndex is currently bork
@@ -203,6 +207,7 @@ public class LevelManager : MonoBehaviour
     {
         StartCoroutine(waitAndReloadLevel(delayInSeconds));
     }
+    
     public IEnumerator waitAndReloadLevel(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -222,6 +227,7 @@ public class LevelManager : MonoBehaviour
         else if (currentLevel == "LevelSelect") { loadLevelSelect(); }
         else if (currentLevel == "VR") { loadVR(); }
     }
+    //to here ^^
 
     ///Loads the next level based on the current level, this is used to progress through the levels in a set order. It checks which level is currently active and loads the next one accordingly.
     public void loadNextLevel()
@@ -335,6 +341,9 @@ public class LevelManager : MonoBehaviour
         compareScene("Intro");
         annihilation();
         //Debug.Log(currentLevel + " is being loaded");
+
+        //narrator attempt
+        AudioManager.Instance.PlaySFXWithDelay("intro", 5f);
     }
     ///Old system trial, not broken, so still in use
     public void loadTrial1()
@@ -405,8 +414,9 @@ public class LevelManager : MonoBehaviour
             ///Spawn one object for sorting as a starting point
             spawnerScript.spawnThisObject("rT");
             ///Sets how many answers are needed before moving on
-            gameController.totalThreshold = 1; //G
-                                               //Debug.Log("Right threshold set to: " + gameController.rightThreshold);
+            gameController.totalThreshold = 1;
+
+
         }
         else if (levelName == "T2")
         {
@@ -414,6 +424,8 @@ public class LevelManager : MonoBehaviour
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             spawnerScript.spawnThisObject("bT");
             gameController.totalThreshold = 1;
+
+
         }
         else if (levelName == "P1")
         {
@@ -433,6 +445,8 @@ public class LevelManager : MonoBehaviour
             {
                 spawnerScript.spawnThisObject("bT");
             }
+
+
         }
         else if (levelName == "P2")
         {
@@ -451,6 +465,8 @@ public class LevelManager : MonoBehaviour
             {
                 spawnerScript.spawnThisObject("bT");
             }
+
+
         }
         else if (levelName == "P3")
         {
@@ -490,6 +506,9 @@ public class LevelManager : MonoBehaviour
         }
         else { Debug.Log(levelName + " is invalid"); }
 
+
+        //play instructions according to objects in scene (hasPlates / hasForks); all objects in sequence1 are plates
+        AudioManager.Instance.PlayPracticeInstructions(audioBuffer, true, false);
 
     }
     ///Does the same thing as loadSequence1, but with other gameObjects.
@@ -661,6 +680,15 @@ public class LevelManager : MonoBehaviour
 
         //Initialise the Blackboard & disable laser
         PrepareLoadNew();
+
+        //narrator attempt; adjust delays
+        //introduction
+        AudioManager.Instance.PlaySFXWithDelay("v1", audioBuffer);
+        AudioManager.Instance.PlaySFXWithDelay("v2", audioBuffer + 2f);
+
+        //instructions - function also used by a button; play after the other two (=added delay) (adjust delay)
+        AudioManager.Instance.PlayVRInstructions(audioBuffer + 4f);
+
     }
 
 }

@@ -353,3 +353,123 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - name: v1
+    clip: {fileID: 8300000, guid: 188928ba39a25df498177293b6e6466e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: v2
+    clip: {fileID: 8300000, guid: 41a6eec4f19a2064585a006ce7ae8383, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: v3
+    clip: {fileID: 8300000, guid: 63ca2c09608a9fc4fb7d2f6a44d32140, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: v4
+    clip: {fileID: 8300000, guid: d8b39c391fd30564ba402c58bffff1b4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: t3
+    clip: {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: t4
+    clip: {fileID: 8300000, guid: 5e43f9c2205a7594683f7aa3e9cfd372, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: t5
+    clip: {fileID: 8300000, guid: 8f49a6997065b8044ade18cc486b039c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: t6
+    clip: {fileID: 8300000, guid: bb04150985dbe994d8e846f224af43bb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: t7
+    clip: {fileID: 8300000, guid: 11a3944ae7f48c94ebc925605220fb29, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: t8
+    clip: {fileID: 8300000, guid: a9ac3c8498a4e734da8676961a00ec35, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: rGs
+    clip: {fileID: 8300000, guid: ccbd11c4a64dcaf41b2aa9e19491dd20, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: bGs
+    clip: {fileID: 8300000, guid: 00e1bab4dbf83954e9cd137e857ebab7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: rTs
+    clip: {fileID: 8300000, guid: 15c149729936b22449c1c73e3dff07a1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: bTs
+    clip: {fileID: 8300000, guid: b137fe4751e145e47bab337de4130c72, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: rGo
+    clip: {fileID: 8300000, guid: b302147f92b14ea4dabd224ddc82169b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: bGo
+    clip: {fileID: 8300000, guid: 99a738274d6c7a943a626bc4a1364915, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: rTo
+    clip: {fileID: 8300000, guid: e1801069156c4bb47975429e9be30f69, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: bTo
+    clip: {fileID: 8300000, guid: a4c27d4b863214a459dd7eb3f0cad33d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: noStars
+    clip: {fileID: 8300000, guid: a552fcdf931ced94ca4dde6d0267f04d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: oneStar
+    clip: {fileID: 8300000, guid: a15d8561199102748baa8aa929d1fa44, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: twoStars
+    clip: {fileID: 8300000, guid: 1e29e3c132addb34b905e38101083524, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: threeStars
+    clip: {fileID: 8300000, guid: 5951b07fff70bd045aeb8b51777b172a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: outro1
+    clip: {fileID: 8300000, guid: 243e8328a4dabf54e8e5b13ffab891d7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: outro2
+    clip: {fileID: 8300000, guid: ebdf251bdadad974e91bcba2f0c8d066, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0

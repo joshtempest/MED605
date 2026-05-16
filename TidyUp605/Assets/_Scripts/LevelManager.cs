@@ -59,18 +59,15 @@ public class LevelManager : MonoBehaviour
     public static int lvlManagerIndex = 0;
     List<LevelManager> LevelManagers = new();
 
+    // The active LevelManager in the current scene.
+    // This is intentionally NOT a DontDestroyOnLoad singleton because
+    // LevelManager lives on GameObjects that must be unique per scene and should be destroyed.
+    public static LevelManager Current { get; private set; }
 
     private void Awake()
     {
-        //debug to find out how many LevelManagers we are dealing with
-        /* currently a trashfire lol
-        if (LevelManagers[lvlManagerIndex] = null)
-        {
-            LevelManagers.Add(this);
-            Debug.Log($"LevelManager Nr. {lvlManagerIndex} instantiated.\nThere are currently {LevelManagers.Count} lvlMans registered.");
-            lvlManagerIndex++;
-        }
-        */
+        // register as active for this scene
+        Current = this;
 
         Debug.Log($"[LevelManager Awake] id={GetInstanceID()} thisIsIntro={thisIsIntro} thisIsTrial1={thisIsTrial1} time={Time.frameCount}");
         spawnerScript = this.gameObject.GetComponent<objectSpawner>();
@@ -82,7 +79,38 @@ public class LevelManager : MonoBehaviour
 
         if (thisIsIntro) { currentLevel = "Intro"; }
         else if (thisIsTrial1) { currentLevel = "Trial1"; }
+    }
 
+    private void OnDestroy()
+    {
+        // Clear the static reference only if this instance is the registered current.
+        if (Current == this)
+        {
+            Debug.Log($"[LevelManager OnDestroy] Clearing Current (id={GetInstanceID()})");
+            Current = null;
+        }
+    }
+
+    // Static safe helper UI / other code can call to target the active LevelManager in the scene.
+    public static void ReloadActiveLevel_Static()
+    {
+        if (Current != null)
+        {
+            Current.reloadLevel();
+            return;
+        }
+
+        // Fallback: try to find a LevelManager in the scene (useful if Current was cleared unexpectedly)
+        var found = FindObjectOfType<LevelManager>();
+        if (found != null)
+        {
+            Debug.Log("[LevelManager] ReloadActiveLevel_Static: found LevelManager via FindObjectOfType, invoking reload.");
+            found.reloadLevel();
+            Current = found;
+            return;
+        }
+
+        Debug.LogWarning("[LevelManager] ReloadActiveLevel_Static: no active LevelManager found to reload.");
     }
 
     private void Start()

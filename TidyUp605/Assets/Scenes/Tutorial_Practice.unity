@@ -3217,6 +3217,10 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 3994
       objectReference: {fileID: 0}
+    - target: {fileID: 6739778863630771988, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReloadActiveLevel_Static
+      objectReference: {fileID: 0}
     - target: {fileID: 6741650676471089642, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Name
       value: Blackboard
@@ -4991,7 +4995,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097542746}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 650faeaaf54d7664699018b9019ad457, type: 3}
   m_Name: 

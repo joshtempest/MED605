@@ -256,7 +256,7 @@ public class LevelManager : MonoBehaviour
                 else if (currentLevel == "P3") { loadSequence2("P4"); }
                 else if (currentLevel == "P4") { loadStage1Eval(); }
             }
-            else if (evalActive) { loadLevelSelect(); }
+            else if (evalActive) { loadOutro(); }
         }
     }
 
@@ -310,29 +310,6 @@ public class LevelManager : MonoBehaviour
     }
 
     // Coroutine that loads a scene asynchronously and invokes 'onLoaded' after the scene is active
-    /*private IEnumerator LoadSceneThen(string sceneName, Action onLoaded)
-    {
-        // If already in the correct scene, just invoke immediately (on next frame)
-        if (SceneManager.GetActiveScene().name == sceneName)
-        {
-            yield return null; // ensure one frame so other scene objects are ready
-            onLoaded?.Invoke();
-            yield break;
-        }
-
-        // Start async load
-        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
-
-        // Wait until done
-        while (!op.isDone)
-        {
-            yield return null;
-        }
-        // Wait one extra frame to ensure newly-loaded objects have run Awake/Start
-        yield return null;
-
-        onLoaded?.Invoke();
-    }*/
 
     ///Old system intro, not broken, so still in use
     public void loadIntro()
@@ -381,7 +358,6 @@ public class LevelManager : MonoBehaviour
     ///Enables loading of Sequence 1 levels, based on the level name.
     public void loadSequence1(string levelName)
     {
-
         PrepareLoadNew();
 
         pendingLevelToLoad = levelName;
@@ -415,8 +391,6 @@ public class LevelManager : MonoBehaviour
             spawnerScript.spawnThisObject("rT");
             ///Sets how many answers are needed before moving on
             gameController.totalThreshold = 1;
-
-
         }
         else if (levelName == "T2")
         {
@@ -424,8 +398,6 @@ public class LevelManager : MonoBehaviour
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
             spawnerScript.spawnThisObject("bT");
             gameController.totalThreshold = 1;
-
-
         }
         else if (levelName == "P1")
         {
@@ -445,8 +417,6 @@ public class LevelManager : MonoBehaviour
             {
                 spawnerScript.spawnThisObject("bT");
             }
-
-
         }
         else if (levelName == "P2")
         {
@@ -465,8 +435,6 @@ public class LevelManager : MonoBehaviour
             {
                 spawnerScript.spawnThisObject("bT");
             }
-
-
         }
         else if (levelName == "P3")
         {
@@ -639,7 +607,6 @@ public class LevelManager : MonoBehaviour
         pendingSequenceType = 0;
         ContinueLoadStage1Eval();
     }
-
     // New helper — the spawn/initialization logic that must run after the Evaluation scene is active.
     private void ContinueLoadStage1Eval()
     {
@@ -688,7 +655,17 @@ public class LevelManager : MonoBehaviour
 
         //instructions - function also used by a button; play after the other two (=added delay) (adjust delay)
         AudioManager.Instance.PlayVRInstructions(audioBuffer + 4f);
+    }
 
+    public void quitGame()
+    {
+        Application.Quit();
+    }
+
+    public void loadOutro()
+    {
+        compareScene("Outro_new");
+        currentLevel = "Outro";
     }
 
 }

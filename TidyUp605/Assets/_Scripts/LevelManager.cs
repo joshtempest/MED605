@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private bool thisIsTrial1;
 
     //how many seconds to wait before playing next level instructions
-    [SerializeField] private float audioBuffer = 5f;
+    [SerializeField] private float audioBuffer = 3f;
 
     //Prefab
     [Header("Prefabs")]
@@ -72,6 +72,7 @@ public class LevelManager : MonoBehaviour
         }
         */
 
+        Debug.Log($"[LevelManager Awake] id={GetInstanceID()} thisIsIntro={thisIsIntro} thisIsTrial1={thisIsTrial1} time={Time.frameCount}");
         spawnerScript = this.gameObject.GetComponent<objectSpawner>();
         gameController = this.gameObject.GetComponent<GameController>();
 
@@ -81,13 +82,17 @@ public class LevelManager : MonoBehaviour
 
         if (thisIsIntro) { currentLevel = "Intro"; }
         else if (thisIsTrial1) { currentLevel = "Trial1"; }
+
     }
 
     private void Start()
     {
+        Debug.Log($"[LevelManager Start] id={GetInstanceID()} currentLevel='{currentLevel}' pendingLevelToLoad='{pendingLevelToLoad}' pendingSeq={pendingSequenceType} time={Time.frameCount}");
+        Debug.Log($"[LevelManager Start] LevelManager count={GameObject.FindGameObjectsWithTag("GameController").Length}");
+        
         if (!string.IsNullOrEmpty(pendingLevelToLoad))
         {
-            Debug.Log("Found a pending level! Loading: " + pendingLevelToLoad);
+            Debug.Log($"Found a pending level! Loading: {pendingLevelToLoad} on id={GetInstanceID()}");
 
             if (pendingSequenceType == 1)
             {
@@ -166,6 +171,7 @@ public class LevelManager : MonoBehaviour
     //from here vv      do we still use this?? -G
     public void reloadLevel()
     {
+        Debug.Log($"[reloadLevel CALL] id={GetInstanceID()} currentLevel='{currentLevel}' stage={currentStage} seq={currentSequence} pending='{pendingLevelToLoad}' time={Time.frameCount}");
         Debug.Log("Reloading level: " + currentLevel + " and this is not LevelManager no. " + lvlManagerIndex);//lvlManIndex is currently bork
         Debug.Log("Current stage: " + currentStage + ", Current sequence: " + currentSequence + ", Eval active: " + evalActive);
 
@@ -175,8 +181,7 @@ public class LevelManager : MonoBehaviour
             else if (currentSequence == 2) { loadSequence2(currentLevel); }
             else if (evalActive) { loadStage1Eval(); }
         }
-
-        if (currentLevel == "Trial1") { loadTrial1(); }
+        else if (currentLevel == "Trial1") { loadTrial1(); }
         else if (currentLevel == "Intro") { loadIntro(); }
         else if (currentLevel == "LevelSelect") { loadLevelSelect(); }
         else if (currentLevel == "VR") { SceneManager.LoadScene("VRTutorial"); }
@@ -207,7 +212,7 @@ public class LevelManager : MonoBehaviour
     {
         StartCoroutine(waitAndReloadLevel(delayInSeconds));
     }
-    
+
     public IEnumerator waitAndReloadLevel(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -374,6 +379,7 @@ public class LevelManager : MonoBehaviour
         //Debug.Log("Scene loaded, now loading level content for: " + levelName);
 
         ///Made to enable more stages and sequences in the future. 
+        Debug.Log($"[ContinueLoadSequence1 ENTER] id={GetInstanceID()} levelName='{levelName}' time={Time.frameCount}");
         currentStage = 1;
         currentSequence = 1;
         ///Calls annihilation to clear the scene
@@ -383,6 +389,7 @@ public class LevelManager : MonoBehaviour
         {
             ///set current level, to enable reloading of the same level and loading the next level in the correct order
             currentLevel = levelName;
+            Debug.Log($"[ContinueLoadSequence1] set currentLevel='{currentLevel}' on id={GetInstanceID()}");
             Debug.Log("current level: " + currentLevel);
             Debug.Log("level name: " + levelName);
             ///Instantiate the needed receptacles for this level, based on a platform made in the scene.
@@ -477,7 +484,7 @@ public class LevelManager : MonoBehaviour
 
         //play instructions according to objects in scene (hasPlates / hasForks); all objects in sequence1 are plates
         AudioManager.Instance.PlayPracticeInstructions(audioBuffer, true, false);
-
+        Debug.Log($"[ContinueLoadSequence1 EXIT] id={GetInstanceID()} currentLevel='{currentLevel}' stage={currentStage} seq={currentSequence}");
     }
     ///Does the same thing as loadSequence1, but with other gameObjects.
     public void loadSequence2(string levelName)

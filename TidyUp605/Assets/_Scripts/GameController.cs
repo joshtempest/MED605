@@ -35,7 +35,7 @@ public class GameController : MonoBehaviour
     Vector3 bbReviewRotV3 = new(0f, 136.336f, 0f);
     Quaternion bbReviewRotation;
 
-    Vector3 bbBackgroundPosition = new(2.52f, 1.939f, 2.503f);
+    Vector3 bbBackgroundPosition = new(2.66f, 1.735f, 1.557f);
     Vector3 bbBackgroundRotV3 = new(0f, 90f, 0f);
     Quaternion bbBackgroundRotation;
 

@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private bool thisIsTrial1;
 
     //how many seconds to wait before playing next level instructions
-    [SerializeField] private float audioBuffer = 3f;
+    [SerializeField] private float audioBuffer = 1.5f;
 
     //Prefab
     [Header("Prefabs")]

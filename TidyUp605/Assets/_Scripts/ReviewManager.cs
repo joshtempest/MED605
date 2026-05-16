@@ -145,7 +145,7 @@ public class ReviewManager : MonoBehaviour
     //DEBUG FUNCTIONS FOR BUTTONS
     public void DBAdd()
     {
-        Debug.Log("Adding items...");
+        //Debug.Log("Adding items...");
         AddLog("rG", "skab", true);
         AddLog("bG", "skab", true);
         AddLog("rT", "koele", true);
@@ -154,7 +154,7 @@ public class ReviewManager : MonoBehaviour
 
     public void DBStart()
     {
-        Debug.Log("Attempting to display...");
+        //Debug.Log("Attempting to display...");
         StartCoroutine(CRDisplayResults());
 
     }
@@ -174,14 +174,14 @@ public class ReviewManager : MonoBehaviour
     public void AddLog(string item, string receptacle, bool isRight)
     {
         ReviewLog.Add(Tuple.Create(item, receptacle, isRight));
-        Debug.Log($"Added log: {ReviewLog[ReviewLog.Count - 1].Item1} was placed in {ReviewLog[ReviewLog.Count - 1].Item2}, which was {ReviewLog[ReviewLog.Count - 1].Item3}.");
-        Debug.Log($"List is {ReviewLog.Count} items long.");
+        //Debug.Log($"Added log: {ReviewLog[ReviewLog.Count - 1].Item1} was placed in {ReviewLog[ReviewLog.Count - 1].Item2}, which was {ReviewLog[ReviewLog.Count - 1].Item3}.");
+        //Debug.Log($"List is {ReviewLog.Count} items long.");
     }
 
     public void ResetLog()
     {
         ReviewLog = new();
-        Debug.Log("ReviewLog reset.");
+        //Debug.Log("ReviewLog reset.");
     }
 
 
@@ -255,14 +255,14 @@ public class ReviewManager : MonoBehaviour
             rightWrongIMG.sprite = icon_x;
         }
 
-        Debug.Log($"Sprites reset: object is {itemIMG.sprite.name}, recep is {recepIMG.sprite.name}, icon is {rightWrongIMG.sprite.name}.");
+        //Debug.Log($"Sprites reset: object is {itemIMG.sprite.name}, recep is {recepIMG.sprite.name}, icon is {rightWrongIMG.sprite.name}.");
         return;
     }
 
 
     void DisplayEndScreen()
     {
-        Debug.Log("Switching to End screen...");
+        //Debug.Log("Switching to End screen...");
         Review.alpha = 0;
 
         Gameplay.alpha = 0;
@@ -277,7 +277,7 @@ public class ReviewManager : MonoBehaviour
 
     public void DisplayReviewScreen()
     {
-        Debug.Log("Switching to Review screen...");
+        //Debug.Log("Switching to Review screen...");
         End_continue.alpha = 0;
         End_continue.interactable = false;
 
@@ -302,7 +302,7 @@ public class ReviewManager : MonoBehaviour
 
     void HideIcons()
     {
-        Debug.Log("Hiding icons...");
+        //Debug.Log("Hiding icons...");
         itemIMG.color = Color.clear;
         recepIMG.color = Color.clear;
         rightWrongIMG.color = Color.clear;
@@ -313,13 +313,13 @@ public class ReviewManager : MonoBehaviour
     //DISPLAY: COROUTINES
      public IEnumerator CRDisplayResults()
      {
-        Debug.Log("Running CRDisp...");
+        //Debug.Log("Running CRDisp...");
         AudioManager.Instance.PlaySFX("clap");
         //animation arrows play?
 
 
         //wait to ease transition
-        Debug.Log("Waiting to start Display...");
+        //Debug.Log("Waiting to start Display...");
         yield return new WaitForSeconds(waitTimeInterval);
 
 
@@ -343,7 +343,7 @@ public class ReviewManager : MonoBehaviour
 
         if (ReviewLog.Count == 0)
         {
-            Debug.LogWarning("Empty ReviewLog, cannot display!");
+            //Debug.LogWarning("Empty ReviewLog, cannot display!");
             yield return null;
         }
 
@@ -360,11 +360,11 @@ public class ReviewManager : MonoBehaviour
 
         if (listItemsDisplayed >= ReviewLog.Count)
         {
-            Debug.Log("Display done, Exiting loop...");
+            //Debug.Log("Display done, Exiting loop...");
             ClearBoard();
             UpdateEndScreen(starTotal);
             DisplayEndScreen();
-            Debug.Log("Waiting for button click...");
+            //Debug.Log("Waiting for button click...");
         }
         else
         {
@@ -397,7 +397,7 @@ public class ReviewManager : MonoBehaviour
                 //add score to score bar
                 correctAnswers++;
 
-                Debug.Log($"Item {listItemsDisplayed} was right!");
+                //Debug.Log($"Item {listItemsDisplayed} was right!");
 
             }
             else
@@ -405,7 +405,7 @@ public class ReviewManager : MonoBehaviour
                 //add sound effect
                 //add narrator
 
-                Debug.Log($"Item {listItemsDisplayed} was wrong! :(");
+                //Debug.Log($"Item {listItemsDisplayed} was wrong! :(");
             }
 
 
@@ -414,7 +414,7 @@ public class ReviewManager : MonoBehaviour
             //updating the score bar
             SetScore(correctAnswers);
 
-            Debug.Log($"Display of item {listItemsDisplayed} complete, {timer} seconds elapsed.");
+            //Debug.Log($"Display of item {listItemsDisplayed} complete, {timer} seconds elapsed.");
 
             yield return new WaitForSeconds(waitTimeInterval * 2);
             HideIcons();
@@ -486,7 +486,7 @@ public class ReviewManager : MonoBehaviour
 
     void UpdateEndScreen(int starCount)
     {
-        Debug.Log("Updating End Screen, star count at " + starCount);
+        //Debug.Log("Updating End Screen, star count at " + starCount);
         if (starCount < 0 || 3 < starCount)
         {
             Debug.LogWarning("Starcount is out of bounds at " + starCount);

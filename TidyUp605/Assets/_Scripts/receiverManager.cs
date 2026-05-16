@@ -167,7 +167,7 @@ public class receiverManager : MonoBehaviour
     private void HandleCorrectItem(GameObject item)
     {
         //Debug
-        Debug.Log($"=== HandleCorrectItem triggered for {item.name} ===");
+        //Debug.Log($"=== HandleCorrectItem triggered for {item.name} ===");
         if (!item) Debug.Log("ITEM NOT FOUND");
         if (!gameObject) Debug.Log("RECEIVER NOT FOUND");
         if (!ReviewManager.instance) Debug.Log("REVIEWMAN NOT FOUND");
@@ -188,12 +188,12 @@ public class receiverManager : MonoBehaviour
         gameController.addTotalScore(1);
 
         Destroy(item);
-        Debug.Log($"Destroyed incoming item: {item.name}");
+        //Debug.Log($"Destroyed incoming item: {item.name}");
 
         PlayParticles(true);
         AudioManager.Instance.PlaySFX("Victory");
 
-        Debug.Log($"=== Finished HandleCorrectItem ===");
+        //Debug.Log($"=== Finished HandleCorrectItem ===");
     }
 
     // this looks at the score and turns on a pre placed hidden object
@@ -216,7 +216,7 @@ public class receiverManager : MonoBehaviour
     private void HandleWrongItem(GameObject item, string respawnCode)
     {
         //Debug
-        Debug.Log($"=== HandleCorrectItem triggered for {item.name} ===");
+        //Debug.Log($"=== HandleCorrectItem triggered for {item.name} ===");
         if (!item) Debug.Log("ITEM NOT FOUND");
         if (!gameObject) Debug.Log("RECEIVER NOT FOUND");
         if (!ReviewManager.instance) Debug.Log("REVIEWMAN NOT FOUND");

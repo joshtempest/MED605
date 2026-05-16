@@ -97,7 +97,7 @@ public class GameController : MonoBehaviour
         if (!levelInProgress) return;
 
         rightAnswers += score;
-        Debug.Log("Score: " + rightAnswers);
+        //Debug.Log("Score: " + rightAnswers);
 
         CheckWinCondition();
     }
@@ -109,7 +109,7 @@ public class GameController : MonoBehaviour
         if (!levelInProgress) return;
 
         wrongAnswers += score;
-        Debug.Log("Negative Score: " + wrongAnswers);
+        //Debug.Log("Negative Score: " + wrongAnswers);
 
         CheckLossCondition();
     }
@@ -117,7 +117,7 @@ public class GameController : MonoBehaviour
 
     private void CheckWinCondition()
     {
-        Debug.Log("Checking win condition: " + rightAnswers + " right answers, threshold is " + rightThreshold);
+        //Debug.Log("Checking win condition: " + rightAnswers + " right answers, threshold is " + rightThreshold);
 
         // If the player hit the required amount of right answers
         if (rightAnswers >= rightThreshold)
@@ -125,7 +125,7 @@ public class GameController : MonoBehaviour
             levelInProgress = false;
             enoughRightAnswers = true;
 
-            Debug.Log("rightThreshold reached. Level end, calling Display");
+            //Debug.Log("rightThreshold reached. Level end, calling Display");
 
             //DisplayResults();
             levelManager.loadNextLevel(5); // Move on
@@ -142,7 +142,7 @@ public class GameController : MonoBehaviour
 
             if (laserManager != null) laserManager.SetLaserState(true);
 
-            Debug.Log("wrongThreshold reached. Level end, calling Display");
+            //Debug.Log("wrongThreshold reached. Level end, calling Display");
 
             //DisplayResults();
             levelManager.reloadLevel(5); // Make them try again
@@ -163,7 +163,7 @@ public class GameController : MonoBehaviour
             //enable laser - maybe do this later through ReviewManager
             if(laserManager != null) laserManager.SetLaserState(true);
 
-            Debug.Log("End Condition met, handing off to Review Display management...");
+            //Debug.Log("End Condition met, handing off to Review Display management...");
 
             StartCoroutine(ReviewManager.instance.CRDisplayResults());
         }
@@ -176,7 +176,7 @@ public class GameController : MonoBehaviour
         if (!levelInProgress) return;
 
         totalAnswers += score;
-        Debug.Log("Total Score: " + totalAnswers);
+        //Debug.Log("Total Score: " + totalAnswers);
 
         CheckEndCondition();
     }

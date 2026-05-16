@@ -172,8 +172,8 @@ public class LevelManager : MonoBehaviour
     public void reloadLevel()
     {
         Debug.Log($"[reloadLevel CALL] id={GetInstanceID()} currentLevel='{currentLevel}' stage={currentStage} seq={currentSequence} pending='{pendingLevelToLoad}' time={Time.frameCount}");
-        Debug.Log("Reloading level: " + currentLevel + " and this is not LevelManager no. " + lvlManagerIndex);//lvlManIndex is currently bork
-        Debug.Log("Current stage: " + currentStage + ", Current sequence: " + currentSequence + ", Eval active: " + evalActive);
+        //Debug.Log("Reloading level: " + currentLevel + " and this is not LevelManager no. " + lvlManagerIndex);//lvlManIndex is currently bork
+        //Debug.Log("Current stage: " + currentStage + ", Current sequence: " + currentSequence + ", Eval active: " + evalActive);
 
         if (currentStage == 1)
         {
@@ -390,8 +390,8 @@ public class LevelManager : MonoBehaviour
             ///set current level, to enable reloading of the same level and loading the next level in the correct order
             currentLevel = levelName;
             Debug.Log($"[ContinueLoadSequence1] set currentLevel='{currentLevel}' on id={GetInstanceID()}");
-            Debug.Log("current level: " + currentLevel);
-            Debug.Log("level name: " + levelName);
+            //Debug.Log("current level: " + currentLevel);
+            //Debug.Log("level name: " + levelName);
             ///Instantiate the needed receptacles for this level, based on a platform made in the scene.
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
             ///Spawn one object for sorting as a starting point
@@ -593,7 +593,7 @@ public class LevelManager : MonoBehaviour
                 spawnerScript.spawnThisObject("bG");
             }
         }
-        else { Debug.Log(levelName + " is invalid"); }
+        else { Debug.LogWarning(levelName + " is invalid"); }
 
         //Initialise the Blackboard & disable laser
         PrepareLoadNew();
@@ -626,7 +626,7 @@ public class LevelManager : MonoBehaviour
             spawnerScript.spawnThisObject("bT");
             spawnerScript.spawnThisObject("rG");
             spawnerScript.spawnThisObject("bG");
-            Debug.Log("Spawning objects, iteration: " + i);
+            //Debug.Log("Spawning objects, iteration: " + i);
         }
 
         // Initialise the Blackboard & disable laser

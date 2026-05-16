@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         LoadVolume();
-        AudioManager.Instance.PlaySFX("intro");
+        //AudioManager.Instance.PlaySFX("intro");
 
         // AudioManager.Instance.PlaySFXWithDelay("PickUp", 5f);
 
@@ -109,4 +109,29 @@ public class AudioManager : MonoBehaviour
         SetMusicVolume(musicVol);
         SetSFXVolume(sfxVol);
     }
+
+    public void PlayVRInstructions(float delay)
+    {
+        PlaySFXWithDelay("v3", delay);
+        PlaySFXWithDelay("v4", delay + 2f);
+    }
+
+    //instructions based on whether there are plates or forks in the scene
+    public void PlayPracticeInstructions(float delay, bool hasPlates, bool hasForks)
+    {
+        if (hasPlates && hasForks)
+        {
+            PlaySFXWithDelay("t3", delay);
+            PlaySFXWithDelay("t4", delay + 2f);
+        }
+        else if (hasPlates)
+        {
+            PlaySFXWithDelay("t3", delay);
+        }
+        else
+        {
+            PlaySFXWithDelay("t4", delay);
+        }
+    }
+
 }

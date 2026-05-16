@@ -428,7 +428,7 @@ public class ReviewManager : MonoBehaviour
 
     string GetNarrationClip(string item, string receptacle)
     {
-        string clipName = item + "-";
+        string clipName = item;
 
         if (receptacle == "skab")
         {

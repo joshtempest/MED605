@@ -5748,6 +5748,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: b_narrator
       objectReference: {fileID: 0}
+    - target: {fileID: 8947104163190795670, guid: bac863d5f1b05e54c9f4f56ed8bf149b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9192913213396027688, guid: bac863d5f1b05e54c9f4f56ed8bf149b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5

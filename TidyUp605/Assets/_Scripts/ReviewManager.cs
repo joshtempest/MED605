@@ -39,7 +39,7 @@ public class ReviewManager : MonoBehaviour
 
     //MISC variables
     int listItemsDisplayed = 0;
-    Image currentIMG;
+    //Image currentIMG;
 
     //overarching Canvas Groups
     public GameObject go_Review;

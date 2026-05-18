@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
     Vector3 bbBackgroundRotV3 = new(0f, 90f, 0f);
     Quaternion bbBackgroundRotation;
 
-    bool enoughRightAnswers = false;
+    //bool enoughRightAnswers = false;
     bool levelInProgress = true;
 
     // Every time a player sorts an item, the receiver Manager writes it down
@@ -123,7 +123,7 @@ public class GameController : MonoBehaviour
         if (rightAnswers >= rightThreshold)
         {
             levelInProgress = false;
-            enoughRightAnswers = true;
+            //enoughRightAnswers = true;
 
             //Debug.Log("rightThreshold reached. Level end, calling Display");
 
@@ -137,7 +137,7 @@ public class GameController : MonoBehaviour
         // If the player hit the limit for mistakes...
         if (wrongAnswers >= wrongThreshold)
         {
-            enoughRightAnswers = false;
+            //enoughRightAnswers = false;
             levelInProgress = false;
 
             if (laserManager != null) laserManager.SetLaserState(true);

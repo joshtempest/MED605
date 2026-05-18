@@ -673,15 +673,22 @@ public class LevelManager : MonoBehaviour
     }
     public void loadVR()
     {
+        PrepareLoadNew();
+        pendingLevelToLoad = "VR";
+        if (compareScene("VRTutorial")){ return; }
+        pendingLevelToLoad = "";
+        continueLoadVR();
+    }
+    private void continueLoadVR() 
+    {
         currentLevel = "VR";
-        compareScene("VRTutorial");
         //gameController.resetScore();
         Debug.Log(currentLevel + " is being loaded");
         ////LogData.instance.AddToLogs(currentLevel + " is being loaded");
         //gameController.totalThreshold = 2;
 
         //Initialise the Blackboard & disable laser
-        PrepareLoadNew();
+        
 
         //narrator attempt; adjust delays
         //introduction

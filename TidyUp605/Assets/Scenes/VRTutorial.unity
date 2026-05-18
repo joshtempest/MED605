@@ -10008,6 +10008,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arrow_indicator
       objectReference: {fileID: 0}
+    - target: {fileID: 3821166701894668147, guid: e316ed1ec3055c44ba65f8f0d34046ad, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

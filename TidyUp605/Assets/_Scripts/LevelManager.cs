@@ -625,6 +625,10 @@ public class LevelManager : MonoBehaviour
 
         //Initialise the Blackboard & disable laser
         PrepareLoadNew();
+
+
+        //play instructions according to objects in scene (hasPlates / hasForks); all objects in sequence1 are plates
+        AudioManager.Instance.PlayPracticeInstructions(audioBuffer, false, true);
     }
     ///Load the evaluation scene for stage 1, with a set amount of objects and a higher threshold, to evaluate the player's understanding of the sorting task.
     public void loadStage1Eval()
@@ -660,6 +664,10 @@ public class LevelManager : MonoBehaviour
         // Initialise the Blackboard & disable laser
         PrepareLoadNew();
         gameController.resetScore();
+
+
+        //play instructions according to objects in scene (hasPlates / hasForks); all objects in sequence1 are plates
+        AudioManager.Instance.PlayPracticeInstructions(audioBuffer, true, true);
     }
 
     ///Loads the level select scene, where the player can choose which level to play.
@@ -708,6 +716,9 @@ public class LevelManager : MonoBehaviour
     {
         compareScene("Outro_new");
         currentLevel = "Outro";
+        AudioManager.Instance.PlaySFXWithDelay("outro1", audioBuffer);
+        AudioManager.Instance.PlaySFXWithDelay("outro2", audioBuffer + 2f);
+
     }
 
 }

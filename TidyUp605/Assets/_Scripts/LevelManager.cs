@@ -152,7 +152,7 @@ public class LevelManager : MonoBehaviour
 
         }
 
-        //disable laser
+        //disable laser (doesn't work? lol)
         if (GameController.laserManager) GameController.laserManager.SetLaserState(false);
     }
 

@@ -51,13 +51,13 @@ public class ReviewManager : MonoBehaviour
     CanvasGroup Gameplay;
 
     //review stars 
-    public GameObject starOne;
-    public GameObject starTwo;
-    public GameObject starThree;
+    public GameObject go_starOne;
+    public GameObject go_starTwo;
+    public GameObject go_starThree;
 
-    Image img_One;
-    Image img_Two;
-    Image img_Three;
+    Image star_One;
+    Image star_Two;
+    Image star_Three;
 
     public Sprite yellowStar;
     public Sprite greyStar;
@@ -90,7 +90,7 @@ public class ReviewManager : MonoBehaviour
 
 
     //debugging only
-    //private List<Tuple<string, string, bool>> testLog = new();
+
     public TMP_Text continueText;
     public TMP_Text scoreText;
     public TMP_Text scorePlaceholder;
@@ -112,9 +112,9 @@ public class ReviewManager : MonoBehaviour
         }
 
 
-        img_One = starOne.GetComponent<Image>();
-        img_Two = starTwo.GetComponent<Image>();
-        img_Three = starThree.GetComponent<Image>();
+        star_One = go_starOne.GetComponent<Image>();
+        star_Two = go_starTwo.GetComponent<Image>();
+        star_Three = go_starThree.GetComponent<Image>();
 
         itemIMG = itemRenderer.GetComponent<Image>();
         recepIMG = receptacleRenderer.GetComponent<Image>();
@@ -315,22 +315,15 @@ public class ReviewManager : MonoBehaviour
      {
         //Debug.Log("Running CRDisp...");
         AudioManager.Instance.PlaySFX("clap");
-        //animation arrows play?
 
 
         //wait to ease transition
         //Debug.Log("Waiting to start Display...");
         yield return new WaitForSeconds(waitTimeInterval);
-
-
-        //*disable movement & click?
-        //*move blackboard forward?
-        //*sound effect?
-        //*narrator: Godt klaret!
-
         
         //set scorebar to 0 & stars to grey
         SetScore(0f);
+
         //reset correctanswers so it doesn't stack between levels
         correctAnswers = 0;
 
@@ -338,7 +331,10 @@ public class ReviewManager : MonoBehaviour
         HideIcons();
         DisplayReviewScreen();
 
+        //timer for debugging purposes
         timer = 0f;
+
+        //make sure we start at the first item of the ReviewLog
         listItemsDisplayed = 0;
 
         if (ReviewLog.Count == 0)
@@ -368,16 +364,14 @@ public class ReviewManager : MonoBehaviour
         }
         else
         {
-            //Debug.Log($"Attempting to display item {listItemsDisplayed}...");
+            //while images are invisible, assign the correct sprites based on information from ReviewLog
+            //(e.g. plate, cupboard)
             UpdateIcons(ReviewLog[listItemsDisplayed]);
-            //Debug.Log("Attempting to display with delay...");
 
             //get the right clip by using the Tuple's first two attributes (item + receptacle), then play
             AudioManager.Instance.PlaySFX(GetNarrationClip(ReviewLog[listItemsDisplayed].Item1, ReviewLog[listItemsDisplayed].Item2));
 
-
-
-            //unveil object
+            //unveil object: change colour from transparent to white
             itemIMG.color = Color.white;
             yield return new WaitForSeconds(waitTimeInterval);
 
@@ -385,31 +379,19 @@ public class ReviewManager : MonoBehaviour
             recepIMG.color = Color.white;
             yield return new WaitForSeconds(waitTimeInterval);
 
-            //unveil right/wrong
+            //unveil right/wrong image
             rightWrongIMG.color = Color.white;
 
             //if it was right
             if (ReviewLog[listItemsDisplayed].Item3)
             {
+                //display extra sparkles
                 rev_sparkles.Play();
-                //add audio effect
-
+                
                 //add score to score bar
                 correctAnswers++;
 
-                //Debug.Log($"Item {listItemsDisplayed} was right!");
-
             }
-            else
-            {
-                //add sound effect
-                //add narrator
-
-                //Debug.Log($"Item {listItemsDisplayed} was wrong! :(");
-            }
-
-
-
 
             //updating the score bar
             SetScore(correctAnswers);
@@ -454,31 +436,31 @@ public class ReviewManager : MonoBehaviour
 
         if (rightPercentage <= 0)
         {
-            img_One.sprite = greyStar;
-            img_Two.sprite = greyStar;
-            img_Three.sprite = greyStar;
+            star_One.sprite = greyStar;
+            star_Two.sprite = greyStar;
+            star_Three.sprite = greyStar;
 
             starTotal = 0;
         }
         else if (0f < rightPercentage && rightPercentage < 0.5f)
         {
-            img_One.sprite = yellowStar;
-            img_Two.sprite = greyStar;
-            img_Three.sprite = greyStar;
+            star_One.sprite = yellowStar;
+            star_Two.sprite = greyStar;
+            star_Three.sprite = greyStar;
             starTotal = 1;
         }
         else if (0.5f <= rightPercentage && rightPercentage < 0.85f)
         {
-            img_One.sprite = yellowStar;
-            img_Two.sprite = yellowStar;
-            img_Three.sprite = greyStar;
+            star_One.sprite = yellowStar;
+            star_Two.sprite = yellowStar;
+            star_Three.sprite = greyStar;
             starTotal = 2;
         }
         else
         {
-            img_One.sprite = yellowStar;
-            img_Two.sprite = yellowStar;
-            img_Three.sprite = yellowStar;
+            star_One.sprite = yellowStar;
+            star_Two.sprite = yellowStar;
+            star_Three.sprite = yellowStar;
             starTotal = 3;
         }
 

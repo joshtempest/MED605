@@ -3155,6 +3155,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1302495780}
+    - target: {fileID: 5424293641259042357, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: reloadLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 5558650068379329170, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
       value: 

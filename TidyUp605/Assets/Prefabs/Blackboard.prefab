@@ -4237,9 +4237,9 @@ MonoBehaviour:
   go_Review: {fileID: 3968647467206541051}
   go_End_continue: {fileID: 5624351143457244487}
   go_Gameplay: {fileID: 4365375761837544713}
-  starOne: {fileID: 7471476404987016665}
-  starTwo: {fileID: 8822527576797514337}
-  starThree: {fileID: 8355827221255863863}
+  go_starOne: {fileID: 7471476404987016665}
+  go_starTwo: {fileID: 8822527576797514337}
+  go_starThree: {fileID: 8355827221255863863}
   yellowStar: {fileID: 21300000, guid: 03641446a8e542640988161c1365a2eb, type: 3}
   greyStar: {fileID: 21300000, guid: c3a9adae712f92d4bb44d48ee48ad2f4, type: 3}
   itemRenderer: {fileID: 2216306805994373471}

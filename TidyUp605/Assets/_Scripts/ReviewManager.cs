@@ -94,6 +94,8 @@ public class ReviewManager : MonoBehaviour
     public TMP_Text continueText;
     public TMP_Text scoreText;
     public TMP_Text scorePlaceholder;
+    public bool overridePosition = false;
+    public Vector3 altPosition;
 
 
     //SETUP
@@ -109,6 +111,11 @@ public class ReviewManager : MonoBehaviour
         {
             Destroy(gameObject);
             return;
+        }
+
+        if (overridePosition)
+        {
+            transform.position = altPosition;
         }
 
 
@@ -147,8 +154,10 @@ public class ReviewManager : MonoBehaviour
     {
         //Debug.Log("Adding items...");
         AddLog("rG", "skab", true);
-        AddLog("bG", "skab", true);
-        AddLog("rT", "koele", true);
+        AddLog("bG", "opvasker", true);
+        AddLog("rT", "opvasker", false);
+        AddLog("bT", "opvasker", true);
+        AddLog("bT", "skab", false);
         //StarManager.instance.totalLevelSorts = ReviewLog.Count;
     }
 

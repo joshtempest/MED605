@@ -14656,6 +14656,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6907870346833018125, guid: 61c10162c53ad6b40a6a294aeb7514bd, type: 3}
+      propertyPath: Levels.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907870346833018125, guid: 61c10162c53ad6b40a6a294aeb7514bd, type: 3}
+      propertyPath: Levels.Array.data[0].name
+      value: P1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907870346833018125, guid: 61c10162c53ad6b40a6a294aeb7514bd, type: 3}
+      propertyPath: Levels.Array.data[1].name
+      value: P1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907870346833018125, guid: 61c10162c53ad6b40a6a294aeb7514bd, type: 3}
+      propertyPath: Levels.Array.data[0].boolskab
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907870346833018125, guid: 61c10162c53ad6b40a6a294aeb7514bd, type: 3}
+      propertyPath: Levels.Array.data[1].boolskab
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907870346833018125, guid: 61c10162c53ad6b40a6a294aeb7514bd, type: 3}
+      propertyPath: Levels.Array.data[0].levelType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907870346833018125, guid: 61c10162c53ad6b40a6a294aeb7514bd, type: 3}
+      propertyPath: Levels.Array.data[1].levelType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907870346833018125, guid: 61c10162c53ad6b40a6a294aeb7514bd, type: 3}
+      propertyPath: Levels.Array.data[0].boolopvask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907870346833018125, guid: 61c10162c53ad6b40a6a294aeb7514bd, type: 3}
+      propertyPath: Levels.Array.data[1].boolopvask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907870346833018125, guid: 61c10162c53ad6b40a6a294aeb7514bd, type: 3}
+      propertyPath: Levels.Array.data[0].objectsToInstantiate2.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7659824823983524792, guid: 61c10162c53ad6b40a6a294aeb7514bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.04384

@@ -1,6 +1,16 @@
+using NUnit.Framework;
 using System;
 using UnityEngine;
 
+
+//This whole class was not visible before Sytem.Serializable was added, but the Tuple is still not visible.
+[System.Serializable]
+public class prefabData
+{
+    public string objectsToInstantiate2;
+    public int amountToSpawn;
+}
+[Serializable]
 public class LevelData
 {
     public string name;
@@ -10,16 +20,22 @@ public class LevelData
     public AudioClip narratorVoiceline;
     
     public Tuple<string, int>[] objectsToInstantiate;
-    
+    //got a tuple-like to show, as Unity doesn't support tuples in the inspector, as far as I can tell.
+    public prefabData[] objectsToInstantiate2;
+
     public GameObject spawnPlatform;
-    public float spawnBuffer;
+
+    //spawnBuffer is handled in objectSpawner, for items. For the receptacles they are preset to ensure they spawn on the floor, instead of floating over, or in the floor.
+    //public float spawnBuffer;
 
     public bool boolskab;
     public bool boolopvask;
 
+    //is this not easier to read if named threshold? or thresholdToSet?
     public int numberOfObjects;
 
 }
+
 
 //
 
@@ -34,6 +50,7 @@ public enum LevelType
 
 public class NewLevelManager : MonoBehaviour
 {
+    [Header("Level Data")]
     public LevelData[] Levels;
 
     public static NewLevelManager instance;

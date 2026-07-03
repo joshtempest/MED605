@@ -1,2 +1,20 @@
 fileFormatVersion: 2
 guid: 3ebbc639bab908340a4f7e5af62e62f2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - koeleskab: {fileID: 7804653488199077574, guid: d4f936ca6d1536343b21452b31f3fae4, type: 3}
+  - skab: {fileID: 3267122424555581529, guid: 64884db48f1b2e0448ace0c0094ff033, type: 3}
+  - opvaskemaskine: {fileID: 1301282156924273411, guid: d2edb635fe23cdc4199a8290cde8b018, type: 3}
+  - koelePlatform: {instanceID: 0}
+  - skabPlatform: {instanceID: 0}
+  - opvaskemaskinePlatform: {instanceID: 0}
+  - audioManagerPrefab: {fileID: 7476429142836813693, guid: dd1a6f04a0c9e094595749a4b25033e6, type: 3}
+  - reviewManagerPrefab: {instanceID: 0}
+  - blackboardPrefab: {fileID: 6741650676471089642, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

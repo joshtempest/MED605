@@ -106,6 +106,7 @@ public class ReviewManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            Debug.Log("ReviewManager instantiated.");
         }
         else
         {

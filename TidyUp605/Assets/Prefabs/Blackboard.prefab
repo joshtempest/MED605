@@ -3865,7 +3865,7 @@ GameObject:
   - component: {fileID: 63182553121100560}
   m_Layer: 0
   m_Name: Blackboard
-  m_TagString: Untagged
+  m_TagString: Blackboard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4258,6 +4258,8 @@ MonoBehaviour:
   continueText: {fileID: 1843207187978787221}
   scoreText: {fileID: 0}
   scorePlaceholder: {fileID: 5224701609011054806}
+  overridePosition: 0
+  altPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &7210946060711639321
 GameObject:
   m_ObjectHideFlags: 0

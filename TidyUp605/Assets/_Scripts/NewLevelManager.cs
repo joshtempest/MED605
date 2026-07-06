@@ -1,15 +1,19 @@
-using NUnit.Framework;
 using System;
+using JetBrains.Annotations;
+using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 //This whole class was not visible before Sytem.Serializable was added, but the Tuple is still not visible.
 [System.Serializable]
-public class prefabData
+public class PrefabData
 {
     public string objectsToInstantiate2;
+    public GameObject objectToSpawn;
     public int amountToSpawn;
 }
+
 [Serializable]
 public class LevelData
 {
@@ -17,13 +21,13 @@ public class LevelData
     
     public LevelType levelType;
     
-    public AudioClip narratorVoiceline;
+    public AudioClip[] narratorVoicelines;
     
-    public Tuple<string, int>[] objectsToInstantiate;
+    //public Tuple<string, int>[] objectsToInstantiate;
     //got a tuple-like to show, as Unity doesn't support tuples in the inspector, as far as I can tell.
-    public prefabData[] objectsToInstantiate2;
+    public PrefabData[] objectsToInstantiate2;
 
-    public GameObject spawnPlatform;
+    //public GameObject spawnPlatform;
 
     //spawnBuffer is handled in objectSpawner, for items. For the receptacles they are preset to ensure they spawn on the floor, instead of floating over, or in the floor.
     //public float spawnBuffer;
@@ -52,6 +56,7 @@ public class NewLevelManager : MonoBehaviour
 {
     [Header("Level Data")]
     public LevelData[] Levels;
+    public LevelData Evaluation;
 
     public static NewLevelManager instance;
 
@@ -83,11 +88,26 @@ public class NewLevelManager : MonoBehaviour
     public GameObject reviewManagerPrefab;
     public GameObject blackboardPrefab;
 
+
+
     //To access the spawning of the sorting objects
     private objectSpawner spawnerScript;
     private GameController gameController;
     private AudioManager audioManager;
     private ReviewManager blackboard;
+
+    public GameObject spawnPlatform;
+
+    Scene activeScene;
+
+    public string currentLevel;
+
+    //Debug only
+    private void Update()
+    {
+        
+    }
+
 
     //singleton pattern
     private void Awake()
@@ -105,14 +125,24 @@ public class NewLevelManager : MonoBehaviour
 
         spawnerScript = this.gameObject.GetComponent<objectSpawner>();
         gameController = this.gameObject.GetComponent<GameController>();
+        spawnPlatform = GameObject.FindGameObjectWithTag("SpawnPlatform");
 
-        /*
-        koelePlatformPos = koelePlatform.transform.position + koeleSpawnbuffer;
-        skabPlatformPos = skabPlatform.transform.position + skabSpawnbuffer;
-        opvaskemaskinePlatformPos = opvaskemaskinePlatform.transform.position + opvaskeSpawnbuffer;
-        */
     }
 
+
+    //Makes sure that the needed scene is loaded.
+    public bool CompareScene(string neededScene)
+    {
+        //Debug.Log("comparing scene");
+        activeScene = SceneManager.GetActiveScene();
+        string sceneName = activeScene.name;
+        if (sceneName != neededScene)
+        {
+            SceneManager.LoadScene(neededScene);
+            return true;
+        }
+        return false;
+    }
 
 
 
@@ -154,30 +184,9 @@ public class NewLevelManager : MonoBehaviour
         }
     }
 
-    /*
-    public void loadCustomSeq1(int cleanTallerken, int dirtyTallerken, bool boolskab, bool boolopvask, bool boolkoele, int threshold)
-    {
-        //compareScene("Tutorial_Practice");
-        Annihilation();
-
-        if (boolskab) { Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation); }
-        if (boolopvask) { Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation); }
-        if (boolkoele) { Instantiate(koeleskab, koelePlatformPos, koelePlatform.transform.rotation); }
-
-        for (int i = 0; i < cleanTallerken; i++)
-        {
-            spawnerScript.spawnThisObject("rT");
-        }
-        for (int i = 0; i < dirtyTallerken; i++)
-        {
-            spawnerScript.spawnThisObject("bT");
-        }
-        gameController.totalThreshold = threshold;
-    }
-    */
-
     public void LoadCustomSequence(string levelName)
     {
+        Debug.Log($"Attempting to load level {levelName}");
         Annihilation();
 
         LevelData levelToLoad = null;
@@ -197,22 +206,24 @@ public class NewLevelManager : MonoBehaviour
             return;
         }
 
+        currentLevel = levelToLoad.name;
+
         InstantiateInfrastructure(levelToLoad.levelType);
 
         //instantiate receptacles
         if (levelToLoad.boolskab) { Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation); }
         if (levelToLoad.boolopvask) { Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation); }
         
-        foreach (Tuple<string, int> t in levelToLoad.objectsToInstantiate)
+        foreach(PrefabData p in levelToLoad.objectsToInstantiate2)
         {
-            for (int i = 0; i < t.Item2; i++)
+            for (int i = 0; i < p.amountToSpawn; i++)
             {
-                spawnerScript.spawnThisObject(t.Item1);
+                spawnerScript.SpawnThisObject(p.objectToSpawn);
             }
         }
 
         gameController.totalThreshold = levelToLoad.numberOfObjects;
-
+        Debug.Log($"Successfully loaded level {levelName}.");
     }
 
     public void InstantiateInfrastructure(LevelType levelType)
@@ -220,6 +231,8 @@ public class NewLevelManager : MonoBehaviour
         //try to access components from NewLevelManager prefab
         spawnerScript = this.gameObject.GetComponent<objectSpawner>();
         gameController = this.gameObject.GetComponent<GameController>();
+        spawnPlatform = GameObject.FindGameObjectWithTag("SpawnPlatform");
+
         if (!spawnerScript)
         {
             Debug.LogWarning($"spawnerScript component missing on NewLevelManager prefab, please add.");
@@ -229,41 +242,106 @@ public class NewLevelManager : MonoBehaviour
             Debug.LogWarning($"gameController component missing on NewLevelManager prefab, please add.");
         }
 
+        if (!spawnPlatform)
+        {
+            Debug.LogWarning("Could not find tagged spawnPlatform, please tag a gameObject in the active scene.");
+        }
+
         //instantiate
         switch (levelType)
-            {
-                case LevelType.VRTutorial:
-                    //instantiate what we need for VR training
-                    audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-                    if (!audioManager)
-                    {
-                        Instantiate(audioManagerPrefab);
-                    }
-                    blackboard = GameObject.Find("Blackboard").GetComponent<ReviewManager>();
-                    if (!blackboard)
-                    {
-                        Instantiate(blackboardPrefab);    
-                    }
-                    break;
-                case LevelType.Practice:
-                    //instantiate what we need for Practice
-                    audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-                    if (!audioManager)
-                    {
-                        Instantiate(audioManagerPrefab);
-                    }
-                    blackboard = GameObject.Find("Blackboard").GetComponent<ReviewManager>();
-                    if (!blackboard)
-                    {
-                        Instantiate(blackboardPrefab);    
-                    }
-                    break;
-                case LevelType.Evaluation:
-                //instantiate what we need for Evaluation
-                Debug.LogWarning("Evaluation infrastructure hasn't been coded yet, please add.");
-                    break;
-            }
+        {
+            case LevelType.VRTutorial:
+                //instantiate what we need for VR training
+                audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+                if (!audioManager)
+                {
+                    Instantiate(audioManagerPrefab);
+                }
+                blackboard = GameObject.Find("Blackboard").GetComponent<ReviewManager>();
+                if (!blackboard)
+                {
+                    Instantiate(blackboardPrefab);    
+                }
+                break;
+            case LevelType.Practice:
+                //instantiate what we need for Practice
+                audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+                if (!audioManager)
+                {
+                    Instantiate(audioManagerPrefab);
+                }
+                blackboard = GameObject.Find("Blackboard").GetComponent<ReviewManager>();
+                if (!blackboard)
+                {
+                    Instantiate(blackboardPrefab);    
+                }
+                break;
+            case LevelType.Evaluation:
+            //instantiate what we need for Evaluation
+            Debug.LogWarning("Evaluation infrastructure hasn't been coded yet, please add.");
+                break;
+        }
 
+        if (!blackboard || !audioManager)
+        {
+            Debug.LogWarning($"Infrastructure missing: Blackboard = {blackboard}; AudioManager = {audioManager}.");
+        }
+    }
+
+    public void LoadNextLevel()
+    {
+        Debug.Log($"Testing LoadNextLevel. Currentlevel: {currentLevel}");
+        bool currentLevelFound = false;
+
+        foreach (LevelData l in Levels)
+        {
+            Debug.Log($"l.name == {l.name}, comparing...");
+            if (currentLevelFound)
+            {
+                Debug.Log($"Loading Next Level: {l.name}, coming after {currentLevel}.");
+                LoadCustomSequence(l.name);
+                return;
+            }
+            else if (currentLevel == l.name)
+            {
+                Debug.Log($"currentLevel identified: {currentLevel} == {l.name}.");
+                currentLevelFound = true;
+            }
+        }
+
+        LoadEvaluation();
+    }
+
+    public void ReloadLevel()
+    {
+        LoadCustomSequence(currentLevel);
+    }
+
+    public void LoadPractice()
+    {
+        CompareScene("Tutorial_Practice");
+        LoadCustomSequence("1T1");
+    }
+
+    public void LoadVRTraining()
+    {
+        CompareScene("VRTutorial");
+        InstantiateInfrastructure(LevelType.VRTutorial);
+    }
+    public void LoadEvaluation()
+    {
+        CompareScene("Evaluation");
+        InstantiateInfrastructure(LevelType.Evaluation);
+    }
+
+    public void LoadOutro()
+    {
+        CompareScene("Outro_new");
+    }
+
+    public void LoadLevelSelect()
+    {
+        CompareScene("LevelSelect");
     }
 
 }

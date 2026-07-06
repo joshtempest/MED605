@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour
         if (!blackboard)
         {
             Debug.Log("Blackboard not assigned! Trying to find it manually...");
-            blackboard = GameObject.Find("Blackboard");
+            blackboard = GameObject.FindGameObjectWithTag("Blackboard");
 
             if (!blackboard)
                 Debug.LogWarning("Manual search failed, blackboard not assigned.");
@@ -87,6 +87,18 @@ public class GameController : MonoBehaviour
     void Start()
     {
         //resetScore();
+    }
+
+    private void LocateBlackboard()
+    {
+        if (!blackboard)
+        {
+            Debug.Log("Blackboard not assigned! Trying to find it manually...");
+            blackboard = GameObject.FindGameObjectWithTag("Blackboard");
+
+            if (!blackboard)
+                Debug.LogWarning("Manual search failed, blackboard not assigned.");
+        }
     }
 
 
@@ -185,7 +197,15 @@ public class GameController : MonoBehaviour
     {
         totalAnswers = 0;
         levelInProgress = true;
-        ReviewManager.instance.ResetLog();
+
+        LocateBlackboard();
+        if (ReviewManager.instance)
+        {
+            ReviewManager.instance.ResetLog();
+        }
+        else
+            Debug.LogWarning("Cannot locate ReviewManager.instance; cannot reset score.");
+        
     }
 
 

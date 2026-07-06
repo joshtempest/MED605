@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6907870346833018125}
   m_Layer: 0
   m_Name: NewGameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,6 +81,7 @@ MonoBehaviour:
   serviceSpawnPlatform: {fileID: 0}
   madSpawnPlatform: {fileID: 0}
   beskidtSpawnPlatform: {fileID: 0}
+  universalSpawnPlatform: {fileID: 0}
   spawnbufferDistance: 0.5
 --- !u!114 &6907870346833018125
 MonoBehaviour:
@@ -94,6 +95,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ebbc639bab908340a4f7e5af62e62f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewLevelManager
+  Levels:
+  - name: 1T1
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rT
+      objectToSpawn: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
+      amountToSpawn: 1
+    boolskab: 1
+    boolopvask: 0
+    numberOfObjects: 1
+  - name: 1T2
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: bT
+      objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
+      amountToSpawn: 1
+    boolskab: 0
+    boolopvask: 1
+    numberOfObjects: 1
+  - name: 1P1
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: bT
+      objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
+      amountToSpawn: 1
+    boolskab: 0
+    boolopvask: 1
+    numberOfObjects: 1
+  - name: 1P2
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: bT
+      objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
+      amountToSpawn: 1
+    boolskab: 0
+    boolopvask: 1
+    numberOfObjects: 1
+  - name: 1P3
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: bT
+      objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
+      amountToSpawn: 1
+    boolskab: 0
+    boolopvask: 1
+    numberOfObjects: 1
+  Evaluation:
+    name: 
+    levelType: 0
+    narratorVoicelines: []
+    objectsToInstantiate2: []
+    boolskab: 0
+    boolopvask: 0
+    numberOfObjects: 0
   koeleskab: {fileID: 7804653488199077574, guid: d4f936ca6d1536343b21452b31f3fae4, type: 3}
   skab: {fileID: 3267122424555581529, guid: 64884db48f1b2e0448ace0c0094ff033, type: 3}
   opvaskemaskine: {fileID: 1301282156924273411, guid: d2edb635fe23cdc4199a8290cde8b018, type: 3}
@@ -106,3 +171,4 @@ MonoBehaviour:
   audioManagerPrefab: {fileID: 7476429142836813693, guid: dd1a6f04a0c9e094595749a4b25033e6, type: 3}
   reviewManagerPrefab: {fileID: 0}
   blackboardPrefab: {fileID: 6741650676471089642, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+  currentLevel: 1P3

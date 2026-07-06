@@ -24,6 +24,7 @@ public class objectSpawner : MonoBehaviour
     [SerializeField] private GameObject serviceSpawnPlatform;
     [SerializeField] private GameObject madSpawnPlatform;
     [SerializeField] private GameObject beskidtSpawnPlatform;
+    [SerializeField] private GameObject universalSpawnPlatform;
 
     Vector3 spawnBuffer;
     [SerializeField]float spawnbufferDistance = 0.5f;
@@ -81,7 +82,7 @@ public class objectSpawner : MonoBehaviour
     }
     */
 
-    public void spawnThisObject(string type) 
+    public void SpawnThisObject(string type) 
     {
         ///spawn the specific object that was passed in as a parameter, at the correct spawn platform, with a random buffer to prevent stacking
         if (type == "s") //Smoer
@@ -127,5 +128,13 @@ public class objectSpawner : MonoBehaviour
             Instantiate(poelse, positionToSpawn, Quaternion.identity);
 
         }
+    }
+
+    public void SpawnThisObject(GameObject prefab)
+    {
+        spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance));
+        Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
+
+        Instantiate(prefab, positionToSpawn, Quaternion.identity);
     }
 }

@@ -26,12 +26,12 @@ public class Boundary : MonoBehaviour
             //for (int i = 0; i < objectTags.Length; i++)
             //{
             //string currentTag = objectTags[i];if (other.gameObject.tag == currentTag){spawnerScript.spawnObject(currentTag);Destroy(other.gameObject);break;}
-            if (other.gameObject.tag == "Service") { Destroy(other.gameObject); spawnerScript.spawnThisObject(identity.IdentifyObject()); }
-            else if (other.gameObject.tag == "Beskidt") { Destroy(other.gameObject); spawnerScript.spawnThisObject(identity.IdentifyObject()); }
-            else if (other.gameObject.tag == "Mad") { Destroy(other.gameObject); spawnerScript.spawnThisObject(identity.IdentifyObject()); }
-            else if (other.gameObject.tag == "smoer") { Destroy(other.gameObject); spawnerScript.spawnThisObject(identity.IdentifyObject()); }
-            else if (other.gameObject.tag == "plate") { Destroy(other.gameObject); spawnerScript.spawnThisObject(identity.IdentifyObject()); }
-            else if (other.gameObject.tag == "beskidtPlate") { Destroy(other.gameObject); spawnerScript.spawnThisObject(identity.IdentifyObject()); }
+            if (other.gameObject.tag == "Service") { Destroy(other.gameObject); spawnerScript.SpawnThisObject(identity.IdentifyObject()); }
+            else if (other.gameObject.tag == "Beskidt") { Destroy(other.gameObject); spawnerScript.SpawnThisObject(identity.IdentifyObject()); }
+            else if (other.gameObject.tag == "Mad") { Destroy(other.gameObject); spawnerScript.SpawnThisObject(identity.IdentifyObject()); }
+            else if (other.gameObject.tag == "smoer") { Destroy(other.gameObject); spawnerScript.SpawnThisObject(identity.IdentifyObject()); }
+            else if (other.gameObject.tag == "plate") { Destroy(other.gameObject); spawnerScript.SpawnThisObject(identity.IdentifyObject()); }
+            else if (other.gameObject.tag == "beskidtPlate") { Destroy(other.gameObject); spawnerScript.SpawnThisObject(identity.IdentifyObject()); }
         //}
         AudioManager.Instance.PlaySFX("Teleport");
         }

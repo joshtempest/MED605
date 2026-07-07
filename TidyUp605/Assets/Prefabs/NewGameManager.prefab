@@ -104,12 +104,9 @@ MonoBehaviour:
     - objectsToInstantiate2: rT
       objectToSpawn: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
       amountToSpawn: 1
-    - objectsToInstantiate2: bT
-      objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
-      amountToSpawn: 1
     boolskab: 1
-    boolopvask: 1
-    numberOfObjects: 2
+    boolopvask: 0
+    numberOfObjects: 1
   - name: 1T2
     levelType: 1
     narratorVoicelines:
@@ -126,34 +123,135 @@ MonoBehaviour:
     narratorVoicelines:
     - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
     objectsToInstantiate2:
+    - objectsToInstantiate2: rT
+      objectToSpawn: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
+      amountToSpawn: 1
     - objectsToInstantiate2: bT
       objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
       amountToSpawn: 1
-    boolskab: 0
+    boolskab: 1
     boolopvask: 1
-    numberOfObjects: 1
+    numberOfObjects: 2
   - name: 1P2
     levelType: 1
     narratorVoicelines:
     - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
     objectsToInstantiate2:
+    - objectsToInstantiate2: rT
+      objectToSpawn: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
+      amountToSpawn: 1
     - objectsToInstantiate2: bT
       objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
-      amountToSpawn: 1
-    boolskab: 0
+      amountToSpawn: 2
+    boolskab: 1
     boolopvask: 1
-    numberOfObjects: 1
+    numberOfObjects: 3
   - name: 1P3
     levelType: 1
     narratorVoicelines:
     - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
     objectsToInstantiate2:
+    - objectsToInstantiate2: rT
+      objectToSpawn: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
+      amountToSpawn: 2
     - objectsToInstantiate2: bT
       objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
+      amountToSpawn: 2
+    boolskab: 1
+    boolopvask: 1
+    numberOfObjects: 4
+  - name: 1P4
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rT
+      objectToSpawn: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
+      amountToSpawn: 1
+    - objectsToInstantiate2: bT
+      objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
+      amountToSpawn: 4
+    boolskab: 1
+    boolopvask: 1
+    numberOfObjects: 5
+  - name: 2T1
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rG
+      objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
+      amountToSpawn: 1
+    boolskab: 1
+    boolopvask: 0
+    numberOfObjects: 1
+  - name: 2T2
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: bG
+      objectToSpawn: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
       amountToSpawn: 1
     boolskab: 0
     boolopvask: 1
     numberOfObjects: 1
+  - name: 2P1
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rG
+      objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
+      amountToSpawn: 1
+    - objectsToInstantiate2: bG
+      objectToSpawn: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
+      amountToSpawn: 1
+    boolskab: 1
+    boolopvask: 1
+    numberOfObjects: 2
+  - name: 2P2
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rG
+      objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
+      amountToSpawn: 1
+    - objectsToInstantiate2: bG
+      objectToSpawn: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
+      amountToSpawn: 2
+    boolskab: 1
+    boolopvask: 1
+    numberOfObjects: 3
+  - name: 2P3
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rG
+      objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
+      amountToSpawn: 2
+    - objectsToInstantiate2: bG
+      objectToSpawn: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
+      amountToSpawn: 2
+    boolskab: 1
+    boolopvask: 1
+    numberOfObjects: 4
+  - name: 2P4
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rG
+      objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
+      amountToSpawn: 1
+    - objectsToInstantiate2: bG
+      objectToSpawn: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
+      amountToSpawn: 4
+    boolskab: 1
+    boolopvask: 1
+    numberOfObjects: 5
   Evaluation:
     name: 
     levelType: 0
@@ -170,8 +268,17 @@ MonoBehaviour:
   opvaskemaskinePosition: {x: 0.4, y: 0.1, z: 2.95}
   blackboardRotation: {x: 0, y: 90, z: 0}
   blackboardPosition: {x: 2.66, y: 1.735, z: 1.557}
+  evalBBoffset: {x: -5, y: 0, z: 0}
   audioManagerPrefab: {fileID: 7476429142836813693, guid: dd1a6f04a0c9e094595749a4b25033e6, type: 3}
   blackboardPrefab: {fileID: 6741650676471089642, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
   blackboard: {fileID: 0}
   spawnPlatform: {fileID: 0}
   currentLevel: 1P3
+  currentLevelData:
+    name: 
+    levelType: 0
+    narratorVoicelines: []
+    objectsToInstantiate2: []
+    boolskab: 0
+    boolopvask: 0
+    numberOfObjects: 0

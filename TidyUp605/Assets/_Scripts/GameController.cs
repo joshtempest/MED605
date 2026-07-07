@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour
         levelManager = this.gameObject.GetComponent<LevelManager>();
         if (!levelManager)
         {
-            Debug.LogWarning("LevelManager not assigned");
+            Debug.LogWarning("OLDDB // LevelManager not assigned");
         }
 
         // Safety check: Find the blackboard if it wasn't dragged into the inspector manually
@@ -69,11 +69,11 @@ public class GameController : MonoBehaviour
 
         if (!blackboard)
         {
-            Debug.Log("Blackboard not assigned! Trying to find it manually...");
+            Debug.Log("OLDDB // Blackboard not assigned! Trying to find it manually...");
             blackboard = GameObject.FindGameObjectWithTag("Blackboard");
 
             if (!blackboard)
-                Debug.LogWarning("Manual search failed, blackboard not assigned.");
+                Debug.LogWarning("OLDDB // Manual search failed, blackboard not assigned.");
         }
             
             

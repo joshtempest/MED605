@@ -16,6 +16,7 @@ TagManager:
   - smoer
   - plate
   - beskidtPlate
+  - Blackboard
   layers:
   - Default
   - TransparentFX

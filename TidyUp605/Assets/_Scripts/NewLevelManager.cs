@@ -62,10 +62,11 @@ public class NewLevelManager : MonoBehaviour
 
     //Prefab
     [Header("Prefabs")]
-    [SerializeField] GameObject koeleskab;
+    //[SerializeField] GameObject koeleskab;
     [SerializeField] GameObject skab;
     [SerializeField] GameObject opvaskemaskine;
 
+    /*
     //Platforms (to place them the same place everytime)
     [Header("Platforms")]
     [SerializeField] GameObject koelePlatform;
@@ -77,15 +78,19 @@ public class NewLevelManager : MonoBehaviour
     [SerializeField] Vector3 koeleSpawnbuffer = new Vector3(0, 1.62f, 0);
     [SerializeField] Vector3 skabSpawnbuffer = new Vector3(0, 0.2f, 0);
     [SerializeField] Vector3 opvaskeSpawnbuffer = new Vector3(0, 0.1f, 0);
+    */
 
-    Vector3 koelePlatformPos;
-    Vector3 skabPlatformPos;
-    Vector3 opvaskemaskinePlatformPos;
+    public Vector3 skabRotation;
+    public Vector3 skabPosition;
+    public Vector3 opvaskerRotation;
+    public Vector3 opvaskemaskinePosition;
 
+    public Vector3 blackboardRotation;
+    public Vector3 blackboardPosition;
 
     //to make levels possible when starting from LevelSelect
     public GameObject audioManagerPrefab;
-    public GameObject reviewManagerPrefab;
+    //public GameObject reviewManagerPrefab;
     public GameObject blackboardPrefab;
 
 
@@ -94,7 +99,8 @@ public class NewLevelManager : MonoBehaviour
     private objectSpawner spawnerScript;
     private GameController gameController;
     private AudioManager audioManager;
-    private ReviewManager blackboard;
+    public GameObject blackboard;
+    private ReviewManager reviewManager;
 
     public GameObject spawnPlatform;
 
@@ -174,6 +180,7 @@ public class NewLevelManager : MonoBehaviour
             Destroy(beskidt[i]);
         }
 
+        /*
         if (gameController != null)
         {
             gameController.resetScore();
@@ -182,15 +189,19 @@ public class NewLevelManager : MonoBehaviour
         {
             Debug.LogWarning("GameController is missing on " + gameObject.name + ". Cannot reset score.");
         }
+        */
     }
 
     public void LoadCustomSequence(string levelName)
     {
         Debug.Log($"Attempting to load level {levelName}");
+
+        Debug.Log("Annihalating...");
         Annihilation();
 
         LevelData levelToLoad = null;
 
+        Debug.Log("Identifying LevelToLoad...");
         //iterate through LevelData[] to find the right data
         foreach (LevelData l in Levels)
         {
@@ -205,15 +216,34 @@ public class NewLevelManager : MonoBehaviour
             Debug.LogWarning($"Unable to load level from string {levelName}. Please enter a valid level identifier and try again.");
             return;
         }
+        Debug.Log($"LevelToLoad identified: {levelToLoad.name}.");
 
         currentLevel = levelToLoad.name;
 
         InstantiateInfrastructure(levelToLoad.levelType);
 
+        //reset score when Blackboard is identified (hopefully)
+        Debug.Log("Attempting to reset score via gamecontroller...");
+        if (gameController != null)
+        {
+            gameController.resetScore();
+        }
+        else
+        {
+            Debug.LogWarning("GameController is missing on " + gameObject.name + ". Cannot reset score.");
+        }
+
+
         //instantiate receptacles
-        if (levelToLoad.boolskab) { Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation); }
-        if (levelToLoad.boolopvask) { Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation); }
-        
+        Debug.Log("Instantiating receptacles...");
+        GameObject GOskab = null;
+        GameObject GOopvasker = null;
+        if (levelToLoad.boolskab) { GOskab = Instantiate(skab, skabPosition, Quaternion.Euler(skabRotation)); }
+        if (levelToLoad.boolopvask) { GOopvasker = Instantiate(opvaskemaskine, opvaskemaskinePosition, Quaternion.Euler(opvaskerRotation)); }
+        Debug.Log($"Receptacles instantiated: Skab - {levelToLoad.boolskab} - {GOskab} // Opvasker - {levelToLoad.boolopvask} - {GOopvasker}.");
+
+
+        Debug.Log("Instantiating objects...");
         foreach(PrefabData p in levelToLoad.objectsToInstantiate2)
         {
             for (int i = 0; i < p.amountToSpawn; i++)
@@ -228,6 +258,7 @@ public class NewLevelManager : MonoBehaviour
 
     public void InstantiateInfrastructure(LevelType levelType)
     {
+        Debug.Log("Instantiating infrastructure...");
         //try to access components from NewLevelManager prefab
         spawnerScript = this.gameObject.GetComponent<objectSpawner>();
         gameController = this.gameObject.GetComponent<GameController>();
@@ -242,10 +273,12 @@ public class NewLevelManager : MonoBehaviour
             Debug.LogWarning($"gameController component missing on NewLevelManager prefab, please add.");
         }
 
+        /*
         if (!spawnPlatform)
         {
             Debug.LogWarning("Could not find tagged spawnPlatform, please tag a gameObject in the active scene.");
         }
+        */
 
         //instantiate
         switch (levelType)
@@ -257,10 +290,11 @@ public class NewLevelManager : MonoBehaviour
                 {
                     Instantiate(audioManagerPrefab);
                 }
-                blackboard = GameObject.Find("Blackboard").GetComponent<ReviewManager>();
+                blackboard = GameObject.Find("Blackboard");
                 if (!blackboard)
                 {
-                    Instantiate(blackboardPrefab);    
+                    blackboard = Instantiate(blackboardPrefab);
+                    reviewManager = blackboard.GetComponent<ReviewManager>();
                 }
                 break;
             case LevelType.Practice:
@@ -270,10 +304,11 @@ public class NewLevelManager : MonoBehaviour
                 {
                     Instantiate(audioManagerPrefab);
                 }
-                blackboard = GameObject.Find("Blackboard").GetComponent<ReviewManager>();
+                blackboard = GameObject.Find("Blackboard");
                 if (!blackboard)
                 {
-                    Instantiate(blackboardPrefab);    
+                    blackboard = Instantiate(blackboardPrefab, blackboardPosition, Quaternion.Euler(blackboardRotation));
+                    reviewManager = blackboard.GetComponent<ReviewManager>();
                 }
                 break;
             case LevelType.Evaluation:
@@ -282,9 +317,9 @@ public class NewLevelManager : MonoBehaviour
                 break;
         }
 
-        if (!blackboard || !audioManager)
+        if (!reviewManager || !audioManager)
         {
-            Debug.LogWarning($"Infrastructure missing: Blackboard = {blackboard}; AudioManager = {audioManager}.");
+            Debug.LogWarning($"Infrastructure missing: reviewManager = {reviewManager} AudioManager = {audioManager}.");
         }
     }
 

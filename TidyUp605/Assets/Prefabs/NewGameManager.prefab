@@ -104,9 +104,12 @@ MonoBehaviour:
     - objectsToInstantiate2: rT
       objectToSpawn: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
       amountToSpawn: 1
+    - objectsToInstantiate2: bT
+      objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
+      amountToSpawn: 1
     boolskab: 1
-    boolopvask: 0
-    numberOfObjects: 1
+    boolopvask: 1
+    numberOfObjects: 2
   - name: 1T2
     levelType: 1
     narratorVoicelines:
@@ -159,16 +162,16 @@ MonoBehaviour:
     boolskab: 0
     boolopvask: 0
     numberOfObjects: 0
-  koeleskab: {fileID: 7804653488199077574, guid: d4f936ca6d1536343b21452b31f3fae4, type: 3}
   skab: {fileID: 3267122424555581529, guid: 64884db48f1b2e0448ace0c0094ff033, type: 3}
   opvaskemaskine: {fileID: 1301282156924273411, guid: d2edb635fe23cdc4199a8290cde8b018, type: 3}
-  koelePlatform: {fileID: 0}
-  skabPlatform: {fileID: 0}
-  opvaskemaskinePlatform: {fileID: 0}
-  koeleSpawnbuffer: {x: 0, y: 1.62, z: 0}
-  skabSpawnbuffer: {x: 0, y: 0.2, z: 0}
-  opvaskeSpawnbuffer: {x: 0, y: 0.1, z: 0}
+  skabRotation: {x: 0, y: -58.5, z: 0}
+  skabPosition: {x: 0.771, y: 1.119, z: -0.041}
+  opvaskerRotation: {x: 0, y: 53.3, z: 0}
+  opvaskemaskinePosition: {x: 0.4, y: 0.1, z: 2.95}
+  blackboardRotation: {x: 0, y: 90, z: 0}
+  blackboardPosition: {x: 2.66, y: 1.735, z: 1.557}
   audioManagerPrefab: {fileID: 7476429142836813693, guid: dd1a6f04a0c9e094595749a4b25033e6, type: 3}
-  reviewManagerPrefab: {fileID: 0}
   blackboardPrefab: {fileID: 6741650676471089642, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+  blackboard: {fileID: 0}
+  spawnPlatform: {fileID: 0}
   currentLevel: 1P3

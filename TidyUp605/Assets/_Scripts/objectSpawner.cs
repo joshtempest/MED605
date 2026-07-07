@@ -1,6 +1,8 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class objectSpawner : MonoBehaviour
 {
@@ -32,9 +34,11 @@ public class objectSpawner : MonoBehaviour
 
     void Awake()
     {
+        /* OLD
         Vector3 serviceSpawnPlat = serviceSpawnPlatform.transform.position;
         Vector3 madSpawnPlat = madSpawnPlatform.transform.position;
         Vector3 beskidtSpawnPlat = beskidtSpawnPlatform.transform.position;
+        */
     }
 
     void Start()
@@ -132,6 +136,17 @@ public class objectSpawner : MonoBehaviour
 
     public void SpawnThisObject(GameObject prefab)
     {
+        if (!universalSpawnPlatform)
+        {
+            Debug.Log($"Object spawner universalSpawnPlatform not assigned in scene {SceneManager.GetActiveScene()}, searching manually...");
+            //universalSpawnPlatform = GameObject.FindGameObjectWithTag("SpawnPlatform");
+            universalSpawnPlatform = GameObject.Find("bordPlatform");
+            if (!universalSpawnPlatform)
+            {
+                Debug.LogWarning($"Manual search for universalSpawnPlatform in scene {SceneManager.GetActiveScene()} failed, cannot spawn object.");
+                return;
+            }
+        }
         spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance));
         Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
 

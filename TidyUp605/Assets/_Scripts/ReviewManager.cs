@@ -99,7 +99,7 @@ public class ReviewManager : MonoBehaviour
 
 
     //SETUP
-    void Start()
+    void Awake()
     {
         //Singleton pattern - to ensure there are not two acting ReviewManagers
         if (instance == null)
@@ -146,6 +146,8 @@ public class ReviewManager : MonoBehaviour
         //COMMENT OUT LATER?
         DisplayGameScreen();
     }
+
+    
 
 
 

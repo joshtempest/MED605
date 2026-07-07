@@ -253,13 +253,25 @@ MonoBehaviour:
     boolopvask: 1
     numberOfObjects: 5
   Evaluation:
-    name: 
+    name: Eval
     levelType: 0
     narratorVoicelines: []
-    objectsToInstantiate2: []
-    boolskab: 0
-    boolopvask: 0
-    numberOfObjects: 0
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rT
+      objectToSpawn: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
+      amountToSpawn: 2
+    - objectsToInstantiate2: bT
+      objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
+      amountToSpawn: 2
+    - objectsToInstantiate2: rG
+      objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
+      amountToSpawn: 2
+    - objectsToInstantiate2: bG
+      objectToSpawn: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
+      amountToSpawn: 2
+    boolskab: 1
+    boolopvask: 1
+    numberOfObjects: 8
   skab: {fileID: 3267122424555581529, guid: 64884db48f1b2e0448ace0c0094ff033, type: 3}
   opvaskemaskine: {fileID: 1301282156924273411, guid: d2edb635fe23cdc4199a8290cde8b018, type: 3}
   skabRotation: {x: 0, y: -58.5, z: 0}

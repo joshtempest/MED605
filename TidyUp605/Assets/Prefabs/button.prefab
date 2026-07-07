@@ -333,4 +333,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3320664977284899326}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6907870346833018125, guid: 61c10162c53ad6b40a6a294aeb7514bd, type: 3}
+        m_TargetAssemblyTypeName: NewLevelManager, Assembly-CSharp
+        m_MethodName: LoadNextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -74,13 +74,13 @@ public class GameController : MonoBehaviour
 
             if (!blackboard)
                 Debug.LogWarning("OLDDB // Manual search failed, blackboard not assigned.");
-        }
-            
-            
+        }     
         else
         {
+            /*
             blackboard.transform.position = bbBackgroundPosition;
             blackboard.transform.rotation = bbBackgroundRotation;
+            */
         }
     }
 

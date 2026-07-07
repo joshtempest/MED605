@@ -10,9 +10,15 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 
+public class ButtonFunction
+{
+    GameObject button;
+    string function;
+}
 public class ReviewManager : MonoBehaviour
 {
     //singleton
@@ -97,6 +103,9 @@ public class ReviewManager : MonoBehaviour
     public bool overridePosition = false;
     public Vector3 altPosition;
 
+    public GameObject NewGameManager;
+    public ButtonFunction[] buttons;
+
 
     //SETUP
     void Awake()
@@ -131,24 +140,29 @@ public class ReviewManager : MonoBehaviour
         Review = go_Review.GetComponent<CanvasGroup>();
         End_continue = go_End_continue.GetComponent<CanvasGroup>();
         Gameplay = go_Gameplay.GetComponent<CanvasGroup>();
- 
+
 
         if (!Review || !End_continue || !Gameplay)
         {
             Debug.LogWarning("Canvas group not found.");
         }
 
-        //set star sprites to grey
-        UpdateEndScreen(0);
+        NewGameManager = GameObject.FindGameObjectWithTag("GameController");
+        if (!NewGameManager)
+        {
+            Debug.LogWarning($"ReviewManager could not identify GameManager in scene {SceneManager.GetActiveScene().name}.");
+        }
+        
+
+
+            //set star sprites to grey
+            UpdateEndScreen(0);
 
         //Debug.Log("Starting...");
         
         //COMMENT OUT LATER?
         DisplayGameScreen();
     }
-
-    
-
 
 
 
@@ -500,6 +514,27 @@ public class ReviewManager : MonoBehaviour
 
     }
 
+
+    //buttons
+    public void ReloadLevel()
+    {
+        NewLevelManager.instance.ReloadLevel();
+    }
+
+    public void PlayNarrator()
+    {
+        NewLevelManager.instance.PlayInstructions();
+    }
+
+    public void NextLevel()
+    {
+        NewLevelManager.instance.LoadNextLevel();
+    }
+
+    public void LvlSelect()
+    {
+        NewLevelManager.instance.LoadLevelSelect();
+    }
 
 
 

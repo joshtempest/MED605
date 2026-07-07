@@ -87,6 +87,7 @@ public class NewLevelManager : MonoBehaviour
 
     public Vector3 blackboardRotation;
     public Vector3 blackboardPosition;
+    public Vector3 evalBBoffset = new Vector3(-5f, 0f, 0f);
 
     //to make levels possible when starting from LevelSelect
     public GameObject audioManagerPrefab;
@@ -108,10 +109,22 @@ public class NewLevelManager : MonoBehaviour
 
     public string currentLevel;
 
+    public LevelData currentLevelData;
+
+    string requestedLevel;
+
+    bool TPLoaded = false;
+    bool VRLoaded = false;
+    bool EVALLoaded = false;
+
     //Debug only
     private void Update()
     {
-        
+        if (TPLoaded)
+        {
+            TPLoaded = false;
+            LoadCustomSequence(requestedLevel);
+        }
     }
 
 
@@ -154,7 +167,7 @@ public class NewLevelManager : MonoBehaviour
 
     void Annihilation()
     {
-        //Debug.Log("Annihilation initiated");
+        Debug.Log("Annihilation initiated.");
         //LogData.instance.AddToLogs("Annihalating...");
 
         ///Finds all objects with the specified tags and destroys them, to clear the scene for the new level.
@@ -180,16 +193,6 @@ public class NewLevelManager : MonoBehaviour
             Destroy(beskidt[i]);
         }
 
-        /*
-        if (gameController != null)
-        {
-            gameController.resetScore();
-        }
-        else
-        {
-            Debug.LogWarning("GameController is missing on " + gameObject.name + ". Cannot reset score.");
-        }
-        */
     }
 
     public void LoadCustomSequence(string levelName)
@@ -197,7 +200,10 @@ public class NewLevelManager : MonoBehaviour
         Debug.Log($"Attempting to load level {levelName}");
 
         Debug.Log("Annihalating...");
+
         Annihilation();
+
+        ReviewManager.instance.DisplayGameScreen();
 
         LevelData levelToLoad = null;
 
@@ -219,6 +225,7 @@ public class NewLevelManager : MonoBehaviour
         Debug.Log($"LevelToLoad identified: {levelToLoad.name}.");
 
         currentLevel = levelToLoad.name;
+        currentLevelData = levelToLoad;
 
         InstantiateInfrastructure(levelToLoad.levelType);
 
@@ -235,7 +242,7 @@ public class NewLevelManager : MonoBehaviour
 
 
         //instantiate receptacles
-        Debug.Log("Instantiating receptacles...");
+        Debug.Log($"Instantiating receptacles in scene {SceneManager.GetActiveScene().name}...");
         GameObject GOskab = null;
         GameObject GOopvasker = null;
         if (levelToLoad.boolskab) { GOskab = Instantiate(skab, skabPosition, Quaternion.Euler(skabRotation)); }
@@ -243,16 +250,20 @@ public class NewLevelManager : MonoBehaviour
         Debug.Log($"Receptacles instantiated: Skab - {levelToLoad.boolskab} - {GOskab} // Opvasker - {levelToLoad.boolopvask} - {GOopvasker}.");
 
 
-        Debug.Log("Instantiating objects...");
+        Debug.Log($"Instantiating objects: {levelToLoad.numberOfObjects} need to be spawned...");
         foreach(PrefabData p in levelToLoad.objectsToInstantiate2)
         {
+            Debug.Log($"Attempting to spawn {p.objectToSpawn} objects...");
             for (int i = 0; i < p.amountToSpawn; i++)
             {
-                spawnerScript.SpawnThisObject(p.objectToSpawn);
+                spawnerScript.SpawnThisObject2(p.objectToSpawn);
             }
         }
 
         gameController.totalThreshold = levelToLoad.numberOfObjects;
+
+        audioManager.PlayClips(levelToLoad.narratorVoicelines);
+
         Debug.Log($"Successfully loaded level {levelName}.");
     }
 
@@ -317,12 +328,33 @@ public class NewLevelManager : MonoBehaviour
                 break;
         }
 
+        if (SceneManager.GetActiveScene().name == "Tutorial_Practice")
+        {
+            blackboard.transform.position = blackboardPosition;
+            blackboard.transform.rotation = Quaternion.Euler(blackboardRotation);
+        }
+        else if (SceneManager.GetActiveScene().name == "Evaluation")
+        {
+            blackboard.transform.position = blackboardPosition + evalBBoffset;
+            blackboard.transform.rotation = Quaternion.Euler(blackboardRotation);
+        }
+        else
+        {
+            blackboard.transform.position = blackboardPosition + new Vector3(0f, -100f, 0f);
+            blackboard.transform.rotation = Quaternion.Euler(blackboardRotation);
+
+        }
+
         if (!reviewManager || !audioManager)
         {
             Debug.LogWarning($"Infrastructure missing: reviewManager = {reviewManager} AudioManager = {audioManager}.");
         }
     }
 
+    public void PlayInstructions()
+    {
+        audioManager.PlayClips(currentLevelData.narratorVoicelines);
+    }
     public void LoadNextLevel()
     {
         Debug.Log($"Testing LoadNextLevel. Currentlevel: {currentLevel}");
@@ -354,8 +386,9 @@ public class NewLevelManager : MonoBehaviour
 
     public void LoadPractice()
     {
+        requestedLevel = "1T1";
         CompareScene("Tutorial_Practice");
-        LoadCustomSequence("1T1");
+        
     }
 
     public void LoadVRTraining()
@@ -379,4 +412,29 @@ public class NewLevelManager : MonoBehaviour
         CompareScene("LevelSelect");
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Tutorial_Practice")
+        {
+            TPLoaded = true;
+        }
+        else if (scene.name == "VRTutorial")
+        {
+            VRLoaded = true;
+        }
+        else if (scene.name == "Evaluation")
+        {
+            EVALLoaded = true;
+        }
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 }

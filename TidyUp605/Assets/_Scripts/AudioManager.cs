@@ -52,6 +52,19 @@ public class AudioManager : MonoBehaviour
 
     //  LOGIC FOR PLAYING SOUNDS
 
+    public void PlayClip (AudioClip clip)
+    {
+        sfxSource.PlayOneShot(clip);
+    }
+
+    public void PlayClips(AudioClip[] clips)
+    {
+        foreach (AudioClip c in clips)
+        {
+            PlayClip(c);
+        }
+    }
+
     public void PlayMusic(string name)
     {
         Sound s = Array.Find(musicSounds, x => x.name == name);

@@ -252,10 +252,12 @@ MonoBehaviour:
     boolskab: 1
     boolopvask: 1
     numberOfObjects: 5
-  Evaluation:
-    name: Eval
-    levelType: 0
-    narratorVoicelines: []
+  Evaluation1:
+    name: Eval1
+    levelType: 2
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    - {fileID: 8300000, guid: 5e43f9c2205a7594683f7aa3e9cfd372, type: 3}
     objectsToInstantiate2:
     - objectsToInstantiate2: rT
       objectToSpawn: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
@@ -269,8 +271,8 @@ MonoBehaviour:
     - objectsToInstantiate2: bG
       objectToSpawn: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
       amountToSpawn: 2
-    boolskab: 1
-    boolopvask: 1
+    boolskab: 0
+    boolopvask: 0
     numberOfObjects: 8
   skab: {fileID: 3267122424555581529, guid: 64884db48f1b2e0448ace0c0094ff033, type: 3}
   opvaskemaskine: {fileID: 1301282156924273411, guid: d2edb635fe23cdc4199a8290cde8b018, type: 3}
@@ -280,7 +282,7 @@ MonoBehaviour:
   opvaskemaskinePosition: {x: 0.4, y: 0.1, z: 2.95}
   blackboardRotation: {x: 0, y: 90, z: 0}
   blackboardPosition: {x: 2.66, y: 1.735, z: 1.557}
-  evalBBoffset: {x: -5, y: 0, z: 0}
+  evalBBoffset: {x: 0, y: 0.7, z: 1}
   audioManagerPrefab: {fileID: 7476429142836813693, guid: dd1a6f04a0c9e094595749a4b25033e6, type: 3}
   blackboardPrefab: {fileID: 6741650676471089642, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
   blackboard: {fileID: 0}

@@ -640,7 +640,7 @@ public class LevelManager : MonoBehaviour
         pendingLevelToLoad = "S1E";
         pendingSequenceType = 3;
 
-        if (compareScene("Evaluation")) { return; }
+        if (compareScene("Evaluation1")) { return; }
 
         pendingLevelToLoad = "";
         pendingSequenceType = 0;

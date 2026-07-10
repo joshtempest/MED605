@@ -56,7 +56,7 @@ public class NewLevelManager : MonoBehaviour
 {
     [Header("Level Data")]
     public LevelData[] Levels;
-    public LevelData Evaluation;
+    public LevelData Evaluation1;
 
     public static NewLevelManager instance;
 
@@ -123,6 +123,12 @@ public class NewLevelManager : MonoBehaviour
         if (TPLoaded)
         {
             TPLoaded = false;
+            LoadCustomSequence(requestedLevel);
+        }
+
+        if (EVALLoaded)
+        {
+            EVALLoaded = false;
             LoadCustomSequence(requestedLevel);
         }
     }
@@ -219,6 +225,11 @@ public class NewLevelManager : MonoBehaviour
                 levelToLoad = l;
             }
         }
+        if (levelName == "Eval1")
+        {
+            levelToLoad = Evaluation1;
+            Debug.Log("Loading Evaluation...");
+        }
         //if no data was found: abort
         if (levelToLoad == null)
         {
@@ -287,48 +298,17 @@ public class NewLevelManager : MonoBehaviour
             Debug.LogWarning($"gameController component missing on NewLevelManager prefab, please add.");
         }
 
-        /*
-        if (!spawnPlatform)
+        //instantiate what we need for a typical game scene
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        if (!audioManager)
         {
-            Debug.LogWarning("Could not find tagged spawnPlatform, please tag a gameObject in the active scene.");
+            Instantiate(audioManagerPrefab);
         }
-        */
-
-        //instantiate
-        switch (levelType)
+        blackboard = GameObject.Find("Blackboard");
+        if (!blackboard)
         {
-            case LevelType.VRTutorial:
-                //instantiate what we need for VR training
-                audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-                if (!audioManager)
-                {
-                    Instantiate(audioManagerPrefab);
-                }
-                blackboard = GameObject.Find("Blackboard");
-                if (!blackboard)
-                {
-                    blackboard = Instantiate(blackboardPrefab);
-                    reviewManager = blackboard.GetComponent<ReviewManager>();
-                }
-                break;
-            case LevelType.Practice:
-                //instantiate what we need for Practice
-                audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-                if (!audioManager)
-                {
-                    Instantiate(audioManagerPrefab);
-                }
-                blackboard = GameObject.Find("Blackboard");
-                if (!blackboard)
-                {
-                    blackboard = Instantiate(blackboardPrefab, blackboardPosition, Quaternion.Euler(blackboardRotation));
-                    reviewManager = blackboard.GetComponent<ReviewManager>();
-                }
-                break;
-            case LevelType.Evaluation:
-            //instantiate what we need for Evaluation
-            Debug.LogWarning("Evaluation infrastructure hasn't been coded yet, please add.");
-                break;
+            blackboard = Instantiate(blackboardPrefab, blackboardPosition, Quaternion.Euler(blackboardRotation));
+            reviewManager = blackboard.GetComponent<ReviewManager>();
         }
 
         if (SceneManager.GetActiveScene().name == "Tutorial_Practice")
@@ -360,7 +340,7 @@ public class NewLevelManager : MonoBehaviour
     }
     public void LoadNextLevel()
     {
-        Debug.Log($"Testing LoadNextLevel. Currentlevel: {currentLevel}");
+        Debug.Log($"LoadingNextLevel... Currentlevel: {currentLevel}");
         bool currentLevelFound = false;
 
         foreach (LevelData l in Levels)
@@ -379,7 +359,7 @@ public class NewLevelManager : MonoBehaviour
             }
         }
 
-        LoadEvaluation();
+        LoadEvaluation("Eval1");
     }
 
     public void ReloadLevel()
@@ -407,8 +387,18 @@ public class NewLevelManager : MonoBehaviour
     }
     public void LoadEvaluation()
     {
+        requestedLevel = "Eval1";
         CompareScene("Evaluation");
-        InstantiateInfrastructure(LevelType.Evaluation);
+       
+    }
+    public void LoadEvaluation(string evalName)
+    {
+
+        requestedLevel = evalName;
+        CompareScene("Evaluation");
+
+
+        //InstantiateInfrastructure(LevelType.Evaluation);
     }
 
     public void LoadOutro()
@@ -440,6 +430,7 @@ public class NewLevelManager : MonoBehaviour
         {
             EVALLoaded = true;
         }
+        Debug.Log($"Scene {SceneManager.GetActiveScene().name} loaded.");
     }
 
     private void OnDisable()

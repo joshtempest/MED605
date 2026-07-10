@@ -147,33 +147,11 @@ public class objectSpawner : MonoBehaviour
                 return;
             }
         }
-        spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance));
+
+        spawnBuffer = new Vector3(UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
         Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
 
         Instantiate(prefab, positionToSpawn, Quaternion.identity);
     }
 
-    /*
-    public void SpawnThisObject2(string objectName)
-    {
-        if (!universalSpawnPlatform)
-        {
-            Debug.Log($"Object spawner universalSpawnPlatform not assigned in scene {SceneManager.GetActiveScene()}, searching manually...");
-            universalSpawnPlatform = GameObject.FindGameObjectWithTag("SpawnPlatform");
-            //universalSpawnPlatform = GameObject.Find("bordPlatform");
-            if (!universalSpawnPlatform)
-            {
-                Debug.LogWarning($"Manual search for universalSpawnPlatform in scene {SceneManager.GetActiveScene()} failed, cannot spawn object.");
-                return;
-            }
-        }
-
-
-
-        spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance));
-        Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
-
-        Instantiate(prefab, positionToSpawn, Quaternion.identity);
-    }
-    */
 }

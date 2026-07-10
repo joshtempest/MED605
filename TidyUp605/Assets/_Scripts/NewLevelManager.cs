@@ -199,6 +199,9 @@ public class NewLevelManager : MonoBehaviour
     {
         Debug.Log($"Attempting to load level {levelName}");
 
+        //make sure we are in TP scene
+        //CompareScene("Tutorial_Practice");
+
         Debug.Log("Annihalating...");
 
         Annihilation();
@@ -391,6 +394,12 @@ public class NewLevelManager : MonoBehaviour
         
     }
 
+    public void LoadPractice(string name)
+    {
+        requestedLevel = name;
+        CompareScene("Tutorial_Practice");
+    }
+
     public void LoadVRTraining()
     {
         CompareScene("VRTutorial");
@@ -436,5 +445,10 @@ public class NewLevelManager : MonoBehaviour
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

@@ -2,6 +2,7 @@ using System;
 using JetBrains.Annotations;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.SceneManagement;
 
 
@@ -359,7 +360,19 @@ public class NewLevelManager : MonoBehaviour
             }
         }
 
-        LoadEvaluation("Eval1");
+        if (SceneManager.GetActiveScene().name == "Tutorial_Practice")
+        {
+            LoadEvaluation("Eval1");
+        }
+        else if (SceneManager.GetActiveScene().name == "Evaluation")
+        {
+            LoadOutro();
+        }
+        else
+        {
+            Debug.LogWarning($"Buddy you tried to load the level after {currentLevel} but you are in {SceneManager.GetActiveScene().name}. This should be physically impossible and I'm only writing this long-ass warning because technically it should never occur. Congratulations! You have expanded the bounds of what is possible. Now go fix yo shit.");
+        }
+
     }
 
     public void ReloadLevel()

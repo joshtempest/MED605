@@ -280,6 +280,10 @@ MonoBehaviour:
   skabPosition: {x: 0.771, y: 1.119, z: -0.041}
   opvaskerRotation: {x: 0, y: 53.3, z: 0}
   opvaskemaskinePosition: {x: 0.4, y: 0.1, z: 2.95}
+  evalSkabPosition: {x: 0.551, y: 1.09, z: -0.985}
+  evalSkabRotation: {x: 0, y: 0, z: 0}
+  evalOpvaskemaskinePosition: {x: -0.841, y: 0.103, z: -0.108}
+  evalOpvaskerRotation: {x: 0, y: 180.85277, z: 0}
   blackboardRotation: {x: 0, y: 90, z: 0}
   blackboardPosition: {x: 2.66, y: 1.735, z: 1.557}
   evalBBoffset: {x: 0, y: 0.7, z: 1}

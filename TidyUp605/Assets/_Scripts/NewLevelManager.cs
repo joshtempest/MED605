@@ -80,11 +80,18 @@ public class NewLevelManager : MonoBehaviour
     [SerializeField] Vector3 skabSpawnbuffer = new Vector3(0, 0.2f, 0);
     [SerializeField] Vector3 opvaskeSpawnbuffer = new Vector3(0, 0.1f, 0);
     */
-
+    [Header("Receptacle Positions")]
     public Vector3 skabRotation;
     public Vector3 skabPosition;
     public Vector3 opvaskerRotation;
     public Vector3 opvaskemaskinePosition;
+
+    [Header("Evaluation Receptacle Positions")]
+    public Vector3 evalSkabPosition;
+    public Vector3 evalSkabRotation;
+    public Vector3 evalOpvaskemaskinePosition;
+    public Vector3 evalOpvaskerRotation;
+    
 
     public Vector3 blackboardRotation;
     public Vector3 blackboardPosition;
@@ -260,9 +267,18 @@ public class NewLevelManager : MonoBehaviour
         Debug.Log($"Instantiating receptacles in scene {SceneManager.GetActiveScene().name}...");
         GameObject GOskab = null;
         GameObject GOopvasker = null;
-        if (levelToLoad.boolskab) { GOskab = Instantiate(skab, skabPosition, Quaternion.Euler(skabRotation)); }
-        if (levelToLoad.boolopvask) { GOopvasker = Instantiate(opvaskemaskine, opvaskemaskinePosition, Quaternion.Euler(opvaskerRotation)); }
-        Debug.Log($"Receptacles instantiated: Skab - {levelToLoad.boolskab} - {GOskab} // Opvasker - {levelToLoad.boolopvask} - {GOopvasker}.");
+        if(SceneManager.GetActiveScene().name == "Tutorial_Practice") 
+        {
+            if (levelToLoad.boolskab) { GOskab = Instantiate(skab, skabPosition, Quaternion.Euler(skabRotation)); }
+            if (levelToLoad.boolopvask) { GOopvasker = Instantiate(opvaskemaskine, opvaskemaskinePosition, Quaternion.Euler(opvaskerRotation)); }
+
+        }
+        else if (SceneManager.GetActiveScene().name == "Evaluation")
+        {
+            if (levelToLoad.boolskab) { GOskab = Instantiate(skab, evalSkabPosition, Quaternion.Euler(skabRotation)); }
+            if (levelToLoad.boolopvask) { GOopvasker = Instantiate(opvaskemaskine, evalOpvaskemaskinePosition, Quaternion.Euler(opvaskerRotation)); }
+        }
+            Debug.Log($"Receptacles instantiated: Skab - {levelToLoad.boolskab} - {GOskab} // Opvasker - {levelToLoad.boolopvask} - {GOopvasker}.");
 
 
         Debug.Log($"Instantiating objects: {levelToLoad.numberOfObjects} need to be spawned...");

@@ -7,6 +7,11 @@ public class LvlSelect : MonoBehaviour
         NewLevelManager.instance.LoadPractice(name);
     }
 
+    public void Intro()
+    {
+        NewLevelManager.instance.LoadIntro();
+    }
+
     public void VRTraining()
     {
         NewLevelManager.instance.LoadVRTraining();
@@ -25,5 +30,10 @@ public class LvlSelect : MonoBehaviour
     public void QuittenGelee()
     {
         Application.Quit();
+    }
+
+    public void SwitchToGrab()
+    {
+        NewLevelManager.instance.LoadGrabVRTraining();
     }
 }

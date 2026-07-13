@@ -271,8 +271,8 @@ MonoBehaviour:
     - objectsToInstantiate2: bG
       objectToSpawn: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
       amountToSpawn: 2
-    boolskab: 0
-    boolopvask: 0
+    boolskab: 1
+    boolopvask: 1
     numberOfObjects: 8
   skab: {fileID: 3267122424555581529, guid: 64884db48f1b2e0448ace0c0094ff033, type: 3}
   opvaskemaskine: {fileID: 1301282156924273411, guid: d2edb635fe23cdc4199a8290cde8b018, type: 3}
@@ -283,10 +283,16 @@ MonoBehaviour:
   evalSkabPosition: {x: 0.551, y: 1.09, z: -0.985}
   evalSkabRotation: {x: 0, y: 0, z: 0}
   evalOpvaskemaskinePosition: {x: -0.841, y: 0.103, z: -0.108}
-  evalOpvaskerRotation: {x: 0, y: 180.85277, z: 0}
+  evalOpvaskerRotation: {x: 0, y: -180, z: 0}
   blackboardRotation: {x: 0, y: 90, z: 0}
   blackboardPosition: {x: 2.66, y: 1.735, z: 1.557}
   evalBBoffset: {x: 0, y: 0.7, z: 1}
+  hideBBOffset: {x: 0, y: -10, z: 0}
+  hideBBScenes:
+  - Intro
+  - VRTutorial
+  - Outro_new
+  - LevelSelect
   audioManagerPrefab: {fileID: 7476429142836813693, guid: dd1a6f04a0c9e094595749a4b25033e6, type: 3}
   blackboardPrefab: {fileID: 6741650676471089642, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
   blackboard: {fileID: 0}

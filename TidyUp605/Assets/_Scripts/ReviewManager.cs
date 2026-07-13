@@ -100,13 +100,13 @@ public class ReviewManager : MonoBehaviour
     public TMP_Text continueText;
     public TMP_Text scoreText;
     public TMP_Text scorePlaceholder;
-    public bool overridePosition = false;
+    //public bool overridePosition = false;
     public Vector3 altPosition;
 
     public GameObject NewGameManager;
-    public ButtonFunction[] buttons;
+    //public ButtonFunction[] buttons;
 
-
+    
     //SETUP
     void Awake()
     {
@@ -123,10 +123,18 @@ public class ReviewManager : MonoBehaviour
             return;
         }
 
-        if (overridePosition)
+
+        /*
+        foreach (string s in hideBlackboardScenes)
         {
-            transform.position = altPosition;
+            if (s == SceneManager.GetActiveScene().name)
+            {
+                Debug.Log($"Blackboard not needed in scene {s}, hiding...");
+                this.transform.position = altPosition;
+            }
         }
+        */
+
 
 
         star_One = go_starOne.GetComponent<Image>();

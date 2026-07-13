@@ -17,6 +17,9 @@ TagManager:
   - plate
   - beskidtPlate
   - Blackboard
+  - grabActive
+  - grab
+  - click
   layers:
   - Default
   - TransparentFX

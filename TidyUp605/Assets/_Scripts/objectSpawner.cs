@@ -88,6 +88,18 @@ public class objectSpawner : MonoBehaviour
 
     public void SpawnThisObject(string type) 
     {
+        if (!universalSpawnPlatform)
+        {
+            Debug.Log($"Object spawner universalSpawnPlatform not assigned in scene {SceneManager.GetActiveScene()}, searching manually...");
+            universalSpawnPlatform = GameObject.FindGameObjectWithTag("SpawnPlatform");
+            //universalSpawnPlatform = GameObject.Find("bordPlatform");
+            if (!universalSpawnPlatform)
+            {
+                Debug.LogWarning($"Manual search for universalSpawnPlatform in scene {SceneManager.GetActiveScene()} failed, cannot spawn object.");
+                return;
+            }
+        }
+
         ///spawn the specific object that was passed in as a parameter, at the correct spawn platform, with a random buffer to prevent stacking
         if (type == "s") //Smoer
         {

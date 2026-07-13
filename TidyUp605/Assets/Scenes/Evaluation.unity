@@ -9378,7 +9378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3267122424555581529, guid: 64884db48f1b2e0448ace0c0094ff033, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: receptacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25496,7 +25496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1301282156924273411, guid: d2edb635fe23cdc4199a8290cde8b018, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: receptacle
       objectReference: {fileID: 0}
     - target: {fileID: 1331736869862439377, guid: d2edb635fe23cdc4199a8290cde8b018, type: 3}
       propertyPath: m_TagString

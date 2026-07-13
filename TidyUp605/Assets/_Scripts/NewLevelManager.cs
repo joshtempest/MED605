@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using NUnit.Framework;
 using UnityEngine;
@@ -93,9 +94,11 @@ public class NewLevelManager : MonoBehaviour
     public Vector3 evalOpvaskerRotation;
     
 
-    public Vector3 blackboardRotation;
+    public Vector3 blackboardRotation; 
     public Vector3 blackboardPosition;
     public Vector3 evalBBoffset = new Vector3(-5f, 0f, 0f);
+    public Vector3 hideBBOffset = new Vector3(0f, -10f, 0f);
+    public string[] hideBBScenes; 
 
     //to make levels possible when starting from LevelSelect
     public GameObject audioManagerPrefab;
@@ -125,6 +128,13 @@ public class NewLevelManager : MonoBehaviour
     bool VRLoaded = false;
     bool EVALLoaded = false;
 
+    //VRTraining
+    //public GameObject[] VRBlackboards;
+    GameObject[] grabGOs;
+    GameObject[] clickGOs;
+    GameObject[] grabActives;
+    public GameObject VRBBendGO;
+
     //Debug only
     private void Update()
     {
@@ -138,6 +148,28 @@ public class NewLevelManager : MonoBehaviour
         {
             EVALLoaded = false;
             LoadCustomSequence(requestedLevel);
+        }
+
+        if (VRLoaded)
+        {
+            //set up VR Training level
+            VRLoaded = false;
+
+            InstantiateInfrastructure();
+
+            clickGOs = GameObject.FindGameObjectsWithTag("click");
+            grabGOs = GameObject.FindGameObjectsWithTag("grab");
+
+            grabActives = GameObject.FindGameObjectsWithTag("grabActive");
+
+            Debug.Log($"{grabActives.Length} grabActives identified - {clickGOs.Length} clickGOs identified - {grabGOs.Length} grabGOs identified.");
+
+            foreach (GameObject go in grabActives)
+            {
+                go.SetActive(false);
+            }
+
+            ToggleVRCanvases("click");
         }
     }
 
@@ -249,7 +281,7 @@ public class NewLevelManager : MonoBehaviour
         currentLevel = levelToLoad.name;
         currentLevelData = levelToLoad;
 
-        InstantiateInfrastructure(levelToLoad.levelType);
+        InstantiateInfrastructure();
 
         //reset score when Blackboard is identified (hopefully)
         Debug.Log("Attempting to reset score via gamecontroller...");
@@ -275,8 +307,8 @@ public class NewLevelManager : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name == "Evaluation")
         {
-            if (levelToLoad.boolskab) { GOskab = Instantiate(skab, evalSkabPosition, Quaternion.Euler(skabRotation)); }
-            if (levelToLoad.boolopvask) { GOopvasker = Instantiate(opvaskemaskine, evalOpvaskemaskinePosition, Quaternion.Euler(opvaskerRotation)); }
+            if (levelToLoad.boolskab) { GOskab = Instantiate(skab, evalSkabPosition, Quaternion.Euler(evalSkabRotation)); }
+            if (levelToLoad.boolopvask) { GOopvasker = Instantiate(opvaskemaskine, evalOpvaskemaskinePosition, Quaternion.Euler(evalOpvaskerRotation)); }
         }
             Debug.Log($"Receptacles instantiated: Skab - {levelToLoad.boolskab} - {GOskab} // Opvasker - {levelToLoad.boolopvask} - {GOopvasker}.");
 
@@ -298,7 +330,7 @@ public class NewLevelManager : MonoBehaviour
         Debug.Log($"Successfully loaded level {levelName}.");
     }
 
-    public void InstantiateInfrastructure(LevelType levelType)
+    public void InstantiateInfrastructure()
     {
         Debug.Log("Instantiating infrastructure...");
         //try to access components from NewLevelManager prefab
@@ -324,10 +356,28 @@ public class NewLevelManager : MonoBehaviour
         blackboard = GameObject.Find("Blackboard");
         if (!blackboard)
         {
+            Debug.Log($"Could not find Blackboard, attempting to instantiate...");
             blackboard = Instantiate(blackboardPrefab, blackboardPosition, Quaternion.Euler(blackboardRotation));
-            reviewManager = blackboard.GetComponent<ReviewManager>();
-        }
+            
+            if (!blackboard)
+            {
+                Debug.LogWarning($"Blackboard instantiation failed in scene {SceneManager.GetActiveScene().name}. Scene will not function.");
+            }
+            else
+            {
+                Debug.Log($"Blackboard successfully instantiated as {blackboard}.");
+                reviewManager = blackboard.GetComponent<ReviewManager>();
 
+            }
+            
+        }
+        else
+            reviewManager = blackboard.GetComponent<ReviewManager>();
+
+
+        UpdateBBPosition(SceneManager.GetActiveScene().name);
+
+        /*
         if (SceneManager.GetActiveScene().name == "Tutorial_Practice")
         {
             blackboard.transform.position = blackboardPosition;
@@ -338,12 +388,13 @@ public class NewLevelManager : MonoBehaviour
             blackboard.transform.position = blackboardPosition + evalBBoffset;
             blackboard.transform.rotation = Quaternion.Euler(blackboardRotation);
         }
-        else
+        else if (SceneManager.GetActiveScene().name == "Intro" || SceneManager.GetActiveScene().name == "Outro_new")
         {
             blackboard.transform.position = blackboardPosition + new Vector3(0f, -100f, 0f);
             blackboard.transform.rotation = Quaternion.Euler(blackboardRotation);
 
         }
+        */
 
         if (!reviewManager || !audioManager)
         {
@@ -400,6 +451,7 @@ public class NewLevelManager : MonoBehaviour
     {
         requestedLevel = "1T1";
         CompareScene("Tutorial_Practice");
+        gameController.isVRTut = false;
         
     }
 
@@ -407,18 +459,27 @@ public class NewLevelManager : MonoBehaviour
     {
         requestedLevel = name;
         CompareScene("Tutorial_Practice");
+        gameController.isVRTut = false;
+    }
+
+    public void LoadIntro()
+    {
+        CompareScene("Intro");
     }
 
     public void LoadVRTraining()
     {
         CompareScene("VRTutorial");
-        InstantiateInfrastructure(LevelType.VRTutorial);
+        gameController.totalThreshold = 8;
+        gameController.isVRTut = true;
+        //InstantiateInfrastructure(LevelType.VRTutorial);
     }
     public void LoadEvaluation()
     {
         requestedLevel = "Eval1";
         CompareScene("Evaluation");
-       
+        gameController.isVRTut = false;
+
     }
     public void LoadEvaluation(string evalName)
     {
@@ -454,11 +515,20 @@ public class NewLevelManager : MonoBehaviour
         else if (scene.name == "VRTutorial")
         {
             VRLoaded = true;
+            VRBBendGO = GameObject.Find("end");
+            if (!VRBBendGO)
+            {
+                Debug.LogWarning("Could not find \"end\" object in VRTutorial.");
+            }
         }
         else if (scene.name == "Evaluation")
         {
             EVALLoaded = true;
         }
+
+        if (blackboard)
+            UpdateBBPosition(scene.name);
+
         Debug.Log($"Scene {SceneManager.GetActiveScene().name} loaded.");
     }
 
@@ -470,5 +540,124 @@ public class NewLevelManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void UpdateBBPosition(string sceneName)
+    {
+        
+        foreach (string s in hideBBScenes)
+        {
+            if (s == sceneName)
+            {
+                blackboard.transform.position = blackboardPosition + hideBBOffset;
+                return;
+            }
+        }
+        
+        if (sceneName == "Tutorial_Practice")
+        {
+            blackboard.transform.position = blackboardPosition;
+        }
+        else if (sceneName == "Evaluation")
+        {
+            blackboard.transform.position = blackboardPosition + evalBBoffset;
+        }
+        else
+        {
+            Debug.LogWarning("Blackboard Position could not be calculated. You probably forgot to add this scene to the HideBBScenes list.");
+        }
+        
+    }
+
+    public void LoadGrabVRTraining()
+    {
+        ToggleVRCanvases("grab");
+        
+        foreach (GameObject go in grabActives)
+        {
+            go.SetActive(true);
+        }
+
+        //spawn 8 objects
+        spawnerScript.SpawnThisObject("rT");
+        spawnerScript.SpawnThisObject("rT");
+        spawnerScript.SpawnThisObject("rT");
+        spawnerScript.SpawnThisObject("rT");
+        spawnerScript.SpawnThisObject("rG");
+        spawnerScript.SpawnThisObject("rG");
+        spawnerScript.SpawnThisObject("rG");
+        spawnerScript.SpawnThisObject("rG");
+    }
+
+    public void ToggleVRCanvases(string groupToReveal)
+    {
+        int clickAlpha = 100;
+        int grabAlpha = 100;
+        bool click = false;
+        bool grab = false;
+
+        if (groupToReveal == "click")
+        {
+            clickAlpha = 100;
+            grabAlpha = 0;
+            click = true;
+
+            CanvasGroup end = VRBBendGO.GetComponent<CanvasGroup>();
+            end.alpha = 0;
+            end.interactable = false;
+        }
+        else if (groupToReveal == "grab")
+        {
+            clickAlpha = 0;
+            grabAlpha = 100;
+            grab = true;
+
+            CanvasGroup end = VRBBendGO.GetComponent<CanvasGroup>();
+            end.alpha = 0;
+            end.interactable = false;
+        }
+        else if (groupToReveal == "end")
+        {
+            clickAlpha = 0;
+            grabAlpha = 0;
+        }
+
+        foreach (GameObject go in clickGOs)
+            {
+                if (go.GetComponent<CanvasGroup>())
+                {
+                    go.GetComponent<CanvasGroup>().alpha = clickAlpha;
+                    go.GetComponent<CanvasGroup>().interactable = click;
+                }
+                else
+                {
+                    Debug.LogWarning($"Could not access canvas group in GO {go.name} from {go.transform.parent.name}. Failing to toggle CanvasGroup.");
+                }
+            }
+
+        foreach (GameObject go in grabGOs)
+        {
+            if (go.GetComponent<CanvasGroup>())
+            {
+                go.GetComponent<CanvasGroup>().alpha = grabAlpha;
+                go.GetComponent<CanvasGroup>().interactable = grab;
+            }
+            else
+            {
+                Debug.LogWarning($"Could not access canvas group in GO {go.name} from {go.transform.parent.name}. Failing to toggle CanvasGroup.");
+            }
+        }
+
+        if (groupToReveal == "end")
+        {
+            CanvasGroup end = VRBBendGO.GetComponent<CanvasGroup>();
+            end.alpha = 100;
+            end.interactable = true;
+        }
+    }
+
+    public void EndVRTraining()
+    {
+        ToggleVRCanvases("end");
     }
 }

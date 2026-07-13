@@ -41,6 +41,7 @@ public class GameController : MonoBehaviour
 
     //bool enoughRightAnswers = false;
     bool levelInProgress = true;
+    public bool isVRTut = false;
 
     // Every time a player sorts an item, the receiver Manager writes it down
     // in this list. The DisplayResults method uses this later to tell the player what they did.
@@ -58,7 +59,7 @@ public class GameController : MonoBehaviour
         levelManager = this.gameObject.GetComponent<LevelManager>();
         if (!levelManager)
         {
-            Debug.LogWarning("OLDDB // LevelManager not assigned");
+            //Debug.LogWarning("OLDDB // LevelManager not assigned");
         }
 
         // Safety check: Find the blackboard if it wasn't dragged into the inspector manually
@@ -69,11 +70,11 @@ public class GameController : MonoBehaviour
 
         if (!blackboard)
         {
-            Debug.Log("OLDDB // Blackboard not assigned! Trying to find it manually...");
+            //Debug.Log("OLDDB // Blackboard not assigned! Trying to find it manually...");
             blackboard = GameObject.FindGameObjectWithTag("Blackboard");
 
-            if (!blackboard)
-                Debug.LogWarning("OLDDB // Manual search failed, blackboard not assigned.");
+            //if (!blackboard)
+              //  Debug.LogWarning("OLDDB // Manual search failed, blackboard not assigned.");
         }     
         else
         {
@@ -82,11 +83,6 @@ public class GameController : MonoBehaviour
             blackboard.transform.rotation = bbBackgroundRotation;
             */
         }
-    }
-
-    void Start()
-    {
-        //resetScore();
     }
 
     private void LocateBlackboard()
@@ -170,14 +166,27 @@ public class GameController : MonoBehaviour
     {
         if (totalAnswers >= totalThreshold)
         {
-            levelInProgress = false;
+            if (isVRTut)
+            {
+                levelInProgress = false;
 
-            //enable laser - maybe do this later through ReviewManager
-            if(laserManager != null) laserManager.SetLaserState(true);
 
-            //Debug.Log("End Condition met, handing off to Review Display management...");
+                if (laserManager != null) laserManager.SetLaserState(true);
 
-            StartCoroutine(ReviewManager.instance.CRDisplayResults());
+                NewLevelManager.instance.EndVRTraining();
+            }
+            else
+            {
+                levelInProgress = false;
+
+                //enable laser - maybe do this later through ReviewManager
+                if (laserManager != null) laserManager.SetLaserState(true);
+
+                //Debug.Log("End Condition met, handing off to Review Display management...");
+
+                StartCoroutine(ReviewManager.instance.CRDisplayResults());
+
+            }
         }
     }
 

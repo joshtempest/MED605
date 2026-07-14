@@ -3,6 +3,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class AudioManager : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Clips")]
     public Sound[] musicSounds, sfxSounds;
+
+    public bool stopLoop = false;
 
     //to remember which instructions to play in the current level
     private Tuple<bool, bool> hasPlatesOrForks;
@@ -86,6 +89,8 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("SFX: " + name + " not found!");
             return;
         }
+
+        Debug.Log($"Attempting to play clip {name}. Source is {sfxSource.gameObject.activeInHierarchy} in hierarchy and {sfxSource.gameObject.activeSelf} in self.");
         sfxSource.PlayOneShot(s.clip);
     }
 
@@ -172,6 +177,29 @@ public class AudioManager : MonoBehaviour
         {
             PlaySFXWithDelay("t4", delay);
         }
+    }
+
+    public IEnumerator LoopClickInstructions(int seconds, int spacing)
+    {
+        Debug.Log("Attempting to loop click instructions...");
+
+        stopLoop = false;
+
+        for (int i = seconds; i > 0; i--)
+        {
+            if (stopLoop)
+            {
+                break;
+            }
+            else
+            {
+                PlaySFX("click");
+                yield return new WaitForSeconds(spacing);
+
+            }
+        }
+
+        yield break;
     }
 
 }

@@ -10,9 +10,5 @@ public class Teleport_fade_black_Ray : TeleportationProvider
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 }

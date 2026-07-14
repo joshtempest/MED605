@@ -100,8 +100,10 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
+        /* OUTCOMMENTED BC IT KEEPS SENDING WARNINGS AND WE DONT NEED IT ANYMORE
+        
         // Fallback: try to find a LevelManager in the scene (useful if Current was cleared unexpectedly)
-        var found = FindObjectOfType<LevelManager>();
+        var found = UnityEngine.Object.FindObjectOfType<LevelManager>();
         if (found != null)
         {
             Debug.Log("[LevelManager] ReloadActiveLevel_Static: found LevelManager via FindObjectOfType, invoking reload.");
@@ -109,6 +111,7 @@ public class LevelManager : MonoBehaviour
             Current = found;
             return;
         }
+        */
 
         Debug.LogWarning("[LevelManager] ReloadActiveLevel_Static: no active LevelManager found to reload.");
     }

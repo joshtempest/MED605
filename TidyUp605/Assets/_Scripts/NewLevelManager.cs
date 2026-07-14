@@ -487,11 +487,7 @@ public class NewLevelManager : MonoBehaviour
         else if (scene.name == "VRTutorial")
         {
             VRLoaded = true;
-            VRBBendGO = GameObject.Find("end");
-            if (!VRBBendGO)
-            {
-                Debug.LogWarning("Could not find \"end\" object in VRTutorial.");
-            }
+           
         }
         else if (scene.name == "Evaluation")
         {
@@ -544,6 +540,16 @@ public class NewLevelManager : MonoBehaviour
 
     public void LoadVRClickTraining()
     {
+        ResetVRTraining();
+
+        Debug.Log($"Loading VRClick in scene {SceneManager.GetActiveScene().name}...");
+
+        VRBBendGO = GameObject.Find("end");
+        if (!VRBBendGO)
+        {
+            Debug.LogWarning("Could not find \"end\" object in VRTutorial.");
+        }
+
         InstantiateInfrastructure();
 
         clickGOs = GameObject.FindGameObjectsWithTag("click");
@@ -559,10 +565,14 @@ public class NewLevelManager : MonoBehaviour
         }
 
         ToggleVRCanvases("click");
+
+        StartCoroutine(AudioManager.Instance.LoopClickInstructions(900, 15));
     }
 
     public void LoadGrabVRTraining()
     {
+        AudioManager.Instance.stopLoop = true;
+
         ToggleVRCanvases("grab");
         
         foreach (GameObject go in grabActives)
@@ -579,6 +589,8 @@ public class NewLevelManager : MonoBehaviour
         spawnerScript.SpawnThisObject("rG");
         spawnerScript.SpawnThisObject("rG");
         spawnerScript.SpawnThisObject("rG");
+
+        AudioManager.Instance.PlayVRInstructions(2f);
     }
 
     public void ToggleVRCanvases(string groupToReveal)
@@ -646,6 +658,20 @@ public class NewLevelManager : MonoBehaviour
             end.alpha = 100;
             end.interactable = true;
         }
+    }
+
+    void ResetVRTraining()
+    {
+        var table = GameObject.Find("tableRight");
+
+        if (!table)
+        {
+            Debug.LogWarning($"Could not find table receptacle in scene {SceneManager.GetActiveScene().name}. Cannot hide objects.");
+            return;
+        }
+
+        table.GetComponent<receiverManager>().obscuro("all");
+        gameController.resetScore();
     }
 
     public void EndVRTraining()

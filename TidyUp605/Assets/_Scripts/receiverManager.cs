@@ -42,19 +42,6 @@ public class receiverManager : MonoBehaviour
         spawnerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<objectSpawner>();
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
-        /*
-        if (SceneManager.GetActiveScene().name == "VRTutorial")
-        {
-            foreach (GameObject go in platesToReveal)
-            {
-                go.SetActive(false);
-            }
-            foreach (GameObject go in forksToReveal)
-            {
-                go.SetActive(false);
-            }
-        }
-        */
     }
 
     private void Start()
@@ -234,6 +221,24 @@ public class receiverManager : MonoBehaviour
             if (i < revealCount)
             {
                 listToReveal[i].SetActive(true);
+            }
+        }
+    }
+
+    public void obscuro(string which)
+    {
+        if (which == "plates" || which == "all")
+        {
+            foreach (GameObject go in platesToReveal)
+            {
+                go.SetActive(false);
+            }
+        }
+        if (which == "forks" || which == "all")
+        {
+            foreach (GameObject go in forksToReveal)
+            {
+                go.SetActive(false);
             }
         }
     }

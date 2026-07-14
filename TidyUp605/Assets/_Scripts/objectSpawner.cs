@@ -103,42 +103,42 @@ public class objectSpawner : MonoBehaviour
         ///spawn the specific object that was passed in as a parameter, at the correct spawn platform, with a random buffer to prevent stacking
         if (type == "s") //Smoer
         {
-            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance));
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(smoer, positionToSpawn, Quaternion.identity);
         }
         if (type == "bT") //Beskidt Tallerken
         {
-            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance));
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(beskidtTallerken, positionToSpawn, Quaternion.identity);
         }
         if (type == "rT") //Ren Tallerken
         {
-            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance));
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(renTallerken, positionToSpawn, Quaternion.identity);
         }
         if (type == "rG") //Ren Gaffel
         {
-            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance));
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(renGaffel, positionToSpawn, Quaternion.identity);
         }
         if (type == "bG") //Beskidt Gaffel
         {
-            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance));
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(beskidtGaffel, positionToSpawn, Quaternion.identity);
         }
         if(type == "p") //Poelse
         {
-            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance));
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
             Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(poelse, positionToSpawn, Quaternion.identity);

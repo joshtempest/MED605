@@ -36,4 +36,11 @@ public class LvlSelect : MonoBehaviour
     {
         NewLevelManager.instance.LoadGrabVRTraining();
     }
+
+    public void VRNarrator()
+    {
+        Debug.Log("Trying to play VR narrator...");
+
+        AudioManager.Instance.PlayVRInstructions(0);
+    }
 }

@@ -208,13 +208,18 @@ public class GameController : MonoBehaviour
         levelInProgress = true;
 
         LocateBlackboard();
+
         if (ReviewManager.instance)
         {
             ReviewManager.instance.ResetLog();
         }
         else
-            Debug.LogWarning("Cannot locate ReviewManager.instance; cannot reset score.");
-        
+            Debug.LogWarning("Cannot locate ReviewManager.instance; cannot reset log.");
+
+        plateAnswers = 0;
+        cleanFAnswers = 0;
+        dirtyPAnswers = 0;
+        dirtyFAnswers = 0;
     }
 
 

@@ -478,3 +478,14 @@ MonoBehaviour:
     volume: 1
     pitch: 1.62
     loop: 0
+  - name: click
+    clip: {fileID: 8300000, guid: 732fbf2917ed0f741a835ec2523da979, type: 3}
+    volume: 1
+    pitch: 1.62
+    loop: 0
+  - name: grab
+    clip: {fileID: 8300000, guid: d8b39c391fd30564ba402c58bffff1b4, type: 3}
+    volume: 1
+    pitch: 1.62
+    loop: 0
+  stopLoop: 0

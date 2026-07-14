@@ -155,21 +155,8 @@ public class NewLevelManager : MonoBehaviour
             //set up VR Training level
             VRLoaded = false;
 
-            InstantiateInfrastructure();
-
-            clickGOs = GameObject.FindGameObjectsWithTag("click");
-            grabGOs = GameObject.FindGameObjectsWithTag("grab");
-
-            grabActives = GameObject.FindGameObjectsWithTag("grabActive");
-
-            Debug.Log($"{grabActives.Length} grabActives identified - {clickGOs.Length} clickGOs identified - {grabGOs.Length} grabGOs identified.");
-
-            foreach (GameObject go in grabActives)
-            {
-                go.SetActive(false);
-            }
-
-            ToggleVRCanvases("click");
+            LoadVRClickTraining();
+            
         }
     }
 
@@ -377,25 +364,6 @@ public class NewLevelManager : MonoBehaviour
 
         UpdateBBPosition(SceneManager.GetActiveScene().name);
 
-        /*
-        if (SceneManager.GetActiveScene().name == "Tutorial_Practice")
-        {
-            blackboard.transform.position = blackboardPosition;
-            blackboard.transform.rotation = Quaternion.Euler(blackboardRotation);
-        }
-        else if (SceneManager.GetActiveScene().name == "Evaluation")
-        {
-            blackboard.transform.position = blackboardPosition + evalBBoffset;
-            blackboard.transform.rotation = Quaternion.Euler(blackboardRotation);
-        }
-        else if (SceneManager.GetActiveScene().name == "Intro" || SceneManager.GetActiveScene().name == "Outro_new")
-        {
-            blackboard.transform.position = blackboardPosition + new Vector3(0f, -100f, 0f);
-            blackboard.transform.rotation = Quaternion.Euler(blackboardRotation);
-
-        }
-        */
-
         if (!reviewManager || !audioManager)
         {
             Debug.LogWarning($"Infrastructure missing: reviewManager = {reviewManager} AudioManager = {audioManager}.");
@@ -469,10 +437,14 @@ public class NewLevelManager : MonoBehaviour
 
     public void LoadVRTraining()
     {
-        CompareScene("VRTutorial");
+        bool VRisNew = CompareScene("VRTutorial");
         gameController.totalThreshold = 8;
         gameController.isVRTut = true;
-        //InstantiateInfrastructure(LevelType.VRTutorial);
+
+        if (!VRisNew)
+        {
+            LoadVRClickTraining();
+        }
     }
     public void LoadEvaluation()
     {
@@ -567,6 +539,25 @@ public class NewLevelManager : MonoBehaviour
             Debug.LogWarning("Blackboard Position could not be calculated. You probably forgot to add this scene to the HideBBScenes list.");
         }
         
+    }
+
+    public void LoadVRClickTraining()
+    {
+        InstantiateInfrastructure();
+
+        clickGOs = GameObject.FindGameObjectsWithTag("click");
+        grabGOs = GameObject.FindGameObjectsWithTag("grab");
+
+        grabActives = GameObject.FindGameObjectsWithTag("grabActive");
+
+        Debug.Log($"{grabActives.Length} grabActives identified - {clickGOs.Length} clickGOs identified - {grabGOs.Length} grabGOs identified.");
+
+        foreach (GameObject go in grabActives)
+        {
+            go.SetActive(false);
+        }
+
+        ToggleVRCanvases("click");
     }
 
     public void LoadGrabVRTraining()

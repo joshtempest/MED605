@@ -516,6 +516,7 @@ public class NewLevelManager : MonoBehaviour
 
     public void UpdateBBPosition(string sceneName)
     {
+        blackboard.transform.rotation = Quaternion.Euler(blackboardRotation);
         
         foreach (string s in hideBBScenes)
         {

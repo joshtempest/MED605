@@ -58,6 +58,8 @@ MonoBehaviour:
   blackboard: {fileID: 0}
   DisplayText: {fileID: 0}
   ButtonText: {fileID: 0}
+  levelInProgress: 1
+  isVRTut: 0
   totalAnswers: 0
   totalThreshold: 0
 --- !u!114 &309073360535743365
@@ -177,7 +179,7 @@ MonoBehaviour:
   - name: 2T1
     levelType: 1
     narratorVoicelines:
-    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    - {fileID: 8300000, guid: 5e43f9c2205a7594683f7aa3e9cfd372, type: 3}
     objectsToInstantiate2:
     - objectsToInstantiate2: rG
       objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
@@ -188,7 +190,7 @@ MonoBehaviour:
   - name: 2T2
     levelType: 1
     narratorVoicelines:
-    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    - {fileID: 8300000, guid: 5e43f9c2205a7594683f7aa3e9cfd372, type: 3}
     objectsToInstantiate2:
     - objectsToInstantiate2: bG
       objectToSpawn: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
@@ -199,7 +201,7 @@ MonoBehaviour:
   - name: 2P1
     levelType: 1
     narratorVoicelines:
-    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    - {fileID: 8300000, guid: 5e43f9c2205a7594683f7aa3e9cfd372, type: 3}
     objectsToInstantiate2:
     - objectsToInstantiate2: rG
       objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
@@ -213,7 +215,7 @@ MonoBehaviour:
   - name: 2P2
     levelType: 1
     narratorVoicelines:
-    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    - {fileID: 8300000, guid: 5e43f9c2205a7594683f7aa3e9cfd372, type: 3}
     objectsToInstantiate2:
     - objectsToInstantiate2: rG
       objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
@@ -227,7 +229,7 @@ MonoBehaviour:
   - name: 2P3
     levelType: 1
     narratorVoicelines:
-    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    - {fileID: 8300000, guid: 5e43f9c2205a7594683f7aa3e9cfd372, type: 3}
     objectsToInstantiate2:
     - objectsToInstantiate2: rG
       objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
@@ -241,7 +243,7 @@ MonoBehaviour:
   - name: 2P4
     levelType: 1
     narratorVoicelines:
-    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    - {fileID: 8300000, guid: 5e43f9c2205a7594683f7aa3e9cfd372, type: 3}
     objectsToInstantiate2:
     - objectsToInstantiate2: rG
       objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
@@ -306,3 +308,4 @@ MonoBehaviour:
     boolskab: 0
     boolopvask: 0
     numberOfObjects: 0
+  VRBBendGO: {fileID: 0}

@@ -226,12 +226,15 @@ public class ReviewManager : MonoBehaviour
     {
         Review.alpha = 0;
         Review.interactable = false;
+        Review.blocksRaycasts = false;
 
         End_continue.alpha = 0;
         End_continue.interactable = false;
+        End_continue.blocksRaycasts = false;
 
         Gameplay.alpha = 0;
         Gameplay.interactable = false;
+        Gameplay.blocksRaycasts = false;
 
         HideIcons();
     }
@@ -301,9 +304,11 @@ public class ReviewManager : MonoBehaviour
 
         Gameplay.alpha = 0;
         Gameplay.interactable = false;
+        Gameplay.blocksRaycasts = false;
 
         End_continue.alpha = 1;
         End_continue.interactable = true;
+        End_continue.blocksRaycasts = true;
 
         string starAudioClip = starTotal + "s";
         AudioManager.Instance.PlaySFX(starAudioClip);
@@ -314,9 +319,11 @@ public class ReviewManager : MonoBehaviour
         //Debug.Log("Switching to Review screen...");
         End_continue.alpha = 0;
         End_continue.interactable = false;
+        End_continue.blocksRaycasts = false;
 
         Gameplay.alpha = 0;
         Gameplay.interactable = false;
+        Gameplay.blocksRaycasts = false;
 
         Review.alpha = 1;
     }
@@ -325,12 +332,16 @@ public class ReviewManager : MonoBehaviour
     {
         //Debug.Log("Switching to Gameplay screen...");
         Review.alpha = 0;
+        Review.blocksRaycasts = false;
+        Review.interactable = false;
 
         End_continue.alpha = 0;
         End_continue.interactable = false;
+        End_continue.blocksRaycasts = false;
 
         Gameplay.alpha = 1;
         Gameplay.interactable = true;
+        Gameplay.blocksRaycasts = true;
     }
 
 

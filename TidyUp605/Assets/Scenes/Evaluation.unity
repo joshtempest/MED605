@@ -5630,6 +5630,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 233524433}
+    - target: {fileID: 238745037041113350, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3074
+      objectReference: {fileID: 0}
     - target: {fileID: 1046477570249178292, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -5638,6 +5642,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 716019598}
+    - target: {fileID: 1508680847012621384, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_VersionIndex
+      value: 4584
+      objectReference: {fileID: 0}
     - target: {fileID: 2275353693118570032, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -5650,6 +5658,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 793714490}
+    - target: {fileID: 2758131565630154969, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_VersionIndex
+      value: 5260
+      objectReference: {fileID: 0}
     - target: {fileID: 4050152783959878727, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -5662,6 +5674,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 580741192}
+    - target: {fileID: 4754674276950402619, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_VersionIndex
+      value: 4575
+      objectReference: {fileID: 0}
     - target: {fileID: 4761621822522169746, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -5722,6 +5738,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1130137509}
+    - target: {fileID: 6739047064731315802, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3997
+      objectReference: {fileID: 0}
     - target: {fileID: 6741650676471089642, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
       propertyPath: m_Name
       value: Blackboard
@@ -24294,12 +24314,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 114782321}
     - target: {fileID: 5376808563991484619, guid: 34187043011d56243bf33ed3c12da2fa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4649
+      objectReference: {fileID: 0}
+    - target: {fileID: 5376808563991484619, guid: 34187043011d56243bf33ed3c12da2fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.4552238
+      value: -1.18
       objectReference: {fileID: 0}
     - target: {fileID: 5376808563991484619, guid: 34187043011d56243bf33ed3c12da2fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.922
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 5376808563991484619, guid: 34187043011d56243bf33ed3c12da2fa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -28456,7 +28480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1742875216339425941, guid: 6cb11e52fb2c7204caf16c89e5c8d11c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2828
+      value: 1.1408638
       objectReference: {fileID: 0}
     - target: {fileID: 1742875216339425941, guid: 6cb11e52fb2c7204caf16c89e5c8d11c, type: 3}
       propertyPath: m_LocalScale.z
@@ -28468,7 +28492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1742875216339425941, guid: 6cb11e52fb2c7204caf16c89e5c8d11c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 1742875216339425941, guid: 6cb11e52fb2c7204caf16c89e5c8d11c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -29257,8 +29281,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.4114447, y: 3.5065768, z: 0.3093735}
-  m_Center: {x: -1.705723, y: 1.253287, z: 3.7655635}
+  m_Size: {x: 4.4114447, y: 0.9198435, z: 0.3093735}
+  m_Center: {x: -1.7057229, y: -0.040081374, z: 3.7655635}
 --- !u!65 &2040669120
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29278,8 +29302,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.47904173, y: 3.5360954, z: 7.8404994}
-  m_Center: {x: 0.2604791, y: 1.2680475, z: -0.032886285}
+  m_Size: {x: 0.4790417, y: 0.95504624, z: 7.8405}
+  m_Center: {x: 0.2604791, y: -0.022478156, z: -0.032886382}
 --- !u!1001 &2058325995
 PrefabInstance:
   m_ObjectHideFlags: 0

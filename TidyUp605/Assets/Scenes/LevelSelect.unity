@@ -1479,7 +1479,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.5647059, g: 1, b: 0.66609544, a: 1}
-    m_HighlightedColor: {r: 0, g: 1, b: 0.3531437, a: 1}
+    m_HighlightedColor: {r: 0.22745098, g: 0.74509805, b: 0.4117647, a: 1}
     m_PressedColor: {r: 0.04705884, g: 0.5764706, b: 0.21671936, a: 1}
     m_SelectedColor: {r: 0.09019607, g: 1, b: 0.3139814, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -2201,7 +2201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &979801074
 Transform:
   m_ObjectHideFlags: 0
@@ -2630,6 +2630,8 @@ MonoBehaviour:
   blackboard: {fileID: 0}
   DisplayText: {fileID: 0}
   ButtonText: {fileID: 0}
+  levelInProgress: 1
+  isVRTut: 0
   totalAnswers: 0
   totalThreshold: 0
 --- !u!1001 &1247199857
@@ -2939,6 +2941,10 @@ PrefabInstance:
     - target: {fileID: 3718681727949382594, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_Name
       value: Level Select
+      objectReference: {fileID: 0}
+    - target: {fileID: 3718681727949382594, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4021649299046384473, guid: cb45af83eaec8b04c982ba09490a5701, type: 3}
       propertyPath: m_fontSize
@@ -4986,8 +4992,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 0.8503173, b: 0.5641509, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.8113208, g: 0.65043575, b: 0.341367, a: 1}
+    m_HighlightedColor: {r: 0.81886786, g: 0.6818749, b: 0.41870406, a: 1}
+    m_PressedColor: {r: 0.6528301, g: 0.5034285, b: 0.21555705, a: 1}
     m_SelectedColor: {r: 1, g: 0.66897225, b: 0.088679194, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -5074,7 +5080,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1659588753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5844,7 +5850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1842411960
 Light:
   m_ObjectHideFlags: 0
@@ -6168,7 +6174,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.5647059, g: 1, b: 0.66609544, a: 1}
-    m_HighlightedColor: {r: 0, g: 1, b: 0.3531437, a: 1}
+    m_HighlightedColor: {r: 0.22862937, g: 0.7433963, b: 0.41031185, a: 1}
     m_PressedColor: {r: 0.04705884, g: 0.5764706, b: 0.21671936, a: 1}
     m_SelectedColor: {r: 0.09019607, g: 1, b: 0.3139814, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -6381,6 +6387,7 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 497807315}
   - {fileID: 1842411961}
   - {fileID: 1202168667}
   - {fileID: 1659588754}
@@ -6390,7 +6397,6 @@ SceneRoots:
   - {fileID: 1430734900}
   - {fileID: 1826155276}
   - {fileID: 1839390571}
-  - {fileID: 497807315}
   - {fileID: 258344984}
   - {fileID: 1895352253}
   - {fileID: 1783652584}

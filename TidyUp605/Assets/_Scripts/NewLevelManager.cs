@@ -616,6 +616,7 @@ public class NewLevelManager : MonoBehaviour
             CanvasGroup end = VRBBendGO.GetComponent<CanvasGroup>();
             end.alpha = 0;
             end.interactable = false;
+            end.blocksRaycasts = false;
         }
         else if (groupToReveal == "grab")
         {
@@ -626,6 +627,7 @@ public class NewLevelManager : MonoBehaviour
             CanvasGroup end = VRBBendGO.GetComponent<CanvasGroup>();
             end.alpha = 0;
             end.interactable = false;
+            end.blocksRaycasts = false;
         }
         else if (groupToReveal == "end")
         {
@@ -639,6 +641,7 @@ public class NewLevelManager : MonoBehaviour
                 {
                     go.GetComponent<CanvasGroup>().alpha = clickAlpha;
                     go.GetComponent<CanvasGroup>().interactable = click;
+                    go.GetComponent<CanvasGroup>().blocksRaycasts = click;
                 }
                 else
                 {
@@ -652,6 +655,7 @@ public class NewLevelManager : MonoBehaviour
             {
                 go.GetComponent<CanvasGroup>().alpha = grabAlpha;
                 go.GetComponent<CanvasGroup>().interactable = grab;
+                go.GetComponent<CanvasGroup>().blocksRaycasts = grab;
             }
             else
             {
@@ -664,6 +668,7 @@ public class NewLevelManager : MonoBehaviour
             CanvasGroup end = VRBBendGO.GetComponent<CanvasGroup>();
             end.alpha = 100;
             end.interactable = true;
+            end.blocksRaycasts = true;
         }
     }
 

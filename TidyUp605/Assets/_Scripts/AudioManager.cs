@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
     public Sound[] musicSounds, sfxSounds;
 
     public bool stopLoop = false;
+    public float cooldownBetweenClips = 3f;
 
     //to remember which instructions to play in the current level
     private Tuple<bool, bool> hasPlatesOrForks;
@@ -62,10 +63,17 @@ public class AudioManager : MonoBehaviour
 
     public void PlayClips(AudioClip[] clips)
     {
+        StartCoroutine(PlayMultipleClips(clips, cooldownBetweenClips));
+    }
+
+    IEnumerator PlayMultipleClips(AudioClip[] clips, float cooldown)
+    {
         foreach (AudioClip c in clips)
         {
             PlayClip(c);
+            yield return new WaitForSeconds(cooldown);
         }
+        
     }
 
     public void PlayMusic(string name)

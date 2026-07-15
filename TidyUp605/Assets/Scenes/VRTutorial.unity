@@ -5032,15 +5032,15 @@ MonoBehaviour:
   go_part_sparkles: {fileID: 1644722854}
   go_part_x: {fileID: 0}
   platesToReveal:
-  - {fileID: 580865149}
-  - {fileID: 1688974659}
-  - {fileID: 40344460}
   - {fileID: 1316274016}
+  - {fileID: 40344460}
+  - {fileID: 1688974659}
+  - {fileID: 580865149}
   forksToReveal:
-  - {fileID: 789393400}
-  - {fileID: 65841352}
-  - {fileID: 1866756981}
   - {fileID: 382787200}
+  - {fileID: 1866756981}
+  - {fileID: 65841352}
+  - {fileID: 789393400}
   foodToReveal: []
 --- !u!1 &546257702
 GameObject:

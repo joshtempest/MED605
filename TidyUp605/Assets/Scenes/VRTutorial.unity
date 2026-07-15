@@ -2799,16 +2799,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 435950469}
     m_Modifications:
     - target: {fileID: 343646844771661587, guid: f09a7d0ea26c7bc46a1b84bb2a287757, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 343646844771661587, guid: f09a7d0ea26c7bc46a1b84bb2a287757, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 985260523}
     - target: {fileID: 343646844771661587, guid: f09a7d0ea26c7bc46a1b84bb2a287757, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Intro
+      value: LoadLevel
       objectReference: {fileID: 0}
     - target: {fileID: 343646844771661587, guid: f09a7d0ea26c7bc46a1b84bb2a287757, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: LvlSelect, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 343646844771661587, guid: f09a7d0ea26c7bc46a1b84bb2a287757, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 1T1
       objectReference: {fileID: 0}
     - target: {fileID: 2327683133384862766, guid: f09a7d0ea26c7bc46a1b84bb2a287757, type: 3}
       propertyPath: m_Pivot.x

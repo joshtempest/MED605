@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour
     Quaternion bbBackgroundRotation;
 
     //bool enoughRightAnswers = false;
-    bool levelInProgress = true;
+    public bool levelInProgress = true;
     public bool isVRTut = false;
 
     // Every time a player sorts an item, the receiver Manager writes it down
@@ -220,6 +220,19 @@ public class GameController : MonoBehaviour
         cleanFAnswers = 0;
         dirtyPAnswers = 0;
         dirtyFAnswers = 0;
+    }
+
+    public string GCDebug()
+    {
+        string values = "GC values: ";
+        string laser = "unassigned string";
+        if (laserManager)
+            laser = laserManager.GetLaserState();
+        else
+            laser = "Laser Not Found.";
+
+        values += $"levelInProgress = {levelInProgress} - laserState = {laser} - isVR = {isVRTut}.";
+        return values;
     }
 
 

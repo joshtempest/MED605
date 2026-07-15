@@ -90,12 +90,12 @@ public class objectSpawner : MonoBehaviour
     {
         if (!universalSpawnPlatform)
         {
-            Debug.Log($"Object spawner universalSpawnPlatform not assigned in scene {SceneManager.GetActiveScene()}, searching manually...");
+            Debug.Log($"Object spawner universalSpawnPlatform not assigned in scene {SceneManager.GetActiveScene().name}, searching manually...");
             universalSpawnPlatform = GameObject.FindGameObjectWithTag("SpawnPlatform");
             //universalSpawnPlatform = GameObject.Find("bordPlatform");
             if (!universalSpawnPlatform)
             {
-                Debug.LogWarning($"Manual search for universalSpawnPlatform in scene {SceneManager.GetActiveScene()} failed, cannot spawn object.");
+                Debug.LogWarning($"Manual search for universalSpawnPlatform in scene {SceneManager.GetActiveScene().name} failed, cannot spawn object.");
                 return;
             }
         }

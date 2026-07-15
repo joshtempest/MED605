@@ -480,6 +480,8 @@ public class NewLevelManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log($"OnSceneLoaded triggered...");
+
         if (scene.name == "Tutorial_Practice")
         {
             TPLoaded = true;
@@ -496,6 +498,11 @@ public class NewLevelManager : MonoBehaviour
 
         if (blackboard)
             UpdateBBPosition(scene.name);
+
+        if (gameController)
+            Debug.Log(gameController.GCDebug());
+        else
+            Debug.Log($"Could not access gameController as scene {SceneManager.GetActiveScene().name} was loaded, cannot debug...");
 
         Debug.Log($"Scene {SceneManager.GetActiveScene().name} loaded.");
     }
@@ -677,5 +684,6 @@ public class NewLevelManager : MonoBehaviour
     public void EndVRTraining()
     {
         ToggleVRCanvases("end");
+        gameController.levelInProgress = true;
     }
 }

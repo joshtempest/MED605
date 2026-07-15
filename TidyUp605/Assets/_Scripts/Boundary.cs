@@ -21,7 +21,7 @@ public class Boundary : MonoBehaviour
     {
         if (identity = other.gameObject.GetComponent<Identifier>())
         {
-            Debug.Log(other.gameObject + " has identifier");
+            //Debug.Log(other.gameObject + " has identifier");
             // If collided object matches one of the tags, respawn a copy at the spawn position
             //for (int i = 0; i < objectTags.Length; i++)
             //{

@@ -90,7 +90,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        Debug.Log($"Attempting to play clip {name}. Source is {sfxSource.gameObject.activeInHierarchy} in hierarchy and {sfxSource.gameObject.activeSelf} in self.");
+        //Debug.Log($"Attempting to play clip {name}. Source is {sfxSource.gameObject.activeInHierarchy} in hierarchy and {sfxSource.gameObject.activeSelf} in self.");
         sfxSource.PlayOneShot(s.clip);
     }
 

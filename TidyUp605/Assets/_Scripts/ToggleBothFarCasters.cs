@@ -28,4 +28,10 @@ public class ToggleBothFarCasters : MonoBehaviour
             rightInteractor.enableFarCasting = IsEnabled;
         }
     }
+
+    public string GetLaserState()
+    {
+        string value = $"Laserstate: left = {leftInteractor.enableFarCasting}, right = {rightInteractor.enableFarCasting}.";
+        return value;
+    }
 }

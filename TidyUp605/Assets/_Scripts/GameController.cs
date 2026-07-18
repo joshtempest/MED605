@@ -40,7 +40,8 @@ public class GameController : MonoBehaviour
     Quaternion bbBackgroundRotation;
 
     //bool enoughRightAnswers = false;
-    bool levelInProgress = true;
+    public bool levelInProgress = true;
+    public bool isVRTut = false;
 
     // Every time a player sorts an item, the receiver Manager writes it down
     // in this list. The DisplayResults method uses this later to tell the player what they did.
@@ -58,7 +59,7 @@ public class GameController : MonoBehaviour
         levelManager = this.gameObject.GetComponent<LevelManager>();
         if (!levelManager)
         {
-            Debug.LogWarning("LevelManager not assigned");
+            //Debug.LogWarning("OLDDB // LevelManager not assigned");
         }
 
         // Safety check: Find the blackboard if it wasn't dragged into the inspector manually
@@ -69,24 +70,31 @@ public class GameController : MonoBehaviour
 
         if (!blackboard)
         {
+            //Debug.Log("OLDDB // Blackboard not assigned! Trying to find it manually...");
+            blackboard = GameObject.FindGameObjectWithTag("Blackboard");
+
+            //if (!blackboard)
+              //  Debug.LogWarning("OLDDB // Manual search failed, blackboard not assigned.");
+        }     
+        else
+        {
+            /*
+            blackboard.transform.position = bbBackgroundPosition;
+            blackboard.transform.rotation = bbBackgroundRotation;
+            */
+        }
+    }
+
+    private void LocateBlackboard()
+    {
+        if (!blackboard)
+        {
             Debug.Log("Blackboard not assigned! Trying to find it manually...");
-            blackboard = GameObject.Find("Blackboard");
+            blackboard = GameObject.FindGameObjectWithTag("Blackboard");
 
             if (!blackboard)
                 Debug.LogWarning("Manual search failed, blackboard not assigned.");
         }
-            
-            
-        else
-        {
-            blackboard.transform.position = bbBackgroundPosition;
-            blackboard.transform.rotation = bbBackgroundRotation;
-        }
-    }
-
-    void Start()
-    {
-        //resetScore();
     }
 
 
@@ -158,14 +166,27 @@ public class GameController : MonoBehaviour
     {
         if (totalAnswers >= totalThreshold)
         {
-            levelInProgress = false;
+            if (isVRTut)
+            {
+                levelInProgress = false;
 
-            //enable laser - maybe do this later through ReviewManager
-            if(laserManager != null) laserManager.SetLaserState(true);
 
-            //Debug.Log("End Condition met, handing off to Review Display management...");
+                if (laserManager != null) laserManager.SetLaserState(true);
 
-            StartCoroutine(ReviewManager.instance.CRDisplayResults());
+                NewLevelManager.instance.EndVRTraining();
+            }
+            else
+            {
+                levelInProgress = false;
+
+                //enable laser - maybe do this later through ReviewManager
+                if (laserManager != null) laserManager.SetLaserState(true);
+
+                //Debug.Log("End Condition met, handing off to Review Display management...");
+
+                StartCoroutine(ReviewManager.instance.CRDisplayResults());
+
+            }
         }
     }
 
@@ -185,7 +206,33 @@ public class GameController : MonoBehaviour
     {
         totalAnswers = 0;
         levelInProgress = true;
-        ReviewManager.instance.ResetLog();
+
+        LocateBlackboard();
+
+        if (ReviewManager.instance)
+        {
+            ReviewManager.instance.ResetLog();
+        }
+        else
+            Debug.LogWarning("Cannot locate ReviewManager.instance; cannot reset log.");
+
+        plateAnswers = 0;
+        cleanFAnswers = 0;
+        dirtyPAnswers = 0;
+        dirtyFAnswers = 0;
+    }
+
+    public string GCDebug()
+    {
+        string values = "GC values: ";
+        string laser = "unassigned string";
+        if (laserManager)
+            laser = laserManager.GetLaserState();
+        else
+            laser = "Laser Not Found.";
+
+        values += $"levelInProgress = {levelInProgress} - laserState = {laser} - isVR = {isVRTut}.";
+        return values;
     }
 
 

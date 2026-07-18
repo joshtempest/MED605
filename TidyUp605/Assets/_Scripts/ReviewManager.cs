@@ -10,9 +10,15 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 
+public class ButtonFunction
+{
+    GameObject button;
+    string function;
+}
 public class ReviewManager : MonoBehaviour
 {
     //singleton
@@ -94,18 +100,22 @@ public class ReviewManager : MonoBehaviour
     public TMP_Text continueText;
     public TMP_Text scoreText;
     public TMP_Text scorePlaceholder;
-    public bool overridePosition = false;
+    //public bool overridePosition = false;
     public Vector3 altPosition;
 
+    public GameObject NewGameManager;
+    //public ButtonFunction[] buttons;
 
+    
     //SETUP
-    void Start()
+    void Awake()
     {
         //Singleton pattern - to ensure there are not two acting ReviewManagers
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            Debug.Log("ReviewManager instantiated.");
         }
         else
         {
@@ -113,10 +123,18 @@ public class ReviewManager : MonoBehaviour
             return;
         }
 
-        if (overridePosition)
+
+        /*
+        foreach (string s in hideBlackboardScenes)
         {
-            transform.position = altPosition;
+            if (s == SceneManager.GetActiveScene().name)
+            {
+                Debug.Log($"Blackboard not needed in scene {s}, hiding...");
+                this.transform.position = altPosition;
+            }
         }
+        */
+
 
 
         star_One = go_starOne.GetComponent<Image>();
@@ -130,22 +148,29 @@ public class ReviewManager : MonoBehaviour
         Review = go_Review.GetComponent<CanvasGroup>();
         End_continue = go_End_continue.GetComponent<CanvasGroup>();
         Gameplay = go_Gameplay.GetComponent<CanvasGroup>();
- 
+
 
         if (!Review || !End_continue || !Gameplay)
         {
             Debug.LogWarning("Canvas group not found.");
         }
 
-        //set star sprites to grey
-        UpdateEndScreen(0);
+        NewGameManager = GameObject.FindGameObjectWithTag("GameController");
+        if (!NewGameManager)
+        {
+            Debug.LogWarning($"ReviewManager could not identify GameManager in scene {SceneManager.GetActiveScene().name}.");
+        }
+        
+
+
+            //set star sprites to grey
+            UpdateEndScreen(0);
 
         //Debug.Log("Starting...");
         
         //COMMENT OUT LATER?
         DisplayGameScreen();
     }
-
 
 
 
@@ -201,12 +226,15 @@ public class ReviewManager : MonoBehaviour
     {
         Review.alpha = 0;
         Review.interactable = false;
+        Review.blocksRaycasts = false;
 
         End_continue.alpha = 0;
         End_continue.interactable = false;
+        End_continue.blocksRaycasts = false;
 
         Gameplay.alpha = 0;
         Gameplay.interactable = false;
+        Gameplay.blocksRaycasts = false;
 
         HideIcons();
     }
@@ -276,9 +304,11 @@ public class ReviewManager : MonoBehaviour
 
         Gameplay.alpha = 0;
         Gameplay.interactable = false;
+        Gameplay.blocksRaycasts = false;
 
         End_continue.alpha = 1;
         End_continue.interactable = true;
+        End_continue.blocksRaycasts = true;
 
         string starAudioClip = starTotal + "s";
         AudioManager.Instance.PlaySFX(starAudioClip);
@@ -289,9 +319,11 @@ public class ReviewManager : MonoBehaviour
         //Debug.Log("Switching to Review screen...");
         End_continue.alpha = 0;
         End_continue.interactable = false;
+        End_continue.blocksRaycasts = false;
 
         Gameplay.alpha = 0;
         Gameplay.interactable = false;
+        Gameplay.blocksRaycasts = false;
 
         Review.alpha = 1;
     }
@@ -300,12 +332,16 @@ public class ReviewManager : MonoBehaviour
     {
         //Debug.Log("Switching to Gameplay screen...");
         Review.alpha = 0;
+        Review.blocksRaycasts = false;
+        Review.interactable = false;
 
         End_continue.alpha = 0;
         End_continue.interactable = false;
+        End_continue.blocksRaycasts = false;
 
         Gameplay.alpha = 1;
         Gameplay.interactable = true;
+        Gameplay.blocksRaycasts = true;
     }
 
 
@@ -497,6 +533,27 @@ public class ReviewManager : MonoBehaviour
 
     }
 
+
+    //buttons
+    public void ReloadLevel()
+    {
+        NewLevelManager.instance.ReloadLevel();
+    }
+
+    public void PlayNarrator()
+    {
+        NewLevelManager.instance.PlayInstructions();
+    }
+
+    public void NextLevel()
+    {
+        NewLevelManager.instance.LoadNextLevel();
+    }
+
+    public void LvlSelect()
+    {
+        NewLevelManager.instance.LoadLevelSelect();
+    }
 
 
 

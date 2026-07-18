@@ -1,0 +1,311 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8381425027936019061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7659824823983524792}
+  - component: {fileID: 594496134099572142}
+  - component: {fileID: 309073360535743365}
+  - component: {fileID: 6907870346833018125}
+  m_Layer: 0
+  m_Name: NewGameManager
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7659824823983524792
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8381425027936019061}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &594496134099572142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8381425027936019061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1384a96e3bde4446ba1e5a80099eebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameController
+  rightAnswers: 0
+  wrongAnswers: 0
+  plateAnswers: 0
+  dirtyPAnswers: 0
+  smoerAnswers: 0
+  cleanFAnswers: 0
+  dirtyFAnswers: 0
+  wrongThreshold: 5
+  rightThreshold: 5
+  blackboard: {fileID: 0}
+  DisplayText: {fileID: 0}
+  ButtonText: {fileID: 0}
+  levelInProgress: 1
+  isVRTut: 0
+  totalAnswers: 0
+  totalThreshold: 0
+--- !u!114 &309073360535743365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8381425027936019061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf03a5cac17a1a4d9d583345f9bda1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::objectSpawner
+  smoer: {fileID: 1681494129103073325, guid: fab4af15726221b4583b95b5b5d24799, type: 3}
+  beskidtTallerken: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
+  renTallerken: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
+  renGaffel: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
+  beskidtGaffel: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
+  poelse: {fileID: 7269646975049402946, guid: 37abc29a89572504b8164e2d837503a8, type: 3}
+  serviceSpawnPlatform: {fileID: 0}
+  madSpawnPlatform: {fileID: 0}
+  beskidtSpawnPlatform: {fileID: 0}
+  universalSpawnPlatform: {fileID: 0}
+  spawnbufferDistance: 0.5
+--- !u!114 &6907870346833018125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8381425027936019061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ebbc639bab908340a4f7e5af62e62f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewLevelManager
+  Levels:
+  - name: 1T1
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rT
+      objectToSpawn: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
+      amountToSpawn: 1
+    boolskab: 1
+    boolopvask: 0
+    numberOfObjects: 1
+  - name: 1T2
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: bT
+      objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
+      amountToSpawn: 1
+    boolskab: 0
+    boolopvask: 1
+    numberOfObjects: 1
+  - name: 1P1
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rT
+      objectToSpawn: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
+      amountToSpawn: 1
+    - objectsToInstantiate2: bT
+      objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
+      amountToSpawn: 1
+    boolskab: 1
+    boolopvask: 1
+    numberOfObjects: 2
+  - name: 1P2
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rT
+      objectToSpawn: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
+      amountToSpawn: 1
+    - objectsToInstantiate2: bT
+      objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
+      amountToSpawn: 2
+    boolskab: 1
+    boolopvask: 1
+    numberOfObjects: 3
+  - name: 1P3
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rT
+      objectToSpawn: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
+      amountToSpawn: 2
+    - objectsToInstantiate2: bT
+      objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
+      amountToSpawn: 2
+    boolskab: 1
+    boolopvask: 1
+    numberOfObjects: 4
+  - name: 1P4
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rT
+      objectToSpawn: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
+      amountToSpawn: 1
+    - objectsToInstantiate2: bT
+      objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
+      amountToSpawn: 4
+    boolskab: 1
+    boolopvask: 1
+    numberOfObjects: 5
+  - name: 2T1
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5e43f9c2205a7594683f7aa3e9cfd372, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rG
+      objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
+      amountToSpawn: 1
+    boolskab: 1
+    boolopvask: 0
+    numberOfObjects: 1
+  - name: 2T2
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5e43f9c2205a7594683f7aa3e9cfd372, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: bG
+      objectToSpawn: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
+      amountToSpawn: 1
+    boolskab: 0
+    boolopvask: 1
+    numberOfObjects: 1
+  - name: 2P1
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5e43f9c2205a7594683f7aa3e9cfd372, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rG
+      objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
+      amountToSpawn: 1
+    - objectsToInstantiate2: bG
+      objectToSpawn: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
+      amountToSpawn: 1
+    boolskab: 1
+    boolopvask: 1
+    numberOfObjects: 2
+  - name: 2P2
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5e43f9c2205a7594683f7aa3e9cfd372, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rG
+      objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
+      amountToSpawn: 1
+    - objectsToInstantiate2: bG
+      objectToSpawn: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
+      amountToSpawn: 2
+    boolskab: 1
+    boolopvask: 1
+    numberOfObjects: 3
+  - name: 2P3
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5e43f9c2205a7594683f7aa3e9cfd372, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rG
+      objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
+      amountToSpawn: 2
+    - objectsToInstantiate2: bG
+      objectToSpawn: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
+      amountToSpawn: 2
+    boolskab: 1
+    boolopvask: 1
+    numberOfObjects: 4
+  - name: 2P4
+    levelType: 1
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5e43f9c2205a7594683f7aa3e9cfd372, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rG
+      objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
+      amountToSpawn: 1
+    - objectsToInstantiate2: bG
+      objectToSpawn: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
+      amountToSpawn: 4
+    boolskab: 1
+    boolopvask: 1
+    numberOfObjects: 5
+  Evaluation1:
+    name: Eval1
+    levelType: 2
+    narratorVoicelines:
+    - {fileID: 8300000, guid: 5fbe1111c5d166b4182ae0eaadf43a5c, type: 3}
+    - {fileID: 8300000, guid: 5e43f9c2205a7594683f7aa3e9cfd372, type: 3}
+    objectsToInstantiate2:
+    - objectsToInstantiate2: rT
+      objectToSpawn: {fileID: 4837732293726885938, guid: 1ec027e6d55f7fe4187a5f8c37e94f96, type: 3}
+      amountToSpawn: 2
+    - objectsToInstantiate2: bT
+      objectToSpawn: {fileID: 7384410568190157454, guid: b6358d20fdacec44eab89a3b796010c9, type: 3}
+      amountToSpawn: 2
+    - objectsToInstantiate2: rG
+      objectToSpawn: {fileID: 6195926135881554406, guid: e23d71de2f3e85f4b892bb14877f5094, type: 3}
+      amountToSpawn: 2
+    - objectsToInstantiate2: bG
+      objectToSpawn: {fileID: 1666435810803011383, guid: 449d46cdb87ba9f47be1128b6d382ca1, type: 3}
+      amountToSpawn: 2
+    boolskab: 1
+    boolopvask: 1
+    numberOfObjects: 8
+  skab: {fileID: 3267122424555581529, guid: 64884db48f1b2e0448ace0c0094ff033, type: 3}
+  opvaskemaskine: {fileID: 1301282156924273411, guid: d2edb635fe23cdc4199a8290cde8b018, type: 3}
+  skabRotation: {x: 0, y: -58.5, z: 0}
+  skabPosition: {x: 0.771, y: 1.119, z: -0.041}
+  opvaskerRotation: {x: 0, y: 53.3, z: 0}
+  opvaskemaskinePosition: {x: 0.4, y: 0.1, z: 2.95}
+  evalSkabPosition: {x: 0.551, y: 1.09, z: -0.985}
+  evalSkabRotation: {x: 0, y: 0, z: 0}
+  evalOpvaskemaskinePosition: {x: -0.841, y: 0.103, z: -0.108}
+  evalOpvaskerRotation: {x: 0, y: -180, z: 0}
+  blackboardRotation: {x: 0, y: 90, z: 0}
+  blackboardPosition: {x: 2.66, y: 1.735, z: 1.557}
+  evalBBoffset: {x: 0, y: 0.7, z: 1}
+  hideBBOffset: {x: 0, y: -10, z: 0}
+  hideBBScenes:
+  - Intro
+  - VRTutorial
+  - Outro_new
+  - LevelSelect
+  audioManagerPrefab: {fileID: 7476429142836813693, guid: dd1a6f04a0c9e094595749a4b25033e6, type: 3}
+  blackboardPrefab: {fileID: 6741650676471089642, guid: 1fa9a2cd060e9fd439539e355741d59f, type: 3}
+  blackboard: {fileID: 0}
+  spawnPlatform: {fileID: 0}
+  currentLevel: 1P3
+  currentLevelData:
+    name: 
+    levelType: 0
+    narratorVoicelines: []
+    objectsToInstantiate2: []
+    boolskab: 0
+    boolopvask: 0
+    numberOfObjects: 0
+  VRBBendGO: {fileID: 0}

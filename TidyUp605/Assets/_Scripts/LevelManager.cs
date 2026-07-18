@@ -100,8 +100,10 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
+        /* OUTCOMMENTED BC IT KEEPS SENDING WARNINGS AND WE DONT NEED IT ANYMORE
+        
         // Fallback: try to find a LevelManager in the scene (useful if Current was cleared unexpectedly)
-        var found = FindObjectOfType<LevelManager>();
+        var found = UnityEngine.Object.FindObjectOfType<LevelManager>();
         if (found != null)
         {
             Debug.Log("[LevelManager] ReloadActiveLevel_Static: found LevelManager via FindObjectOfType, invoking reload.");
@@ -109,6 +111,7 @@ public class LevelManager : MonoBehaviour
             Current = found;
             return;
         }
+        */
 
         Debug.LogWarning("[LevelManager] ReloadActiveLevel_Static: no active LevelManager found to reload.");
     }
@@ -328,7 +331,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    ///Makes sure that the needed scene is loaded.
+    //Makes sure that the needed scene is loaded.
     bool compareScene(string neededScene)
     {
         //Debug.Log("comparing scene");
@@ -379,11 +382,11 @@ public class LevelManager : MonoBehaviour
 
         for (int i = 0; i < cleanTallerken; i++)
         {
-            spawnerScript.spawnThisObject("rT");
+            spawnerScript.SpawnThisObject("rT");
         }
         for (int i = 0; i < dirtyTallerken; i++)
         {
-            spawnerScript.spawnThisObject("bT");
+            spawnerScript.SpawnThisObject("bT");
         }
         gameController.totalThreshold = threshold;
     }
@@ -423,7 +426,7 @@ public class LevelManager : MonoBehaviour
             ///Instantiate the needed receptacles for this level, based on a platform made in the scene.
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
             ///Spawn one object for sorting as a starting point
-            spawnerScript.spawnThisObject("rT");
+            spawnerScript.SpawnThisObject("rT");
             ///Sets how many answers are needed before moving on
             gameController.totalThreshold = 1;
         }
@@ -431,7 +434,7 @@ public class LevelManager : MonoBehaviour
         {
             currentLevel = levelName;
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
-            spawnerScript.spawnThisObject("bT");
+            spawnerScript.SpawnThisObject("bT");
             gameController.totalThreshold = 1;
         }
         else if (levelName == "P1")
@@ -446,11 +449,11 @@ public class LevelManager : MonoBehaviour
             int dirtyTallerken = 1;
             for (int i = 0; i < cleanTallerken; i++)
             {
-                spawnerScript.spawnThisObject("rT");
+                spawnerScript.SpawnThisObject("rT");
             }
             for (int i = 0; i < dirtyTallerken; i++)
             {
-                spawnerScript.spawnThisObject("bT");
+                spawnerScript.SpawnThisObject("bT");
             }
         }
         else if (levelName == "P2")
@@ -464,11 +467,11 @@ public class LevelManager : MonoBehaviour
             int dirtyTallerken = 2;
             for (int i = 0; i < cleanTallerken; i++)
             {
-                spawnerScript.spawnThisObject("rT");
+                spawnerScript.SpawnThisObject("rT");
             }
             for (int i = 0; i < dirtyTallerken; i++)
             {
-                spawnerScript.spawnThisObject("bT");
+                spawnerScript.SpawnThisObject("bT");
             }
         }
         else if (levelName == "P3")
@@ -482,11 +485,11 @@ public class LevelManager : MonoBehaviour
             int dirtyTallerken = 2;
             for (int i = 0; i < cleanTallerken; i++)
             {
-                spawnerScript.spawnThisObject("rT");
+                spawnerScript.SpawnThisObject("rT");
             }
             for (int i = 0; i < dirtyTallerken; i++)
             {
-                spawnerScript.spawnThisObject("bT");
+                spawnerScript.SpawnThisObject("bT");
             }
         }
         else if (levelName == "P4")
@@ -500,11 +503,11 @@ public class LevelManager : MonoBehaviour
             int dirtyTallerken = 4;
             for (int i = 0; i < cleanTallerken; i++)
             {
-                spawnerScript.spawnThisObject("rT");
+                spawnerScript.SpawnThisObject("rT");
             }
             for (int i = 0; i < dirtyTallerken; i++)
             {
-                spawnerScript.spawnThisObject("bT");
+                spawnerScript.SpawnThisObject("bT");
             }
         }
         else { Debug.Log(levelName + " is invalid"); }
@@ -539,14 +542,14 @@ public class LevelManager : MonoBehaviour
         {
             currentLevel = levelName;
             Instantiate(skab, skabPlatformPos, skabPlatform.transform.rotation);
-            spawnerScript.spawnThisObject("rG");
+            spawnerScript.SpawnThisObject("rG");
             gameController.totalThreshold = 1;
         }
         else if (levelName == "T2")
         {
             currentLevel = levelName;
             Instantiate(opvaskemaskine, opvaskemaskinePlatformPos, opvaskemaskinePlatform.transform.rotation);
-            spawnerScript.spawnThisObject("bG");
+            spawnerScript.SpawnThisObject("bG");
             gameController.totalThreshold = 1;
         }
         else if (levelName == "P1")
@@ -560,11 +563,11 @@ public class LevelManager : MonoBehaviour
             int dirtyTallerken = 1;
             for (int i = 0; i < cleanTallerken; i++)
             {
-                spawnerScript.spawnThisObject("rG");
+                spawnerScript.SpawnThisObject("rG");
             }
             for (int i = 0; i < dirtyTallerken; i++)
             {
-                spawnerScript.spawnThisObject("bG");
+                spawnerScript.SpawnThisObject("bG");
             }
         }
         else if (levelName == "P2")
@@ -578,11 +581,11 @@ public class LevelManager : MonoBehaviour
             int dirtyTallerken = 2;
             for (int i = 0; i < cleanTallerken; i++)
             {
-                spawnerScript.spawnThisObject("rG");
+                spawnerScript.SpawnThisObject("rG");
             }
             for (int i = 0; i < dirtyTallerken; i++)
             {
-                spawnerScript.spawnThisObject("bG");
+                spawnerScript.SpawnThisObject("bG");
             }
         }
         else if (levelName == "P3")
@@ -596,11 +599,11 @@ public class LevelManager : MonoBehaviour
             int dirtyTallerken = 2;
             for (int i = 0; i < cleanTallerken; i++)
             {
-                spawnerScript.spawnThisObject("rG");
+                spawnerScript.SpawnThisObject("rG");
             }
             for (int i = 0; i < dirtyTallerken; i++)
             {
-                spawnerScript.spawnThisObject("bG");
+                spawnerScript.SpawnThisObject("bG");
             }
         }
         else if (levelName == "P4")
@@ -614,11 +617,11 @@ public class LevelManager : MonoBehaviour
             int dirtyTallerken = 4;
             for (int i = 0; i < cleanTallerken; i++)
             {
-                spawnerScript.spawnThisObject("rG");
+                spawnerScript.SpawnThisObject("rG");
             }
             for (int i = 0; i < dirtyTallerken; i++)
             {
-                spawnerScript.spawnThisObject("bG");
+                spawnerScript.SpawnThisObject("bG");
             }
         }
         else { Debug.LogWarning(levelName + " is invalid"); }
@@ -640,7 +643,7 @@ public class LevelManager : MonoBehaviour
         pendingLevelToLoad = "S1E";
         pendingSequenceType = 3;
 
-        if (compareScene("Evaluation")) { return; }
+        if (compareScene("Evaluation1")) { return; }
 
         pendingLevelToLoad = "";
         pendingSequenceType = 0;
@@ -654,10 +657,10 @@ public class LevelManager : MonoBehaviour
 
         for (int i = 0; i < 2; i++)
         {
-            spawnerScript.spawnThisObject("rT");
-            spawnerScript.spawnThisObject("bT");
-            spawnerScript.spawnThisObject("rG");
-            spawnerScript.spawnThisObject("bG");
+            spawnerScript.SpawnThisObject("rT");
+            spawnerScript.SpawnThisObject("bT");
+            spawnerScript.SpawnThisObject("rG");
+            spawnerScript.SpawnThisObject("bG");
             //Debug.Log("Spawning objects, iteration: " + i);
         }
 

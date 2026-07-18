@@ -16,6 +16,10 @@ TagManager:
   - smoer
   - plate
   - beskidtPlate
+  - Blackboard
+  - grabActive
+  - grab
+  - click
   layers:
   - Default
   - TransparentFX

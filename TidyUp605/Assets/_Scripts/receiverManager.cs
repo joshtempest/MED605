@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class receiverManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class receiverManager : MonoBehaviour
     [SerializeField] private bool isServiceReceiver;
     [SerializeField] private bool isBeskidtReceiver;
     [SerializeField] private bool isMadReceiver;
+    [SerializeField] private bool VRTutOverride;
     private int receiverTypeCount;
 
     [Header("Particle Systems")]
@@ -24,7 +26,7 @@ public class receiverManager : MonoBehaviour
     private ParticleSystem part_sparkles;
     private ParticleSystem part_x;
 
-    bool particlesOnline = false;
+    string particlesOnline;
 
     [Header("Placement Settings (Assign Hidden Objects Here)")]
     [Tooltip("Assign inactive plates here")]
@@ -39,12 +41,13 @@ public class receiverManager : MonoBehaviour
     {
         spawnerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<objectSpawner>();
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+
     }
 
     private void Start()
     {
         receiverTypeCount = (isServiceReceiver ? 1 : 0) + (isBeskidtReceiver ? 1 : 0) + (isMadReceiver ? 1 : 0);
-        if (receiverTypeCount > 1)
+        if (receiverTypeCount > 1 && !VRTutOverride)
         {
             Debug.LogWarning((this.gameObject.name) + " has " + receiverTypeCount + " types assigned. Please assign only one type to the receiver.");
             this.gameObject.GetComponent<receiverManager>().enabled = false;
@@ -74,22 +77,32 @@ public class receiverManager : MonoBehaviour
         }
     }
 
-    public bool InitialiseParticles()
+    public string InitialiseParticles()
     {
-        part_tick = go_part_tick.GetComponent<ParticleSystem>();
-        part_sparkles = go_part_sparkles.GetComponent<ParticleSystem>();
-        part_x = go_part_x.GetComponent<ParticleSystem>();
+        if (go_part_tick)
+            part_tick = go_part_tick.GetComponent<ParticleSystem>();
+        if (go_part_sparkles)
+            part_sparkles = go_part_sparkles.GetComponent<ParticleSystem>();
+        if (go_part_x)
+            part_x = go_part_x.GetComponent<ParticleSystem>();
 
-        if (!part_tick || !part_sparkles || !part_x)
+        if (!part_tick && !part_sparkles && !part_x)
         {
-            Debug.LogWarning($"Particle system not detected: tick is {part_tick} - sparkles is {part_sparkles} - x is {part_x}");
-            return false;
+            Debug.LogWarning("No particle systems detected.");
+            return "none";
+        }
+        else if (!part_tick || !part_sparkles || !part_x)
+        {
+            Debug.LogWarning($"Particle system not fully detected: tick is {part_tick} - sparkles is {part_sparkles} - x is {part_x}");
+            return "partial";
         }
         else
         {
-            return true;
+            Debug.Log($"All particle systems online: tick is {part_tick} - sparkles is {part_sparkles} - x is {part_x}");
+            return "all";
         }
     }
+
 
 
     //  This triggers when a physical object is dropped into the receiver's trigger zone.
@@ -212,11 +225,29 @@ public class receiverManager : MonoBehaviour
         }
     }
 
+    public void obscuro(string which)
+    {
+        if (which == "plates" || which == "all")
+        {
+            foreach (GameObject go in platesToReveal)
+            {
+                go.SetActive(false);
+            }
+        }
+        if (which == "forks" || which == "all")
+        {
+            foreach (GameObject go in forksToReveal)
+            {
+                go.SetActive(false);
+            }
+        }
+    }
+
     // Subtracts score, destroys the wrong item, and tells the spawner to give them a new one.
     private void HandleWrongItem(GameObject item, string respawnCode)
     {
         //Debug
-        //Debug.Log($"=== HandleCorrectItem triggered for {item.name} ===");
+        Debug.Log($"=== HandleWrongItem triggered for {item.name} ===");
         if (!item) Debug.Log("ITEM NOT FOUND");
         if (!gameObject) Debug.Log("RECEIVER NOT FOUND");
         if (!ReviewManager.instance) Debug.Log("REVIEWMAN NOT FOUND");
@@ -240,27 +271,37 @@ public class receiverManager : MonoBehaviour
         // Destroy the incorrect item
         Destroy(item);
 
-        /* Disabled because we move on instead of respawn
-        // Build a replacement
-        spawnerScript.spawnThisObject(respawnCode);
-        */
-
         PlayParticles(false);
         AudioManager.Instance.PlaySFX("Wrong");
     }
 
     public void PlayParticles(bool isSuccessful)
     {
-        if (!particlesOnline) return;
+        if (particlesOnline == "none") 
+            return;
 
-        if (isSuccessful)
+        if (particlesOnline == "partial")
         {
-            part_tick.Play();
-            part_sparkles.Play();
+            if (isSuccessful)
+            {
+                //part_tick.Play();
+                part_sparkles.Play();
+            }
+            return;
         }
-        else
+
+        if (particlesOnline == "all")
         {
-            part_x.Play();
+            if (isSuccessful)
+            {
+                part_tick.Play();
+                part_sparkles.Play();
+            }
+            else
+            {
+                part_x.Play();
+            }
+            return;
         }
     }
 }

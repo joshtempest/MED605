@@ -1,6 +1,8 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class objectSpawner : MonoBehaviour
 {
@@ -24,6 +26,7 @@ public class objectSpawner : MonoBehaviour
     [SerializeField] private GameObject serviceSpawnPlatform;
     [SerializeField] private GameObject madSpawnPlatform;
     [SerializeField] private GameObject beskidtSpawnPlatform;
+    [SerializeField] private GameObject universalSpawnPlatform;
 
     Vector3 spawnBuffer;
     [SerializeField]float spawnbufferDistance = 0.5f;
@@ -31,9 +34,11 @@ public class objectSpawner : MonoBehaviour
 
     void Awake()
     {
+        /* OLD
         Vector3 serviceSpawnPlat = serviceSpawnPlatform.transform.position;
         Vector3 madSpawnPlat = madSpawnPlatform.transform.position;
         Vector3 beskidtSpawnPlat = beskidtSpawnPlatform.transform.position;
+        */
     }
 
     void Start()
@@ -81,51 +86,84 @@ public class objectSpawner : MonoBehaviour
     }
     */
 
-    public void spawnThisObject(string type) 
+    public void SpawnThisObject(string type) 
     {
+        if (!universalSpawnPlatform)
+        {
+            Debug.Log($"Object spawner universalSpawnPlatform not assigned in scene {SceneManager.GetActiveScene().name}, searching manually...");
+            universalSpawnPlatform = GameObject.FindGameObjectWithTag("SpawnPlatform");
+            //universalSpawnPlatform = GameObject.Find("bordPlatform");
+            if (!universalSpawnPlatform)
+            {
+                Debug.LogWarning($"Manual search for universalSpawnPlatform in scene {SceneManager.GetActiveScene().name} failed, cannot spawn object.");
+                return;
+            }
+        }
+
         ///spawn the specific object that was passed in as a parameter, at the correct spawn platform, with a random buffer to prevent stacking
         if (type == "s") //Smoer
         {
-            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance));
-            Vector3 positionToSpawn = madSpawnPlatform.transform.position + spawnBuffer;
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
+            Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(smoer, positionToSpawn, Quaternion.identity);
         }
         if (type == "bT") //Beskidt Tallerken
         {
-            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance));
-            Vector3 positionToSpawn = beskidtSpawnPlatform.transform.position + spawnBuffer;
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
+            Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(beskidtTallerken, positionToSpawn, Quaternion.identity);
         }
         if (type == "rT") //Ren Tallerken
         {
-            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance));
-            Vector3 positionToSpawn = serviceSpawnPlatform.transform.position + spawnBuffer;
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
+            Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(renTallerken, positionToSpawn, Quaternion.identity);
         }
         if (type == "rG") //Ren Gaffel
         {
-            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance));
-            Vector3 positionToSpawn = beskidtSpawnPlatform.transform.position + spawnBuffer;
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
+            Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(renGaffel, positionToSpawn, Quaternion.identity);
         }
         if (type == "bG") //Beskidt Gaffel
         {
-            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance));
-            Vector3 positionToSpawn = beskidtSpawnPlatform.transform.position + spawnBuffer;
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
+            Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(beskidtGaffel, positionToSpawn, Quaternion.identity);
         }
         if(type == "p") //Poelse
         {
-            spawnBuffer = new Vector3(UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance), yOffset, UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance));
-            Vector3 positionToSpawn = madSpawnPlatform.transform.position + spawnBuffer;
+            spawnBuffer = new Vector3(UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
+            Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
 
             Instantiate(poelse, positionToSpawn, Quaternion.identity);
 
         }
     }
+
+    public void SpawnThisObject2(GameObject prefab)
+    {
+        if (!universalSpawnPlatform)
+        {
+            Debug.Log($"Object spawner universalSpawnPlatform not assigned in scene {SceneManager.GetActiveScene()}, searching manually...");
+            universalSpawnPlatform = GameObject.FindGameObjectWithTag("SpawnPlatform");
+            //universalSpawnPlatform = GameObject.Find("bordPlatform");
+            if (!universalSpawnPlatform)
+            {
+                Debug.LogWarning($"Manual search for universalSpawnPlatform in scene {SceneManager.GetActiveScene()} failed, cannot spawn object.");
+                return;
+            }
+        }
+
+        spawnBuffer = new Vector3(UnityEngine.Random.Range(0.5f * -spawnbufferDistance, 0.5f * spawnbufferDistance), yOffset, UnityEngine.Random.Range(-spawnbufferDistance, spawnbufferDistance));
+        Vector3 positionToSpawn = universalSpawnPlatform.transform.position + spawnBuffer;
+
+        Instantiate(prefab, positionToSpawn, Quaternion.identity);
+    }
+
 }
